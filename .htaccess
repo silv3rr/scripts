@@ -1,0 +1,56 @@
+#Options Indexes
+
+IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble
+IndexIgnore robots.txt HEADER* README* *.swp icons favicon.ico
+
+AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
+
+AddIconByType (TXT,/icons/text.gif) text/*
+AddIconByType (IMG,/icons/image2.gif) image/*
+AddIconByType (SND,/icons/sound2.gif) audio/*
+AddIconByType (VID,/icons/movie.gif) video/*
+
+AddIcon /icons/binary.gif .bin .exe
+AddIcon /icons/binhex.gif .hqx
+AddIcon /icons/tar.gif .tar
+AddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
+AddIcon /icons/compressed.gif .Z .z .tgz .gz .zip .bz2 .rar
+AddIcon /icons/a.gif .ps .ai .eps
+AddIcon /icons/layout.gif .html .shtml .htm .pdf
+AddIcon /icons/text.gif .txt
+AddIcon /icons/c.gif .c
+AddIcon /icons/p.gif .pl .py
+AddIcon /icons/f.gif .for
+AddIcon /icons/dvi.gif .dvi
+AddIcon /icons/uuencoded.gif .uu
+AddIcon /icons/script.gif .conf .sh .shar .csh .ksh .tcl
+AddIcon /icons/tex.gif .tex
+AddIcon /icons/bomb.gif core
+
+AddIcon /icons/back.gif ..
+AddIcon /icons/hand.right.gif README
+AddIcon /icons/folder.gif ^^DIRECTORY^^
+AddIcon /icons/blank.gif ^^BLANKICON^^
+
+DefaultIcon /icons/unknown.gif
+
+AddDescription "!credits for ngBot. uses hb_creditshow.sh" CreditShow.tcl
+AddDescription "!site updated to work with ngBot" Sitecmds.tcl
+AddDescription "!whois updated to work with ngBot" Whois.tcl  
+AddDescription "little wrapper cscript for audiosorting after pre" audiosortpre.sh
+AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
+AddDescription "little patch to fix destination error on pre" foo-pre-destfix.patch
+AddDescription "<font color='Blue'>PCFiL</font> - fixes dirlog getting corrupted 64bit" footools-dirlogfix.tar.gz 
+AddDescription "ugly patch for foopre to add mp3 genre in PRE" footools-mp3genre.patch
+AddDescription "ugly hack for foopre to add mp3 genre in PRE" footools-x86-x64-20111102-mp3genre.tar.bz2
+AddDescription "oneliner for recursive rescan" rescan
+AddDescription "OLD pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.52.tar.gz
+AddDescription "OLD pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.53.tar.gz
+AddDescription "<b>LATEST</b> pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.54.tar.gz
+AddDescription "works with ngBot" Sitecmds.tcl
+AddDescription "wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
+AddDescription "!vnstat trigger" slv-vnstat.tcl
+AddDescription "<font color='Blue'>Nom</font> - use with http://humdi.net/vnstat" vnstat_frontend.tar
+AddDescription "custom wk/mn/alup stats - exclude users/groups" gft-stats.sh
+AddDescription "goes with gft-stats.sh - add these to glftpd.conf" gft-stats.txt
+AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
