@@ -34,24 +34,24 @@ AddIcon /icons/blank.gif ^^BLANKICON^^
 
 DefaultIcon /icons/unknown.gif
 
-AddDescription "!credits for ngBot. uses hb_creditshow.sh" CreditShow.tcl
-AddDescription "!site updated to work with ngBot" Sitecmds.tcl
-AddDescription "!whois updated to work with ngBot" Whois.tcl  
+AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
+AddDescription "<b><u>LINKS</u></b> to other websites containing scripts etc" LINKS
+AddDescription "!site plugin updated to work with ngBot" Sitecmds.tcl
+AddDescription "!whois plugin updated to work with ngBot" Whois.tcl
 AddDescription "little wrapper cscript for audiosorting after pre" audiosortpre.sh
-AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
 AddDescription "little patch to fix destination error on pre" foo-pre-destfix.patch
-AddDescription "<font color='Blue'>PCFiL</font> - fixes dirlog getting corrupted 64bit" footools-dirlogfix.tar.gz 
+AddDescription "<font color='Blue'>PCFiL</font> - fixes dirlog getting corrupted 64bit" footools-dirlogfix.tar.gz
 AddDescription "ugly patch for foopre to add mp3 genre in PRE" footools-mp3genre.patch
 AddDescription "ugly hack for foopre to add mp3 genre in PRE" footools-x86-x64-20111102-mp3genre.tar.bz2
+AddDescription "custom wk/mn/alup stats - exclude users/groups" gft-stats.sh
+AddDescription "goes with gft-stats.sh - add these to glftpd.conf" gft-stats.txt
+AddDescription "SHA512: <textarea style=width:413px;height:17px;background-color:LightGray;border:2x solid LightGray;>0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49</textarea>" glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz
+AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
 AddDescription "oneliner for recursive rescan" rescan
+AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
 AddDescription "OLD pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.52.tar.gz
 AddDescription "OLD pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.53.tar.gz
-AddDescription "<b>LATEST</b> pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.54.tar.gz
-AddDescription "works with ngBot" Sitecmds.tcl
+AddDescription "<b><u>LATEST</u></b> pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.54.tar.gz
 AddDescription "wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
 AddDescription "!vnstat trigger" slv-vnstat.tcl
 AddDescription "<font color='Blue'>Nom</font> - use with http://humdi.net/vnstat" vnstat_frontend.tar
-AddDescription "custom wk/mn/alup stats - exclude users/groups" gft-stats.sh
-AddDescription "goes with gft-stats.sh - add these to glftpd.conf" gft-stats.txt
-AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
-AddDescription "<b>links</b> to other websites containing scripts etc" LINKS
