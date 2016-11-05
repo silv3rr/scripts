@@ -1,7 +1,7 @@
 #Options Indexes
 
 IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble
-IndexIgnore robots.txt HEADER* README* *.swp icons favicon.ico
+IndexIgnore robots.txt HEADER* README* *.swp icons favicon.ico .git LNK
 
 AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
 
@@ -16,7 +16,7 @@ AddIcon /icons/tar.gif .tar
 AddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
 AddIcon /icons/compressed.gif .Z .z .tgz .gz .zip .bz2 .rar
 AddIcon /icons/a.gif .ps .ai .eps
-AddIcon /icons/layout.gif .html .shtml .htm .pdf
+AddIcon /icons/layout.gif .html .shtml .htm .pdf 00_LINKS
 AddIcon /icons/text.gif .txt
 AddIcon /icons/c.gif .c
 AddIcon /icons/p.gif .pl .py
@@ -54,3 +54,4 @@ AddDescription "<font color='Blue'>Nom</font> - use with http://humdi.net/vnstat
 AddDescription "custom wk/mn/alup stats - exclude users/groups" gft-stats.sh
 AddDescription "goes with gft-stats.sh - add these to glftpd.conf" gft-stats.txt
 AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
+AddDescription "<b>links</b> to other websites containing scripts etc" LINKS
