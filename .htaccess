@@ -16,7 +16,7 @@ AddIcon /icons/tar.gif .tar
 AddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
 AddIcon /icons/compressed.gif .Z .z .tgz .gz .zip .bz2 .rar
 AddIcon /icons/a.gif .ps .ai .eps
-AddIcon /icons/layout.gif .html .shtml .htm .pdf 00_LINKS
+AddIcon /icons/layout.gif .html .shtml .htm .pdf 00_LINKS 00_MIRROR
 AddIcon /icons/text.gif .txt
 AddIcon /icons/c.gif .c
 AddIcon /icons/p.gif .pl .py
@@ -35,7 +35,8 @@ AddIcon /icons/blank.gif ^^BLANKICON^^
 DefaultIcon /icons/unknown.gif
 
 AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
-AddDescription "<b><u>LINKS</u></b> to other websites containing scripts etc" LINKS
+AddDescription "<b><a href='00_LINKS'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS
+AddDescription "<b><a href='https://github.com/silv3rr/www-scripts'>MIRROR</a></b> of these files at github" 00_MIRROR
 AddDescription "!site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "!whois plugin updated to work with ngBot" Whois.tcl
 AddDescription "little wrapper cscript for audiosorting after pre" audiosortpre.sh
