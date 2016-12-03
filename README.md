@@ -8,4 +8,4 @@
                                                                   \/
                          s   c   r   i   p   t   s
 
-[.htaccess](Directory Index)
+[Directory Index](.htacess)
