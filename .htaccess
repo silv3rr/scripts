@@ -47,7 +47,7 @@ AddDescription "ugly hack for foopre to add mp3 genre in PRE" footools-x86-x64-2
 AddDescription "custom wk/mn/alup stats - exclude users/groups" gft-stats.sh
 AddDescription "goes with gft-stats.sh - add these to glftpd.conf" gft-stats.txt
 AddDescription "SHA512: <textarea style=width:413px;height:17px;background-color:LightGray;border:2x solid LightGray;>0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49</textarea>" glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz
-AddDescription "edits files in bin/sources and sets maxdirlogsize" glset.sh
+AddDescription "sets gldir for files in bin/sources and maxdirlogsize" glset.sh
 AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
 AddDescription "oneliner for recursive rescan" rescan
 AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
