@@ -8,7 +8,7 @@
                                                                   \/
                          s   c   r   i   p   t   s
 
-[Directory Index](.htaccess)
+[File Descriptions](.htaccess) (scroll down to the bottom)
 
 ```
   __/\__  
