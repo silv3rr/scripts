@@ -1,7 +1,11 @@
 #!/bin/sh
 
-# Change some files if your glftpd install is not in the default location
-# so compiling bins works and sets MAXDIRLOGSIZE a bit higher.
+# glset 20161203 slv
+# set GLROOT and run script from gl/bin/sources dir. it changes some files
+# if glftpd is not in the default location so compiling bins works. also
+# sets MAXDIRLOGSIZE a bit higher.
+
+GLROOT="/jail/glftpd"
 
 if [ "$( echo $PWD | grep -v bin/sources$ )" ]; then
   echo
@@ -10,9 +14,7 @@ if [ "$( echo $PWD | grep -v bin/sources$ )" ]; then
   exit 1
 fi
 
-#FILES="compile.sh glconf.h olddirclean2.c test.bla test2"
 FILES="compile.sh glconf.h olddirclean2.c"
-GLROOT="/jail/glftpd"
 GLCONF="$GLROOT/glftpd.conf"
 MAXDIRLOGSIZE=150000
 DEBUG="FALSE"
@@ -57,7 +59,7 @@ for i in $FILES; do
         diff -s -u0 $i.bak $i | sed 's/^-/\x1b[31m-/;s/^+/\x1b[32m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'
       fi
     else
-      echo "* ERROR: \"$i.bak\" already exists... skipping $i"
+      echo "* INFO: \"$i.bak\" already exists... skipping $i"
     fi
   else
     echo "* ERROR: \"$i\" doesn't exist... skipping"
