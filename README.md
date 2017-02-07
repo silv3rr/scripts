@@ -9,7 +9,7 @@
                          s   c   r   i   p   t   s
 
 * [File Descriptions](.htaccess) (scroll down to the bottom)
-* Or visit the original website at [https://scripts.nl.eu.org](https://scripts.nl.eu.org)
+* Or visit the original website at [https://sscripts.ga](https://sscripts.ga)
 
 ```
   __/\__  
