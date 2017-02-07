@@ -1,5 +1,5 @@
 <html><title> ·· links ·· </title><body bgcolor="LightGray" link="Blue" vlink="Black" onLoad="if (!navigator.userAgent.match(/Trident\/7\./)) { linkURL(document.documentElement.innerHTML); }">
-<pre><font color="Blue"><b> l   i   n   k   s </b></font><hr>
+<pre><font color="Blue"><b> l   i   n   k   s </b></font><hr><br>updated 2017-02-07<br>
 
 > GLFTPD / PZS-NG
 https://glftpd.eu
@@ -26,6 +26,7 @@ https://github.com/bioboy?tab=repositories
 https://github.com/nixnodes/glutil
 https://github.com/Skeddie/projects
 https://github.com/silv3rr?tab=repositories
+https://github.com/kelek-/kftpd
 
 > OTHER / PERSONAL
 https://notabug.org/tittof
@@ -36,8 +37,11 @@ http://www.high-society.at/f-scripts
 http://www.distorted.se/tcl/glftpd.php
 http://lundman.net
 
-> IRC CHANNELS
-#glftpd #glhelp #pzs-ng #ebftpd (efnet)
+> IRC CHANNELS (EFNET)
+#glftpd
+#glhelp
+#pzs-ng
+#ebftpd
 
 And ofcourse: https://sscripts.ga :)
 
