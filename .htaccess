@@ -34,6 +34,8 @@ AddIcon /icons/blank.gif ^^BLANKICON^^
 
 DefaultIcon /icons/unknown.gif
 
+
+
 AddDescription "<b><a href='00_LINKS'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS
 AddDescription "<b><a href='https://github.com/silv3rr/www-scripts'>MIRROR</a></b> of these files at github" 00_MIRROR
 AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
@@ -50,6 +52,7 @@ AddDescription "SHA512: <textarea style=width:413px;height:17px;background-color
 AddDescription "SHA512: <textarea style=width:413px;height:17px;background-color:LightGray;border:2x solid LightGray;>12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518</textarea>" glftpd-LNX-2.07.1_1.1.0c_x64.tgz
 AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
 AddDescription "oneliner for recursive rescan" rescan
+AddDescription "slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
 AddDescription "archiver for iso, moves to appropriate dirs and creates tvshow/season dirs" slv-arch.sh
 AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
 AddDescription "sets gldir for files in bin/sources and sets maxdirlogsize" slv-glset.sh
