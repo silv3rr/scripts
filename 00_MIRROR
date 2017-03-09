@@ -1,10 +1,10 @@
-<html><title> ·· mirror ·· </title><body bgcolor="LightGray" link="Blue" vlink="Black" onLoad="linkURL(document.documentElement.innerHTML);">
+<html><title> ·· links ·· </title><body bgcolor="LightGray" link="Blue" vlink="Black" onLoad="if (!navigator.userAgent.match(/Trident\/7\./)) { linkURL(document.documentElement.innerHTML); }">
 <pre><font color="Blue"><b> m   i   r   r   o  r </b></font><hr>
 
 https://github.com/silv3rr/www-scripts
 
-<hr></pre></body><script>
+<br><hr></pre></body><script>
 function linkURL(text) {
-	var exp = /(\b((https?|ftp|file):\/\/|(www))[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]*)/ig;
-	var link = text.replace(exp,"<a href='$1'>$1</a>"); document.write(link.replace(/\n/g, '<br>'));
+	var exp = /(\b((https?|ftp|file):\/\/|(www))[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]*)/gi;
+	var link = text.replace(exp,"<a href='$1'>$1<\/a>"); document.writeln(link);
 }</script></html>
