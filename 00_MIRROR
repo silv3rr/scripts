@@ -1,7 +1,7 @@
 <html><title> ·· links ·· </title><body bgcolor="LightGray" link="Blue" vlink="Black" onLoad="if (!navigator.userAgent.match(/Trident\/7\./)) { linkURL(document.documentElement.innerHTML); }">
 <pre><font color="Blue"><b> m   i   r   r   o  r </b></font><hr>
 
-https://github.com/silv3rr/www-scripts
+https://github.com/silv3rr/sscripts.ga
 
 <br><hr></pre></body><script>
 function linkURL(text) {
