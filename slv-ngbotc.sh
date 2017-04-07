@@ -22,13 +22,13 @@ cd "$SRCDIR" && (
   echo
   printf "${WHITEBU}* diff files in $SRCDIR and $SITEBOTDIR...${RESET}\n"
   printf "${WHITEB}ngBot.tcl:${RESET}\n"
-  func_colordiff ngBot.tcl $SITEBOTDIR/ngBot.tcl
+  func_colordiff $SITEBOTDIR/ngBot.tcl $SRCDIR/ngBot.tcl
   echo
   for i in modules plugins themes; do
     printf "${WHITEBU}* diff files in \"$i\" dir...${RESET}\n"
     cd $i && ( for j in *; do
       printf "${WHITEB}$j:${RESET}\n"
-      func_colordiff $j $SITEBOTDIR/$i/$j
+      func_colordiff $SITEBOTDIR/$i/$j $SRCDIR/$i/$j
       echo
     done ) && cd ..
   done
