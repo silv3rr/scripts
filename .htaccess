@@ -62,3 +62,6 @@ AddDescription "<b><u>LATEST</u></b> pzs-ng dZBot/ngbot plugin to show bw after 
 AddDescription "wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
 AddDescription "!vnstat trigger" slv-vnstat.tcl
 AddDescription "<font color='Blue'>Nom</font> - use with http://humdi.net/vnstat" vnstat_frontend.tar
+AddDescription "searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks" slv-links.sh
+
+
