@@ -2,7 +2,7 @@
 if [ "$LOGNAME" != "root" ]; then echo "You have to be root to run this script!"; exit 0; fi
 
 ############################################################
-# slv-arch 20170421 silver
+# slv-arch 20170812 silver
 ############################################################
 # 
 # needs: awk basename date find grep mv
@@ -171,17 +171,17 @@ for TVDIR in $TVDIRS; do
 			-e 's/\([._]\)On\([._]\)/\1on\2/g' \
 			-e 's/\([._]\)Or\([._]\)/\1or\2/g' \
 			-e 's/\([._]\)With\([._]\)/\1with\2/g' \
-			-e 's/\.\(S[0-9]*E[0-9]*\)\..*//gi' \
-			-e 's/\.\(S[0-9]*E[0-9]*\-E[0-9]*\)\..*//gi' \
-			-e 's/\.\(S[0-9]*E[0-9]*[E-][0-9]*\)\..*//gi' \
-			-e 's/\.\(S[0-9]*\)\..*//gi' \
-			-e 's/\.\(E[0-9]*\)\..*//gi' \
-			-e 's/[._]\(\([0-9]\|[0-9]\)x[0-9]*\)[._].*//gi' \
-			-e 's/[._]\([0-9]*[._][0-9]*[._][0-9]*\)[._].*//gi' \
-                        -e 's/[._-]\(hdtv\|pdtv\|dsr\|dsrip\|webrip\|web\|h264\|x264\|\|xvid\|720p\|1080p\|dvdrip\|ws\)\($\|[._-]\).*//gi' \
+			-e 's/\.\(S[0-9]\+E[0-9]\+\)\..*//gi' \
+			-e 's/\.\(S[0-9]\+E[0-9]\+\-E[0-9]\+\)\..*//gi' \
+			-e 's/\.\(S[0-9]\+E[0-9]\+[E-][0-9]\+\)\..*//gi' \
+			-e 's/\.\(S[0-9]\+\)\..*//gi' \
+			-e 's/\.\(E[0-9]+\)\..*//gi' \
+			-e 's/[._]\(\([0-9]\|[0-9]\)x[0-9]\+\)[._].*//gi' \
+			-e 's/[._]\([0-9]\+[._][0-9]\+[._][0-9]\+\)[._].*//gi' \
+			-e 's/[._-]\(hdtv\|pdtv\|dsr\|dsrip\|webrip\|web\|h264\|x264\|\|xvid\|720p\|1080p\|dvdrip\|ws\)\($\|[._-]\).*//gi' \
 			-e 's/[._-]\(dirfix\|proper\|repack\|nfofix\|preair\|pilot\|ppv\|extended\|part.[0-9]\+\)\($\|[._-]\).*//gi' \
-			-e 's/[._-]\(dutch\|german\|french\|hungarian\|italian\|norwegian\|polish\|portuguese\|spanish\|russian\|swedish\)\($\|[._-]\).*//gi'\ )"
-			SEASON="$( echo $DIR | sed -e 's/.*[._-]S\([0-9]*\)E[0-9].*/\1/i' -e 's/.*S\([0-9]\|[0-9][0-9]*\)\..*/\1/i' -e 's/.*[._-]\([0-9]*\)x[0-9].*/\1/i' -e 's/.*\([0-9][0-9][0-9][0-9]\).[0-9][0-9].[0-9][0-9].*/\1/i' )"
+			-e 's/[._-]\(dutch\|german\|french\|hungarian\|italian\|norwegian\|polish\|portuguese\|spanish\|russian\|swedish\)\($\|[._-]\).*//gi' )"
+			SEASON="$( echo $DIR | sed -e 's/.*[._-]S\([0-9]\+\)E[0-9].*/\1/i' -e 's/.*S\([0-9]\|[0-9][0-9]\+\)\..*/\1/i' -e 's/.*[._-]\([0-9]\+\)x[0-9].*/\1/i' -e 's/.*\([0-9][0-9][0-9][0-9]\).[0-9][0-9].[0-9][0-9].*/\1/i' )"
 			if [ "$( echo "$SEASON" | grep "^[0-9]$" )" ]; then SEASON="S0$SEASON"; else SEASON="S$SEASON"; fi
 			if [ "$( echo "$SEASON" | grep -v "^S\([0-9]$\|[0-9][0-9]\|[0-9][0-9][0-9]\)$" )" ]; then SEASON=""; fi
 			DSTSERIE="$( echo $SRCSERIE | sed 's/\(\w\)_/\1\./g' )"
