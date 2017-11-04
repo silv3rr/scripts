@@ -1,4 +1,4 @@
-<title> >> slv scripts << </title>
+<title> .. slv scripts .. </title>
 <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
 <body bgcolor="LightGray" link="Blue" vlink="Black">
 <pre>
