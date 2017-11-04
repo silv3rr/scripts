@@ -35,8 +35,8 @@ AddIcon /icons/blank.gif ^^BLANKICON^^
 DefaultIcon /icons/unknown.gif
 
 
-AddDescription "<b><a href='00_LINKS'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS
-AddDescription "<b><a href='https://github.com/silv3rr/www-scripts'>MIRROR</a></b> of these files at github" 00_MIRROR
+AddDescription "<b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS.html
+AddDescription "<b><a href='https://github.com/silv3rr/www-scripts'>MIRROR</a></b> of these files at github" 00_MIRROR.html
 AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
 AddDescription "!site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "!whois plugin updated to work with ngBot" Whois.tcl

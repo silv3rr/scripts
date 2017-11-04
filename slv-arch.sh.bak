@@ -2,7 +2,7 @@
 if [ "$LOGNAME" != "root" ]; then echo "You have to be root to run this script!"; exit 0; fi
 
 ############################################################
-# slv-arch 20171026 silver
+# slv-arch 20170812 silver
 ############################################################
 # 
 # needs: awk basename date find grep mv
@@ -53,13 +53,11 @@ $GLDIR/site/tv
 # end of config
 ############################################################
 
-if echo "$MINS_OLD" | grep -qv "[0-9]\+"; then echo "ERROR: MINS_OLD is not set correctly, exiting..."; exit 1; fi
-
-for M in $MOUNTS; do
-	DF=$( df "$M" | awk '{ print $4 }' | tail -1 )
-	if echo "$DF" | grep -q "[0-9]"; then
-		if [ "$DF" -lt "$MIN_FREE" ]; then
-			if echo "$1" | grep -iq "debug"; then echo "DEBUG: not enough free diskspace on $M (${DF}kb)"; fi
+for MNT in $MOUNTS; do
+	DF=$( df $MOUNT | awk '{ print $4 }' | tail -1 )
+	if [ "$( echo "$DF" | grep [0-9] )" ]; then
+		if [ $DF -lt $MIN_FREE ]; then
+			if [ "$( echo $1 | grep -i "debug" )" ]; then echo "DEBUG: not enough free diskspace on $MNT (${DF}kb)"; fi
 			exit 1
 		fi
 	else
@@ -69,16 +67,17 @@ for M in $MOUNTS; do
 done
 
 for FIELD in $MOVE; do
-	SRCDIR="$( echo "$FIELD" | awk -F ":" '{ print $1 }' )"
-	REGEXP="$( echo "$FIELD" | awk -F ":" '{ print $2 }' )"
-	DSTDIR="$( echo "$FIELD" | awk -F ":" '{ print $3 }' )"
-	for RLS in $( find "$SRCDIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort | egrep -v "$SKIPDIRS" ); do
+	SRCDIR="$( echo $FIELD | awk -F ":" '{ print $1 }' )"
+	REGEXP="$( echo $FIELD | awk -F ":" '{ print $2 }' )"
+	DSTDIR="$( echo $FIELD | awk -F ":" '{ print $3 }' )"
+	for RLS in $( ls -1 $SRCDIR | egrep -v "$SKIPDIRS" ); do
 		SKIP="NO"
 		if [ "$( ls -1 "$SRCDIR/$RLS" | grep -e "^[cC][dD][1-9]$" -e "^[dD][iI][sS][cCkK][1-9]$" -e ^[dD][vV][dD][1-9]$ )" ]; then
 			for each_cd in $( ls -1 "$SRCDIR/$RLS" | grep -e "^[cC][dD][1-9]$" -e "^[dD][iI][sS][cCkK][1-9]$" -e ^[dD][vV][dD][1-9]$ ); do
 				if [ -z "$( ls -1 "$SRCDIR/$RLS/$each_cd" | egrep "$CHECK_FOR" )" ]; then
-					if ls -1 "$SRCDIR/$RLS/$each_cd" | grep -q "\.[sS][fF][vV]$"; then
+					if [ "$( ls -1 $SRCDIR/$RLS/$each_cd | grep "\.[sS][fF][vV]$" )" ]; then
 						SKIP="YES"
+						#break
 					else
 						SKIP="NO"
 					fi
@@ -86,29 +85,30 @@ for FIELD in $MOVE; do
 			done
 		else
 			if [ -z "$( ls -1 "$SRCDIR/$RLS" | egrep "$CHECK_FOR" )" ]; then
-				if ls -1 "$SRCDIR/$RLS" | grep -q "\.[sS][fF][vV]$"; then
+				if [ "$( ls -1 $SRCDIR/$RLS | grep "\.[sS][fF][vV]$" )" ]; then
 					SKIP="YES"
+					#break
 				else
 					SKIP="NO"
 				fi
 			fi
 		fi
 	        CURDATE_SEC="$( $DATEBIN +%s )"
-	        DIRDATE_SEC="$( ls -ld --time-style='+%s' "$SRCDIR/$RLS" | awk '{ print $6 }' )"
-		if echo "$DIRDATE_SEC" | grep -q "[0-9]"; then DIRAGE_MIN=$(( (CURDATE_SEC - DIRDATE_SEC) / 60 )); fi
+	        DIRDATE_SEC="$( ls -ld --time-style='+%s' $SRCDIR/$RLS | awk '{ print $(NF-1) }' )"
+		DIRAGE_MIN=$(( (${CURDATE_SEC}-${DIRDATE_SEC}) / 60 ))
 	        if [ "$DIRAGE_MIN" -ge "$MINS_OLD" ] && [ "$SKIP" = "NO" ]; then
-			if echo "$RLS" | egrep -q "$REGEXP"; then
-				if [ ! "$( ls -1d "$DSTDIR" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+			if [ "$( echo $RLS | egrep "$REGEXP" )" ]; then
+				if [ ! "$( ls -1d $DSTDIR 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						echo "DEBUG: mkdir $DSTDIR"
 					else
 						mkdir "$DSTDIR"
 					fi
 				fi
-				if echo "$1" | grep -iq "debug"; then
+				if [ "$( echo $1 | grep -i "debug" )" ]; then
 					echo "DEBUG: mv $SRCDIR/$RLS $DSTDIR"
 				else
-					mv "$SRCDIR/$RLS" "$DSTDIR"
+					mv "$SRCDIR/$RLS" $DSTDIR
 				fi
 			fi
 		fi
@@ -120,27 +120,28 @@ for SKIP in $TVDIRS; do
 done
 
 for TVDIR in $TVDIRS; do
-	if echo "$NUM_DIRS_TV" | grep -q "[0-9]"; then
-		CURDATE_SEC="$( "$DATEBIN" +%s )"
+	if [ "$( echo $NUM_DIRS_TV | grep [0-9] )" ]; then
+		CURDATE_SEC="$( $DATEBIN +%s )"
 		# use this format for skipdirs here: "/NUKED-|/\(|/_ARCHIVE\ |/_OLDER\ "
-		SKIPDIRS_TMP="$( echo "$SKIPDIRS" | sed -e 's@\^@/@g' -e 's@\.\*@@g' -e 's@\$@\\\ @g' )"
-		if echo "$1" | grep -iq "debug"; then echo "DEBUG: NUM_DIRS_TV $NUM_DIRS_TV SKIPDIRS_TMP $SKIPDIRS_TMP"; fi
-		for DIR in $( ls -ldrt --time-style='+%s' "$TVDIR"/* | egrep -v "$SKIPDIRS_TMP" | head -"$NUM_DIRS_TV" | sed "s@$GLDIR/site@@g" | sed 's/ /^/g' ); do
-			DIRDATE_SEC="$( echo "$DIR" | awk -F \^ '{ print $6 }' )"
-			if echo "$DIRDATE_SEC" | grep -q [0-9]; then DIRAGE_MIN=$(( (CURDATE_SEC - DIRDATE_SEC) / 60 )); fi
-			if echo "$1" | grep -iq "debug"; then echo "DEBUG: DIR $DIR DIRDATE_SEC $DIRDATE_SEC DIRAGE_MIN $DIRAGE_MIN"; fi
+		SKIPDIRS_TMP="$( echo $SKIPDIRS | sed -e 's@\^@/@g' -e 's@\.\*@@g' -e 's@\$@\\\ @g' )"
+	        if [ "$( echo $1 | grep -i "debug" )" ]; then echo "DEBUG: NUM_DIRS_TV $NUM_DIRS_TV SKIPDIRS_TMP $SKIPDIRS_TMP"; fi
+		for DIR in $( ls -ldrt --time-style='+%s' $TVDIR/* | egrep -v "$SKIPDIRS_TMP" | head -${NUM_DIRS_TV} | sed "s@$GLDIR/site@@g" | sed 's/ /^/g' ); do
+			DIRDATE_SEC="$( echo $DIR | awk -F \^ '{ print $(NF-1) }' )"
+			if [ "$( echo $DIRDATE_SEC | grep [0-9] )" ]; then DIRAGE_MIN=$(( (${CURDATE_SEC}-${DIRDATE_SEC}) / 60 )); fi
+			if [ "$( echo $1 | grep -i "debug" )" ]; then echo "DEBUG: DIR $DIR DIRDATE_SEC $DIRDATE_SEC DIRAGE_MIN $DIRAGE_MIN"; fi
 		done
-		if echo "$DIRAGE_MIN" | grep -q "[0-9]"; then MINS_OLD="$DIRAGE_MIN"; fi
+		if [ "$( echo $DIRAGE_MIN | grep [0-9] )" ]; then MINS_OLD="$DIRAGE_MIN"; fi
 	fi
 
-	SKIPREGEXP="$( echo "$SKIPDIRS" | sed "s@\^@\^$TVDIR/@g" )"
-	for DIR in $( find "$TVDIR" -maxdepth 1 -regextype posix-egrep ! -regex "${ALLSKIP}${SKIPREGEXP}" ); do
+	SKIPREGEXP="$( echo $SKIPDIRS | sed "s@\^@\^$TVDIR/@g" )"
+	for DIR in $( find $TVDIR -maxdepth 1 -regextype posix-egrep ! -regex "$ALLSKIP$SKIPREGEXP" ); do
 		SKIP="NO"
 		if [ "$( ls -1 "$DIR" | grep -e "^[cC][dD][1-9]$" -e "^[dD][iI][sS][cCkK][1-9]$" -e ^[dD][vV][dD][1-9]$ )" ]; then
 			for each_cd in $( ls -1 "$DIR" | grep -e "^[cC][dD][1-9]$" -e "^[dD][iI][sS][cCkK][1-9]$" -e ^[dD][vV][dD][1-9]$ ); do
 				if [ -z "$( ls -1 "$DIR/$each_cd" | egrep "$CHECK_FOR" )" ]; then
-					if ls -1 "$DIR/$each_cd" | grep -q "\.[sS][fF][vV]$"; then
+					if [ "$( ls -1 $DIR/$each_cd | grep "\.[sS][fF][vV]$" )" ]; then
 						SKIP="YES"
+						#break
 					else
 						SKIP="NO"
 					fi
@@ -148,20 +149,20 @@ for TVDIR in $TVDIRS; do
 			done
 		else
 			if [ -z "$( ls -1 "$DIR" | egrep "$CHECK_FOR" )" ]; then
-				if ls -1 "$DIR" | grep -q "\.[sS][fF][vV]$"; then
+				if [ "$( ls -1 "$DIR" | grep "\.[sS][fF][vV]$" )" ]; then
 					SKIP="YES"
+					#break
 				else
 					SKIP="NO"
 				fi
 			fi
 		fi
 		CURDATE_SEC="$( $DATEBIN +%s )"
-		DIRDATE_SEC="$( ls -ld --time-style='+%s' "$DIR" | awk '{ print $6 }' )"
-		if echo "$DIRDATE_SEC" | grep -q "[0-9]"; then DIRAGE_MIN=$(( (CURDATE_SEC - DIRDATE_SEC) / 60 )); fi
+		DIRDATE_SEC="$( ls -ld --time-style='+%s' $DIR | awk '{ print $(NF-1) }' )"
+		DIRAGE_MIN=$(( (${CURDATE_SEC}-${DIRDATE_SEC}) / 60 ))
 		if [ "$DIRAGE_MIN" -ge "$MINS_OLD" ]  && [ "$SKIP" = "NO" ]; then
-			BASEDIR="$( basename "$DIR" )"
-			SRCSERIE="$( echo "$BASEDIR" | sed \
-			-e 's/^(no-\(nfo\|sfv\|sample\))-//g' \
+			BASEDIR="$( basename $DIR )"
+			SRCSERIE="$( echo $BASEDIR | sed \
 			-e 's/\([._]\)A\([._]\)/\1a\2/g' \
 			-e 's/\([._]\)And\([._]\)/\1and\2/g' \
 			-e 's/\([._]\)In\([._]\)/\1in\2/g' \
@@ -180,66 +181,63 @@ for TVDIR in $TVDIRS; do
 			-e 's/[._-]\(hdtv\|pdtv\|dsr\|dsrip\|webrip\|web\|h264\|x264\|\|xvid\|720p\|1080p\|dvdrip\|ws\)\($\|[._-]\).*//gi' \
 			-e 's/[._-]\(dirfix\|proper\|repack\|nfofix\|preair\|pilot\|ppv\|extended\|part.[0-9]\+\)\($\|[._-]\).*//gi' \
 			-e 's/[._-]\(dutch\|german\|french\|hungarian\|italian\|norwegian\|polish\|portuguese\|spanish\|russian\|swedish\)\($\|[._-]\).*//gi' )"
-			SEASON="$( echo "$DIR" | sed -e 's/.*[._-]S\([0-9]\+\)E[0-9].*/\1/i' \
-			                             -e 's/.*S\([0-9]\|[0-9][0-9]\+\)\..*/\1/i' \
-						     -e 's/.*[._-]\([0-9]\+\)x[0-9].*/\1/i' \
-                                                     -e 's/.*\([0-9][0-9][0-9][0-9]\).[0-9][0-9].[0-9][0-9].*/\1/i' )"
-			if echo "$SEASON" | grep -q "^[0-9]$"; then SEASON="S0$SEASON"; else SEASON="S$SEASON"; fi
-			if echo "$SEASON" | grep -qv "^S\([0-9]$\|[0-9][0-9]\|[0-9][0-9][0-9]\)$"; then SEASON=""; fi
-			DSTSERIE="$( echo "$SRCSERIE" | sed 's/\(\w\)_/\1\./g' )"
-			CHKSERIE="$( echo "$DSTSERIE" | sed 's/\([a-z]\|[A-Z]\)/[\L\1\U\1\]/g' )"
+			SEASON="$( echo $DIR | sed -e 's/.*[._-]S\([0-9]\+\)E[0-9].*/\1/i' -e 's/.*S\([0-9]\|[0-9][0-9]\+\)\..*/\1/i' -e 's/.*[._-]\([0-9]\+\)x[0-9].*/\1/i' -e 's/.*\([0-9][0-9][0-9][0-9]\).[0-9][0-9].[0-9][0-9].*/\1/i' )"
+			if [ "$( echo "$SEASON" | grep "^[0-9]$" )" ]; then SEASON="S0$SEASON"; else SEASON="S$SEASON"; fi
+			if [ "$( echo "$SEASON" | grep -v "^S\([0-9]$\|[0-9][0-9]\|[0-9][0-9][0-9]\)$" )" ]; then SEASON=""; fi
+			DSTSERIE="$( echo $SRCSERIE | sed 's/\(\w\)_/\1\./g' )"
+			CHKSERIE="$( echo $DSTSERIE | sed 's/\([a-z]\|[A-Z]\)/[\L\1\U\1\]/g' )"
 			DIRDATE="$( $DATEBIN --date "01/01/1970 +$DIRDATE_SEC seconds" +"%Y-%m-%d %H:%M:%S" )"
 			if [ "$SEASON" = "" ]; then
-				if [ ! "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						echo "DEBUG: mkdir $TVARCHIVE/$DSTSERIE"
 					else
 						mkdir "$TVARCHIVE/$DSTSERIE"
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						echo "DEBUG: mv $DIR $TVARCHIVE/$CHKSERIE/"
 					else
-						mv "$DIR" "$TVARCHIVE/$CHKSERIE/"
+						mv "$DIR" $TVARCHIVE/$CHKSERIE/
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE/$BASEDIR" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE/$BASEDIR 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						echo "touch -d $DIRDATE $TVARCHIVE/$CHKSERIE/$BASEDIR"
 					else
-						touch -d "$DIRDATE" "$TVARCHIVE/$CHKSERIE/$BASEDIR"
+						touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIE/$BASEDIR
 					fi
 				fi
 			else
-				if [ ! "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						echo "DEBUG: mkdir $TVARCHIVE/$DSTSERIE"
 					else
 						mkdir "$TVARCHIVE/$DSTSERIE"
 					fi
 				fi
-				if [ ! "$( ls -1d "$TVARCHIVE/$CHKSERIE/$SEASON" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIE/$SEASON 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						#echo "DEBUG: mkdir $TVARCHIVE/$DSTSERIE/$SEASON"
-						echo "DEBUG: mkdir $( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null || echo [LS_ERR]:"$TVARCHIVE/$CHKSERIE" )/$SEASON"
+						echo "DEBUG: mkdir $( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIE )/$SEASON"
 					else
 						#mkdir "$TVARCHIVE/$DSTSERIE/$SEASON"
-						mkdir "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )/$SEASON"
+						mkdir "$( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )/$SEASON"
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE/$SEASON" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE/$SEASON 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						echo "DEBUG: mv $DIR $TVARCHIVE/$CHKSERIE/$SEASON"
 					else
-						mv "$DIR" "$TVARCHIVE/$CHKSERIE/$SEASON"
+						mv "$DIR" $TVARCHIVE/$CHKSERIE/$SEASON
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR" 2>/dev/null )" ]; then
-					if echo "$1" | grep -iq "debug"; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR 2>/dev/null )" ]; then
+					if [ "$( echo $1 | grep -i "debug" )" ]; then
 						echo "DEBUG: touch -d $DIRDATE $TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR"
 					else
-						touch -d "$DIRDATE" "$TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR"
+						touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR
 					fi
 				fi
 			fi

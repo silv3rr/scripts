@@ -1,6 +1,6 @@
 putlog "slv-vnstat.tcl by silver 20061124"
 
-set staffchanvnstat "#chab"
+set staffchanvnstat "#chan"
 set vnstat {/usr/bin/vnstat}
 
 bind pub o|o !vnstat pub:slv-vnstat
