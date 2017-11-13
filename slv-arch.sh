@@ -2,7 +2,7 @@
 if [ "$LOGNAME" != "root" ]; then echo "You have to be root to run this script!"; exit 0; fi
 
 ############################################################
-# slv-arch 20171026 silver
+# slv-arch 20171113 silver
 ############################################################
 # 
 # needs: awk basename date find grep mv
@@ -52,6 +52,8 @@ $GLDIR/site/tv
 ############################################################
 # end of config
 ############################################################
+
+# NOTE: "./slv-arch.sh debug" does not actually mkdir/mv but just shows actions instead
 
 if echo "$MINS_OLD" | grep -qv "[0-9]\+"; then echo "ERROR: MINS_OLD is not set correctly, exiting..."; exit 1; fi
 
@@ -190,56 +192,56 @@ for TVDIR in $TVDIRS; do
 			CHKSERIE="$( echo "$DSTSERIE" | sed 's/\([a-z]\|[A-Z]\)/[\L\1\U\1\]/g' )"
 			DIRDATE="$( $DATEBIN --date "01/01/1970 +$DIRDATE_SEC seconds" +"%Y-%m-%d %H:%M:%S" )"
 			if [ "$SEASON" = "" ]; then
-				if [ ! "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )" ]; then
+				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )" ]; then
 					if echo "$1" | grep -iq "debug"; then
 						echo "DEBUG: mkdir $TVARCHIVE/$DSTSERIE"
 					else
 						mkdir "$TVARCHIVE/$DSTSERIE"
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )" ]; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )" ]; then
 					if echo "$1" | grep -iq "debug"; then
-						echo "DEBUG: mv $DIR $TVARCHIVE/$CHKSERIE/"
+						echo DEBUG: mv "$DIR" $TVARCHIVE/$CHKSERIE/
 					else
-						mv "$DIR" "$TVARCHIVE/$CHKSERIE/"
+						mv "$DIR" $TVARCHIVE/$CHKSERIE/
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE/$BASEDIR" 2>/dev/null )" ]; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE/$BASEDIR 2>/dev/null )" ]; then
 					if echo "$1" | grep -iq "debug"; then
-						echo "touch -d $DIRDATE $TVARCHIVE/$CHKSERIE/$BASEDIR"
+						echo touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIE/$BASEDIR
 					else
-						touch -d "$DIRDATE" "$TVARCHIVE/$CHKSERIE/$BASEDIR"
+						touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIE/$BASEDIR
 					fi
 				fi
 			else
-				if [ ! "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )" ]; then
+				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )" ]; then
 					if echo "$1" | grep -iq "debug"; then
-						echo "DEBUG: mkdir $TVARCHIVE/$DSTSERIE"
+						echo DEBUG: mkdir $TVARCHIVE/$DSTSERIE
 					else
-						mkdir "$TVARCHIVE/$DSTSERIE"
+						mkdir $TVARCHIVE/$DSTSERIE
 					fi
 				fi
-				if [ ! "$( ls -1d "$TVARCHIVE/$CHKSERIE/$SEASON" 2>/dev/null )" ]; then
+				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIE/$SEASON 2>/dev/null )" ]; then
 					if echo "$1" | grep -iq "debug"; then
-						#echo "DEBUG: mkdir $TVARCHIVE/$DSTSERIE/$SEASON"
-						echo "DEBUG: mkdir $( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null || echo [LS_ERR]:"$TVARCHIVE/$CHKSERIE" )/$SEASON"
+						#echo DEBUG: mkdir $TVARCHIVE/$DSTSERIE/$SEASON
+						echo DEBUG: mkdir $( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIE )/$SEASON
 					else
-						#mkdir "$TVARCHIVE/$DSTSERIE/$SEASON"
-						mkdir "$( ls -1d "$TVARCHIVE/$CHKSERIE" 2>/dev/null )/$SEASON"
+						#mkdir $TVARCHIVE/$DSTSERIE/$SEASON
+						mkdir $( ls -1d $TVARCHIVE/$CHKSERIE 2>/dev/null )/$SEASON
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE/$SEASON" 2>/dev/null )" ]; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE/$SEASON 2>/dev/null )" ]; then
 					if echo "$1" | grep -iq "debug"; then
-						echo "DEBUG: mv $DIR $TVARCHIVE/$CHKSERIE/$SEASON"
+						echo DEBUG: mv "$DIR" $TVARCHIVE/$CHKSERIE/$SEASON
 					else
-						mv "$DIR" "$TVARCHIVE/$CHKSERIE/$SEASON"
+						mv "$DIR" $TVARCHIVE/$CHKSERIE/$SEASON
 					fi
 				fi
-				if [ "$( ls -1d "$TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR" 2>/dev/null )" ]; then
+				if [ "$( ls -1d $TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR 2>/dev/null )" ]; then
 					if echo "$1" | grep -iq "debug"; then
-						echo "DEBUG: touch -d $DIRDATE $TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR"
+						echo DEBUG: touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR
 					else
-						touch -d "$DIRDATE" "$TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR"
+						touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIE/$SEASON/$BASEDIR
 					fi
 				fi
 			fi
