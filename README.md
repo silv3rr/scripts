@@ -1,4 +1,4 @@
-<title> .. slv scripts .. </title>
+
 <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
 <body bgcolor="LightGray" link="Blue" vlink="Black">
 <pre>
@@ -13,7 +13,7 @@
 </b></font></pre>
 
 <pre><img src="icons/blank.gif" alt="Icon "> <a href="?C=N;O=D">Name</a>                                       <a href="?C=M;O=A">Last modified</a>      <a href="?C=S;O=A">Size</a>  <a href="?C=D;O=A">Description</a><hr><img src="icons/text.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                              2017-11-03 13:00  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
-<img src="icons/text.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                             2017-03-26 22:59  553   <b><a href='https://github.com/silv3rr/www-scripts'>MIRROR</a></b> of these files at github
+<img src="icons/text.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                             2017-11-04 17:08  607   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="icons/text.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                             2012-12-18 15:07  3.4K  !credits plugin for ngBot. uses hb_creditshow.sh
 <img src="icons/text.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                               2012-12-18 14:49  6.1K  !site plugin updated to work with ngBot
 <img src="icons/text.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                                  2012-12-18 14:49  5.8K  !whois plugin updated to work with ngBot
@@ -30,7 +30,7 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                           2012-12-18 15:08  244   goes with CreditShow.tcl
 <img src="icons/unknown.gif" alt="[   ]"> <a href="rescan">rescan</a>                                     2012-09-19 15:24  123   oneliner for recursive rescan
 <img src="icons/text.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                                  2017-03-08 21:44  3.6K  slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
-<img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2017-11-03 12:54  9.7K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2017-11-13 20:35  9.8K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2014-06-10 12:40  4.2K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                               2016-12-24 12:39  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                               2017-07-01 19:34  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks
