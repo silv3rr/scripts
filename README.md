@@ -41,6 +41,7 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2017-11-03 12:25  902   !vnstat trigger
 <img src="icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2006-01-12 04:34  560   
 <img src="icons/compressed.gif" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2005-01-11 18:25  307   
+<img src="icons/unknown.gif" alt="[   ]"> <a href="updated.js">updated.js</a>                                 2017-12-12 15:41  176   
 <img src="icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2007-09-30 10:53   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="icons/text.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                                  2012-12-18 14:49  5.8K  !whois plugin updated to work with ngBot
 <hr></pre>
@@ -50,15 +51,5 @@
         /_ ._\    i didn't know what this was, and when i did know what it was,
           \/          i have to say, it sounded like a huge waste of time                           
    
-                                                                                                     <font color="DarkGray">slv^2014</font></pre>
-</body>
-<details> 
-<summary>.</summary>
-<script>
-function lastUpdated() {
-  var u = new Date(document.lastModified); var y = u.getFullYear(); var m = u.getMonth()+1; var d = u.getDate(); var H = u.getHours(); var M = u.getMinutes();
-  document.getElementById('lastUpdated').innerHTML = y + '-' + (m<10 ? '0' : '') + m + '-' + (d<10 ? '0' : '') + d + ' ' + (H<10 ? '0' : '') + H + ':' + (M<10 ? '0' : '') + M;
-}
-</script>
-</details>
-</html>
+                                                                                                     <div color="color:DarkGray;">slv^2014</div></pre>
+</body><details><summary> </summary><script src="updated.js"></script></details></html>
