@@ -41,7 +41,6 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2017-11-03 12:25  902   !vnstat trigger
 <img src="icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2006-01-12 04:34  560   
 <img src="icons/compressed.gif" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2005-01-11 18:25  307   
-<img src="icons/unknown.gif" alt="[   ]"> <a href="updated.js">updated.js</a>                                 2017-12-12 15:41  176   
 <img src="icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2007-09-30 10:53   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="icons/text.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                                  2012-12-18 14:49  5.8K  !whois plugin updated to work with ngBot
 <hr></pre>
