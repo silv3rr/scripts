@@ -51,7 +51,7 @@
           \/          i have to say, it sounded like a huge waste of time                           
    
                                                                                                      <font color="DarkGray">slv^2014</font></pre>
-</body><small><font size=1><div style="display:inline;color:white;font-size:0px"><script>
+</body><small><font size=1><del><div style="display:inline;color:white;font-size:0px"><script>
 function lastUpdated() {
   var u = new Date(document.lastModified); var y = u.getFullYear(); var m = u.getMonth()+1; var d = u.getDate(); var H = u.getHours(); var M = u.getMinutes();
   document.getElementById('lastUpdated').innerHTML = y + '-' + (m<10 ? '0' : '') + m + '-' + (d<10 ? '0' : '') + d + ' ' + (H<10 ? '0' : '') + H + ':' + (M<10 ? '0' : '') + M;
