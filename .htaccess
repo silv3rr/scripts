@@ -1,6 +1,6 @@
 #Options Indexes
 
-IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble
+IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble IgnoreCase
 IndexIgnore robots.txt HEADER* README* *.swp icons favicon.ico .git LNK
 
 AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
@@ -34,34 +34,32 @@ AddIcon /icons/blank.gif ^^BLANKICON^^
 
 DefaultIcon /icons/unknown.gif
 
-
 AddDescription "<b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS.html
 AddDescription "<b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github" 00_MIRROR.html
-AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
-AddDescription "!site plugin updated to work with ngBot" Sitecmds.tcl
-AddDescription "!whois plugin updated to work with ngBot" Whois.tcl
 AddDescription "little wrapper cscript for audiosorting after pre" audiosortpre.sh
-AddDescription "<b><a href='https://github.com/glftpd/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>OLD: little patch to fix destination error on pre</font>" foo-pre-destfix.patch
-AddDescription "<b><a href='https://github.com/glftpd/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>" footools-dirlogfix.tar.gz
-AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>OLD: ugly patch for foopre to add mp3 genre in PRE</font>" footools-mp3genre.patch
-AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>OLD: ugly hack for foopre to add mp3 genre in PRE</font>" footools-x86-x64-20111102-mp3genre.tar.bz2
-AddDescription "custom wk/mn/alup stats - exclude users/groups" gft-stats.sh
-AddDescription "goes with gft-stats.sh - add these to glftpd.conf" gft-stats.txt
-AddDescription "SHA512: <textarea style=width:413px;height:17px;background-color:LightGray;border:2x solid LightGray;>0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49</textarea>" glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz
-AddDescription "SHA512: <textarea style=width:413px;height:17px;background-color:LightGray;border:2x solid LightGray;>12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518</textarea>" glftpd-LNX-2.07.1_1.1.0c_x64.tgz
+AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
+AddDescription "DH1080_tcl, mirror fish.secure.la" DH1080-source.zip
+AddDescription "<b><a href='https://github.com/glftpd/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>| OLD: little patch to fix destination error on pre</font>" foo-pre-destfix.patch
+AddDescription "<b><a href='https://github.com/glftpd/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>| OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>" footools-dirlogfix.tar.gz
+AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>| OLD: ugly patch for foopre to add mp3 genre in PRE</font>" footools-mp3genre.patch
+AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>| OLD: ugly hack for foopre to add mp3 genre in PRE</font>" footools-x86-x64-20111102-mp3genre.tar.bz2
+AddDescription "custom wk/mn/alup stats, exclude users/groups" gft-stats.sh
+AddDescription "goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
+AddDescription "mirror, SHA512: <textarea style=width:413px;height:17px;background-color:LightGray;border:2x solid LightGray;>0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49</textarea>" glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz
+AddDescription "mirror, SHA512: <textarea style=width:413px;height:17px;background-color:LightGray;border:2x solid LightGray;>12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518</textarea>" glftpd-LNX-2.07.1_1.1.0c_x64.tgz
 AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
 AddDescription "oneliner for recursive rescan" rescan
+AddDescription "!site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
 AddDescription "archiver for iso, moves to appropriate dirs and creates tvshow/season dirs" slv-arch.sh
 AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
 AddDescription "sets gldir for files in bin/sources and sets maxdirlogsize" slv-glset.sh
+AddDescription "searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks" slv-links.sh
 AddDescription "small script to check ngBot changes, use before updating" slv-ngbotc.sh
 AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" slv-prebw-v0.52.tar.gz
 AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" slv-prebw-v0.53.tar.gz
-AddDescription "<b><u>LATEST</u></b> pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.54.tar.gz
+AddDescription "<b>LATEST:</b> pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.54.tar.gz
 AddDescription "wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
 AddDescription "!vnstat trigger" slv-vnstat.tcl
-AddDescription "<font color='Blue'>Nom</font> - use with http://humdi.net/vnstat" vnstat_frontend.tar
-AddDescription "searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks" slv-links.sh
-
-
+AddDescription "by <b>Nom</b> - use with http://humdi.net/vnstat" vnstat_frontend.tar
+AddDescription "!whois plugin updated to work with ngBot" Whois.tcl
