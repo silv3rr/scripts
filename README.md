@@ -50,5 +50,5 @@
         /_ ._\    i didn't know what this was, and when i did know what it was,
           \/          i have to say, it sounded like a huge waste of time                           
    
-<span style="padding-left:650px;color:DarkGray;">slv^2014</></pre>
-</body><details><summary> </summary><script src="updated.js"></script></details></html>
+                                                                                                     <font color="DarkGray">slv^2014</font>
+</pre></body><details><summary></summary><script src="updated.js"></script></details></html>
