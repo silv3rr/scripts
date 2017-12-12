@@ -1,7 +1,7 @@
 #Options Indexes
 
 IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble IgnoreCase
-IndexIgnore robots.txt HEADER* README* *.swp icons favicon.ico .git
+IndexIgnore robots.txt HEADER* README* *.swp icons favicon.ico .git *.js
 
 AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
 
