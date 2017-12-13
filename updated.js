@@ -1,6 +1,6 @@
 function lastUpdated() {
   var xhr = new XMLHttpRequest();
-  xhr.open("HEAD", "https://sscripts.ga/README.md", true);
+  xhr.open("HEAD", "README.md", true);
   xhr.onload = function (e) {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
