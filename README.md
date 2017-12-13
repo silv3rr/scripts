@@ -1,8 +1,7 @@
-x<html>
+<html>
 <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
 <body bgcolor="LightGray" link="Blue" vlink="Black">
-<pre>
-                   __/\______  __/\__  _/\__    _/\__  _/\___/\___     _/\____   mfn^AiiA
+<pre>                   __/\______  __/\__  _/\__    _/\__  _/\___/\___     _/\____   mfn^AiiA
                   /         /__\    /_/    /___/_   / /    /  __ /____/  __  /___
                   \____        /    -/    //    /   \/    /    /     /    /      \
                    /           /                /\        /          /     _      /
