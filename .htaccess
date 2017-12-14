@@ -45,8 +45,11 @@ AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'>LATEST @ GIT</
 AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'>LATEST @ GIT</a></b> <font color='Gray'>| OLD: ugly hack for foopre to add mp3 genre in PRE</font>" footools-x86-x64-20111102-mp3genre.tar.bz2
 AddDescription "custom wk/mn/alup stats, exclude users/groups" gft-stats.sh
 AddDescription "goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
+
+
+
 AddDescription "mirror, SHA512: <input style=width:310px;height:17px;background-color:LightGray;border:2x solid LightGray; value=0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49> <big>&gt;</big>" glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz
-AddDescription "mirror, SHA512: <input style=width:310px;height:17px;background-color:LightGray;border:2x solid LightGray; value=12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518> <big>&gt;</big>" glftpd-LNX-2.07.1_1.1.0c_x64.tgz
+AddDescription "mirror, <a href='#' onClick=\"window.prompt('SHA512:', '12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518')\">show sha512</a>" glftpd-LNX-2.07.1_1.1.0c_x64.tgz
 AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
 AddDescription "oneliner for recursive rescan" rescan
 AddDescription "!site plugin updated to work with ngBot" Sitecmds.tcl
