@@ -31,7 +31,7 @@
 <img src="icons/unknown.gif" alt="[   ]"> <a href="rescan">rescan</a>                                     2017-12-27 19:37  125   oneliner for recursive rescan
 <img src="icons/text.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                               2012-12-18 14:49  6.1K  !site plugin updated to work with ngBot
 <img src="icons/text.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                                  2017-03-08 21:44  3.6K  slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
-<img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2017-11-13 20:35  9.8K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2018-02-03 20:45   17K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2014-06-10 12:40  4.2K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                               2016-12-24 12:39  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                               2017-07-01 19:34  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks
