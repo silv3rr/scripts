@@ -39,11 +39,12 @@ AddDescription "<b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at git
 AddDescription "little wrapper cscript for audiosorting after pre" audiosortpre.sh
 AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
 AddDescription "DH1080_tcl from fish.secure.la (mirror)" DH1080-source.zip
+AddDescription "updated version of Jehsom's mp3 dirscript" dirscript.sh
 AddDescription "apt install pkgs for ebftpd" ebftpd-deps.sh
-AddDescription "<b><a href='https://github.com/glftpd/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: little patch to fix destination error on pre</font>" foo-pre-destfix.patch
-AddDescription "<b><a href='https://github.com/glftpd/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>" footools-dirlogfix.tar.gz
-AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: ugly patch for foopre to add mp3 genre in PRE</font>" footools-mp3genre.patch
-AddDescription "<b><a href='https://github.com/silv3rr/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: ugly hack for foopre to add mp3 genre in PRE</font>" footools-x86-x64-20111102-mp3genre.tar.bz2
+AddDescription "<a href='https://github.com/glftpd/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: little patch to fix destination error on pre</font>" foo-pre-destfix.patch
+AddDescription "<a href='https://github.com/glftpd/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>" footools-dirlogfix.tar.gz
+AddDescription "<a href='https://github.com/silv3rr/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: ugly patch for foopre to add mp3 genre in PRE</font>" footools-mp3genre.patch
+AddDescription "<a href='https://github.com/silv3rr/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: ugly hack for foopre to add mp3 genre in PRE</font>" footools-x86-x64-20111102-mp3genre.tar.bz2
 AddDescription "custom wk/mn/alup stats, exclude users/groups" gft-stats.sh
 AddDescription "goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
 AddDescription "<font color='Gray'>glftpd 2.06.3 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49')\"><font color='Gray'>show sha512</font></a></font>" glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz
@@ -61,7 +62,7 @@ AddDescription "small script to check ngBot changes, use before updating" slv-ng
 AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" slv-prebw-v0.52.tar.gz
 AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" slv-prebw-v0.53.tar.gz
 AddDescription "<b>LATEST:</b> pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.54.tar.gz
-AddDescription "wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
+AddDescription "vnstat wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
 AddDescription "!vnstat trigger" slv-vnstat.tcl
 AddDescription "speed.sh - tweak tcp settings (gbit), with backup" speed.sh.zip
 AddDescription "speedfix.nfo - uses lower buffer sizes than speed.sh and doesnt backup" speedfix.rar

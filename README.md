@@ -16,11 +16,12 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                            2014-06-10 12:11  788   little wrapper cscript for audiosorting after pre
 <img src="icons/text.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                             2012-12-18 15:07  3.4K  !credits plugin for ngBot. uses hb_creditshow.sh
 <img src="icons/compressed.gif" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2017-12-12 13:18   21K  DH1080_tcl from fish.secure.la (mirror)
+<img src="icons/text.gif" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                               2018-02-03 13:46   11K  updated version of Jehsom's mp3 dirscript
 <img src="icons/text.gif" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2016-11-01 16:49  283   apt install pkgs for ebftpd
-<img src="icons/text.gif" alt="[TXT]"> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2013-12-20 23:46  389   <b><a href='https://github.com/glftpd/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: little patch to fix destination error on pre</font>
-<img src="icons/compressed.gif" alt="[   ]"> <a href="footools-dirlogfix.tar.gz">footools-dirlogfix.tar.gz</a>                  2013-08-18 01:52  204K  <b><a href='https://github.com/glftpd/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>
-<img src="icons/text.gif" alt="[TXT]"> <a href="footools-mp3genre.patch">footools-mp3genre.patch</a>                    2012-12-20 23:46  8.8K  <b><a href='https://github.com/silv3rr/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: ugly patch for foopre to add mp3 genre in PRE</font>
-<img src="icons/compressed.gif" alt="[   ]"> <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">footools-x86-x64-20111102-mp3genre.tar.bz2</a> 2013-12-20 16:10  438K  <b><a href='https://github.com/silv3rr/foo-tools'><font color='Gray'>LATEST @ GIT</a></b> | OLD: ugly hack for foopre to add mp3 genre in PRE</font>
+<img src="icons/text.gif" alt="[TXT]"> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2013-12-20 23:46  389   <a href='https://github.com/glftpd/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: little patch to fix destination error on pre</font>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="footools-dirlogfix.tar.gz">footools-dirlogfix.tar.gz</a>                  2013-08-18 01:52  204K  <a href='https://github.com/glftpd/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>
+<img src="icons/text.gif" alt="[TXT]"> <a href="footools-mp3genre.patch">footools-mp3genre.patch</a>                    2012-12-20 23:46  8.8K  <a href='https://github.com/silv3rr/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: ugly patch for foopre to add mp3 genre in PRE</font>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">footools-x86-x64-20111102-mp3genre.tar.bz2</a> 2013-12-20 16:10  438K  <a href='https://github.com/silv3rr/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: ugly hack for foopre to add mp3 genre in PRE</font>
 <img src="icons/text.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                               2014-05-21 16:04  1.6K  custom wk/mn/alup stats, exclude users/groups
 <img src="icons/text.gif" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                              2014-05-21 16:02  902   goes with gft-stats.sh, add these to glftpd.conf
 <img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz">glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz</a>  2016-05-29 18:03  4.7M  <font color='Gray'>glftpd 2.06.3 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49')"><font color='Gray'>show sha512</font></a></font>
@@ -38,18 +39,18 @@
 <img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2007-02-14 23:31  2.4K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2012-07-24 10:59  2.4K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2012-12-21 16:57  2.5K  <b>LATEST:</b> pzs-ng dZBot/ngbot plugin to show bw after pre
-<img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2012-12-18 14:35  4.6K  wrapper for multiple interfaces? i dont even...
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2012-12-18 14:35  4.6K  vnstat wrapper for multiple interfaces? i dont even...
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2017-11-03 12:25  902   !vnstat trigger
 <img src="icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2006-01-12 04:34  560   speed.sh - tweak tcp settings (gbit), with backup
 <img src="icons/compressed.gif" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2005-01-11 18:25  307   speedfix.nfo - uses lower buffer sizes than speed.sh and doesnt backup
 <img src="icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2007-09-30 10:53   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="icons/text.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                                  2012-12-18 14:49  5.8K  !whois plugin updated to work with ngBot
 <hr></pre>
-<pre><font color="Gray"><div id="lastUpdated" style="display:inline;"></div></color><br>
+<pre><font color="Gray"><div id="lastUpdated" style="display:inline;"></div></font><br>
         __/\__  
         \ oO /
         /_ ._\    i didn't know what this was, and when i did know what it was,
           \/          i have to say, it sounded like a huge waste of time                           
 
-&nbsp;                         &nbsp;                         &nbsp;                         &nbsp;                         &nbsp;<font color="DarkGray">slv^2014</font>
+&nbsp;                         &nbsp;                         &nbsp;                         &nbsp;                    &nbsp;<font color="DarkGray">slv^2014</font>
 </pre></body><details><summary></summary><script src="updated.js"></script></details></html>
