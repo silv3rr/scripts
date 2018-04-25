@@ -17,3 +17,6 @@ h1 {
 .my-5 {
     margin-top: 0px !important; 
 }
+img[alt~="Icon"] {
+    visibility: hidden !important;
+}
