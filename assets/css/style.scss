@@ -2,6 +2,12 @@
 ---
 
 @import "{{ site.theme }}";
+body {
+    background-color: #f6f8fa;
+}
+h1 {
+    visibility: hidden !important;
+}
 .container-lg {
     max-width: 1212px;
 }
