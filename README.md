@@ -1,3 +1,7 @@
+---
+title:
+layout: default
+---
 <html>
 <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
 <body bgcolor="LightGray" link="Blue" vlink="Black">
