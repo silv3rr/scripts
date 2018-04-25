@@ -1,6 +1,5 @@
 ---
 title: .. slv scripts .. 
-layout: default
 ---
 <html>
 <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
