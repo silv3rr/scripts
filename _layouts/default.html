@@ -7,9 +7,9 @@
 
 <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>{{ site.title | default: site.github.repository_name }}</title>
-<meta name="generator" content="{{ site.versions.jekyll }}" />
+<meta name="generator" content="Jekyll v{{ jekyll.version }}" />
 <meta property="og:title" content=">{{ site.title | default: site.github.repository_name }}" />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content="{{ site.locale | replace: "-", "_" | default: "en_US" }}">
 <meta name="description" content="{{ site.description | default: site.github.project_tagline }}" />
 <meta property="og:description" content="{{ site.description | default: site.github.project_tagline }}<" />
 <link rel="canonical" href="{{ site.url | default: site.github.repository_url }}" />
