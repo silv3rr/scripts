@@ -1,1 +1,0 @@
-<title>{{ site.title | default: site.github.repository_name }}</title>
