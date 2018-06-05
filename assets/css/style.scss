@@ -12,14 +12,13 @@ body {
 a:link { color: Blue; }
 a:visited { color: Black; }
 hr {
-    border-color: Gray
+    border-color: Gray;
     border-style: dashed;
 }
 div#old, div#old a {
     display:inline;
     color: Gray;
 }
-
 h1 {
     visibility: hidden !important;
 }
