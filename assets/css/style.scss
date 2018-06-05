@@ -1,0 +1,25 @@
+---
+---
+
+@import "{{ site.theme }}";
+body {
+    background-color: #f6f8fa;
+}
+h1 {
+    visibility: hidden !important;
+}
+.container-lg {
+    max-width: 1072px;
+}
+.markdown-pre {
+    font-size: 16px;
+}
+.markdown-body {
+    font-size: 14px;
+}
+.my-5 {
+    margin-top: 0px !important; 
+}
+img[alt~="Icon"] {
+    visibility: hidden !important;
+}
