@@ -43,10 +43,14 @@ AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
 AddDescription "DH1080_tcl from fish.secure.la (mirror)" DH1080-source.zip
 AddDescription "updated version of Jehsom's mp3 dirscript" dirscript.sh
 AddDescription "apt install pkgs for ebftpd" ebftpd-deps.sh
-AddDescription "<div id='old'><a href='https://github.com/glftpd/foo-tools'><b>LATEST @ GIT</b></a> | OLD: little patch to fix destination error on pre</div>" foo-pre-destfix.patch
-AddDescription "<div id='old'><a href='https://github.com/glftpd/foo-tools'><b>LATEST @ GIT</b></a> | OLD: PCFiL - fixes dirlog getting corrupted on 64bit</div>" footools-dirlogfix.tar.gz
-AddDescription "<div id='old'><a href='https://github.com/silv3rr/foo-tools'><b>LATEST @ GIT</b></a> | OLD: ugly patch for foopre to add mp3 genre in PRE</div>" footools-mp3genre.patch
-AddDescription "<div id='old'><a href='https://github.com/silv3rr/foo-tools'><b>LATEST @ GIT</b></a> | OLD: ugly hack for foopre to add mp3 genre in PRE</div>" footools-x86-x64-20111102-mp3genre.tar.bz2
+AddDescription " \
+<div id='old'><a href='https://github.com/glftpd/foo-tools'><b>LATEST @ GIT</b></a> | OLD: little patch to fix destination error on pre</div>" foo-pre-destfix.patch
+AddDescription " \
+<div id='old'><a href='https://github.com/glftpd/foo-tools'><b>LATEST @ GIT</b></a> | OLD: PCFiL - fixes dirlog getting corrupted on 64bit</div>" footools-dirlogfix.tar.gz
+AddDescription " \
+<div id='old'><a href='https://github.com/silv3rr/foo-tools'><b>LATEST @ GIT</b></a> | OLD: ugly patch for foopre to add mp3 genre in PRE</div>" footools-mp3genre.patch
+AddDescription "\ 
+<div id='old'><a href='https://github.com/silv3rr/foo-tools'><b>LATEST @ GIT</b></a> | OLD: ugly hack for foopre to add mp3 genre in PRE</div>" footools-x86-x64-20111102-mp3genre.tar.bz2
 AddDescription "custom wk/mn/alup stats, exclude users/groups" gft-stats.sh
 AddDescription "goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
 AddDescription "<div id='old'>glftpd 2.07.1 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518')\">show sha512</a></div>" glftpd-LNX-2.07.1_1.1.0c_x64.tgz
