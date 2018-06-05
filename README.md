@@ -4,7 +4,7 @@
   <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
   <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
-<body><br><div style="width: 600px; margin:0 auto;"><pre>
+<body><div style="width: 600px; margin: 0 auto; margin-top: 20px;"><pre>
  __/\______  __/\__  _/\__    _/\__  _/\___/\___     _/\____   mfn^AiiA
 /         /__\    /_/    /___/_   / /    /  __ /____/  __  /___
 \____        /    -/    //    /   \/    /    /     /    /      \
@@ -12,7 +12,7 @@
 /_______  __/\__  ________  _/  \___  _/\______  _/_____//     /
         \/      \/        \/        \/         \/       /__  _/
                                                            \/
-</pre></div><div style="width: 300px; margin:0 auto; color: Blue">
+</pre></div><div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
 <pre><img src="icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="icons/text.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                              2018-06-05 18:14  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="icons/text.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                             2018-06-05 18:14  568   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
@@ -28,8 +28,8 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                               2018-06-05 18:14  1.6K  custom wk/mn/alup stats, exclude users/groups
 <img src="icons/text.gif" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                              2018-06-05 18:14  902   goes with gft-stats.sh, add these to glftpd.conf
 <img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.07.1_1.1.0c_x64.tgz">glftpd-LNX-2.07.1_1.1.0c_x64.tgz</a>           2018-06-05 18:14  7.0M  <div id='old'>glftpd 2.07.1 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518')">show sha512</a></div>
-<img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">glftpd-LNX-2.08_1.1.0g_x64.tgz</a>             2018-06-05 18:14  7.1M  <b>LATEST:</b> glftpd 2.08 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')">show sha512</a></div>
-<img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.09.BETA1_1.1.0h_x64.tgz">glftpd-LNX-2.09.BETA1_1.1.0h_x64.tgz</a>       2018-06-05 18:14  7.1M  BETA: glftpd 2.09B1 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', 'dc8b6233178a37969a7d445e4fa9f18bbbb74b6904f30e69c9d147272ecb64fb9c67cbb619fb7f173c13ba539e8d651079605757365c80539786e3a81c426267')">show sha512</a></div>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">glftpd-LNX-2.08_1.1.0g_x64.tgz</a>             2018-06-05 18:14  7.1M  <b>LATEST:</b> glftpd 2.08 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')">show sha512</a>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.09.BETA1_1.1.0h_x64.tgz">glftpd-LNX-2.09.BETA1_1.1.0h_x64.tgz</a>       2018-06-05 18:14  7.1M  BETA: glftpd 2.09B1 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', 'dc8b6233178a37969a7d445e4fa9f18bbbb74b6904f30e69c9d147272ecb64fb9c67cbb619fb7f173c13ba539e8d651079605757365c80539786e3a81c426267')">show sha512</a>
 <img src="icons/text.gif" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                           2018-06-05 18:14  244   goes with CreditShow.tcl
 <img src="icons/unknown.gif" alt="[   ]"> <a href="rescan">rescan</a>                                     2018-06-05 18:14  125   oneliner for recursive rescan
 <img src="icons/text.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                               2018-06-05 18:14  6.1K  !site plugin updated to work with ngBot
@@ -55,7 +55,7 @@ __/\__
 \ oO /
 /_ ._\    i didn't know what this was, and when i did know what it was,
   \/          i have to say, it sounded like a huge waste of time                           
-</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</div></pre>
-</div></div></div><details><summary></summary><script src="updated.js"></script></details>
+</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</pre></div>
+</div><details><summary></summary><script src="updated.js"></script></details>
 </body>
 </html>
