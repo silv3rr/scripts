@@ -15,7 +15,7 @@
         \/      \/        \/        \/         \/       /__  _/
                                                            \/
 </pre></div><div style="width: 300px; margin:0 auto; color: Blue">
-<pre><b>s   c   r   i   p   t   s</b></div></pre>
+<pre><b>s   c   r   i   p   t   s</b></pre></div>
 <pre><img src="icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="icons/text.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                              2018-06-05 13:36  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="icons/text.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                             2018-06-05 13:36  568   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="icons/text.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                            2018-06-05 13:36  788   little wrapper cscript for audiosorting after pre
