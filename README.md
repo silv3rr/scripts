@@ -56,6 +56,4 @@ __/\__
 /_ ._\    i didn't know what this was, and when i did know what it was,
   \/          i have to say, it sounded like a huge waste of time                           
 </div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</pre></div>
-<details><summary></summary><script src="updated.js"></script></details>
-</body>
-</html>
+<details><summary></summary><script src="updated.js"></script></details></pre></div></body></html>
