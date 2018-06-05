@@ -49,11 +49,11 @@
 <img src="icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="icons/text.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                                  2018-06-05 18:14  5.8K  !whois plugin updated to work with ngBot
 <hr></pre>
-<div style="color: Gray"><pre><div id="lastUpdated" style="display:inline;"></div>
+<pre><div style="color: Gray"><div id="lastUpdated" style="display:inline;"></div>
 <div style="width: 600px; margin:0 auto;">
 __/\__  
 \ oO /
 /_ ._\    i didn't know what this was, and when i did know what it was,
   \/          i have to say, it sounded like a huge waste of time                           
-</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</pre></div>
-<details><summary></summary><script src="updated.js"></script></details></pre></div></body></html>
+</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</div>
+<details><summary></summary><script src="updated.js"></script></details></div></pre></body></html>
