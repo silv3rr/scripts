@@ -1,76 +1,61 @@
-<!DOCTYPE html>  
-<html>  
-<head>  
-  
-  <meta charset="UTF-8">
-</head>  
-<body>  
-  
-<html>  
-<head>  
-  
-  <meta charset="UTF-8" />
-</head>  
-<body>  
-  <html>
+<html>
 <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
-<body bgcolor="LightGray" link="Blue" vlink="Black">
-<pre>                   __/\______  __/\__  _/\__    _/\__  _/\___/\___     _/\____   mfn^AiiA
-                  /         /__\    /_/    /___/_   / /    /  __ /____/  __  /___
-                  \____        /    -/    //    /   \/    /    /     /    /      \
-                   /           /                /\        /          /     _      /
-                  /_______  __/\__  ________  _/  \___  _/\______  _/_____//     /
-                          \/      \/        \/        \/         \/       /__  _/
-                                                                             \/
-<font color="Blue"><b>                                    s   c   r   i   p   t   s
-</b></font></pre>
-
-<pre><img src="icons/blank.gif" alt="Icon " /> <a href="?C=N;O=D">Name</a>                                       <a href="?C=M;O=A">Last modified</a>      <a href="?C=S;O=A">Size</a>  <a href="?C=D;O=A">Description</a><hr /><img src="icons/text.gif" alt="[TXT]" /> <a href="00_LINKS.html">00_LINKS.html</a>                              2017-12-12 13:34  2.1K  <b><a href="00_LINKS.html">LINKS</a></b> to other websites containing scripts etc
-<img src="icons/text.gif" alt="[TXT]" /> <a href="00_MIRROR.html">00_MIRROR.html</a>                             2017-12-14 18:52  568   <b><a href="00_MIRROR.html">MIRROR</a></b> of these files at github
-<img src="icons/text.gif" alt="[TXT]" /> <a href="audiosortpre.sh">audiosortpre.sh</a>                            2014-06-10 12:11  788   little wrapper cscript for audiosorting after pre
-<img src="icons/text.gif" alt="[TXT]" /> <a href="CreditShow.tcl">CreditShow.tcl</a>                             2012-12-18 15:07  3.4K  !credits plugin for ngBot. uses hb_creditshow.sh
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2017-12-12 13:18   21K  DH1080_tcl from fish.secure.la (mirror)
-<img src="icons/text.gif" alt="[TXT]" /> <a href="dirscript.sh">dirscript.sh</a>                               2018-02-03 13:46   11K  updated version of Jehsom's mp3 dirscript
-<img src="icons/text.gif" alt="[TXT]" /> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2016-11-01 16:49  283   apt install pkgs for ebftpd
-<img src="icons/text.gif" alt="[TXT]" /> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2013-12-20 23:46  389   <a href="https://github.com/glftpd/foo-tools"><font color="Gray"><b>LATEST @ GIT</b></font></a> | <font color="Gray">OLD: little patch to fix destination error on pre</font>
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="footools-dirlogfix.tar.gz">footools-dirlogfix.tar.gz</a>                  2013-08-18 01:52  204K  <a href="https://github.com/glftpd/foo-tools"><font color="Gray"><b>LATEST @ GIT</b></font></a> | <font color="Gray">OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>
-<img src="icons/text.gif" alt="[TXT]" /> <a href="footools-mp3genre.patch">footools-mp3genre.patch</a>                    2012-12-20 23:46  8.8K  <a href="https://github.com/silv3rr/foo-tools"><font color="Gray"><b>LATEST @ GIT</b></font></a> | <font color="Gray">OLD: ugly patch for foopre to add mp3 genre in PRE</font>
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">footools-x86-x64-20111102-mp3genre.tar.bz2</a> 2013-12-20 16:10  438K  <a href="https://github.com/silv3rr/foo-tools"><font color="Gray"><b>LATEST @ GIT</b></font></a> | <font color="Gray">OLD: ugly hack for foopre to add mp3 genre in PRE</font>
-<img src="icons/text.gif" alt="[TXT]" /> <a href="gft-stats.sh">gft-stats.sh</a>                               2014-05-21 16:04  1.6K  custom wk/mn/alup stats, exclude users/groups
-<img src="icons/text.gif" alt="[TXT]" /> <a href="gft-stats.txt">gft-stats.txt</a>                              2014-05-21 16:02  902   goes with gft-stats.sh, add these to glftpd.conf
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz">glftpd-LNX-2.06.3_1.0.1k-3+deb8u5_x64.tgz</a>  2016-05-29 18:03  4.7M  <font color="Gray">glftpd 2.06.3 linux x64 (mirror) | <a href="#" onclick="window.prompt('SHA512:', '0c6b4713203be5683149c2deaa319952083647934f58143b903bd540bfcfa96ae0c10f93963deb70f85dbb4e1ec2da78e642432ee43ec871814be2b8fce0da49')"><font color="Gray">show sha512</font></a></font>
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="glftpd-LNX-2.07.1_1.1.0c_x64.tgz">glftpd-LNX-2.07.1_1.1.0c_x64.tgz</a>           2016-12-27 20:06  7.0M  <font color="Gray">glftpd 2.07.1 linux x64 (mirror) | <a href="#" onclick="window.prompt('SHA512:', '12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518')"><font color="Gray">show sha512</font></a></font>
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">glftpd-LNX-2.08_1.1.0g_x64.tgz</a>             2017-12-24 11:15  7.1M  <b>LATEST:</b> glftpd 2.08 linux x64 (mirror) | <a href="#" onclick="window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')">show sha512</a>&lt;/font&gt;
-<img src="icons/text.gif" alt="[TXT]" /> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                           2012-12-18 15:08  244   goes with CreditShow.tcl
-<img src="icons/unknown.gif" alt="[   ]" /> <a href="rescan">rescan</a>                                     2017-12-27 19:37  125   oneliner for recursive rescan
-<img src="icons/text.gif" alt="[TXT]" /> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                               2012-12-18 14:49  6.1K  !site plugin updated to work with ngBot
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slftpc.sh">slftpc.sh</a>                                  2017-03-08 21:44  3.6K  slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slv-arch.sh">slv-arch.sh</a>                                2018-02-03 20:45   17K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2014-06-10 12:40  4.2K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slv-glset.sh">slv-glset.sh</a>                               2016-12-24 12:39  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slv-links.sh">slv-links.sh</a>                               2017-07-01 19:34  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slv-ngbotc.sh">slv-ngbotc.sh</a>                              2017-04-08 00:52  1.0K  small script to check ngBot changes, use before updating
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2007-02-14 23:31  2.4K  <font color="Gray">OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2012-07-24 10:59  2.4K  <font color="Gray">OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2012-12-21 16:57  2.5K  <b>LATEST:</b> pzs-ng dZBot/ngbot plugin to show bw after pre
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2012-12-18 14:35  4.6K  vnstat wrapper for multiple interfaces? i dont even...
-<img src="icons/text.gif" alt="[TXT]" /> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2017-11-03 12:25  902   !vnstat trigger
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="speed.sh.zip">speed.sh.zip</a>                               2006-01-12 04:34  560   speed.sh - tweak tcp settings (gbit), with backup
-<img src="icons/compressed.gif" alt="[   ]" /> <a href="speedfix.rar">speedfix.rar</a>                               2005-01-11 18:25  307   speedfix.nfo - uses lower buffer sizes than speed.sh and doesnt backup
-<img src="icons/tar.gif" alt="[   ]" /> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2007-09-30 10:53   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
-<img src="icons/text.gif" alt="[TXT]" /> <a href="Whois.tcl">Whois.tcl</a>                                  2012-12-18 14:49  5.8K  !whois plugin updated to work with ngBot
-<hr /></pre>
-<pre><font color="Gray"><div id="lastUpdated" style="display:inline;"></div></font><br />
-        __/\__  
-        \ oO /
-        /_ ._\    i didn't know what this was, and when i did know what it was,
-          \/          i have to say, it sounded like a huge waste of time                           
-
-&nbsp;                         &nbsp;                         &nbsp;                         &nbsp;                    &nbsp;<font color="DarkGray">slv^2014</font>
-</pre></body><details><summary></summary><script src="updated.js"></script></details></html>
-
-</body>  
-</html>
-
-</body>  
-</html>
+<style>
+  body { width: 1200px; margin: 0 auto; color: Black; background-color: LightGray; }
+  a:link { color: Blue; }; a:visited { color: Black; }
+  hr { border-color: Gray; border-style: dashed; }
+  div#old, div#old a { display:inline; color: Gray; }
+</style>
+<body><br><div style="width: 600px; margin:0 auto;"><pre>
+ __/\______  __/\__  _/\__    _/\__  _/\___/\___     _/\____   mfn^AiiA
+/         /__\    /_/    /___/_   / /    /  __ /____/  __  /___
+\____        /    -/    //    /   \/    /    /     /    /      \
+/           /                /\        /          /     _      /
+/_______  __/\__  ________  _/  \___  _/\______  _/_____//     /
+        \/      \/        \/        \/         \/       /__  _/
+                                                           \/
+</pre></div><div style="width: 300px; margin:0 auto; color: Blue">
+<pre><b>s   c   r   i   p   t   s</b></div></pre>
+<pre><img src="icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="icons/text.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                              2018-06-05 13:36  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
+<img src="icons/text.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                             2018-06-05 13:36  568   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
+<img src="icons/text.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                            2018-06-05 13:36  788   little wrapper cscript for audiosorting after pre
+<img src="icons/text.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                             2018-06-05 13:36  3.4K  !credits plugin for ngBot. uses hb_creditshow.sh
+<img src="icons/compressed.gif" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2018-06-05 13:36   21K  DH1080_tcl from fish.secure.la (mirror)
+<img src="icons/text.gif" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                               2018-06-05 13:36   11K  updated version of Jehsom's mp3 dirscript
+<img src="icons/text.gif" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2018-06-05 13:36  283   apt install pkgs for ebftpd
+<img src="icons/text.gif" alt="[TXT]"> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2018-06-05 13:36  389   <div id='old'><a href='https://github.com/glftpd/foo-tools'><b>LATEST @ GIT</b></a> | OLD: little patch to fix destination error on pre</div>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="footools-dirlogfix.tar.gz">footools-dirlogfix.tar.gz</a>                  2018-06-05 13:36  204K  <div id='old'><a href='https://github.com/glftpd/foo-tools'><b>LATEST @ GIT</b></a> | OLD: PCFiL - fixes dirlog getting corrupted on 64bit</div>
+<img src="icons/text.gif" alt="[TXT]"> <a href="footools-mp3genre.patch">footools-mp3genre.patch</a>                    2018-06-05 13:36  8.8K  <div id='old'><a href='https://github.com/silv3rr/foo-tools'><b>LATEST @ GIT</b></a> | OLD: ugly patch for foopre to add mp3 genre in PRE</div>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">footools-x86-x64-20111102-mp3genre.tar.bz2</a> 2018-06-05 13:36  438K  <div id='old'><a href='https://github.com/silv3rr/foo-tools'><b>LATEST @ GIT</b></a> | OLD: ugly hack for foopre to add mp3 genre in PRE</div>
+<img src="icons/text.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                               2018-06-05 13:36  1.6K  custom wk/mn/alup stats, exclude users/groups
+<img src="icons/text.gif" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                              2018-06-05 13:36  902   goes with gft-stats.sh, add these to glftpd.conf
+<img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.07.1_1.1.0c_x64.tgz">glftpd-LNX-2.07.1_1.1.0c_x64.tgz</a>           2018-06-05 13:36  7.0M  <div id='old'>glftpd 2.07.1 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518')">show sha512</a></div>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">glftpd-LNX-2.08_1.1.0g_x64.tgz</a>             2018-06-05 13:36  7.1M  <b>LATEST:</b> glftpd 2.08 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')">show sha512</a></div>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.09.BETA1_1.1.0h_x64.tgz">glftpd-LNX-2.09.BETA1_1.1.0h_x64.tgz</a>       2018-03-29 12:14  7.1M  BETA: glftpd 2.09B1 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', 'dc8b6233178a37969a7d445e4fa9f18bbbb74b6904f30e69c9d147272ecb64fb9c67cbb619fb7f173c13ba539e8d651079605757365c80539786e3a81c426267')">show sha512</a></div>
+<img src="icons/text.gif" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                           2018-06-05 13:36  244   goes with CreditShow.tcl
+<img src="icons/unknown.gif" alt="[   ]"> <a href="rescan">rescan</a>                                     2018-06-05 13:36  125   oneliner for recursive rescan
+<img src="icons/text.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                               2018-06-05 13:36  6.1K  !site plugin updated to work with ngBot
+<img src="icons/text.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                                  2018-06-05 13:36  3.6K  slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2018-06-05 13:36   17K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2018-06-05 13:36  4.2K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                               2018-06-05 13:36  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                               2018-06-05 13:36  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-ngbotc.sh">slv-ngbotc.sh</a>                              2018-06-05 13:36  1.0K  small script to check ngBot changes, use before updating
+<img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2018-06-05 13:36  2.4K  <div id='old'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</div>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2018-06-05 13:36  2.4K  <div id='old'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</div>
+<img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2018-06-05 13:36  2.5K  <b>LATEST:</b> pzs-ng dZBot/ngbot plugin to show bw after pre
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2018-06-05 13:36  4.6K  vnstat wrapper for multiple interfaces? i dont even...
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2018-06-05 13:36  902   !vnstat trigger
+<img src="icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2018-06-05 13:36  560   speed.sh - tweak tcp settings (gbit), with backup
+<img src="icons/compressed.gif" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2018-06-05 13:36  307   speedfix.nfo - uses lower buffer sizes than speed.sh and doesnt backup
+<img src="icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2018-06-05 13:36   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
+<img src="icons/text.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                                  2018-06-05 13:36  5.8K  !whois plugin updated to work with ngBot
+<hr></pre>
+<div style="color: Gray"><pre><div id="lastUpdated" style="display:inline;"></div>
+<div style="width: 600px; margin:0 auto;">
+__/\__  
+\ oO /
+/_ ._\    i didn't know what this was, and when i did know what it was,
+  \/          i have to say, it sounded like a huge waste of time                           
+</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</div>
+</div></pre></body><details><summary></summary><script src="updated.js"></script></details></html>
