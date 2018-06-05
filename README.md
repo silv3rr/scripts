@@ -5,6 +5,13 @@
   <meta charset="UTF-8">
 </head>  
 <body>  
+  
+<html>  
+<head>  
+  
+  <meta charset="UTF-8" />
+</head>  
+<body>  
   <html>
 <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
 <body bgcolor="LightGray" link="Blue" vlink="Black">
@@ -61,6 +68,9 @@
 
 &nbsp;                         &nbsp;                         &nbsp;                         &nbsp;                    &nbsp;<font color="DarkGray">slv^2014</font>
 </pre></body><details><summary></summary><script src="updated.js"></script></details></html>
+
+</body>  
+</html>
 
 </body>  
 </html>
