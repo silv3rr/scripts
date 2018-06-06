@@ -3,11 +3,12 @@
 
 @import "{{ site.theme }}";
 body {
-    //background-color: #f6f8fa;
+    /* background-color: #f6f8fa; */
     background-color: LightGray; 
     width: 1200px;
     margin: 0 auto;
     color: Black;
+    line-height: 0;
 }
 a:link { color: Blue; }
 a:visited { color: Black; }
