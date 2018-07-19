@@ -38,6 +38,7 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                                  2018-07-19 12:18  3.8K  by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2018-06-05 18:14   17K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2018-06-05 18:14  4.2K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-geofxp.sh">slv-geofxp.sh</a>                              2018-07-19 13:46  7.5K  
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                               2018-06-05 18:14  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                               2018-06-05 18:14  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-ngbotc.sh">slv-ngbotc.sh</a>                              2018-06-05 18:14  1.0K  small script to check ngBot changes, use before updating
