@@ -24,6 +24,11 @@ DATE=$( date +%Y-%m-%d )	# dont delete today/yesterdays files
 DATEAGO=$( date --date="1 day ago" +%Y-%m-%d )
 DISK_AVAIL=$( df -k $SLDIR | tail -1 | awk '{ print $4 }' )
 
+if [[ "$1" != "" && "$1" != "DEBUG" ]]; then
+  printf "slftp-cleaner\n\n"
+  printf "SLDIR=\"%s\"\nCLEAN_LOGS=%s CLEAN_BACKUPS=%s CLEAN_DB=%s\n\n" "$SLDIR" "$CLEAN_LOGS" "$CLEAN_BACKUPS" "$CLEAN_DB"
+  printf "run %s without arguments to start\n\n" "$(basename $0)"
+fi
 if [ "$CLEAN_LOGS" = "1" ]; then
 LOG_DATE=$( date +%Y%m%d%H%M )
   for i in $SLDIR/{slftp,precatcher}.log; do
