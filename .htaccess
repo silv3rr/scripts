@@ -60,6 +60,7 @@ AddDescription "by slv - sitewho+2: modded version with user ip/geoip2 country i
 AddDescription "by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
 AddDescription "archiver for iso, moves to appropriate dirs and creates tvshow/season dirs" slv-arch.sh
 AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
+AddDescription "fxpscript to allow/deny country code(s) using geoip2" slv-geofxp.sh
 AddDescription "sets gldir for files in bin/sources and sets maxdirlogsize" slv-glset.sh
 AddDescription "searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks" slv-links.sh
 AddDescription "small script to check ngBot changes, use before updating" slv-ngbotc.sh
