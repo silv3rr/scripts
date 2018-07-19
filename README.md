@@ -36,8 +36,8 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                               2018-06-05 18:14  6.1K  <b>by comp</b>, slv - !site plugin updated to work with ngBot
 <img src="icons/compressed.gif" alt="[   ]"> <a href="sitewho-plus2-v0.1.tar.gz">sitewho-plus2-v0.1.tar.gz</a>                  2018-07-19 11:52   11K  by slv - sitewho+2: modded version with user ip/geoip2 country in raw output
 <img src="icons/text.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                                  2018-07-19 12:18  3.8K  by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
-<img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2018-06-05 18:14   17K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
-<img src="icons/text.gif" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2018-06-05 18:14  4.2K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2018-07-20 00:07   18K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
+<img src="icons/text.gif" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2018-07-20 00:04  4.6K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-geofxp.sh">slv-geofxp.sh</a>                              2018-07-19 13:46  7.5K  fxpscript to allow/deny country code(s) using geoip2
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                               2018-06-05 18:14  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                               2018-06-05 18:14  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks

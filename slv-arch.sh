@@ -25,7 +25,7 @@ DATEBIN="/bin/date"
 GLDIR="/jail/glftpd"
 LOGDIR="$GLDIR/ftp-data/logs"
 TVARCHIVE="$GLDIR/site/archive/tv"
-SKIPDIRS="^NUKED-.*|^\(.*|^_archive$|^FOO$|^BAR$"
+SKIP_PATH="^NUKED-.*|^\(.*|^_archive$|^FOO$|^BAR$"
 MINS_OLD="10080"  # releases need to be 1 week old before moving (7x24x60mins)
 # Uncomment to ignore MINS_OLD and in TVDIRS move 15 oldest releases instead:
 # NUM_DIRS_TV="15"
@@ -114,10 +114,11 @@ done
 MIN_FREE_GB="$( func_bc $MIN_FREE GB )"
 func_df() {
 	for d in "$@"; do
+		DBGTXT="[DEBUG]"; if echo $d | grep -q $TVARCHIVE; then DBGTXT="$DBGTXT TVARCHIVE:"; fi
 		if [ "$CHECK_MOUNTS" -eq 1 ]; then
 			if ! findmnt --target "$d" | grep -q "\(^\| \)\($ALLMNT\)\(/\.[0-9]\| \)"; then
 				if [ "$DEBUG" -eq 1 ]; then
-					if [ "$d" != "$mtmp" ]; then echo "[DEBUG] $d - NOK: device not mounted"; fi
+					if [ "$d" != "$mtmp" ]; then echo "$DBGTXT $d - NOK: device not mounted"; fi
 					mtmp="$d"
 				fi
 				return 1
@@ -127,11 +128,11 @@ func_df() {
 		DF=$( df "$d" | awk '{ print $4 }' | tail -1 )
 		if echo "$DF" | grep -q "[0-9]"; then
 			if [ "$DF" -lt "$MIN_FREE" ]; then
-				if [ "$DEBUG" -eq 1 ]; then if [ "$d" != "$dtmp" ]; then echo "[DEBUG] $d - NOK: not enough disk space on \"$FS\" ($(func_bc "$DF" GB) free, $MIN_FREE_GB needed)"; fi; fi
+				if [ "$DEBUG" -eq 1 ]; then if [ "$d" != "$dtmp" ]; then echo "$DBGTXT $d - NOK: not enough disk space on \"$FS\" ($(func_bc "$DF" GB) free, $MIN_FREE_GB needed)"; fi; fi
 				dtmp="$d"
 				return 1
 			else
-				if [ "$DEBUG" -eq 1 ]; then if [ "$d" != "$dtmp" ]; then echo "[DEBUG] $d - OK: enough disk space on \"$FS\" ($(func_bc "$DF" GB) free, $MIN_FREE_GB needed)"; fi; fi
+				if [ "$DEBUG" -eq 1 ]; then if [ "$d" != "$dtmp" ]; then echo "$DBGTXT $d - OK: enough disk space on \"$FS\" ($(func_bc "$DF" GB) free, $MIN_FREE_GB needed)"; fi; fi
 				dtmp="$d"
 				return 0
 			fi
@@ -146,7 +147,7 @@ for RULE in $MOVE; do
 	SRCDIR="$( echo "$RULE" | awk -F ":" '{ print $1 }' )"
 	REGEXP="$( echo "$RULE" | awk -F ":" '{ print $2 }' )"
 	DSTDIR="$( echo "$RULE" | awk -F ":" '{ print $3 }' )"
-	for RLS in $( find "$SRCDIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort | grep -Ev "$SKIPDIRS" ); do
+	for RLS in $( find "$SRCDIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort | grep -Ev "$SKIP_PATH" ); do
 		if ! func_df "$DSTDIR"; then 
 			if [ "$DEBUG" -eq 1 ]; then 
 				if [ "$DEBUG" -eq 1 ]; then if [ "$DESTDIR" != "$stmp" ]; then echo "[DEBUG] skipping $DSTDIR"; fi; fi
@@ -174,7 +175,7 @@ for RULE in $MOVE; do
 				fi
 			fi
 		fi
-		CURDATE_SEC="$( $DATEBIN +%s )"
+		CURDATE_SEC="$( $DATEBIN +%s )"; DIRAGE_MIN=0
 		DIRDATE_SEC="$( ls -ld --time-style='+%s' "$SRCDIR/$RLS" | awk '{ print $6 }' )"
 		if echo "$DIRDATE_SEC" | grep -q "[0-9]"; then DIRAGE_MIN=$(( (CURDATE_SEC - DIRDATE_SEC) / 60 )); fi
 		if [ "$DIRAGE_MIN" -ge "$MINS_OLD" ] && [ "$SKIP" = "NO" ]; then
@@ -199,9 +200,16 @@ for RULE in $MOVE; do
 	done
 done
 
-ALLSKIP=""
-for SKIP in $TVDIRS; do
-	ALLSKIP="^$SKIP\$|$ALLSKIP"
+SKIP_SECTION=""; for DIR in $TVDIRS; do SKIP_SECTION="^$DIR\$|$SKIP_SECTION"; done
+for RULE in $MOVE; do
+	SRCDIR="$( echo "$RULE" | awk -F ":" '{ print $1 }' )"
+	REGEXP="$( echo "$RULE" | awk -F ":" '{ print $2 }' )"
+	DSTDIR="$( echo "$RULE" | awk -F ":" '{ print $3 }' )"
+	if echo $TVDIRS | grep -q $SRCDIR; then
+		if echo $DSTDIR | grep -q $TVARCHIVE; then
+			SKIP_PATH="$REGEXP|$SKIP_PATH"
+		fi
+	fi
 done
 
 if [ -z "$TVARCSUBS" ]; then
@@ -216,32 +224,32 @@ else
 	grep -v "[DEBUG]" | sort -k2 -n | tail -1 | awk '{ print $1 }' )"
 	if [ "$TVARCHSUB" ]; then
 		if [ "$DEBUG" -eq 1 ]; then
-			echo "[DEBUG] TVARCHIVE $TVARCHIVE - OK: subdisk \"$TVARCHSUB\" has the most disk space free (of \"$TVARCSUBS\")"; func_df "$TVARCHIVE/$TVARCHSUB"
+			echo "[DEBUG] TVARCHIVE: $TVARCHIVE - OK: subdisk \"$TVARCHSUB\" has the most disk space free (of \"$TVARCSUBS\")"; func_df "$TVARCHIVE/$TVARCHSUB"
 		fi
 	else
 		if [ "$DEBUG" -eq 1 ]; then
-			echo "[DEBUG] TVARCHIVE $TVARCHIVE - NOK: none of the subdisks \"$TVARCSUBS\" are mounted and/or have enough disk space free"
+			echo "[DEBUG] TVARCHIVE: $TVARCHIVE - NOK: none of the subdisks \"$TVARCSUBS\" are mounted and/or have enough disk space free"
 		fi
 		exit 1
 	fi
 fi
 
 for TVDIR in $TVDIRS; do
-	if echo "$NUM_DIRS_TV" | grep -q "[0-9]"; then
+if echo "$NUM_DIRS_TV" | grep -q "[0-9]"; then
 		CURDATE_SEC="$( "$DATEBIN" +%s )"
-		# use this format for skipdirs here: "/NUKED-|/\(|/_ARCHIVE\ |/_OLDER\ "
-		SKIPDIRS_TMP="$( echo "$SKIPDIRS" | sed -e 's@\^@/@g' -e 's@\.\*@@g' -e 's@\$@\\\ @g' )"
-		if [ "$DEBUG" -eq 1 ]; then echo "[DEBUG] NUM_DIRS_TV $NUM_DIRS_TV SKIPDIRS_TMP $SKIPDIRS_TMP"; fi
-		for DIR in $( ls -ldrt --time-style='+%s' "$TVDIR"/* | grep -Ev "$SKIPDIRS_TMP" | head -"$NUM_DIRS_TV" | sed "s@$GLDIR/site@@g" | sed 's/ /^/g' ); do
+		# use this format for skip_path here: "/NUKED-|/\(|/_ARCHIVE\ |/_OLDER\ "
+		SKIP_PATH_TMP="$( echo "$SKIP_PATH" | sed -e 's@\^@/@g' -e 's@\.\*@@g' -e 's@\$@\\\ @g' )"
+		if [ "$DEBUG" -eq 1 ]; then echo "[DEBUG] TVARCHIVE: NUM_DIRS_TV $NUM_DIRS_TV SKIP_PATH_TMP $SKIP_PATH_TMP"; fi
+		for DIR in $( ls -ldrt --time-style='+%s' "$TVDIR"/* | grep -Ev "$SKIP_PATH_TMP" | head -"$NUM_DIRS_TV" | sed "s@$GLDIR/site@@g" | sed 's/ /^/g' ); do
 			DIRDATE_SEC="$( echo "$DIR" | awk -F \^ '{ print $6 }' )"
 			if echo "$DIRDATE_SEC" | grep -q "[0-9]"; then DIRAGE_MIN=$(( (CURDATE_SEC - DIRDATE_SEC) / 60 )); fi
-			if [ "$DEBUG" -eq 1 ]; then echo "[DEBUG] DIR $DIR DIRDATE_SEC $DIRDATE_SEC DIRAGE_MIN $DIRAGE_MIN"; fi
+			if [ "$DEBUG" -eq 1 ]; then echo "[DEBUG] TVARCHIVE: DIR $DIR DIRDATE_SEC $DIRDATE_SEC DIRAGE_MIN $DIRAGE_MIN"; fi
 		done
 		if echo "$DIRAGE_MIN" | grep -q "[0-9]"; then MINS_OLD="$DIRAGE_MIN"; fi
 	fi
 
-	SKIPREGEXP="$( echo "$SKIPDIRS" | sed "s@\^@\^$TVDIR/@g" )"
-	for DIR in $( find "$TVDIR" -maxdepth 1 -regextype posix-egrep ! -regex "${ALLSKIP}${SKIPREGEXP}" ); do
+	SKIP_REGEXP="$( echo "$SKIP_PATH" | sed "s@\^@\^$TVDIR/@g" )"
+	for DIR in $( find "$TVDIR" -maxdepth 1 -regextype posix-egrep ! -regex "${SKIP_SECTION}${SKIP_REGEXP}" ); do
 		if [ ! -z "$TVARCSUBS" ]; then
 			TVARCHSUB="$( for i in $TVARCSUBS; do if func_df "$TVARCHIVE/$i" KB; then echo "$i $DF"; fi; done | grep -v "[DEBUG]" | sort -k2 -n | tail -1 | awk '{ print $1 }' )"
 		fi
@@ -268,13 +276,14 @@ for TVDIR in $TVDIRS; do
 		CURDATE_SEC="$( $DATEBIN +%s )"
 		DIRDATE_SEC="$( ls -ld --time-style='+%s' "$DIR" | awk '{ print $6 }' )"
 		if echo "$DIRDATE_SEC" | grep -q "[0-9]"; then DIRAGE_MIN=$(( (CURDATE_SEC - DIRDATE_SEC) / 60 )); fi
-		if [ "$DIRAGE_MIN" -ge "$MINS_OLD" ]  && [ "$SKIP" = "NO" ]; then
+		if [ "$DIRAGE_MIN" -ge "$MINS_OLD" ] && [ "$SKIP" = "NO" ]; then
 			BASEDIR="$( basename "$DIR" )"
 			SRCSERIES="$( echo "$BASEDIR" | sed \
 				-e 's/^(no-\(nfo\|sfv\|sample\))-//g' \
 				-e 's/\([._]\)A\([._]\)/\1a\2/g' \
 				-e 's/\([._]\)And\([._]\)/\1and\2/g' \
 				-e 's/\([._]\)In\([._]\)/\1in\2/g' \
+				-e 's/\([._]\)Is\([._]\)/\1is\2/g' \
 				-e 's/\([._]\)The\([._]\)/\1the\2/g' \
 				-e 's/\([._]\)Of\([._]\)/\1of\2/g' \
 				-e 's/\([._]\)On\([._]\)/\1on\2/g' \
@@ -303,45 +312,45 @@ for TVDIR in $TVDIRS; do
 				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )" ]; then
 					if [ -z "$TVARCHSUB" ]; then
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG]" mkdir "$TVARCHIVE/$DSTSERIES"
+							echo "[DEBUG] TVARCHIVE:" mkdir "$TVARCHIVE/$DSTSERIES"
 						else
 							mkdir "$TVARCHIVE/$DSTSERIES"
 						fi
 					else
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG]" mkdir "$TVARCHIVE/$TVARCHSUB/$DSTSERIES"
-							if [ ! -L "$TVARCHIVE/$DSTSERIES" ]; then echo "[DEBUG]" ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
+							echo "[DEBUG] TVARCHIVE:" mkdir "$TVARCHIVE/$TVARCHSUB/$DSTSERIES"
+							if [ ! -L $TVARCHIVE/$CHKSERIES ]; then echo "[DEBUG] TVARCHIVE:" ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
 						else
 							mkdir "$TVARCHIVE/$TVARCHSUB/$DSTSERIES"
-							if [ ! -L "$TVARCHIVE/$DSTSERIES" ]; then ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
+							if [ ! -L $TVARCHIVE/$CHKSERIES ]; then ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
 						fi
 					fi
 				fi
 				if [ "$( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )" ]; then
 					if [ -z "$TVARCHSUB" ]; then
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG]" mv "$DIR" $TVARCHIVE/$CHKSERIES/
+							echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/
 						else
 							mv "$DIR" $TVARCHIVE/$CHKSERIES/
 						fi
 					else
-						if [ -L "$TVARCHIVE/$DSTSERIES" ]; then
-							TVLINKSUB="$( dirname "$( readlink "$TVARCHIVE/$DSTSERIES" )" )"
+						if [ -L $TVARCHIVE/$CHKSERIES ]; then
+							TVLINKSUB="$( dirname "$( readlink $TVARCHIVE/$CHKSERIES )" )"
 							if [ "$TVLINKSUB" = "$TVARCHSUB" ]; then
 								if [ "$DEBUG" -eq 1 ]; then
-									echo "[DEBUG]" mv "$DIR" $TVARCHIVE/$CHKSERIES/
+									echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/
 								else
 									mv "$DIR" $TVARCHIVE/$CHKSERIES/
 								fi
 							else
 								if func_df "$TVARCHIVE/$TVLINKSUB"; then
 									if [ "$DEBUG" -eq 1 ]; then
-										echo "[DEBUG]" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
+										echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
 									else
 										mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
 									fi
 								else
-									echo "[INFO] skipping mv $DIR $DSTSERIES - dir is on \"$TVLINKSUB\" (full or not mounted), not \"$TVARCHSUB\""
+									echo "[INFO] skipping mv $DIR - \"$DSTSERIES\" is not on \"$TVARCHSUB\"" and \"$TVLINKSUB\" is full/unmounted
 								fi
 							fi
 						fi
@@ -358,20 +367,20 @@ for TVDIR in $TVDIRS; do
 				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )" ]; then
 					if [ -z "$TVARCHSUB" ]; then
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG]" mkdir $TVARCHIVE/$DSTSERIES
+							echo "[DEBUG] TVARCHIVE:" mkdir $TVARCHIVE/$DSTSERIES
 						else
 							mkdir $TVARCHIVE/$DSTSERIES
 						fi
 					else
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG]" mkdir "$TVARCHIVE/$TVARCHSUB/$DSTSERIES"
+							echo "[DEBUG] TVARCHIVE:" mkdir "$TVARCHIVE/$TVARCHSUB/$DSTSERIES"
 							if [ ! -z "$TVARCHSUB" ]; then
-								if [ ! -L "$TVARCHIVE/$DSTSERIES" ]; then echo "[DEBUG]" ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
+								if [ ! -L $TVARCHIVE/$CHKSERIES ]; then echo "[DEBUG] TVARCHIVE:" ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
 							fi
 						else
 							mkdir "$TVARCHIVE/$TVARCHSUB/$DSTSERIES"
 							if [ ! -z "$TVARCHSUB" ]; then
-								if [ ! -L "$TVARCHIVE/$DSTSERIES" ]; then ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
+								if [ ! -L $TVARCHIVE/$CHKSERIES ]; then ln -s "$TVARCHSUB/$DSTSERIES" "$TVARCHIVE/$DSTSERIES"; fi
 							fi
 						fi
 					fi
@@ -379,30 +388,30 @@ for TVDIR in $TVDIRS; do
 				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIES/$SEASON 2>/dev/null )" ]; then
 					if [ -z "$TVARCHSUB" ]; then
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG]" mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIES )/$SEASON
+							echo "[DEBUG] TVARCHIVE:" mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIES )/$SEASON
 						else
 							#mkdir $TVARCHIVE/$TVARCHSUB/$DSTSERIES/$SEASON
 							mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )/$SEASON
 						fi
 					else
-						if [ -L "$TVARCHIVE/$DSTSERIES" ]; then
-							TVLINKSUB="$( dirname "$( readlink "$TVARCHIVE/$DSTSERIES" )" )"
+						if [ -L $TVARCHIVE/$CHKSERIES ]; then
+							TVLINKSUB="$( dirname "$( readlink $TVARCHIVE/$CHKSERIES )" )"
 							if [ "$TVLINKSUB" = "$TVARCHSUB" ]; then
 								if [ "$DEBUG" -eq 1 ]; then
-									#echo "[DEBUG] mkdir $TVARCHIVE/$TVARCHSUB/$DSTSERIES/$SEASON
-									echo "[DEBUG]" mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIES )/$SEASON
+									#echo "[DEBUG] TVARCHIVE:" mkdir $TVARCHIVE/$TVARCHSUB/$DSTSERIES/$SEASON
+									echo "[DEBUG] TVARCHIVE:" mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIES )/$SEASON
 								else
 									mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )/$SEASON
 								fi
 							else
 								if func_df "$TVARCHIVE/$TVLINKSUB"; then 
 									if [ "$DEBUG" -eq 1 ]; then
-										echo "[DEBUG]" mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIES )/$SEASON "(on subdisk \"$TVLINKSUB\")"
+										echo "[DEBUG] TVARCHIVE:" mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null || echo [LS_ERR]:$TVARCHIVE/$CHKSERIES )/$SEASON "(on subdisk \"$TVLINKSUB\")"
 									else	
 										mkdir $( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )/$SEASON 
 									fi
 								else
-									echo "[INFO] skipping mkdir $TVARCHIVE/$DSTSERIES/$SEASON - $DSTSERIES links to \"$TVLINKSUB\" (full or not mounted), not \"$TVARCHSUB\""
+									echo "[INFO] skipping mkdir $TVARCHIVE/$DSTSERIES/$SEASON - \"$DSTSERIES\" links to \"$TVLINKSUB\" which is full/unmounted (not on \"$TVARCHSUB\")"
 								fi
 							fi
 						fi
@@ -411,28 +420,28 @@ for TVDIR in $TVDIRS; do
 				if [ "$( ls -1d $TVARCHIVE/$CHKSERIES/$SEASON 2>/dev/null )" ]; then
 					if [ -z "$TVARCHSUB" ]; then
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG]" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+							echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
 						else
 							mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
 						fi
 					else
-						if [ -L "$TVARCHIVE/$DSTSERIES" ]; then
-							TVLINKSUB="$( dirname "$( readlink "$TVARCHIVE/$DSTSERIES" )" )"
+						if [ -L $TVARCHIVE/$CHKSERIES ]; then
+							TVLINKSUB="$( dirname "$( readlink $TVARCHIVE/$CHKSERIES )" )"
 							if [ "$TVLINKSUB" = "$TVARCHSUB" ]; then
 								if [ "$DEBUG" -eq 1 ]; then
-									echo "[DEBUG]" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+									echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
 								else
 									mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
 								fi
 							else
 								if func_df "$TVARCHIVE/$TVLINKSUB"; then 
 									if [ "$DEBUG" -eq 1 ]; then
-										echo "[DEBUG]" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
+										echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
 									else	
 										mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
 									fi
 								else
-									echo "[INFO] skipping mv $DIR $DSTSERIES - dir is on \"$TVLINKSUB\" (full or not mounted), not \"$TVARCHSUB\""
+									echo "[INFO] skipping mv $DIR - dir \"$DSTSERIES\" is not on \"$TVARCHSUB\"" and \"$TVLINKSUB\" is full or not mounted
 								fi
 							fi
 						fi
@@ -440,7 +449,7 @@ for TVDIR in $TVDIRS; do
 				fi
 				if [ "$( ls -1d $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR 2>/dev/null )" ]; then
 					if [ "$DEBUG" -eq 1 ]; then
-						echo "[DEBUG]" touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR
+						echo "[DEBUG] TVARCHIVE:" touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR
 					else
 						touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR
 					fi
