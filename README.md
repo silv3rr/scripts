@@ -34,7 +34,8 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                           2018-06-05 18:14  244   by <b>Holybull</b>, goes with CreditShow.tcl
 <img src="icons/unknown.gif" alt="[   ]"> <a href="rescan">rescan</a>                                     2018-07-09 11:33  508   oneliners for pzs-ng rescan | <a href='rescan.txt'>show txt</a>
 <img src="icons/text.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                               2018-06-05 18:14  6.1K  <b>by comp</b>, slv - !site plugin updated to work with ngBot
-<img src="icons/text.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                                  2018-06-05 18:14  3.6K  slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
+<img src="icons/compressed.gif" alt="[   ]"> <a href="sitewho-plus2-v0.1.tar.gz">sitewho-plus2-v0.1.tar.gz</a>                  2018-07-19 11:52   11K  by slv - sitewho+2: modded version with user ip/geoip2 country in raw output
+<img src="icons/text.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                                  2018-06-05 18:14  3.6K  by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2018-06-05 18:14   17K  archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2018-06-05 18:14  4.2K  archiver for mp3 daydirs and mv wkdirs (with audiosort)
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                               2018-06-05 18:14  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
@@ -42,7 +43,7 @@
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-ngbotc.sh">slv-ngbotc.sh</a>                              2018-06-05 18:14  1.0K  small script to check ngBot changes, use before updating
 <img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2018-06-05 18:14  2.4K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2018-06-05 18:14  2.4K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2018-06-05 18:14  2.5K  <b>LATEST:</b> pzs-ng dZBot/ngbot plugin to show bw after pre
+<img src="icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2018-06-05 18:14  2.5K  <a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b> git</a> | pzs-ng dZBot/ngbot plugin to show bw after pre
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2018-06-05 18:14  4.6K  vnstat wrapper for multiple interfaces? i dont even...
 <img src="icons/text.gif" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2018-06-05 18:14  902   !vnstat trigger
 <img src="icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2018-06-05 18:14  560   by <b>?</b> - speed.sh: tweak tcp settings (gbit), with backup
