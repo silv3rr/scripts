@@ -3,7 +3,7 @@
 IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble IgnoreCase IgnoreClient
 HeaderName /include/HEADER.html
 ReadmeName /include/FOOTER.html
-IndexIgnore include robots.txt HEADER* README* FOOTER* *.swp icons favicon.ico .git *.js assets _layouts _config.yml CNAME
+IndexIgnore include robots.txt HEADER* README* FOOTER* *.swp icons favicon.ico .git *.js assets _layouts _config.yml CNAME rescan.txt
 
 AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
 
@@ -38,23 +38,24 @@ DefaultIcon /icons/unknown.gif
 
 AddDescription "<b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS.html
 AddDescription "<b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github" 00_MIRROR.html
-AddDescription "little wrapper cscript for audiosorting after pre" audiosortpre.sh
-AddDescription "!credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
+AddDescription "by slv - little wrapper cscript for audiosorting after pre" audiosortpre.sh
+AddDescription "by <b>Holybull</b>, slv - !credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
 AddDescription "DH1080_tcl from fish.secure.la (mirror)" DH1080-source.zip
-AddDescription "updated version of Jehsom's mp3 dirscript" dirscript.sh
+AddDescription "by <b>Jehsom</b>, slv - updated version of mp3 dirscript" dirscript.sh
 AddDescription "apt install pkgs for ebftpd" ebftpd-deps.sh
-AddDescription "<a href='https://github.com/glftpd/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: little patch to fix destination error on pre</font>" foo-pre-destfix.patch
-AddDescription "<a href='https://github.com/glftpd/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: PCFiL - fixes dirlog getting corrupted on 64bit</font>" footools-dirlogfix.tar.gz
-AddDescription "<a href='https://github.com/silv3rr/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: ugly patch for foopre to add mp3 genre in PRE</font>" footools-mp3genre.patch
-AddDescription "<a href='https://github.com/silv3rr/foo-tools'><font color='Gray'><b>LATEST @ GIT</b></font></a> | <font color='Gray'>OLD: ugly hack for foopre to add mp3 genre in PRE</font>" footools-x86-x64-20111102-mp3genre.tar.bz2
-AddDescription "custom wk/mn/alup stats, exclude users/groups" gft-stats.sh
-AddDescription "goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
+AddDescription "<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b> git</a> | fixed/updated foo-tools, incl foopre+mp3genre (<b>tanesha</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a>)" foo-tools-v1.20-20180713.tar.gz
+AddDescription "<font color='Gray'>OLD: little patch to fix destination error on pre</font>" foo-pre-destfix.patch
+AddDescription "<font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>" footools-mp3genre.patch
+AddDescription "<font color='Gray'>OLD: by slv - ugly hack for foopre to add mp3 genre in PRE</font>" footools-x86-x64-20111102-mp3genre.tar.bz2
+AddDescription "<font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>" footools-dirlogfix.tar.gz
+AddDescription "by <b>gft</b> - custom wk/mn/alup stats, exclude users/groups" gft-stats.sh
+AddDescription "by <b>gft</b> - goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
 AddDescription "<font color='Gray'>glftpd 2.07.1 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '12d317fc6a125e93d373c2be99292bae54e66ac4cb8aff0ea810031a7dbf3ad78309336b2abf9d89b8b34c3936ad51968e7023b940189957c1f627f75bf30518')\">show sha512</a></font>" glftpd-LNX-2.07.1_1.1.0c_x64.tgz
 AddDescription "<b>LATEST:</b> glftpd 2.08 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')\">show sha512</a>" glftpd-LNX-2.08_1.1.0g_x64.tgz
 AddDescription "BETA: glftpd 2.09B1 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'dc8b6233178a37969a7d445e4fa9f18bbbb74b6904f30e69c9d147272ecb64fb9c67cbb619fb7f173c13ba539e8d651079605757365c80539786e3a81c426267')\">show sha512</a>" glftpd-LNX-2.09.BETA1_1.1.0h_x64.tgz
-AddDescription "goes with CreditShow.tcl" hb_creditshow.sh
-AddDescription "oneliners for pzs-ng rescan" rescan
-AddDescription "!site plugin updated to work with ngBot" Sitecmds.tcl
+AddDescription "by <b>Holybull</b>, goes with CreditShow.tcl" hb_creditshow.sh
+AddDescription "oneliners for pzs-ng rescan | <a href='rescan.txt'>show txt</a>" rescan
+AddDescription "<b>by comp</b>, slv - !site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
 AddDescription "archiver for iso, moves to appropriate dirs and creates tvshow/season dirs" slv-arch.sh
 AddDescription "archiver for mp3 daydirs and mv wkdirs (with audiosort)" slv-archmp3.sh
@@ -66,7 +67,8 @@ AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw aft
 AddDescription "<b>LATEST:</b> pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v0.54.tar.gz
 AddDescription "vnstat wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
 AddDescription "!vnstat trigger" slv-vnstat.tcl
-AddDescription "speed.sh - tweak tcp settings (gbit), with backup" speed.sh.zip
-AddDescription "speedfix.nfo - uses lower buffer sizes than speed.sh and doesnt backup" speedfix.rar
+AddDescription "sitewho+4 modified version with user ip/geoip2 country code raw output" sitewho-plus2.tar.gz
+AddDescription "by <b>?</b> - speed.sh: tweak tcp settings (gbit), with backup" speed.sh.zip
+AddDescription "by <b>?</b> - speedfix.nfo: uses lower buffer sizes than speed.sh, doesnt backup" speedfix.rar
 AddDescription "by <b>Nom</b> - use with http://humdi.net/vnstat" vnstat_frontend.tar
-AddDescription "!whois plugin updated to work with ngBot" Whois.tcl
+AddDescription "by <b>comp, E-Liquid</b>, slv - !whois plugin updated to work with ngBot" Whois.tcl
