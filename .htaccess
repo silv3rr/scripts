@@ -1,40 +1,40 @@
 #Options Indexes
 
 IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble IgnoreCase IgnoreClient
-HeaderName /include/HEADER.html
-ReadmeName /include/FOOTER.html
-IndexIgnore include robots.txt HEADER* README* FOOTER* *.swp icons favicon.ico .git *.js assets _layouts _config.yml CNAME rescan.txt
+HeaderName /_include/HEADER.html
+ReadmeName /_include/FOOTER.html
+IndexIgnore include robots.txt HEADER* README* FOOTER* *.swp icons favicon.ico .git *.js assets _include _layouts _config.yml CNAME rescan.txt
 
-AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
+AddIconByEncoding (CMP,/assets/icons/compressed.gif) x-compress x-gzip
 
-AddIconByType (TXT,/icons/text.gif) text/*
-AddIconByType (IMG,/icons/image2.gif) image/*
-AddIconByType (SND,/icons/sound2.gif) audio/*
-AddIconByType (VID,/icons/movie.gif) video/*
+AddIconByType (TXT,/assets/icons/text.gif) text/*
+AddIconByType (IMG,/assets/icons/image2.gif) image/*
+AddIconByType (SND,/assets/icons/sound2.gif) audio/*
+AddIconByType (VID,/assets/icons/movie.gif) video/*
 
-AddIcon /icons/binary.gif .bin .exe
-AddIcon /icons/binhex.gif .hqx
-AddIcon /icons/tar.gif .tar
-AddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
-AddIcon /icons/compressed.gif .Z .z .tgz .gz .zip .bz2 .rar
-AddIcon /icons/a.gif .ps .ai .eps
-AddIcon /icons/layout.gif .html .shtml .htm .pdf 00_LINKS 00_MIRROR
-AddIcon /icons/text.gif .txt
-AddIcon /icons/c.gif .c
-AddIcon /icons/p.gif .pl .py
-AddIcon /icons/f.gif .for
-AddIcon /icons/dvi.gif .dvi
-AddIcon /icons/uuencoded.gif .uu
-AddIcon /icons/script.gif .conf .sh .shar .csh .ksh .tcl
-AddIcon /icons/tex.gif .tex
-AddIcon /icons/bomb.gif core
+AddIcon /assets/icons/binary.gif .bin .exe
+AddIcon /assets/icons/binhex.gif .hqx
+AddIcon /assets/icons/tar.gif .tar
+AddIcon /assets/icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
+AddIcon /assets/icons/compressed.gif .Z .z .tgz .gz .zip .bz2 .rar
+AddIcon /assets/icons/a.gif .ps .ai .eps
+AddIcon /assets/icons/layout.gif .html .shtml .htm .pdf 00_LINKS 00_MIRROR
+AddIcon /assets/icons/text.gif .txt
+AddIcon /assets/icons/c.gif .c
+AddIcon /assets/icons/p.gif .pl .py
+AddIcon /assets/icons/f.gif .for
+AddIcon /assets/icons/dvi.gif .dvi
+AddIcon /assets/icons/uuencoded.gif .uu
+AddIcon /assets/icons/script.gif .conf .sh .shar .csh .ksh .tcl
+AddIcon /assets/icons/tex.gif .tex
+AddIcon /assets/icons/bomb.gif core
 
-AddIcon /icons/back.gif ..
-AddIcon /icons/hand.right.gif README
-AddIcon /icons/folder.gif ^^DIRECTORY^^
-AddIcon /icons/blank.gif ^^BLANKICON^^
+AddIcon /assets/icons/back.gif ..
+AddIcon /assets/icons/hand.right.gif README
+AddIcon /assets/icons/folder.gif ^^DIRECTORY^^
+AddIcon /assets/icons/blank.gif ^^BLANKICON^^
 
-DefaultIcon /icons/unknown.gif
+DefaultIcon /assets/icons/unknown.gif
 
 AddDescription "<b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS.html
 AddDescription "<b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github" 00_MIRROR.html
