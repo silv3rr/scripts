@@ -18,7 +18,7 @@
 </pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="icons/text.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                              2019-03-01 13:51  2.4K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
+<pre><img src="icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="icons/text.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                              2019-03-01 14:27  2.4K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="icons/text.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                             2018-06-20 11:43  570   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="icons/text.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                            2018-06-05 18:14  788   by slv - little wrapper cscript for audiosorting after pre
 <img src="icons/text.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                             2018-06-05 18:14  3.4K  by <b>Holybull</b>, slv - !credits plugin for ngBot. uses hb_creditshow.sh
