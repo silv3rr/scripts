@@ -1,9 +1,9 @@
 #Options Indexes
 
 IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble IgnoreCase IgnoreClient
-HeaderName /_include/header.html
-ReadmeName /_include/footer.html
-IndexIgnore include robots.txt HEADER* README* FOOTER* *.swp icons favicon.ico .git *.js assets _include _layouts _config.yml CNAME rescan.txt
+HeaderName /_includes/header.html
+ReadmeName /_includes/footer.html
+IndexIgnore include robots.txt HEADER* README* FOOTER* *.swp icons favicon.ico .git *.js assets _includes _layouts _config.yml CNAME rescan.txt
 
 AddIconByEncoding (CMP,/assets/icons/compressed.gif) x-compress x-gzip
 
