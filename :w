@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Hook to use Apache DirIndex as README.md
+# use arg -f to always trigger gitadd
+
+# new cfg using gh pages instead of self hosting with apache on localhost
+# ln: /var/www/vhost/sscripts/docs -> /home/silver/src/sscripts.ga/docs
+
+root_url="https://localhost:30443/"
+root_readme="/home/silver/src/sscripts.ga/docs/README.md"
+root_tmp="/tmp/root_README.md.$$"
+
+arch_url="https://localhost:30443/ARCHIVE/"
+arch_readme="/home/silver/src/sscripts.ga/docs/ARCHIVE/README.md"
+arc_tmp="/tmp/arch_README.md.$$"
+
+rm_root_readme=1; rm_arch_readmeive=1
+
+func_gitadd () {
+  mv "$root_tmp" "$root_readme" && git add -v README.md && rm_root_readme=0
+}
+
+# get dirindex and remove title/icons for gh, added -k for localhost
+curl -k "$root_url" | sed -e 's@<title>.*</title>@@' -e 's@"/icons/@"icons/@g' > "$root_tmp"
+curl -k "$arch_url" | sed -e 's@<title>.*</title>@@' -e 's@"/icons/@"icons/@g' > "$arch_tmp"
+
+# check if there were changes to index, if yes run func_gitadd
+diff=0; gitdiff=0
+diff="$( diff "$file" "$root_tmp" | wc -l | grep [0-9] && echo || echo 0 )"
+gitdiff="$( git diff --cached .htaccess _includes/header.html _includes/footer.html | wc -l | grep [0-9] && echo || echo 0 )"
+
+if [ "$1" = "-f" ] || [ "$diff" -ge 1 ] || [ "$gitdiff" -ge 1 ]; then func_gitadd; fi
+if [ "$rm_root_readme" -eq 1 ]; then rm "$root_tmp" >/dev/null 2>&1; fi
+exit 0
