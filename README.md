@@ -23,7 +23,7 @@
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by slv - little wrapper cscript for audiosorting after pre
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                  2018-06-05 18:14  3.4K  by <b>Holybull</b>, slv - !credits plugin for ngBot. uses hb_creditshow.sh
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>               2018-06-05 18:14   21K  DH1080_tcl from fish.secure.la (mirror)
-<img src="/assets/icons/script.gif" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                    2018-06-05 18:14   11K  by <b>Jehsom</b>, slv - updated version of mp3 dirscript
+<img src="/assets/icons/script.gif" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                    2019-04-01 08:15   12K  by <b>Jehsom</b>, slv - updated version of mp3 dirscript
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                  2018-07-19 10:55  318   apt install pkgs for ebftpd
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="foo-tools-v1.20-20180713.tar.gz">foo-tools-v1.20-20180713.tar.gz</a> 2018-07-19 10:06  434K  <a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b> git</a> | fixed/updated foo-tools, incl foopre+mp3genre (<b>tanesha</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a>)
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                    2018-06-05 18:14  1.6K  by <b>gft</b> - custom wk/mn/alup stats, exclude users/groups

@@ -27,6 +27,9 @@
 #   log, and rels already existing in your site's PRE directories (to
 #   prevent racing of PREs. Add it to glftpd.conf as pre_dir_check.
 #
+# Changes 1.4.1 -> 1.5.1:
+#   * BANNEDALSO now shows what was banned
+#
 # Changes 1.4.1 -> 1.5:
 #   * made DIR_CHECK, PRE_DIRS, BANNED and DAYSBACK optional
 #   * dont log the same msg more than once (needs $LOGFILE.tmp)
@@ -90,7 +93,7 @@ NOCHECK_TREES="/site/Requests_Filled /site/Incoming/Billboard_Top"
 DAYSBACK="1"
 BANNED="GRPNAME LAMErS CRAP"
 ANALDUPECHECK="0"
-BANNEDALSO="^NUKED\- ^INCOMPLETE\- \-Bootleg\- \-Bootleg _Bootleg_ _Bootleg\- \(Bootleg\) \-EG\- \-GR\- \-LV\- \-SE\- \-Tape\-" 
+BANNEDALSO="^NUKED\- ^INCOMPLETE\- [-(](Bootleg|BOOTLEG)[)-] [-(](Tape|TAPE)[)-] \-EG\- \-GR\- \-LV\- \-SE\-"
 DATAPATH="/ftp-data"
 ALLOWPARENS="0"
 RIAA_UNDERSCORES="0"
@@ -224,7 +227,7 @@ done
 
 # Disallow banned groups.
 [ "$CHECK_BANNED_GROUPS" -eq "1" ] && {
-	[ -n "$2" ] && cd $2
+	#[ -n "$2" ] && cd $2
 	for grp in $BANNED; do
 		echo $1 | grep -i "[-]${grp}$" > /dev/null && {
 			echo "${grp} releases are not accepted here."
@@ -234,12 +237,13 @@ done
 }
 
 [ "$CHECK_BANNEDALSO" -eq "1" ] && {
-	for x in $BANNEDALSO
+	for pat in $BANNEDALSO
 	do
-	        Match=$( echo $1 | grep -i "$x" )
+	        Match=$( echo $1 | grep -E "$pat" )
 		if $( test "$Match" = "$1" ); then
-			echo "$x Releases Not Allowed"
-			logexit $2/$1 "Unallowed Group"
+                        txt="$( echo $pat | sed -E 's/[^a-zA-Z0-9|]//g' | tr '|' '\n' | sort -fu | tail -1 )"
+			echo "\"${txt}\" releases are not allowed."
+			logexit $2/$1 "Tag \"${txt}\" Unallowed"
         	fi
 	done
 }
