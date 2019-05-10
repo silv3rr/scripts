@@ -42,8 +42,8 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>          2018-06-05 18:14  2.5K  <a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b> git</a> | pzs-ng dZBot/ngbot plugin to show bw after pre
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                   2018-06-05 18:14  4.6K  vnstat wrapper for multiple interfaces? i dont even...
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                  2018-06-05 18:14  902   !vnstat trigger
-<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                    2018-06-05 18:14  560   by <b>?</b> - speed.sh: tweak tcp settings (gbit), with backup
-<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                    2018-06-05 18:14  307   by <b>?</b> - speedfix.nfo: uses lower buffer sizes than speed.sh, doesnt backup
+<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                    2018-06-05 18:14  560   by <b>Unknown</b> - speed.sh: tweak tcp settings (gbit), with backup
+<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                    2018-06-05 18:14  307   by <b>Unknown</b> - speedfix.nfo: uses lower buffer sizes than speed.sh, doesnt backup
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>             2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid</b>, slv - !whois plugin updated to work with ngBot
 <hr></pre>
