@@ -440,6 +440,7 @@ for TVDIR in $TVDIRS; do
 			DSTSERIES="$( echo "$SRCSERIES" | sed 's/\(\w\)_/\1\./g' )"
 			CHKSERIES="$( echo "$DSTSERIES" | sed 's/\([a-z]\|[A-Z]\)/[\L\1\U\1\]/g' )"
 			DIRDATE="$( $DATEBIN --date "01/01/1970 +$DIRDATE_SEC seconds" +"%Y-%m-%d %H:%M:%S" )"
+			MV=0
 			if [ "$SEASON" = "" ]; then
 				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )" ]; then
 					if [ -z "$TVARCHSUB" ]; then
@@ -462,25 +463,25 @@ for TVDIR in $TVDIRS; do
 				        if [ "$( ls -1d $TVARCHIVE/$CHKSERIES | wc -l )" -eq 1 ]; then
 						if [ -z "$TVARCHSUB" ]; then
 							if [ "$DEBUG" -eq 1 ]; then
-								echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/
+								echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/ && MV=1
 							else
-								mv "$DIR" $TVARCHIVE/$CHKSERIES/
+								mv "$DIR" $TVARCHIVE/$CHKSERIES/ && MV=1
 							fi
 						else
 							if [ -L $TVARCHIVE/$CHKSERIES ]; then
 								TVLINKSUB="$( dirname "$( readlink $TVARCHIVE/$CHKSERIES )" )"
 								if [ "$TVLINKSUB" = "$TVARCHSUB" ]; then
 									if [ "$DEBUG" -eq 1 ]; then
-										echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/
+										echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/ && MV=255
 									else
-										mv "$DIR" $TVARCHIVE/$CHKSERIES/
+										mv "$DIR" $TVARCHIVE/$CHKSERIES/ && MV=1
 									fi
 								else
 									if func_df "$TVARCHIVE/$TVLINKSUB"; then
 										if [ "$DEBUG" -eq 1 ]; then
-											echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
+											echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/ "(on subdisk \"$TVLINKSUB\")" && MV=255
 										else
-											mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+											mv "$DIR" $TVARCHIVE/$CHKSERIES/ && MV=1
 										fi
 									else
 										echo "[INFO] skipping mv $DIR - \"$DSTSERIES\" is not on \"$TVARCHSUB\"" and \"$TVLINKSUB\" is full/unmounted
@@ -489,15 +490,18 @@ for TVDIR in $TVDIRS; do
 							fi
 						fi
 					else
+						MV=0
 						echo "[ERROR] TVARCHIVE: skipping \"$DSTSERIES\" - more than 1 dir found... $(ls -1d $TVARCHIVE/$CHKSERIES|sed 's|'"$GLDIR"'/site||g'|tr '\n' ' ')"
 					fi
 				fi
-				if [ "$( ls -1d $TVARCHIVE/$CHKSERIES/$BASEDIR 2>/dev/null )" ]; then
+				if [ "$MV" -eq 1 ] && [ -d "$( ls -1d $TVARCHIVE/$CHKSERIES/$BASEDIR 2>/dev/null )" ]; then
 					if [ "$DEBUG" -eq 1 ]; then
 						echo "[DEBUG] TVARCHIVE:" touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$BASEDIR
 					else
-						touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$BASEDIR
+						touch -c -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$BASEDIR
 					fi
+				else
+					echo "[ERROR] TVARCHIVE: wont touch \"$TVARCHIVE/$DSTSERIES/$BASEDIR\" - move failed or no dir (MV=$MV)"
 				fi
 			else
 				if [ ! "$( ls -1d $TVARCHIVE/$CHKSERIES 2>/dev/null )" ]; then
@@ -552,9 +556,9 @@ for TVDIR in $TVDIRS; do
 				if [ "$( ls -1d $TVARCHIVE/$CHKSERIES/$SEASON 2>/dev/null )" ]; then
 					if [ -z "$TVARCHSUB" ]; then
 						if [ "$DEBUG" -eq 1 ]; then
-							echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+							echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON && MV=255
 						else
-							mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+							mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON && MV=1
 						fi
 					else
                   				if [ "$( ls -1d $TVARCHIVE/$CHKSERIES | wc -l )" -eq 1 ]; then
@@ -562,33 +566,37 @@ for TVDIR in $TVDIRS; do
 								TVLINKSUB="$( dirname "$( readlink $TVARCHIVE/$CHKSERIES )" )"
 								if [ "$TVLINKSUB" = "$TVARCHSUB" ]; then
 									if [ "$DEBUG" -eq 1 ]; then
-										echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+										echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON && MV=255
 									else
-										mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+										mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON && MV=1
 									fi
 								else
 									if func_df "$TVARCHIVE/$TVLINKSUB"; then 
 										if [ "$DEBUG" -eq 1 ]; then
-											echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
+											echo "[DEBUG] TVARCHIVE:" mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")" && MV=255
 										else	
-											mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+											mv "$DIR" $TVARCHIVE/$CHKSERIES/$SEASON && MV=1
 										fi
 									else
+										MV=0
 										echo "[INFO] TVARCHIVE: skipping mv $DIR - dir \"$DSTSERIES\" is not on \"$TVARCHSUB\"" and \"$TVLINKSUB\" is full or not mounted
 									fi
 								fi
 							fi
                                                 else
+							MV=0
 							echo "[ERROR] TVARCHIVE: skipping \"$DSTSERIES\" - more than 1 dir found... $(ls -1d $TVARCHIVE/$CHKSERIES|sed 's|'"$GLDIR"'/site||g'|tr '\n' ' ')"
                                                 fi
 					fi
 				fi
-				if [ "$( ls -1d $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR 2>/dev/null )" ]; then
+				if [ "$MV" -eq 1 ] && [ -d "$( ls -1d $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR 2>/dev/null )" ]; then
 					if [ "$DEBUG" -eq 1 ]; then
-						echo "[DEBUG] TVARCHIVE:" touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR
+						echo "[DEBUG] TVARCHIVE: " touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR
 					else
-						touch -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR
+						touch -c -d "$DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR
 					fi
+				else
+					echo "[ERROR] TVARCHIVE: wont touch \"$TVARCHIVE/$DSTSERIES/$SEASON/$BASEDIR\" - move failed or no dir (MV=$MV)"
 				fi
 			fi
 		fi
