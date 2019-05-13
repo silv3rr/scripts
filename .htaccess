@@ -59,7 +59,7 @@ AddDescription "by <b>gft</b> - custom wk/mn/alup stats, exclude users/groups" g
 AddDescription "by <b>gft</b> - goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
 AddDescription "<a href='https://glftpd.io'><b>LATEST:</b></a> glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')\">show sha512</a>" glftpd-LNX-2.09_1.1.0j_x64.tgz
 AddDescription "by <b>Holybull</b>, goes with CreditShow.tcl" hb_creditshow.sh
-AddDescription "oneliners for pzs-ng rescan | <a href='rescan.txt'>show txt</a>" rescan.txt
+AddDescription "oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>" rescan
 AddDescription "<b>by comp</b>, slv - !site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "by slv - sitewho+2: modded version with user ip/geoip2 country in raw output" sitewho-plus2-v0.1.tar.gz
 AddDescription "by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
