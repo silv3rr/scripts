@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2019-06-22 18:23    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2019-06-22 18:24    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2019-05-19 00:01  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by slv - little wrapper cscript for audiosorting after pre
@@ -30,7 +30,7 @@
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                   2018-06-05 18:14  902   by <b>gft</b> - goes with gft-stats.sh, add these to glftpd.conf
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.09_1.1.0j_x64.tgz">glftpd-LNX-2.09_1.1.0j_x64.tgz</a>  2018-12-24 19:48  7.1M  <a href='https://glftpd.io'><b>LATEST:</b></a> glftpd 2.09 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')">show sha512</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                2018-06-05 18:14  244   by <b>Holybull</b>, goes with CreditShow.tcl
-<img src="/assets/icons/text.gif" alt="[TXT]"> <a href="rescan.txt">rescan.txt</a>                      2018-07-09 11:33  508   oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>
+<img src="/assets/icons/text.gif" alt="[TXT]"> <a href="rescan.txt">rescan.txt</a>                      2019-06-23 02:21  613   oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                    2018-06-05 18:14  6.1K  <b>by comp</b>, slv - !site plugin updated to work with ngBot
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="sitewho-plus2-v0.1.tar.gz">sitewho-plus2-v0.1.tar.gz</a>       2018-07-19 11:52   11K  by slv - sitewho+2: modded version with user ip/geoip2 country in raw output
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                       2018-07-19 12:18  3.8K  by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
