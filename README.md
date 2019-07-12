@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2019-06-22 18:24    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2019-07-12 14:19    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2019-05-19 00:01  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by slv - little wrapper cscript for audiosorting after pre
@@ -39,7 +39,7 @@
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                    2018-06-05 18:14  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                    2018-06-05 18:14  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-ngbotc.sh">slv-ngbotc.sh</a>                   2018-06-05 18:14  1.0K  small script to check ngBot changes, use before updating
-<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>  2019-06-22 18:11  4.1K  <a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b> git</a> | pzs-ng dZBot/ngbot plugin to show bw after pre
+<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.1-20190712.tar.gz">slv-prebw-v1.1-20190712.tar.gz</a>  2019-07-12 14:19  4.2K  <a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b> git</a> | pzs-ng dZBot/ngbot plugin to show bw after pre
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                   2018-06-05 18:14  4.6K  vnstat wrapper for multiple interfaces? i dont even...
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                  2018-06-05 18:14  902   !vnstat trigger
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                    2018-06-05 18:14  560   by <b>Unknown</b> - speed.sh: tweak tcp settings (gbit), with backup

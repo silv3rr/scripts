@@ -28,6 +28,7 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2018-06-05 18:14  2.4K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2018-06-05 18:14  2.4K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2018-06-05 18:14  2.5K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
+<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2019-06-22 18:11  4.1K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <hr></pre>
 <pre><div style="color: Gray"><div id="lastUpdated" style="display:inline;"></div>
 <div style="width: 600px; margin:0 auto;">
