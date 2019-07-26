@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ###############################################################################
-# slv-geofxp 20181507                                                         #
+# slv-geofxp 20190726                                                         #
 # Allow or deny FXP from/to countries using GeoIP2                            #
 ###############################################################################
 
@@ -16,7 +16,8 @@
 #  > DONE.
 
 #  Or, if you want to manually install instead:
-#    1.  Debian: apt install geoipupdate libmaxminddb0 mmdb-bin 
+#    1.  Debian: apt install geoipupdate libmaxminddb0 mmdb-bin
+#				 needs 'contrib' added in sources.list
 #        RedHat: yum install geoipupdate{-cron,} libmaxminddb{-devel,}
 #        Or download from: https://github.com/maxmind/libmaxminddb/releases
 #                          https://github.com/maxmind/geoipupdate/releases
@@ -34,7 +35,7 @@
 
 # +++ CONFIGURATION: +++
 
-GLDIR="/glftpd"
+GLDIR="/jail/glftpd"
 GLCONF="$GLDIR/glftpd.conf"
 
 # Use ISO Country Codes seperated by spaces e.g. "US RU CN"
@@ -86,17 +87,24 @@ if [ "$1" = "install" ]; then
 	if [ -d "$GLDIR" ]; then
 		echo "OK"
 	else
-		printf "FAILED:\nSet GLDIR variable in %s correctly" "$(basename $0)"
+		printf "FAILED:\nSet GLDIR variable in %s correctly\n\n" "$(basename $0)"
+		exit 1
 	fi
 	echo "Installing required packages using package manager... "
 	if which yum >/dev/null 2>&1; then
-		yum install geoipupdate{-cron,} libmaxminddb{-devel}
+		yum install -y geoipupdate{-cron,} libmaxminddb{-devel}
 	else
-		for i in apt apt-get; do
-			if which $i >/dev/null 2>&1; then
-				$i install geoipupdate libmaxminddb0 mmdb-bin; break
-			fi
-		done
+		if grep -q contrib /etc/apt/sources.list; then
+			for i in apt apt-get; do
+				if which $i >/dev/null 2>&1; then
+					$i install -y geoipupdate libmaxminddb0 mmdb-bin; break
+				fi
+			done
+		else
+			echo
+			printf "FAILED:\nMissing 'contrib' in /etc/apt/sources.list\n\n"
+			exit 1
+		fi
 	fi
 	if [ "$?" -eq "0" ]; then
 		printf "Packages installed... OK\n\n"
@@ -104,7 +112,8 @@ if [ "$1" = "install" ]; then
 		printf "FAILED:\nTry manually or download from:\n"
 		echo "	https://github.com/maxmind/libmaxminddb/releases"
 		echo "	https://github.com/maxmind/geoipupdate/releases"
-		exit
+		echo
+		exit 1
 	fi
 	if [ ! -f "${GLDIR}/bin/mmdblookup" ]; then
 		printf "Copying mmdblookup to glftpd's bin dir... "
