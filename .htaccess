@@ -65,6 +65,7 @@ AddDescription "oneliners for pzs-ng rescan | <a href='rescan'>download rescan</
 AddDescription "<b>by comp</b>, slv - !site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "by slv - sitewho+2: modded version with user ip/geoip2 country in raw output" sitewho-plus2-v0.1.tar.gz
 AddDescription "by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
+AddDescription "by slv - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
 AddDescription "<a href='https://github.com/silv3rr/slv-arch'><b>LATEST:</b> git</a> | archiver: moves releases, creates daydirs and tv/season dirs" slv-arch.sh
 AddDescription "fxpscript to allow/deny country code(s) using geoip2" slv-geofxp.sh
 AddDescription "sets gldir for files in bin/sources and sets maxdirlogsize" slv-glset.sh

@@ -1,0 +1,82 @@
+FROM https://cbftp.eu/skiplist-example
+
+REGEX  PATTERN                FILE  DIR  ACTION      SCOPE
+[ ]    * *                    [X]   [X]  Deny        Allround
+[ ]    *[*                    [X]   [X]  Deny        In spread job
+[ ]    *]*                    [X]   [X]  Deny        In spread job
+[ ]    *%*                    [X]   [X]  Deny        In spread job
+[ ]    *(*)*                  [X]   [X]  Deny        In spread job
+[ ]    sample                 [ ]   [X]  Allow       In spread job
+[ ]    proof                  [ ]   [X]  Allow       In spread job
+[ ]    subs                   [ ]   [X]  Allow       In spread job
+[ ]    covers                 [ ]   [X]  Allow       In spread job
+[ ]    dvd?                   [ ]   [X]  Allow       In spread job
+[ ]    disk?                  [ ]   [X]  Allow       In spread job
+[ ]    disc?                  [ ]   [X]  Allow       In spread job
+[ ]    *                      [ ]   [X]  Deny        In spread job
+[ ]    sample/*.mkv           [X]   [ ]  Unique      In spread job
+[ ]    sample/*.mp4           [X]   [ ]  Unique      In spread job
+[ ]    sample/*.vob           [X]   [ ]  Unique      In spread job
+[ ]    sample/*               [X]   [ ]  Deny        In spread job
+[ ]    proof/*.jpg            [X]   [ ]  Unique      In spread job
+[ ]    proof/*                [X]   [ ]  Deny        In spread job
+[ ]    subs/*.r??             [X]   [ ]  Similar     In spread job
+[ ]    subs/*.sfv             [X]   [ ]  Unique      In spread job
+[ ]    subs/*                 [X]   [ ]  Deny        In spread job
+[ ]    covers/*.jpg           [X]   [ ]  Allow       In spread job
+[ ]    covers/*               [X]   [ ]  Deny        In spread job
+[ ]    */*.nfo                [X]   [ ]  Deny        In spread job
+[ ]    *.sfv                  [X]   [ ]  Unique      In spread job
+[ ]    *.nfo                  [X]   [ ]  Unique      In spread job
+[ ]    *.r??                  [X]   [ ]  Similar     In spread job
+[ ]    *.s??                  [X]   [ ]  Similar     In spread job
+[ ]    *.t??                  [X]   [ ]  Similar     In spread job
+[ ]    *.u??                  [X]   [ ]  Similar     In spread job
+[ ]    *.v??                  [X]   [ ]  Similar     In spread job
+[ ]    *.w??                  [X]   [ ]  Similar     In spread job
+[ ]    *                      [X]   [ ]  Deny        In spread job
+
+LEGEND
+[t|f]  *pat*                [t|f] [t|f]  A=0|D=1|S=2|U=3     0|1=A
+
+DECRYPT
+./datafilecat --infile=/home/useer/.cbftp/data --outfile=datafile
+
+EDIT DATA
+SkipList.entry=false$*$*$true$true$1$1$
+SkipList.entry=false$*[*$true$true$0$1$
+SkipList.entry=false$*]*$true$true$0$1$
+SkipList.entry=false$*%*$true$true$0$1$
+SkipList.entry=false$*(*)*$true$true$0$1$
+SkipList.entry=false$sample$false$true$0$0$
+SkipList.entry=false$proof$false$true$0$0$
+SkipList.entry=false$subs$false$true$0$0$
+SkipList.entry=false$covers$false$true$0$0$
+SkipList.entry=false$dvd?$false$true$0$0$
+SkipList.entry=false$disk?$false$true$0$0$
+SkipList.entry=false$disc?$false$true$0$0$
+SkipList.entry=false$*$false$true$0$1$
+SkipList.entry=false$sample/*.mkv$true$false$0$2$
+SkipList.entry=false$sample/*.mp4$true$false$0$2$
+SkipList.entry=false$sample/*.vob$true$false$0$2$
+SkipList.entry=false$sample/*$true$false$0$1$
+SkipList.entry=false$proof/*.jpg$true$false$0$2$
+SkipList.entry=false$proof/*$true$false$0$1$
+SkipList.entry=false$subs/*.r??$true$false$0$3$
+SkipList.entry=false$subs/*.sfv$true$false$0$2$
+SkipList.entry=false$subs/*$true$false$0$1$
+SkipList.entry=false$covers/*.jpg$true$false$0$0$
+SkipList.entry=false$covers/*$true$false$0$1$
+SkipList.entry=false$*/*.nfo$true$false$0$1$
+SkipList.entry=false$*.sfv$true$false$0$2$
+SkipList.entry=false$*.nfo$true$false$0$2$
+SkipList.entry=false$*.r??$true$false$0$3$
+SkipList.entry=false$*.s??$true$false$0$3$
+SkipList.entry=false$*.t??$true$false$0$3$
+SkipList.entry=false$*.u??$true$false$0$3$
+SkipList.entry=false$*.v??$true$false$0$3$
+SkipList.entry=false$*.w??$true$false$0$3$
+SkipList.entry=false$*$true$false$0$1$
+
+ENCRYPT
+./datafilewrite datafile --defaultoutfile
