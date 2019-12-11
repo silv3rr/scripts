@@ -31,6 +31,11 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2019-06-22 18:11  4.1K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <hr></pre>
 <pre><div style="color: Gray"><div id="lastUpdated" style="display:inline;"></div>
+{% if site.github.is_project_page %}
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+<a href="{{ site.github.repository_url }}" class="button"><small>view repository</small></a>
+</div>
+{% endif %}
 <div style="width: 600px; margin:0 auto;">
 __/\__  
 \ oO /

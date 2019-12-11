@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2019-07-12 14:21    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2019-08-04 16:49    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2019-05-19 00:01  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by slv - little wrapper cscript for audiosorting after pre
@@ -33,7 +33,7 @@
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="rescan.txt">rescan.txt</a>                      2019-06-23 02:21  613   oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                    2018-06-05 18:14  6.1K  <b>by comp</b>, slv - !site plugin updated to work with ngBot
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="sitewho-plus2-v0.1.tar.gz">sitewho-plus2-v0.1.tar.gz</a>       2018-07-19 11:52   11K  by slv - sitewho+2: modded version with user ip/geoip2 country in raw output
-<img src="/assets/icons/text.gif" alt="[TXT]"> <a href="skiplist-example-data.txt">skiplist-example-data.txt</a>       2019-08-04 16:47  4.0K  by slv - skiplist-example-data - how to add skiplist to cbftp datafile
+<img src="/assets/icons/text.gif" alt="[TXT]"> <a href="skiplist-example-data.txt">skiplist-example-data.txt</a>       2019-08-04 17:02  4.0K  by slv - skiplist-example-data - how to add skiplist to cbftp datafile
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                       2018-07-19 12:18  3.8K  by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                     2019-05-10 15:34   25K  <a href='https://github.com/silv3rr/slv-arch'><b>LATEST:</b> git</a> | archiver: moves releases, creates daydirs and tv/season dirs
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-geofxp.sh">slv-geofxp.sh</a>                   2019-07-26 23:19  7.7K  fxpscript to allow/deny country code(s) using geoip2
@@ -49,6 +49,11 @@
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid</b>, slv - !whois plugin updated to work with ngBot
 <hr></pre>
 <pre><div style="color: Gray"><div id="lastUpdated" style="display:inline;"></div>
+{% if site.github.is_project_page %}
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+<a href="{{ site.github.repository_url }}" class="button"><small>view repository</small></a>
+</div>
+{% endif %}
 <div style="width: 600px; margin:0 auto;">
 __/\__  
 \ oO /

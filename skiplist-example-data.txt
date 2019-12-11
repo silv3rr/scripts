@@ -40,7 +40,7 @@ LEGEND
 [t|f]  *pat*                [t|f] [t|f]  A=0|D=1|S=2|U=3     0|1=A
 
 DECRYPT
-./datafilecat --infile=/home/useer/.cbftp/data --outfile=datafile
+./datafilecat --infile=/home/user/.cbftp/data --outfile=datafile
 
 EDIT DATA
 SkipList.entry=false$*$*$true$true$1$1$
