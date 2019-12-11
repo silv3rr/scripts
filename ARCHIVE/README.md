@@ -32,7 +32,7 @@
 <hr></pre>
 <pre><div style="color: Gray"><div id="lastUpdated" style="display:inline;"></div>
 {% if site.github.is_project_page %}
-<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+<div class="footer mt-5 pt-3 text-right">
 <a href="{{ site.github.repository_url }}" class="button"><small>view repository</small></a>
 </div>
 {% endif %}
