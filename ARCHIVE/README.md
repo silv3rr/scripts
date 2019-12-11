@@ -31,10 +31,9 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2019-06-22 18:11  4.1K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <hr></pre>
 <pre><div style="color: Gray">
-  <div style="display:inline; margin:0 auto;">
-    <span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 1000px; text-align: right;"><a href="https://github.com/silv3rr/sscripts.ga"><small>view repository</small></a></span>
-  </div>
-</div>
+<div style="display:inline; margin:0 auto;">
+<span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 75%; text-align: right;"><a href="https://github.com/silv3rr/sscripts.ga"><small>view repository</small></a></span>
+</div></div>
 <div style="width: 600px; margin:0 auto;">
 __/\__  
 \ oO /
