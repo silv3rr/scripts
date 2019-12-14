@@ -48,13 +48,5 @@
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>             2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid</b>, slv - !whois plugin updated to work with ngBot
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 75%; text-align: right;"><a href="https://github.com/silv3rr/sscripts.ga"><small>view repository</small></a></span></div><div style="width: 600px; margin:0 auto;">
-__/\__  
-\ oO /
-/_ ._\    i didn't know what this was, and when i did know what it was,
-  \/          i have to say, it sounded like a huge waste of time                           
-</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</div></div></pre>
-<!-- Matomo Image Tracker--><noscript>
-<img src="https://stats.sscripts.ga/piwik/piwik.php?idsite=17&rec=1" style="border:0" alt="" />
-</noscript><!-- End Matomo -->
-</body></html>
+<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 75%; text-align: right;"><a href="https://github.com/silv3rr/sscripts.ga"><small>view repository</small></a></span></div>
+{% include end.html %}
