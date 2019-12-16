@@ -30,5 +30,5 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2018-06-05 18:14  2.5K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2019-06-22 18:11  4.1K  <font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 75%; text-align: right;"><a href="https://github.com/silv3rr/sscripts.ga"><small>view repository</small></a></span></div>
+<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 65%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics</i> | <a href="https://github.com/silv3rr/sscripts.ga">view repository<a/></small></a></span></div>
 {% include end.html %}

@@ -48,5 +48,5 @@
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>             2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid</b>, slv - !whois plugin updated to work with ngBot
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 75%; text-align: right;"><a href="https://github.com/silv3rr/sscripts.ga"><small>view repository</small></a></span></div>
+<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 65%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics</i> | <a href="https://github.com/silv3rr/sscripts.ga">view repository<a/></small></a></span></div>
 {% include end.html %}
