@@ -33,7 +33,7 @@
 ; > cb_sites  : "SITE1" | "SITE1","SITE2" | all | get
 ;
 alias CbInit {
-  set %cb_url https://:Passwd@127.0.0.1:62443
+  set %cb_url https://:Passwd@127.0.0.1:60443
   set %cb_sites  all
   set %cb_climit 4000
 }
