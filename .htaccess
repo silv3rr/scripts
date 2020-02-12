@@ -3,7 +3,7 @@
 IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble IgnoreCase IgnoreClient
 HeaderName /_includes/header.html
 ReadmeName /_includes/footer.html
-IndexIgnore include .git assets _includes _layouts CNAME README* *.js *.swp _config.yml favicon.ico robots.txt rescan
+IndexIgnore include .git assets _includes _layouts CNAME README* *.js *.swp _config.yml favicon.ico robots.txt rescan rescan.txt
 
 AddIconByEncoding (CMP,/assets/icons/compressed.gif) x-compress x-gzip
 
@@ -62,7 +62,7 @@ AddDescription "by <b>gft</b> - custom wk/mn/alup stats, exclude users/groups" g
 AddDescription "by <b>gft</b> - goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
 AddDescription "<a href='https://glftpd.io'><b>LATEST:</b></a> glftpd 2.10a linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')\">show sha512</a>" glftpd-LNX-2.10a_1.1.1d_x64.tgz
 AddDescription "by <b>Holybull</b>, goes with CreditShow.tcl" hb_creditshow.sh
-AddDescription "oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>" rescan
+AddDescription "oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>" rescan.md
 AddDescription "<b>by comp</b>, slv - !site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "by slv - sitewho+2: modded version with user ip/geoip2 country in raw output" sitewho-plus2-v0.1.tar.gz
 AddDescription "by slv - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
