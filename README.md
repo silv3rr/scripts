@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2020-02-12 15:09    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2020-02-12 15:12    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2019-05-19 00:01  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by slv - little wrapper cscript for audiosorting after pre
@@ -36,7 +36,7 @@
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="skiplist-example-data.txt">skiplist-example-data.txt</a>       2019-08-04 17:02  4.0K  by slv - skiplist-example-data - how to add skiplist to cbftp datafile
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                       2020-02-08 18:29  4.2K  by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                     2019-05-10 15:34   25K  <a href='https://github.com/silv3rr/slv-arch'><b>LATEST:</b> git</a> | archiver: moves releases, creates daydirs and tv/season dirs
-<img src="/assets/icons/unknown.gif" alt="[   ]"> <a href="slv-cbapi.mrc">slv-cbapi.mrc</a>                   2020-02-08 21:05   13K  use cbftp api from mirc: search, dupe, request, invite and site cmds
+<img src="/assets/icons/unknown.gif" alt="[   ]"> <a href="slv-cbapi.mrc">slv-cbapi.mrc</a>                   2020-02-12 15:10   13K  use cbftp api from mirc: search, dupe, request, invite and site cmds
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-geofxp.sh">slv-geofxp.sh</a>                   2019-07-26 23:19  7.7K  fxpscript to allow/deny country code(s) using geoip2
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                    2018-06-05 18:14  2.1K  sets gldir for files in bin/sources and sets maxdirlogsize
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                    2018-06-05 18:14  1.0K  searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks
@@ -49,7 +49,7 @@
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>             2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid</b>, slv - !whois plugin updated to work with ngBot
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 60%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=12pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i> | <a href="https://github.com/silv3rr/sscripts.ga">view repository</a></small></span></div>
+<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 60%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i> | <a href="https://github.com/silv3rr/sscripts.ga">view repository</a></small></span></div>
 <div style="width: 600px; margin:0 auto;">
 __/\__
 \ oO /
