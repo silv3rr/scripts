@@ -9,7 +9,8 @@ putlog "slv-disk.tcl 20200508"
 # - Linux SW RAID (MD), Linux Block Devices, SMART, SnapRAID
 #
 # NEEDS:
-# - Areca: 'arcmsr' 'cli64', AMCC: 'tw_cli', LSI: 'sas3ircu', 'smartmontools'
+# - Areca: 'arcmsr' 'cli64', AMCC: 'tw_cli', LSI: 'sas3ircu', 
+#   Avago: 'MegaCli64' or 'storcli64', SMART: 'smartmontools'
 # - sudo rights, for example run 'sudoedit /etc/sudoers.d/diskcheck' and add:
 #       sitebot ALL=NOPASSWD: /usr/local/sbin/cli64, /bin/dmesg -T,
 #                             /usr/sbin/smartctl, /sbin/mdadm
@@ -34,6 +35,7 @@ namespace eval checkDisk {
 	set conf(amcc) 0
 	set conf(lsisas) 0
 	set conf(megaraid) 0
+	set conf(storcli) 0
 	set conf(md) 1			;# linux software raid / md devices
 	set conf(smartctl) 0		;# if set to 1: also set 'smart_unit' below
 	set conf(block) 1		;# linux block devices (checks 'dmesg' kernel errors)
@@ -48,13 +50,13 @@ namespace eval checkDisk {
 
 	# irc output
 	set conf(cmdpre)	"!"		;# trigger prefix
-	set conf(cmdpre2)	"!zz"		;# additional trigger prefix (>1 bots)
-	set conf(staffchan)	"#mychan"	;# message channel
+	set conf(cmdpre2)       "!zz"           ;# additional trigger prefix (>1 bots)
+	set conf(staffchan)     "#mychan"       ;# message channel
 	set conf(timermins)	180		;# run timer every n minutes (default: 180)
 	set conf(maxlines)	5		;# output max n lines (default: 5)
 	set conf(triggerstatus)	"disk"
 	set conf(triggertimer)	"disktimer"
-	set conf(theme)		"\002\[\0032CHECKDISK\003\]\002"
+	set conf(theme)         "[\002\0034checkdisk\017] :: "
 
 	# dont forget to edit sudoers and add any bin you want to use (see paths below)
 	# also make sure to specify the correct user running your eggdrop
@@ -65,8 +67,9 @@ namespace eval checkDisk {
 	variable amcc_bin	/usr/local/sbin/tw_cli
 	variable lsisas_bin	/usr/local/sbin/sas3ircu
 	variable megaraid_bin	/usr/local/sbin/MegaCli64
+	variable storcli_bin	/usr/local/sbin/storcli64
 	variable snapraid_bin	/usr/local/bin/snapraid
-	
+
 	# END OF CONFIG
 	###############################################################################
 
@@ -105,6 +108,10 @@ namespace eval checkDisk {
 	if {[info exists conf(megaraid)] && $conf(megaraid) == 1} {
 		lappend check(status)	"sudo $megaraid_bin -PDList -aALL | grep \"Firmware state\""
 		lappend check(errors)	"sudo $megaraid_bin -PDList -aALL | grep \"Firmware state\" | grep -v Online"
+	}
+	if {[info exists conf(storcli)] && $conf(storcli) == 1} {
+		lappend check(status)	"sudo $storcli_bin /call/dall show | grep -E \"RAID|DRIVE\""
+		lappend check(errors)	"sudo $storcli_bin /call/dall show | grep -E \"RAID|DRIVE\" | grep -Ev \"Optl|Onln\""
 	}
 	if {[info exists conf(md)] && $conf(md) == 1} {
 		if {[info exists md_proc] && $md_proc == 1} {
