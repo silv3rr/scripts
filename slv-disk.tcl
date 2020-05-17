@@ -1,7 +1,7 @@
-putlog "slv-disk.tcl 20200327"
+putlog "slv-disk.tcl 20200508"
 
 ################################################################################
-# Monitor (SW) RAID/HBA/SMART/DISKS
+# Monitor (SW) RAID/HBA/MD/SMART/DISKS
 ################################################################################
 #
 # SUPPORTED:
@@ -12,7 +12,7 @@ putlog "slv-disk.tcl 20200327"
 # - Areca: 'arcmsr' 'cli64', AMCC: 'tw_cli', LSI: 'sas3ircu', 'smartmontools'
 # - sudo rights, for example run 'sudoedit /etc/sudoers.d/diskcheck' and add:
 #       sitebot ALL=NOPASSWD: /usr/local/sbin/cli64, /bin/dmesg -T,
-#                             /usr/sbin/smartctl 
+#                             /usr/sbin/smartctl, /sbin/mdadm
 # * if needed replace 'sitebot', and 'cli64' with path to binary of vendor util
 # 
 # TRIGGERS:
@@ -28,18 +28,20 @@ namespace eval checkDisk {
 	###################
 
 	# first, set at least one of these to 1
+
 	set conf(adaptec) 0
-	set conf(areca) 1
+	set conf(areca) 0
 	set conf(amcc) 0
 	set conf(lsisas) 0
 	set conf(megaraid) 0
-	set conf(md) 0			;# linux software raid / md devices
-	set conf(smartctl) 0		;# if set to 1: also  set 'smart_unit' below
-	set conf(block) 0		;# linux block devices (checks 'dmesg' kernel errors)
+	set conf(md) 1			;# linux software raid / md devices
+	set conf(smartctl) 0		;# if set to 1: also set 'smart_unit' below
+	set conf(block) 1		;# linux block devices (checks 'dmesg' kernel errors)
 	set conf(snapraid) 0
 
 	variable areca_dmesg 0		;# set to 1: check 'dmesg' for areca errors instead of cli util
 	variable md_dev 2		;# set to number of md devices (e.g. 2 for mirror)
+	variable md_proc 2		;# set to 1: use '/proc/mdstat' instead of mdadm
 
 	# set one or more smart devices to check: /dev/sdX where X is a-z (e.g. "a b c d")
 	variable smartctl_unit "a b c d e f g h i j k l m n o p q r s t u v w x y z"
@@ -49,20 +51,22 @@ namespace eval checkDisk {
 	set conf(cmdpre2)	"!zz"		;# additional trigger prefix (>1 bots)
 	set conf(staffchan)	"#mychan"	;# message channel
 	set conf(timermins)	180		;# run timer every n minutes (default: 180)
-	set conf(maxlines)	5		;# output max n maxlines (default: 5)
+	set conf(maxlines)	5		;# output max n lines (default: 5)
 	set conf(triggerstatus)	"disk"
 	set conf(triggertimer)	"disktimer"
-	set conf(theme)		"[\002\0034checkdisk\017] :: "
+	set conf(theme)		"\002\[\0032CHECKDISK\003\]\002"
+
+	# dont forget to edit sudoers and add any bin you want to use (see paths below)
+	# also make sure to specify the correct user running your eggdrop
 
 	# paths 
-	variable sudo		/usr/bin/sudo
 	variable adaptec_bin	/usr/local/sbin/arcconf
 	variable areca_bin	/usr/local/sbin/cli64
 	variable amcc_bin	/usr/local/sbin/tw_cli
 	variable lsisas_bin	/usr/local/sbin/sas3ircu
 	variable megaraid_bin	/usr/local/sbin/MegaCli64
 	variable snapraid_bin	/usr/local/bin/snapraid
-
+	
 	# END OF CONFIG
 	###############################################################################
 
@@ -70,50 +74,56 @@ namespace eval checkDisk {
 
 	# shell commands to execute
 	if {[info exists conf(adaptec)] && $conf(adaptec) == 1} {
-		lappend check(status)	"$sudo $adaptec_bin getconf 1 PD | grep State"
-		lappend check(errors)	"$sudo $adaptec_bin getconf 1 PD | grep State | grep -v Online"
+		lappend check(status)	"sudo $adaptec_bin getconf 1 PD | grep State"
+		lappend check(errors)	"sudo $adaptec_bin getconf 1 PD | grep State | grep -v Online"
 	}
 	if {[info exists conf(areca)] && $conf(areca) == 1} {
-		if {[info exists areca(dmesg)] && $areca(dmesg) == 1} {
+		if {[info exists areca_dmesg)] && $areca_dmesg == 1} {
 			variable pattern 	"error|fail|abort|time out"
 			variable tail		"tail -n $conf(maxlines)"
-			lappend check(status)	"$sudo dmesg -T | (grep arcmsr | grep -E \"$pattern\" || echo \"No arcmsr errors\") | $tail"
-			lappend check(errors)	"$sudo dmesg -T | grep arcmsr | grep -E \"$pattern\" | tail -n 5"
+			lappend check(status)	"sudo dmesg -T | (grep arcmsr | grep -E \"$pattern\" || echo \"No arcmsr errors\") | $tail"
+			lappend check(errors)	"sudo dmesg -T | grep arcmsr | grep -E \"$pattern\" | tail -n 5"
 		} else {
-			lappend check(status)	"$sudo $areca_bin disk info | grep \"^ *\[0-9\]\""
-			lappend check(errors)	"$sudo $areca_bin rsf info | grep \"^ *\[0-9\]\" | grep -v Normal"
+			lappend check(status)	"sudo $areca_bin disk info | grep \"^ *\[0-9\]\""
+			lappend check(errors)	"sudo $areca_bin rsf info | grep \"^ *\[0-9\]\" | grep -v Normal"
 		}
 	}
 	if {[info exists conf(amcc)] && $conf(amcc) == 1} {
 		variable pattern 	"ERROR|WARNING"
 		variable tail		"tail -n $conf(maxlines)"
-		lappend check(status)	"$sudo $amcc_bin /c0 status"
-		lappend check(errors)	"$sudo dmesg -T | grep \"3w-9xxx\" | grep -E \"$pattern\" | grep -v opcode=0x85 | $tail"
+		lappend check(status)	"sudo $amcc_bin /c0 status"
+		lappend check(errors)	"sudo dmesg -T | grep \"3w-9xxx\" | grep -E \"$pattern\" | grep -v opcode=0x85 | $tail"
 	}
 	if {[info exists conf(lsisas)] && $conf(lsisas) == 1} {
 		variable ircu_awk	"$lsisas_bin 0 display \| \
 					 awk -F: '/Hard disk\$/,/^\\\\s+State/\{
 					   if(\$1 ~ \"^\\\\s+(Slot\|State)\")\{if (i%2==0)\{printf \$2\} else \{printf \"\\n\"\$2;i--\}\}; i++
 					 \}'"
-		lappend check(status)	"$sudo $ircu_awk"
-		lappend check(errors)	"$sudo $ircu_awk | grep -v Ready"
+		lappend check(status)	"sudo $ircu_awk"
+		lappend check(errors)	"sudo $ircu_awk | grep -v Ready"
 	}
 	if {[info exists conf(megaraid)] && $conf(megaraid) == 1} {
-		lappend check(status)	"$sudo $megaraid_bin -PDList -aALL | grep \"Firmware state\""
-		lappend check(errors)	"$sudo $megaraid_bin -PDList -aALL | grep \"Firmware state\" | grep -v Online"
+		lappend check(status)	"sudo $megaraid_bin -PDList -aALL | grep \"Firmware state\""
+		lappend check(errors)	"sudo $megaraid_bin -PDList -aALL | grep \"Firmware state\" | grep -v Online"
 	}
 	if {[info exists conf(md)] && $conf(md) == 1} {
-		variable mdstat		"cat /proc/mdstat"
-		variable md_up		[string repeat U $md_dev]
-		lappend check(status)	"$mdstat | grep -A1 '^md\[0-9\]' | grep -v '^--'"
-		lappend check(errors)	"$mdstat | grep blocks | grep -Ev \"\\\[${md_dev}/${md_dev}\\\] \\\[${md_up}\\\]\""
+		if {[info exists md_proc] && $md_proc == 1} {
+			variable mdstat		"cat /proc/mdstat"
+			variable md_up		[string repeat U $md_dev]
+			lappend check(status)	"$mdstat | grep -A1 '^md\[0-9\]' | grep -v '^--'"
+			lappend check(errors)	"$mdstat | grep \"blocks.*\\\[\" | grep -Ev \"\\\[${md_dev}/${md_dev}\\\] \\\[${md_up}\\\]\""
+		} else {
+			variable pattern	" Use mdadm --detail for more detail."
+			lappend check(status)	"for i in /dev/md\[0-9\]*; do sudo mdadm -Q -t \$i | sed \"s/$pattern//g\"; done"
+			lappend check(errors)	"for i in /dev/md\[0-9\]*; do sudo mdadm -Q -t \$i >/dev/null; done"
+		}
 	}
 	if {[info exists conf(block)] && $conf(block) == 1} {
 		# error pattern for normal and stacking (dm) drivers
 		variable pattern	"end_request:|print_req_error:"
 		variable sort_tail	"sort -u -k 7,11 | tail -n $conf(maxlines)"
-		lappend check(status)	"$sudo dmesg -T | (grep -E \"$pattern\" || echo \"No block device errors\") | $sort_tail"
-		lappend check(errors)	"$sudo dmesg -T | grep -E \"$pattern\" | $sort_tail"
+		lappend check(status)	"sudo dmesg -T | (grep -E \"$pattern\" || echo \"No block device errors\") | $sort_tail"
+		lappend check(errors)	"sudo dmesg -T | grep -E \"$pattern\" | $sort_tail"
 	}
 	if {[info exists conf(smartctl)] && $conf(smartctl) == 1} {
 		variable smartctl_loop	"for i in $smartctl_unit; do
@@ -127,8 +137,8 @@ namespace eval checkDisk {
 		variable pat_info	"No error detected|already in use"
 		lappend check(status)	"echo \"running 'snapraid errors', please wait...\""
 		# takes a while to run
-		lappend check(status)	"$sudo $snapraid_bin errors 2>&1 | grep -E \"$pat_err|$pat_info\""
-		lappend check(errors)	"$sudo $snapraid_bin errors 2>&1 | grep -E \"$pat_err\""
+		lappend check(status)	"sudo $snapraid_bin errors 2>&1 | grep -E \"$pat_err|$pat_info\""
+		lappend check(errors)	"sudo $snapraid_bin errors 2>&1 | grep -E \"$pat_err\""
 	}
 
 	# helper proc to bind and unbind triggers

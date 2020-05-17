@@ -37,6 +37,7 @@ AddIcon /assets/icons/blank.gif ^^BLANKICON^^
 DefaultIcon /assets/icons/unknown.gif
 
 
+
 AddDescription "<b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS.html
 AddDescription "<b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github" 00_MIRROR.html
 AddDescription "<font color='Gray'>OLD: archived scripts</font>" ARCHIVE
@@ -44,39 +45,42 @@ AddDescription "<font color='Gray'>OLD: little patch to fix destination error on
 AddDescription "<font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>" ARCHIVE/footools-dirlogfix.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>" ARCHIVE/footools-mp3genre.patch
 AddDescription "<font color='Gray'>OLD: by slv - ugly hack for foopre to add mp3 genre in PRE</font>" ARCHIVE/footools-x86-x64-20111102-mp3genre.tar.bz2
-AddDescription "<font color='Gray'>OLD: glftpd 2.08 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.08_1.1.0g_x64.tgz
-AddDescription "<font color='Gray'>OLD :glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.09_1.1.0j_x64.tgz
-AddDescription "<font color='Gray'>OLD: archiver for iso, moves to appropriate dirs and creates tvshow/season dirs</font>" ARCHIVE/slv-arch.sh
-AddDescription "<font color='Gray'>OLD: archiver for mp3 daydirs and mv wkdirs (with audiosort)</font>" ARCHIVE/slv-archmp3.sh
-AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.52.tar.gz
-AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.53.tar.gz
-AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.54.tar.gz
-AddDescription "<font color='Gray'>OLD: pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v1.0-20190609.tar.gz
-AddDescription "by slv - little wrapper cscript for audiosorting after pre" audiosortpre.sh
-AddDescription "by <b>Holybull</b>, slv - !credits plugin for ngBot. uses hb_creditshow.sh" CreditShow.tcl
-AddDescription "DH1080_tcl from fish.secure.la (mirror)" DH1080-source.zip
-AddDescription "by <b>Jehsom</b>, slv - updated version of mp3 dirscript" dirscript.sh
-AddDescription "apt install pkgs for ebftpd" ebftpd-deps.sh
-AddDescription "<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b> git</a> | fixed/updated foo-tools, incl foopre+mp3genre (<b>tanesha</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a>)" foo-tools-v1.20-20180713.tar.gz
-AddDescription "by <b>gft</b> - custom wk/mn/alup stats, exclude users/groups" gft-stats.sh
-AddDescription "by <b>gft</b> - goes with gft-stats.sh, add these to glftpd.conf" gft-stats.txt
-AddDescription "<a href='https://glftpd.io'><b>LATEST:</b></a> glftpd 2.10a linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')\">show sha512</a>" glftpd-LNX-2.10a_1.1.1d_x64.tgz
-AddDescription "by <b>Holybull</b>, goes with CreditShow.tcl" hb_creditshow.sh
-AddDescription "oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>" rescan.md
-AddDescription "<b>by comp</b>, slv - !site plugin updated to work with ngBot" Sitecmds.tcl
-AddDescription "by slv - sitewho+2: modded version with user ip/geoip2 country in raw output" sitewho-plus2-v0.1.tar.gz
-AddDescription "by slv - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
-AddDescription "by slv - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
-AddDescription "<a href='https://github.com/silv3rr/slv-arch'><b>LATEST:</b> git</a> | archiver: moves releases, creates daydirs and tv/season dirs" slv-arch.sh
-AddDescription "fxpscript to allow/deny country code(s) using geoip2" slv-geofxp.sh
-AddDescription "sets gldir for files in bin/sources and sets maxdirlogsize" slv-glset.sh
-AddDescription "searches daydirs (0day/pda/mp3/mv) for matching dirs to create symlinks" slv-links.sh
-AddDescription "small script to check ngBot changes, use before updating" slv-ngbotc.sh
-AddDescription "<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b> git</a> | pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v1.1-20190712.tar.gz
-AddDescription "vnstat wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
-AddDescription "!vnstat trigger" slv-vnstat.tcl
-AddDescription "by <b>Unknown</b> - speed.sh: tweak tcp settings (gbit), with backup" speed.sh.zip
-AddDescription "by <b>Unknown</b> - speedfix.nfo: uses lower buffer sizes than speed.sh, doesnt backup" speedfix.rar
+AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.08 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.08_1.1.0g_x64.tgz
+AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.09_1.1.0j_x64.tgz
+AddDescription "<font color='Gray'>OLD: by slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs</font>" ARCHIVE/slv-arch.sh
+AddDescription "<font color='Gray'>OLD: by slv - archiver for mp3 daydirs and mv wkdirs (with audiosort)</font>" ARCHIVE/slv-archmp3.sh
+AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.52.tar.gz
+AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.53.tar.gz
+AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.54.tar.gz
+AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v1.0-20190609.tar.gz
+AddDescription "by <b>slv</b> - little wrapper cscript for audiosorting after pre" audiosortpre.sh
+AddDescription "by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>" cpt-request.sh
+AddDescription "by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>" CreditShow.tcl
+AddDescription "by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)" DH1080-source.zip
+AddDescription "by <b>Jehsom, slv</b> - updated version of mp3 dirscript" dirscript.sh
+AddDescription "by <b>slv</b> - apt install pkgs for ebftpd" ebftpd-deps.sh
+AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - (<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>) fixed/updated foo-tools, incl foopre+mp3genre " foo-tools-v1.20-20180713.tar.gz
+AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups" gft-stats.sh
+AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt
+AddDescription "by <b>glteam</b> - (<a href='https://glftpd.io'><b>LATEST</b>:glftpd.io</a>) glftpd 2.10a linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')\">show sha512</a>" glftpd-LNX-2.10a_1.1.1d_x64.tgz
+AddDescription "by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>" hb_creditshow.sh
+AddDescription "by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>" Request.tcl
+AddDescription "by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan'>download rescan</a>" rescan.md
+AddDescription "by <b>comp, slv</b> - !site plugin updated to work with ngBot" Sitecmds.tcl
+AddDescription "by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output" sitewho-plus2-v0.1.tar.gz
+AddDescription "by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
+AddDescription "by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
+AddDescription "by <b>slv</b> - (<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>) archiver: moves releases, creates daydirs and tv/season dirs" slv-arch.sh
+AddDescription "by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds" slv-cbapi.mrc
+AddDescription "by <b>slv</b> - monitor raids/disks" slv-disk.tcl
+AddDescription "by <b>slv</b> - fxpscript to allow/deny country code(s) using geoip2" slv-geofxp.sh
+AddDescription "by <b>slv</b> - sets gldir for files in bin/sources and sets maxdirlogsize" slv-glset.sh
+AddDescription "by <b>slv</b> - searches daydirs 0day/pda/mp3/mv for matching dirs to create symlinks" slv-links.sh
+AddDescription "by <b>slv</b> - small script to check ngBot changes, use before updating" slv-ngbotc.sh
+AddDescription "by <b>slv</b> - (<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b>git</a>) pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v1.1-20190712.tar.gz
+AddDescription "by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even..." slv-vnstat.sh
+AddDescription "by <b>slv</b> - !vnstat trigger" slv-vnstat.tcl
+AddDescription "by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup" speed.sh.zip
+AddDescription "by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup" speedfix.rar
 AddDescription "by <b>Nom</b> - use with http://humdi.net/vnstat" vnstat_frontend.tar
-AddDescription "by <b>comp, E-Liquid</b>, slv - !whois plugin updated to work with ngBot" Whois.tcl
-AddDescription "use cbftp api from mirc: search, dupe, request, invite and site cmds" slv-cbapi.mrc
+AddDescription "by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot" Whois.tcl
