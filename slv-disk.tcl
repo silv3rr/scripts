@@ -1,8 +1,10 @@
-putlog "slv-disk.tcl 20200508"
+putlog "slv-disk.tcl 20200518"
 
 ################################################################################
 # Monitor (SW) RAID/HBA/MD/SMART/DISKS
 ################################################################################
+#
+# Check raid/disk status and output errors to irc channel
 #
 # SUPPORTED:
 # - Adaptec, Areca, AMCC/3ware, LSI/Avago/Broadcom
@@ -11,7 +13,10 @@ putlog "slv-disk.tcl 20200508"
 # NEEDS:
 # - Areca: 'arcmsr' 'cli64', AMCC: 'tw_cli', LSI: 'sas3ircu', 
 #   Avago: 'MegaCli64' or 'storcli64', SMART: 'smartmontools'
-# - sudo rights, for example run 'sudoedit /etc/sudoers.d/diskcheck' and add:
+#
+# - Eggdrop: use latest, add 'souce scripts/slv-disk.tcl to 'eggdrop.conf'
+#
+# - sudo rights: for example run 'sudoedit /etc/sudoers.d/diskcheck' and -add-
 #       sitebot ALL=NOPASSWD: /usr/local/sbin/cli64, /bin/dmesg -T,
 #                             /usr/sbin/smartctl, /sbin/mdadm
 # * if needed replace 'sitebot', and 'cli64' with path to binary of vendor util
@@ -56,7 +61,7 @@ namespace eval checkDisk {
 	set conf(maxlines)	5		;# output max n lines (default: 5)
 	set conf(triggerstatus)	"disk"
 	set conf(triggertimer)	"disktimer"
-	set conf(theme)         "[\002\0034checkdisk\017] :: "
+	set conf(theme)         "\[\002\0034checkdisk\017\] :: "
 
 	# dont forget to edit sudoers and add any bin you want to use (see paths below)
 	# also make sure to specify the correct user running your eggdrop
