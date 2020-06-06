@@ -17,8 +17,8 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2020-05-29 19:43    -   <font color='Gray'>OLD: archived scripts</font>
-<img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2019-05-19 00:01  2.1K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2020-05-29 19:47    -   <font color='Gray'>OLD: archived scripts</font>
+<img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2020-06-06 18:39  2.0K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="cpt-request.sh">cpt-request.sh</a>                  2020-05-17 14:24   12K  by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>
