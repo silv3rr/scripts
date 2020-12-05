@@ -36,9 +36,6 @@ AddIcon /assets/icons/blank.gif ^^BLANKICON^^
 
 DefaultIcon /assets/icons/unknown.gif
 
-
-
-
 AddDescription "<b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc" 00_LINKS.html
 AddDescription "<b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github" 00_MIRROR.html
 AddDescription "<font color='Gray'>OLD: archived scripts</font>" ARCHIVE
@@ -57,12 +54,12 @@ AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to sh
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v1.0-20190609.tar.gz
 AddDescription "by <b>slv</b> - little wrapper cscript for audiosorting after pre" audiosortpre.sh
 AddDescription "by <b>comp, slv</b> - !Blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>" Blow.tcl
-AddDescription "by <b>slv</b> - weechat-fish wrapper (DH1080 keyx), goes with <a href='Blow.tcl'>Blow.tcl</a>" Blow.tcl
 AddDescription "by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>" cpt-request.sh
 AddDescription "by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>" CreditShow.tcl
 AddDescription "by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)" DH1080-source.zip
 AddDescription "by <b>Jehsom, slv</b> - updated version of mp3 dirscript" dirscript.sh
 AddDescription "by <b>slv</b> - apt install pkgs for ebftpd" ebftpd-deps.sh
+AddDescription "by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>" fishwrap.py
 AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - (<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>) fixed/updated foo-tools, incl foopre+mp3genre " foo-tools-v1.20-20180713.tar.gz
 AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups" gft-stats.sh
 AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt

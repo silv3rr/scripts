@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2020-12-05 18:15    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2020-12-06 00:53    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2020-12-05 17:52  2.2K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2020-12-05 18:07  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2020-12-05 18:07  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
@@ -27,7 +27,7 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>               2020-12-05 18:07   21K  by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                    2020-12-05 18:07   12K  by <b>Jehsom, slv</b> - updated version of mp3 dirscript
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                  2020-12-05 18:07  318   by <b>slv</b> - apt install pkgs for ebftpd
-<img src="/assets/icons/p.gif" alt="[TXT]"> <a href="fishwrap.py">fishwrap.py</a>                     2020-12-05 18:07  1.9K  
+<img src="/assets/icons/p.gif" alt="[TXT]"> <a href="fishwrap.py">fishwrap.py</a>                     2020-12-05 18:07  1.9K  by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="foo-tools-v1.20-20180713.tar.gz">foo-tools-v1.20-20180713.tar.gz</a> 2020-12-05 18:07  434K  by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - (<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>) fixed/updated foo-tools, incl foopre+mp3genre 
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                    2020-12-05 18:07  1.6K  by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                   2020-12-05 18:07  902   by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf
