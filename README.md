@@ -54,7 +54,8 @@
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>             2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 60%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i> | <a href="https://github.com/silv3rr/sscripts.ga">view repository</a></small></span></div>
+<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 60%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i> | <a href="https://github.com/silv3rr/sscripts.ga">view repository</a></span>
+<span style="margin-left: 80%; text-align: right;"><a href="https://sscripts.ga">view website</a></i></small></span></div>
 <div style="width: 600px; margin:0 auto;">
 __/\__
 \ oO /
