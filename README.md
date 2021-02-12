@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2020-12-19 00:38    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2021-02-12 19:04    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2020-12-19 00:36  2.2K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
@@ -31,7 +31,6 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="foo-tools-v1.20-20180713.tar.gz">foo-tools-v1.20-20180713.tar.gz</a> 2018-07-19 10:06  434K  by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - (<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>) fixed/updated foo-tools, incl foopre+mp3genre 
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                    2018-06-05 18:14  1.6K  by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                   2018-06-05 18:14  902   by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf
-<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.10a_1.1.1d_x64.tgz">glftpd-LNX-2.10a_1.1.1d_x64.tgz</a> 2019-12-31 17:01  8.2M  
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1i_x64.tgz">glftpd-LNX-2.11a_1.1.1i_x64.tgz</a> 2021-01-03 17:06  8.4M  by <b>glteam</b> - (<a href='https://glftpd.io'><b>LATEST</b>:glftpd.io</a>) glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick="window.prompt('SHA512:', '5dfb420036b714328fe08cb88b36256c5cd874158d1d6cfbaa8fd7b4fa49a16526c72261b82d8724614b95ddc89fce048f3c2c79d556c505318d196ebdd05aef')">show sha512</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                2018-06-05 18:14  244   by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Request.tcl">Request.tcl</a>                     2020-05-17 14:22   12K  by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>
@@ -55,7 +54,9 @@
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>             2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span><span style="margin-left: 55%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i> | <a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a></small></span></div>
+<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
+<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a></small></span>
+<span style="margin-left: 55%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
 <div style="width: 600px; margin:0 auto;">
 __/\__
 \ oO /
