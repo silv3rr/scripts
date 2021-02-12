@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2021-02-12 19:04    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2021-02-12 19:16    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2020-12-19 00:36  2.2K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
@@ -54,9 +54,8 @@
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>             2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2018-06-05 18:14  5.8K  by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
-<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a></small></span>
-<span style="margin-left: 55%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
+<pre><div style="color: Gray"><div style="display:flex; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
+<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
 <div style="width: 600px; margin:0 auto;">
 __/\__
 \ oO /

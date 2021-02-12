@@ -33,9 +33,8 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2018-06-05 18:14  2.5K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2019-06-22 18:11  4.1K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:inline; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
-<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a></small></span>
-<span style="margin-left: 55%; text-align: right;"><small><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
+<pre><div style="color: Gray"><div style="display:flex; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
+<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
 <div style="width: 600px; margin:0 auto;">
 __/\__
 \ oO /
