@@ -101,14 +101,14 @@ namespace eval ::ngBot::plugin::Blow {
 	##    yourself if you're a paranoid geek, needs MIRACL and tcl libs.
 	##      https://web.archive.org/web/20120122020640/http://fish.secure.la
 	##
-	## 2. OR FiSH-irssi: same as 1, but compile using it's newer "DH1080.c"
-	##	instead. No miracl needed, second link has instructions.
+	## 2. OR FiSH-irssi: same as 1. but compile using it's newer "DH1080.c"
+	##    instead. No miracl needed, see second link for instructions:
 	##      https://github.com/falsovsky/FiSH-irssi
 	##      https://github.com/orkim/dh1080_tcl
 	##
 	## 3. OR weechat-fish: use included "fishwrap.py", set fishpy
 	##    to "pzs-ng/plugins/fishwrap.py" (and set blowso variable to "").
-	##    Also needs 'pycrypto' (e.g. apt install python3-crypto).
+	##    Also needs crypto module (e.g. apt install python3-pycryptodome)
 	##      https://weechat.org/files/scripts/fish.py
 	##
 	variable blowso ""
