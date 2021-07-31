@@ -113,7 +113,7 @@ namespace eval ::ngBot::plugin::Blow {
 	##
 	variable blowso ""
 	variable fishpy "pzs-ng/plugins/fishwrap.py"
-	## 
+	##
 	## NickDb Settings #####################################################
 	##
 	## NickDb allows you to link IRC users to their FTP accounts. With this
@@ -437,7 +437,7 @@ namespace eval ::ngBot::plugin::Blow {
 		variable mode_msg ""
 		if {[string match [lindex $text end] "CBC"] || [lsearch {DH1080_INIT_CBC DH1080_FINISH_CBC} [string toupper [lindex $text 0]]] != -1} {
 			variable mode_msg " (CBC mode)"
-		} elseif {[IsTrue $keyxCbcForce]} { 
+		} elseif {[IsTrue $keyxCbcForce]} {
 			return
 		}
 
@@ -569,7 +569,7 @@ namespace eval ::ngBot::plugin::Blow {
 		variable blowinit
 		variable checkCbc
 		variable checkCbcMsg
-		
+
 		global lastbind blowEncryptedMessage botnick
 
 		# Find out if its a PUB or MSG bind.
@@ -605,7 +605,7 @@ namespace eval ::ngBot::plugin::Blow {
 		if {[string equal $key ""]} {
 			return
 		}
-		
+
 		if { $checkCbc > 0 && [IsTrue [string match "cbc:*" $key]] && ![IsTrue $cbcText] } {
 			if {[IsTrue [${ns}::matchChan $target]] && $ispub} {
 				if {$checkCbc == 2} {
