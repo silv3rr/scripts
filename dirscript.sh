@@ -27,6 +27,9 @@
 #   log, and rels already existing in your site's PRE directories (to
 #   prevent racing of PREs. Add it to glftpd.conf as pre_dir_check.
 #
+# Changes 1.5.1 -> 1.5.2
+#   * added INT_OK
+#
 # Changes 1.4.1 -> 1.5.1:
 #   * BANNEDALSO now shows what was banned
 #
@@ -69,6 +72,7 @@
 #	world writable (chmod 666) so this can work.
 #	Sames goes for $LOGFILE.tmp (needed to prevent spamming log)
 # LIVE_OK - 1/0 Whether to allow Live releases from non-affils
+# INT_OK - 1/0 Whether to allow Internal releases from non-affils
 # PRE_DIRS - If a rls is already here, its creation will be prevented.
 # ALLOWED_DYN_YEARS - Instead of "fixed" years you also use "dynamic" years.
 #	Set it to "-3 1" to allow releases from 3y in the past to 1y in the
@@ -103,6 +107,7 @@ ALLOWED_DYN_YEARS="-3 1"
 AFFILS="GRP MyAFFIL LEETMP3"
 LOGFILE="/ftp-data/logs/dirscript.log"
 LIVE_OK="1"
+INT_OK="1"
 PRE_DIRS="/site/Incoming/*_Pre_Dir"
 SITE_DIR="/site/Incoming/Mp3"
 DATE_FORMAT="%m%d"
@@ -134,9 +139,9 @@ function logexit () {
 [ -w /dev/null ] || { echo "/dev/null must be writable. Exiting."; exit 0; }
 
 for bin in $BINS; do 
-    type $bin > /dev/null 2>&1 || {
+    type "$bin" > /dev/null 2>&1 || {
         echo "The '$bin' binary must be installed in glftpd's bin dir."
-        logexit $2/$1 "Required bin not found"
+        logexit "$2/$1" "Required bin not found"
     }
 done
 
@@ -155,7 +160,7 @@ done
 [ "$CHECK_DIR" -eq "1" ] && {
 	[ -d "$2/$1" ] && {
 		echo "Directory already exists!"
-		logexit $2/$1 "Dir Already Existing"
+		logexit "$2/$1" "Dir Already Existing"
 	}
 }
 
@@ -164,34 +169,34 @@ done
 	        [ -d "$predir/$1" ] && {
 			echo "This release is in the group's pre dir."
                 	echo "Please wait until they pre it."
-			logexit $2/$1 "About to be pre'd"
+			logexit "$2/$1" "About to be pre'd"
 	        }
 	done
 }
 
 # Deny dupe releasedirs in yesterdays dir
 [ "$CHECK_DUPE_YDAY" -eq "1" ] && {
-	YDAY=$( date --date "$(echo $2|sed 's@^'$SITE_DIR'/\([0-9-]\{4,10\}\)/\?$@\1@') -1 day" +"$DATE_FORMAT" 2>/dev/null )
+	YDAY=$( date --date "$(echo "$2"|sed 's@^'$SITE_DIR'/\([0-9-]\{4,10\}\)/\?$@\1@') -1 day" +"$DATE_FORMAT" 2>/dev/null )
 	[ "$?" != "0" ] && YDAY=$( date --date "-1 day" +"$DATE_FORMAT" )
-	[ -d $SITE_DIR/$YDAY/$1 ] && {
+	[ -d "$SITE_DIR/$YDAY/$1" ] && {
 	    echo "Release dir already exists in $YDAY."
-	    logexit $2/$1 "Dupe in $YDAY"
+	    logexit "$2/$1" "Dupe in $YDAY"
 	}
 }
 
 # Deny NUKED releases
 [ "$CHECK_NUKED" -eq "1" ] && {
-	[ -d $2/NUKED-$1 ] && {
+	[ -d "$2/NUKED-$1" ] && {
 	    echo "This release was nuked before, dont try uploading it again."
-	    logexit $2/$1 "NUKED"
+	    logexit "$2/$1" "NUKED"
 	}
 }
 
 # Deny NUKED releases in yesterdays dir
 [ "$CHECK_NUKED_YDAY" -eq "1" ] && {
-	[ -d ../$YDAY/NUKED-$1 ] && {
+	[ -d "../$YDAY/NUKED-$1" ] && {
 	    echo "This release was nuked yesterday, dont try uploading it again."
-	    logexit $2/$1 "NUKED in $YDAY"
+	    logexit "$2/$1" "NUKED in $YDAY"
 	}
 }
 
@@ -200,7 +205,7 @@ done
 	case $1 in
 	    \(*)
 		echo "Releases starting with '(' are not allowed"
-		logexit $2/$1 "Parenthesis not allowed"
+		logexit "$2/$1" "Parenthesis not allowed"
 		;;
 	    *)
 		;;
@@ -212,16 +217,16 @@ done
 	[ "${#1}" -gt "64" ] && {
 		echo "This directory name doesn't follow RIAA conventions."
 		echo "The name has ${#1} chars, but should be 64 or less."
-		logexit $2/$1 "Name too long"
+		logexit "$2/$1" "Name too long"
 	}
 }
 
 # Check for RIAA naming compliance
 [ "$RIAA_UNDERSCORES" = "1" ] && {
-	echo $1 | grep -E "^[^_]+\.[^_]+\.[^_]+\.[^_]*$" | grep "[-]-" > /dev/null && {
+	echo "$1" | grep -E "^[^_]+\\.[^_]+\\.[^_]+\\.[^_]*$" | grep "[-]-" > /dev/null && {
 		echo "This directory name doesn't follow RIAA conventions."
 		echo "Underscores, not periods, must be used for spaces."
-		logexit $2/$1 "Name not RIAA conformant"
+		logexit "$2/$1" "Name not RIAA conformant"
 	}
 }
 
@@ -229,21 +234,20 @@ done
 [ "$CHECK_BANNED_GROUPS" -eq "1" ] && {
 	#[ -n "$2" ] && cd $2
 	for grp in $BANNED; do
-		echo $1 | grep -i "[-]${grp}$" > /dev/null && {
+		echo "$1" | grep -i "[-]${grp}$" > /dev/null && {
 			echo "${grp} releases are not accepted here."
-			logexit $2/$1 "Unallowed Group"
+			logexit "$2/$1" "Unallowed Group"
 		}
 	done
 }
 
 [ "$CHECK_BANNEDALSO" -eq "1" ] && {
-	for pat in $BANNEDALSO
-	do
-	        Match=$( echo $1 | grep -E "$pat" )
-		if $( test "$Match" = "$1" ); then
-                        txt="$( echo $pat | sed -E 's/[^a-zA-Z0-9|]//g' | tr '|' '\n' | sort -fu | tail -1 )"
+	for pat in $BANNEDALSO; do
+	        match="$( echo "$1" | grep -E "$pat" )"
+		if test "$match" = "$1"; then
+                        txt="$( echo "$pat" | sed -E 's/[^a-zA-Z0-9|]//g' | tr '|' '\n' | sort -fu | tail -1 )"
 			echo "\"${txt}\" releases are not allowed."
-			logexit $2/$1 "Tag \"${txt}\" Unallowed"
+			logexit "$2/$1" "Tag \"${txt}\" Unallowed"
         	fi
 	done
 }
@@ -251,12 +255,12 @@ done
 # Check against dupelog
 [ "$ANALDUPECHECK" = "1" ] && {
 	# Don't check if it's a "CD1" or similar dir
-	{ [ ${#1} -le 8 ] && echo $1 | grep -iE "^(cd[1-9]|dvd[1-9]|dis[ck][1-9]|sample)" > /dev/null; } || {
+	{ [ ${#1} -le 8 ] && echo "$1" | grep -iE "^(cd[1-9]|dvd[1-9]|dis[ck][1-9]|sample)" > /dev/null; } || {
 	if [ -f $DATAPATH/logs/dupelog ]; then
 		grep -i " $1$" $DATAPATH/logs/dupelog > /dev/null && {
 			echo "Dupe detected! SITE DUPE $1 returns:"
 			grep -i " $1$" $DATAPATH/logs/dupelog | head -10
-			logexit $2/$1 "Dupe"
+			logexit "$2/$1" "Dupe"
 		}
 		else
 		echo 'Could not locate dupelog for anal dupechecking!'
@@ -274,26 +278,27 @@ done
 	done
 }
 [ -n "$ALLOWED_YEARS" ] && {
-	yearok="0"; shortname="0"
-	echo $1 | grep -Ei "[-]($( echo $AFFILS | sed 's/ /|/g' ))$" > /dev/null && 
+	yearok="0"
+	shortname="0"
+	echo "$1" | grep -Ei "[-](${AFFILS// /\|})$" > /dev/null && 
 		yearok=1
-	[ ${#1} -le 8 ] || echo $1 | grep -iE "^(cd[1-9]|.*approved)" > /dev/null &&
+	[ ${#1} -le 8 ] || echo "$1" | grep -iE "^(cd[1-9]|.*approved)" > /dev/null &&
 		shortname="1"
 	for year in $ALLOWED_YEARS; do
-		echo $1 | grep -E "(${year}|[-\.]${year#??}\b|\b${year#??}[-\.]|\b${year#??}[0-9]{4}\b|\b[0-9]{4}${year#??}\b)" > /dev/null && 
+		echo "$1" | grep -E "(${year}|[-\\.]${year#??}\\b|\\b${year#??}[-\\.]|\\b${year#??}[0-9]{4}\\b|\\b[0-9]{4}${year#??}\\b)" > /dev/null && 
 			yearok="1"
 	done
-	[ "$yearok" = "0" -a "$shortname" = "0" ] && {
+	[ "$yearok" = "0" ] && [ "$shortname" = "0" ] && {
 		echo "Unallowed year."
-		logexit $2/$1 "Unallowed Year"
+		logexit "$2/$1" "Unallowed Year"
     }
 }
 
 { [ "$LIVE_OK" -eq "1" ] || 
-	echo $1 | grep -Ei "[-]($( echo $AFFILS | sed 's/ /|/g' ))$" > /dev/null; } || {
-	echo $1 | grep -Ei "([(]live[)]|[-_.]live[_.](in|at|on)[^[:alpha:]]|[0-9][0-9][-_.][0-9][0-9][-_.][0-9][0-9])" > /dev/null && {
+	echo "$1" | grep -Ei "[-](${AFFILS// /\|})$" > /dev/null; } || {
+	echo "$1" | grep -Ei "([(]live[)]|[-_.]live[_.](in|at|on)[^[:alpha:]]|[0-9][0-9][-_.][0-9][0-9][-_.][0-9][0-9])" > /dev/null && {
 		echo "Live releases not allowed."
-		logexit $2/$1 "Live"
+		logexit "$2/$1" "Live"
 	}
 }	
 
@@ -301,23 +306,31 @@ done
 	[ -n "$AFFILS_LATEPRE" ] && {	
 		AFFILS="$AFFILS_LATEPRE"
 	}
-	echo $1 | grep -E "[-]($( echo $AFFILS | sed 's/ /|/g' ))$" > /dev/null && {
+	echo "$1" | grep -E "[-](${AFFILS// /\|})$" > /dev/null && {
                 echo "Do not trade affils."
-                logexit $2/$1 "Affil"
+                logexit "$2/$1" "Affil"
 	}
 }
 
 [ "$CHECK_DAYSBACK" -eq "1" ] && {
 	ago=0
-	[ "$shortname" = "0" ] && while [ $ago -le $DAYSBACK ]; do
+	[ "$shortname" = "0" ] && while [ "$ago" -le "$DAYSBACK" ]; do
 		date=$( date --date "$ago days ago" +"$DATE_FORMAT" )
-	        ls ../$date 2>/dev/null | grep -i "\b$1\b" > /dev/null 2>&1 && {
+	        ls "../$date" 2>/dev/null | grep -i "\\b${1}\\b" > /dev/null 2>&1 && {
 	                echo "\"$1\" already exists in the"
 	                echo "directory dated $date. Looks like a dupe."
-			logexit $2/$1 "In recent dated dir"
+			logexit "$2/$1" "In recent dated dir"
 	        }
-	        ago=$(($ago + 1))
+	        ago=$((ago+1))
 	done
+}
+
+{ [ "$INT_OK" -eq "1" ] || 
+	echo "$1" | grep -Ei "[-](${AFFILS// /\|})$" > /dev/null; } || {
+	echo "$1" | grep -Ei "_(int|internal)$" > /dev/null && {
+		echo "Internal releases not allowed."
+		logexit "$2/$1" "iNT"
+	}
 }
 
 exit 0

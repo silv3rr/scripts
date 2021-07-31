@@ -7,25 +7,25 @@
 <body>
 <div style="width: 600px; margin: 0 auto; margin-top: 20px;"><pre>
 <!-- ``` -->
- __/\______  __/\__  _/\__    _/\__  _/\___/\___     _/\____   mfn^AiiA
-/         /__\    /_/    /___/_   / /    /  __ /____/  __  /___
-\____        /    -/    //    /   \/    /    /     /    /      \
-/           /                /\        /          /     _      /
+ __/\______  __/\__  _/\__    _/\__   _/\___/\___     _/\____   mfn^AiiA
+/         /__\    /_/    /___/_    / /    /  __ /____/  __  /___
+<span style="color:Gray;">\____         /   -/    //     /   \/    /    /        /   /    \</span>
+<span style="color:SlateGray;"> /           /                /\        /          /     _      /</span>
 /_______  __/\__  ________  _/  \___  _/\______  _/_____//     /
         \/      \/        \/        \/         \/       /__  _/
-                                                           \/
+<span style="color:DarkSlateGray;">                                                           \/</span>
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2021-04-04 14:53    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2021-04-04 15:02    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                   2020-12-19 00:36  2.2K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                  2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2018-06-05 18:14  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
-<img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                        2021-04-04 15:01   29K  by <b>comp, slv</b> - !Blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
+<img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                        2021-04-30 14:44   29K  by <b>comp, slv</b> - !Blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="cpt-request.sh">cpt-request.sh</a>                  2020-05-17 14:24   12K  by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                  2018-06-05 18:14  3.4K  by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>               2018-06-05 18:14   21K  by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)
-<img src="/assets/icons/script.gif" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                    2019-04-01 08:15   12K  by <b>Jehsom, slv</b> - updated version of mp3 dirscript
+<img src="/assets/icons/script.gif" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                    2021-07-31 15:07   12K  by <b>Jehsom, slv</b> - updated version of mp3 dirscript
 <img src="/assets/icons/p.gif" alt="[TXT]"> <a href="fishwrap.py">fishwrap.py</a>                     2020-12-05 18:07  1.9K  by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="foo-tools-v1.20-20180713.tar.gz">foo-tools-v1.20-20180713.tar.gz</a> 2018-07-19 10:06  434K  by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - (<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>) fixed/updated foo-tools, incl foopre+mp3genre 
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                    2018-06-05 18:14  1.6K  by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups
