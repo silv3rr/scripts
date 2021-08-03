@@ -29,7 +29,7 @@
 ;
 ; :: CHANGELOG
 ; -----------------------------------------------------------------------------
-; > beta3: added transfer, filelist, incomplete cmd (and more),
+; > beta3: added transfer, filelist, incomplete cmd, site mgmt (and more),
 ;          menu's and dialogs, improved config
 ; > PoC:   added site cmds, getsites (1st public rls)
 ;

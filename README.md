@@ -39,7 +39,7 @@
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="skiplist-example-data.txt">skiplist-example-data.txt</a>       2019-08-04 17:02  4.0K  by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slftpc.sh">slftpc.sh</a>                       2020-02-08 18:29  4.2K  by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                     2019-05-10 15:34   25K  by <b>slv</b> - (<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>) archiver: moves releases, creates daydirs and tv/season dirs
-<img src="/assets/icons/unknown.gif" alt="[   ]"> <a href="slv-cbapi.mrc">slv-cbapi.mrc</a>                   2021-08-03 16:24   65K  by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds
+<img src="/assets/icons/unknown.gif" alt="[   ]"> <a href="slv-cbapi.mrc">slv-cbapi.mrc</a>                   2021-08-03 16:29   65K  by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-disk.tcl">slv-disk.tcl</a>                    2020-05-18 10:03   11K  by <b>slv</b> - monitor raids/disks
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-geofxp.sh">slv-geofxp.sh</a>                   2019-07-26 23:19  7.7K  by <b>slv</b> - fxpscript to allow/deny country code(s) using geoip2
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                    2018-06-05 18:14  2.1K  by <b>slv</b> - sets gldir for files in bin/sources and sets maxdirlogsize
