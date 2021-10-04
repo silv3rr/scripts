@@ -67,7 +67,7 @@ AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/group
 AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt
 AddDescription "by <b>glteam</b> - (<a href='https://glftpd.io'><b>LATEST</b>:glftpd.io</a>) glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')\">show sha512</a>" glftpd-LNX-2.11a_1.1.1k_x64.tgz
 AddDescription "by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>" hb_creditshow.sh
-AddDescription "by <b>slv</b> - pywho: pzs-ng's sitewho ported to python" pywho-v20210927.tar.gz
+AddDescription "by <b>slv</b> - (<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>) pywho: pzs-ng's sitewho ported to python" pywho-v20210927.tar.gz
 AddDescription "by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>" Request.tcl
 AddDescription "by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan.txt'>view</a> | <a href='rescan'>download</a>" rescan.md
 AddDescription "by <b>comp, slv</b> - !site plugin updated to work with ngBot" Sitecmds.tcl

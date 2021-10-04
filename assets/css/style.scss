@@ -10,8 +10,12 @@ body {
     color: Black;
     line-height: 0;
 }
-a:link { color: Blue; }
-a:visited { color: Black; }
+a:link {
+    color: Blue;
+}
+a:visited {
+    color: Blue;
+}
 hr {
     border-color: Gray;
     border-style: dashed;
