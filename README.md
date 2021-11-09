@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                               Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                           2021-10-04 20:10    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                               Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                           2021-11-09 20:20    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_LINKS.html">00_LINKS.html</a>                      2020-12-19 00:36  2.2K  <b><a href='00_LINKS.html'>LINKS</a></b> to other websites containing scripts etc
 <img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="00_MIRROR.html">00_MIRROR.html</a>                     2019-03-01 16:41  122   <b><a href='00_MIRROR.html'>MIRROR</a></b> of these files at github
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                    2018-06-05 18:14  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
@@ -31,7 +31,7 @@
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                       2018-06-05 18:14  1.6K  by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                      2018-06-05 18:14  902   by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1k_x64.tgz">glftpd-LNX-2.11a_1.1.1k_x64.tgz</a>    2021-03-31 10:43  8.4M  by <b>glteam</b> - (<a href='https://glftpd.io'><b>LATEST</b>:glftpd.io</a>) glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick="window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')">show sha512</a>
-<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.12BETA1_3.0.0_x64.tgz">glftpd-LNX-2.12BETA1_3.0.0_x64.tgz</a> 2021-11-09 20:10   10M  
+<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="glftpd-LNX-2.12BETA1_3.0.0_x64.tgz">glftpd-LNX-2.12BETA1_3.0.0_x64.tgz</a> 2021-11-09 20:10   10M  by <b>glteam</b> - (<a href='https://glftpd.io'><b>BETA</b>:glftpd.io</a>) glftpd 2.12beta1 linux x64, stable (mirror) | <a href='#' onClick="window.prompt('SHA512:', '4c2b6bddcc6829c3c181487f83ff65cb1949aacb61e3f5d79a3497136ca13119079925cf597fc25ceb683f24a03a29455c94588b0cd1d11931683377eaa4d657')">show sha512</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                   2018-06-05 18:14  244   by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>
 <img src="/assets/icons/c.gif" alt="[TXT]"> <a href="passchk.c">passchk.c</a>                          2021-08-20 15:00  1.8K  
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="pywho-v20210927.tar.gz">pywho-v20210927.tar.gz</a>             2021-09-27 20:32   15M  by <b>slv</b> - (<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>) pywho: pzs-ng's sitewho ported to python
