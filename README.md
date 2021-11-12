@@ -18,7 +18,7 @@
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
 <pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                               Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                           2021-11-12 15:51    -   <font color='Gray'>OLD: archived scripts</font>
-<img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                             2021-11-12 16:31    -   <b><a href='LINKS/list.html'>links</a></b> to other websites containing scripts, mirrors etc
+<img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                             2021-11-12 16:45    -   <b><a href='LINKS/list.html'>links</a></b> to other websites containing scripts, mirrors etc
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                    2018-06-05 18:14  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                           2021-04-30 14:44   29K  by <b>comp, slv</b> - !Blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="cpt-request.sh">cpt-request.sh</a>                     2020-05-17 14:24   12K  by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>
