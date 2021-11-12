@@ -36,8 +36,7 @@ AddIcon /assets/icons/blank.gif ^^BLANKICON^^
 
 DefaultIcon /assets/icons/unknown.gif
 
-AddDescription "<b><a href='LINKS/list.html'>links</a></b> to other websites containing scripts, mirrors etc" LINKS
-AddDescription "<b>links</b> list of related repos, websites and mirrors" LINKS/list.html
+AddDescription "<b>links</b> to other websites with scripts, repos and mirrors" LINKS
 AddDescription "<font color='Gray'>OLD: archived scripts</font>" ARCHIVE
 AddDescription "<font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>" ARCHIVE/ebftpd-deps.sh
 AddDescription "<font color='Gray'>OLD: little patch to fix destination error on pre</font>" ARCHIVE/foo-pre-destfix.patch
