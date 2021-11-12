@@ -18,7 +18,7 @@
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
 <pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                    Last modified      Size  Description<hr><img src="/assets/icons/back.gif" alt="[PARENTDIR]"> <a href="/">Parent Directory</a>                             -   
-<img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="list.html">list.html</a>               2021-11-12 16:45  2.4K  <b>links</b> list of related repos, websites and mirrors
+<img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="list.html">list.html</a>               2021-11-12 16:50  2.4K  <b>links</b> list of related repos, websites and mirrors
 <hr></pre>
 <pre><div style="color: Gray"><div style="display:flex; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
 <span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
