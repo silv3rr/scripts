@@ -36,8 +36,8 @@ AddIcon /assets/icons/blank.gif ^^BLANKICON^^
 
 DefaultIcon /assets/icons/unknown.gif
 
-AddDescription "<b><a href='LINKS/links.html'>links</a></b> to other websites containing scripts, mirrors etc" LINKS
-AddDescription "<b>links</b> list of related repos, websites and mirrors" links.html
+AddDescription "<b><a href='LINKS/list.html'>links</a></b> to other websites containing scripts, mirrors etc" LINKS
+AddDescription "<b>links</b> list of related repos, websites and mirrors" list.html
 AddDescription "<font color='Gray'>OLD: archived scripts</font>" ARCHIVE
 AddDescription "<font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>" ARCHIVE/ebftpd-deps.sh
 AddDescription "<font color='Gray'>OLD: little patch to fix destination error on pre</font>" ARCHIVE/foo-pre-destfix.patch
@@ -62,7 +62,7 @@ AddDescription "by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a hre
 AddDescription "by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)" DH1080-source.zip
 AddDescription "by <b>Jehsom, slv</b> - updated version of mp3 dirscript" dirscript.sh
 AddDescription "by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>" fishwrap.py
-AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - (<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>) fixed/updated foo-tools, incl foopre+mp3genre " foo-tools-v1.20-20180713.tar.gz
+AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>] fixed/updated foo-tools, incl foopre+mp3genre " foo-tools-v1.20-20180713.tar.gz
 AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups" gft-stats.sh
 AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt
 AddDescription "by <b>glteam</b> - [<a href='https://glftpd.io'><b>LATEST</b>:web</a>] glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')\">show sha512</a>" glftpd-LNX-2.11a_1.1.1k_x64.tgz
