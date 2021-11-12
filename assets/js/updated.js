@@ -1,4 +1,4 @@
-function lastUpdated(file='README.md') {
+function lastUpdated(file) {
   var xhr = new XMLHttpRequest();
   xhr.open("HEAD", file, true);
   xhr.onload = function (e) {
@@ -17,4 +17,4 @@ function lastUpdated(file='README.md') {
   };
   xhr.send(null);
 };
-window.onload = lastUpdated;
+window.onload = lastUpdated('README.md');
