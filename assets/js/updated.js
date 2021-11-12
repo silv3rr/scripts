@@ -1,6 +1,6 @@
-function lastUpdated() {
+function lastUpdated(file='README.md') {
   var xhr = new XMLHttpRequest();
-  xhr.open("HEAD", "README.md", true);
+  xhr.open("HEAD", file, true);
   xhr.onload = function (e) {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
