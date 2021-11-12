@@ -1,34 +1,100 @@
-<html>
-  
-<head>
-  <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
-</head>
-<body>
-<div style="width: 600px; margin: 0 auto; margin-top: 20px;"><pre>
-<!-- ``` -->
- __/\______  __/\__  _/\__    _/\__   _/\___/\___     _/\____   mfn^AiiA
-/         /__\    /_/    /___/_    / /    /  __ /____/  __  /___
-<span style="color:Gray;">\____         /   -/    //     /   \/    /    /        /   /    \</span>
-<span style="color:SlateGray;"> /           /                /\        /          /     _      /</span>
-/_______  __/\__  ________  _/  \___  _/\______  _/_____//     /
-        \/      \/        \/        \/         \/       /__  _/
-<span style="color:DarkSlateGray;">                                                           \/</span>
-<!-- ``` --></pre></div>
-<div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
-<pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                    Last modified      Size  Description<hr><img src="/assets/icons/back.gif" alt="[PARENTDIR]"> <a href="/">Parent Directory</a>                             -   
-<img src="/assets/icons/layout.gif" alt="[TXT]"> <a href="list.html">list.html</a>               2021-11-12 17:01  2.5K  <b>links</b> list of related repos, websites and mirrors
-<hr></pre>
-<pre><div style="color: Gray"><div style="display:flex; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
-<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
-<div style="width: 600px; margin:0 auto;">
-__/\__
-\ oO /
-/_ ._\    i didn't know what this was, and when i did know what it was,
-  \/          i have to say, it sounded like a huge waste of time
-</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</div></div></pre>
-<!-- Matomo Image Tracker--><noscript>
-<img src="https://stats.sscripts.ga/piwik/piwik.php?idsite=17&rec=1" style="border:0" alt="" />
-</noscript><!-- End Matomo -->
-</body></html>
+---
+layout: links
+---
+
+https://glinks.ga
+https://sscripts.ga
+
+> MIRRORS
+
+https://github.com/silv3rr/sscripts.ga
+https://silv3rr.github.io/sscripts.ga
+https://io.glftpd.ga (glftpd.io)
+https://archive.glftpd.ga (archive.glftpd.io|eu)
+https://github.com/glftpd-scripts/glftpd-scripts
+
+> GLFTPD / PZS-NG
+
+https://glftpd.eu https://glftpd.io
+https://archive.glftpd.eu https://archive.glftpd.io
+https://github.com/glftpd
+https://github.com/pzs-ng
+https://pzs-ng.eu
+
+> SITEBOT
+
+https://eggheads.org
+https://github.com/eggheads/eggdrop
+http://forum.egghelp.org
+https://znc.in
+http://psybnc.at
+https://ngircd.barton.de
+https://unrealircd.org
+https://github.com/falsovsky/FiSH-irssi
+https://github.com/orkim/dh1080_tcl
+https://weechat.org/files/scripts/fish.py
+
+> FTPD ALTERNATIVES
+
+https://github.com/jawr/ebftpd
+https://bitbucket.org/jevring/cuftpd
+https://bitbucket.org/jevring/cubnc
+https://sourceforge.net/projects/wzdftpd
+https://github.com/drftpd-ng/drftpd3
+https://github.com/goftpd/goftpd
+
+> SCRIPT COLLECTIONS
+
+http://www.grandis.nu/glftpd (turranius)
+http://www.glftpd.at
+http://www.ironiclogic.com
+https://algorhythm.cc
+https://www.bogus.net/~sicko/gl
+
+> REPOSITORIES
+
+https://github.com/signor-/glftpd
+https://github.com/glftpd-scripts/glftpd-scripts
+https://github.com/bioboy?tab=repositories
+https://github.com/nixnodes/glutil
+https://github.com/Skeddie/projects
+https://github.com/silv3rr?tab=repositories
+https://github.com/kelek-/kftpd
+https://github.com/tittof
+https://github.com/wuseman/WGLFTPD
+https://bitbucket.org/sorend/footools/src
+
+> OTHER / PERSONAL
+
+https://notabug.org/tittof
+https://tittof.github.io
+http://darkone.wz.sk
+https://www.pcfil.com/ssl
+http://mewbies.com
+http://www.high-society.at/f-scripts
+http://www.distorted.se/tcl
+http://lundman.net
+http://www.pcfil.com/ssl
+http://www.project-oldskool-revenge.net
+http://www.xeptic.net/scripts
+https://cbftp.eu
+
+> ARCHIVE.ORG
+
+https://web.archive.org/web/20120122020640/http://fish.secure.la
+https://web.archive.org/web/20041217051949/http://www.glftpd.com
+https://web.archive.org/web/20040113221135/http://www.glftpd.net
+https://web.archive.org/web/20050122160121/http://glftpd.org
+https://web.archive.org/web/20110926092033/http://glftpd-ng.com
+https://web.archive.org/web/20010202065300/http://glftpd.deepwell.com
+https://web.archive.org/web/20031001132825/http://pftp.suxx.sk
+
+> IRC CHANNELS
+
+irc://irc.efnet.org:+6697/glftpd
+irc://irc.efnet.org:+6697/glhelp
+irc://irc.efnet.org:+6697/pzs-ng
+irc://irc.efnet.org:+6697/ebftpd
+irc://irc.efnet.org:+6697/cbftp
+irc://irc.link-net.org:+7000/slftp
+
