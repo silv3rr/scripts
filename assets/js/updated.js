@@ -17,4 +17,4 @@ function lastUpdated(file) {
   };
   xhr.send(null);
 };
-window.onload = lastUpdated('README.md');
+//window.onload = lastUpdated('README.md');
