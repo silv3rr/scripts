@@ -1,4 +1,4 @@
-putlog "slv-disk.tcl 20200518"
+putlog "slv-disk.tcl 20211120"
 
 ################################################################################
 # Monitor (SW) RAID/HBA/MD/SMART/DISKS
@@ -132,7 +132,7 @@ namespace eval checkDisk {
 	}
 	if {[info exists conf(block)] && $conf(block) == 1} {
 		# error pattern for normal and stacking (dm) drivers
-		variable pattern	"end_request:|print_req_error:"
+		variable pattern	"end_request:|print_req_error:|-fs.*error"
 		variable sort_tail	"sort -u -k 7,11 | tail -n $conf(maxlines)"
 		lappend check(status)	"sudo dmesg -T | (grep -E \"$pattern\" || echo \"No block device errors\") | $sort_tail"
 		lappend check(errors)	"sudo dmesg -T | grep -E \"$pattern\" | $sort_tail"
