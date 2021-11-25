@@ -20,7 +20,7 @@
 # 3. Add the following to your eggdrop.conf:
 #    source pzs-ng/plugins/Sitecmds.tcl
 #
-# 4. Add the following line to your dZSbot.conf:
+# 4. Add the following line to your dZSbot/ngBot.conf:
 #    set variables(SITECMDS)   	"%msg"
 #    set disable(SITECMDS)	0
 #
@@ -45,8 +45,9 @@ namespace eval ::ngBot::plugin::Sitecmds {
     variable np [namespace qualifiers [namespace parent]]
     #variable np ""
     ##
-    ## Path to cpt-Sitecmds.sh (place it in your glftpd/bin directory please!)
-#    variable cptSitecmds "/jail/glftpd/bin/cpt-Sitecmds.sh"
+    ## (OLD) Path to cpt-Sitecmds.sh (place it in your glftpd/bin directory please!)
+    ## (OLD) variable cptSitecmds "/jail/glftpd/bin/cpt-Sitecmds.sh"
+    # Now uses lftp instead
     variable lftp "/usr/bin/lftp"
     ##
     ## Username and password for the user that should execute the commands
