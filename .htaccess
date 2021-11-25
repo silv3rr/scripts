@@ -72,6 +72,7 @@ AddDescription "by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan.tx
 AddDescription "by <b>comp, slv</b> - !site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
 AddDescription "by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slftpc.sh
+AddDescription "by <b>slv</b> - archiver: config file for <a href='slv-arch.sh'>slv-arch.sh</a>" slv-arch.conf
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>] archiver: moves releases, creates daydirs and tv/season dirs" slv-arch.sh
 AddDescription "by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds" slv-cbapi.mrc
 AddDescription "by <b>slv</b> - monitor raids/disks" slv-disk.tcl

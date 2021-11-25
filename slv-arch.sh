@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ################################################################################
-# slv-archiver                                            slv-arch-20211123-all
+# slv-archiver                                            slv-arch-20211125-all
 ################################################################################
 #
 # Moves rels from incoming to archive
@@ -57,6 +57,9 @@ fi
 if echo "$MINS_OLD" | grep -qv "[0-9]\+"; then
 	echo "[ERROR] MINS_OLD is not set correctly, exiting..."
 	exit 1
+fi
+if echo "$CHECK_MOUNTS" | grep -qv "[0-1]" || [ -z "$MOUNTS" ]; then
+	CHECK_MOUNTS=0
 fi
 
 # Function to clean and create symlinks in tvarchive when using sub disks
@@ -128,10 +131,10 @@ ALLMNT=""
 MAX="$( echo "$MOUNTS" | wc -w )"
 for m in $MOUNTS; do
 	if [ $i -lt $(( MAX-1 )) ]; then
-        ALLMNT="$ALLMNT\|$m"
+		ALLMNT="$ALLMNT\|$m"
 	else
-        ALLMNT="$m${ALLMNT}"
-     fi
+		ALLMNT="$m${ALLMNT}"
+	fi
 	i=$(( i+1 ))
 done
 
@@ -143,10 +146,10 @@ func_df() {
 	for d in "$@"; do
 		ARC="ARCHIVE"
 		if [ -n "$TVARCHIVE" ] && echo "$d" | grep -q "$TVARCHIVE"; then
-            ARC="TVARCHIVE"
+			ARC="TVARCHIVE"
 		fi
 		if [ -n "$ZDARCHIVE" ] && echo "$d" | grep -q "$ZDARCHIVE"; then
-            ARC="0DAYARCHIVE"
+			ARC="0DAYARCHIVE"
 		fi
 		if [ "$CHECK_MOUNTS" -eq 1 ]; then
 			if ! findmnt --target "$d" | grep -q "\(^\| \)\($ALLMNT\)\(/\.[0-9]\| \)"; then
@@ -195,7 +198,7 @@ for RULE in $MOVE; do
 	SRC_DIR="$( echo "$RULE" | awk -F ":" '{ print $1 }' )"
 	REG_EXP="$( echo "$RULE" | awk -F ":" '{ print $2 }' )"
 	DST_DIR="$( echo "$RULE" | awk -F ":" '{ print $3 }' )"
-    # Covert SKIP_PATH format to "(/NUKED-|/Archive|/_Old)"
+	# Convert SKIP_PATH format to "(/NUKED-|/Archive|/_Old)"
 	SKIP_PATH_SED="$( echo "$SKIP_PATH" | sed -e 's|\^|/|g' -e 's|[.*$]||g' )"
 	for REL in $( func_find "$SRC_DIR" $(dm 1) $(dx 1) $(ty d) $F_RE "${SRC_DIR}(${SKIP_PATH_SED})" -printf '%f\n' | sort ); do
 		if ! func_df "$DST_DIR"; then 
@@ -210,7 +213,7 @@ for RULE in $MOVE; do
 		 	continue
 		fi
 		SKIP="NO"
- 		if func_find "$SRC_DIR/$REL" $(dm 1) $(dx 1) $(ty d) $PF_P | grep -q -e "^[cC][dD][1-9]$" -e "^[dD][iI][sS][cCkK][1-9]$" -e "^[dD][vV][dD][1-9]$"; then
+		if func_find "$SRC_DIR/$REL" $(dm 1) $(dx 1) $(ty d) $PF_P | grep -q -e "^[cC][dD][1-9]$" -e "^[dD][iI][sS][cCkK][1-9]$" -e "^[dD][vV][dD][1-9]$"; then
 			for each_cd in $( func_find "$SRC_DIR/$REL" $(dm 1) $(dx 1) $(ty d) $PF_P | grep -e "^[cC][dD][1-9]$" -e "^[dD][iI][sS][cCkK][1-9]$" -e "^[dD][vV][dD][1-9]$" ); do
 				if ! func_find "$SRC_DIR/$REL/$each_cd" $(dm 1) $(dx 1) $PF_P | grep -Eq "$CHECK_FOR"; then
 					if func_find "$SRC_DIR/$REL/$each_cd" $(dm 1) $(dx 1) $(ty f) $PF_P | grep -q "\.[sS][fF][vV]$"; then
@@ -233,7 +236,7 @@ for RULE in $MOVE; do
 		DIRAGE_OK="NO"
 		CURDATE_SEC="$( $DATEBIN +%s )"
 		DIRAGE_MIN=0
-        DIRDATE_SEC="$( func_find "$SRC_DIR/$REL" $(dm 0) $(dx 0) $(ty d) -printf '%Ts\n' )"
+		DIRDATE_SEC="$( func_find "$SRC_DIR/$REL" $(dm 0) $(dx 0) $(ty d) -printf '%Ts\n' )"
 		if echo "$DIRDATE_SEC" | grep -q "[0-9]"; then
 			DIRAGE_MIN=$(( (CURDATE_SEC - DIRDATE_SEC) / 60 ))
 		fi
@@ -267,7 +270,7 @@ for RULE in $MOVE; do
 			if [ "$DEBUG" -eq 2 ]; then
 				DBG_AGE=" (DIRAGE_MIN=$DIRAGE_MIN MINS_OLD=$MINS_OLD)"
 			fi
-            RE_TMP="$(echo " $REG_EXP" | sed -r -e 's/^(.{30})$/\1/' -e t -e 's/^(.{30}).*/\1..<-cut->/' -e t)"
+			RE_TMP="$(echo " $REG_EXP" | sed -r -e 's/^(.{30})$/\1/' -e t -e 's/^(.{30}).*/\1..<-cut->/' -e t)"
 			echo "[DEBUG] MOVE:POSTCHK SRC=$SRC_DIR $REL DST=$DST_DIR RE=$RE_TMP MATCH=$MATCH AGE_OK=$DIRAGE_OK${DBG_AGE}"
 		fi
 	done
@@ -324,15 +327,15 @@ else
 fi
 NUM_TV=0
 if echo "$NUM_DIRS_TV" | grep -q "[0-9]"; then
-    NUM_TV=1
-    DBG_NUM_TV=" NUM_DIRS_TV=$NUM_DIRS_TV"
+	NUM_TV=1
+	DBG_NUM_TV=" NUM_DIRS_TV=$NUM_DIRS_TV"
 fi
 # shellcheck disable=SC2046,SC2086
 for TVDIR in $TVDIRS; do
 	SKIP="NO"
 	SKIP_RE="$( echo "$SKIP_PATH" | sed "s|\^|\^$TVDIR/|g" )"
-    # Move tv releases
-    for REL in $( func_find "$TVDIR" $(dm 1) $(dx 1) $F_RE "${SKIP_SECTION}${SKIP_RE}" -printf '%Ts %p\n' | sort -n | head -$NUM_DIRS_TV | awk '{ print $NF }' ); do
+	# Move tv releases
+	for REL in $( func_find "$TVDIR" $(dm 1) $(dx 1) $F_RE "${SKIP_SECTION}${SKIP_RE}" -printf '%Ts %p\n' | sort -n | head -$NUM_DIRS_TV | awk '{ print $NF }' ); do
 		# Find sub disk which has currently the most free disk space
 		if [ -n "$TVARCSUBS" ]; then
 			TVARCHSUB="$( \
@@ -368,7 +371,7 @@ for TVDIR in $TVDIRS; do
 			DIRAGE_MIN=0
 			DIRAGE_OK="NO"
 			CURDATE_SEC="$( $DATEBIN +%s )"
-            DIRDATE_SEC="$( func_find "$REL" $(dm 0) $(dx 0) $(ty d) -printf '%Ts\n' )"
+			DIRDATE_SEC="$( func_find "$REL" $(dm 0) $(dx 0) $(ty d) -printf '%Ts\n' )"
 			DSTSERIES=""
 			SEASON=""
 			if echo "$DIRDATE_SEC" | grep -q "[0-9]"; then
@@ -398,23 +401,23 @@ for TVDIR in $TVDIRS; do
 					-e 's/[._]\([0-9]\+[._][0-9]\+[._][0-9]\+\)[._].*//gi' \
 					-e 's/[._-]\(hdtv\|pdtv\|dsr\|dsrip\|webrip\|web\|h264\|x264\|\|xvid\|720p\|1080p\|2160p\|ws\|dvdrip\|bluray\|uhd\)\($\|[._-]\).*//gi' \
 					-e 's/[._-]\(dirfix\|proper\|repack\|nfofix\|preair\|pilot\|ppv\|extended\\|complete\|dual\|part.[0-9]\+\)\($\|[._-]\).*//gi' \
-                    -e 's/[._-]\(dutch\|german\|flemish\|french\|hungarian\|italian\|norwegian\|polish\|portuguese\|spanish\|russian\|swedish\)\($\|[._-]\).*//gi' )"
+					-e 's/[._-]\(dutch\|german\|flemish\|french\|hungarian\|italian\|norwegian\|polish\|portuguese\|spanish\|russian\|swedish\)\($\|[._-]\).*//gi' )"
 				SEASON="$( echo "$REL" | sed -e 's/.*[._-]S\([0-9]\+\)E[0-9].*/\1/i' \
 					-e 's/.*S\([0-9]\|[0-9][0-9]\+\)\..*/\1/i' \
 					-e 's/.*[._-]\([0-9]\+\)x[0-9].*/\1/i' \
 					-e 's/.*\([0-9][0-9][0-9][0-9]\).[0-9][0-9].[0-9][0-9].*/\1/i' )"
-                SEASON="S$SEASON"
-                # In case of single digit season, pad with leading zero 
+				SEASON="S$SEASON"
+				# In case of single digit season, pad with leading zero 
 				if echo "$SEASON" | grep -q "^[0-9]$"; then
 					SEASON="S0$SEASON"
 				fi
-                # Missing or non-standard season tag
+				# Missing or non-standard season tag
 				if echo "$SEASON" | grep -qv "^S\([0-9]$\|[0-9][0-9]\|[0-9][0-9][0-9]\)$"; then
 					SEASON=""
 				fi
 				MV="NO"
 				DSTSERIES="$( echo "$SRCSERIES" | sed 's/\(\w\)_/\1\./g' )"
-                # Generate case insensitive glob ([aA][bB][cC]) and use for find/mv etc to prevent duplicate series dirs
+				# Generate case insensitive glob ([aA][bB][cC]) and use for find/mv etc to prevent duplicate series dirs
 				CHKSERIES="$( echo "$DSTSERIES" | sed 's/\([a-z]\|[A-Z]\)/[\L\1\U\1\]/g' )"
 				DIRDATE="$( $DATEBIN --date "01/01/1970 +$DIRDATE_SEC seconds" +"%Y-%m-%d %H:%M:%S" )"
 				if [ "$SEASON" = "" ]; then
@@ -453,7 +456,7 @@ for TVDIR in $TVDIRS; do
 							if [ -z "$TVARCHSUB" ]; then
 								if [ "$DEBUG" -ge 1 ]; then
 									MV="DEBUG"
-									echo "[DEBUG] TV: mv $DIR" $TVARCHIVE/$CHKSERIES/
+									echo "[DEBUG] TV: mv $REL" $TVARCHIVE/$CHKSERIES/
 								else
 									mv "$REL" $TVARCHIVE/$CHKSERIES/ && MV="YES"
 								fi
@@ -464,7 +467,7 @@ for TVDIR in $TVDIRS; do
 									if [ "$TVLINKSUB" = "$TVARCHSUB" ]; then
 										if [ "$DEBUG" -ge 1 ]; then
 											MV="DEBUG"
-											echo "[DEBUG] TV: mv $DIR" $TVARCHIVE/$CHKSERIES/
+											echo "[DEBUG] TV: mv $REL" $TVARCHIVE/$CHKSERIES/
 										else
 											mv "$REL" "$TVARCHIVE/$CHKSERIES/" && MV="YES"
 										fi
@@ -485,7 +488,7 @@ for TVDIR in $TVDIRS; do
 						else
 							MV="NO"
 							SKIP="YES"
-                            DUPEDIRS="$( func_find $TVARCHIVE/$CHKSERIES $(dm 0) $(dx 0) $(ty d) -printf '%f ' )"
+							DUPEDIRS="$( func_find $TVARCHIVE/$CHKSERIES $(dm 0) $(dx 0) $(ty d) -printf '%f ' )"
 							echo "[ERROR] TV:SKIP \"$DSTSERIES\" - more than 1 dir found... $DUPEDIRS )"
 						fi
 					fi
@@ -501,7 +504,7 @@ for TVDIR in $TVDIRS; do
 							echo "[ERROR] TV: wont touch \"$TVARCHIVE/$DSTSERIES/$BASEDIR\" - move failed or no dir (MV=$MV)"
 						fi
 					fi
-                # Dir /archive/tv/Series does not exist
+				# Dir /archive/tv/Series does not exist
 				else
 					if [ ! "$( func_find $TVARCHIVE/$CHKSERIES $(dm 0) $(dx 0) $(ty d) )" ]; then
 						# standard tvarchive: mkdir
@@ -530,7 +533,7 @@ for TVDIR in $TVDIRS; do
 							fi
 						fi
 					fi
-                    # Dir /archive/tv/Series/S01 does not exist
+					# Dir /archive/tv/Series/S01 does not exist
 					if [ ! "$( func_find $TVARCHIVE/$CHKSERIES/$SEASON $(dm 0) $(dx 0) $(ty d) )" ]; then
 						# standard tvarchive: mkdir
 						if [ -z "$TVARCHSUB" ]; then
@@ -564,13 +567,13 @@ for TVDIR in $TVDIRS; do
 							fi
 						fi
 					fi
-                    # Dir /archive/tv/Series/S01 already exists
+					# Dir /archive/tv/Series/S01 already exists
 					if [ "$( func_find $TVARCHIVE/$CHKSERIES/$SEASON $(dm 0) $(dx 0) $(ty d) )" ]; then
 						# standard tvarchive: mv
 						if [ -z "$TVARCHSUB" ]; then
 							if [ "$DEBUG" -ge 1 ]; then
 								MV="DEBUG"
-								echo "[DEBUG] TV: mv $DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+								echo "[DEBUG] TV: mv $REL" $TVARCHIVE/$CHKSERIES/$SEASON
 							else
 								mv "$REL" $TVARCHIVE/$CHKSERIES/$SEASON && MV="YES"
 							fi
@@ -582,7 +585,7 @@ for TVDIR in $TVDIRS; do
 									if [ "$TVLINKSUB" = "$TVARCHSUB" ]; then
 										if [ "$DEBUG" -ge 1 ]; then
 											MV="DEBUG"
-											echo "[DEBUG] TV: mv $DIR" $TVARCHIVE/$CHKSERIES/$SEASON
+											echo "[DEBUG] TV: mv $REL" $TVARCHIVE/$CHKSERIES/$SEASON
 										else
 											mv "$REL" $TVARCHIVE/$CHKSERIES/$SEASON && MV="YES"
 										fi
@@ -590,13 +593,13 @@ for TVDIR in $TVDIRS; do
 										if func_df "$TVARCHIVE/$TVLINKSUB"; then 
 											if [ "$DEBUG" -ge 1 ]; then
 												MV="DEBUG"
-												echo "[DEBUG] TV: mv $DIR" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
+												echo "[DEBUG] TV: mv $REL" $TVARCHIVE/$CHKSERIES/$SEASON "(on subdisk \"$TVLINKSUB\")"
 											else
 												mv "$REL" $TVARCHIVE/$CHKSERIES/$SEASON && MV="YES"
 											fi
 										else
 											MV="NO"
-											echo "[INFO] TV:SKIP mv $DIR - dir \"$DSTSERIES\" is not on \"$TVARCHSUB\" and \"$TVLINKSUB\" is full or not mounted"
+											echo "[INFO] TV:SKIP mv $REL - dir \"$DSTSERIES\" is not on \"$TVARCHSUB\" and \"$TVLINKSUB\" is full or not mounted"
 										fi
 									fi
 								fi
@@ -607,7 +610,7 @@ for TVDIR in $TVDIRS; do
 							fi
 						fi
 					fi
-                    # Restore original date of rel dir
+					# Restore original date of rel dir
 					if [ "$MV" = "DEBUG" ] && [ "$DEBUG" -ge 1 ]; then
 						echo "[DEBUG] TV: touch -c -d $DIRDATE" $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR" (dry-run MV=$MV)"
 					elif [ "$MV" = "YES" ] && [ "$( func_find $TVARCHIVE/$CHKSERIES/$SEASON/$BASEDIR $(dm 0) $(dx 0) $(ty d) )" ]; then
@@ -655,10 +658,13 @@ if [ -d "$MP3SRC" ]; then
 								if [ -d "${REL}" ] && [ ! -h "${REL}" ]; then
 									C_REL="$( echo "${REL}" | sed "s|${GLDIR}||g" )"
 									$CHROOT $GLDIR "$AUDIOSORT" "$C_REL" >/dev/null 2>&1
- 								fi
+								fi
 							done
 						fi
 					fi
+				fi
+				if [ "$DEBUG" -ge 1 ]; then
+					echo "[DEBUG] MP3:POSTCHK DIR=$DIR"
 				fi
 			done
 		fi
@@ -673,14 +679,17 @@ fi
 if [ -d "$MVSRC" ]; then
 	for i in $( seq $MVWEEKS ); do
 		DATE="$( "$DATEBIN" --date="$i weeks ago" +"${MVFMT}" )"
-        DIR="${MVSRC}/${DATE}"
-        if [ "$DATE" != "" ] && [ -d "${DIR}" ] && [ ! -d "${MVDST}/${DATE}" ]; then
-            if [ "$DEBUG" -ge 1 ]; then
-                echo "[DEBUG] MV: mv -n ${DIR} ${MVDST}/"
-            else
-                mv -n "${DIR}" "${MVDST}/"
-            fi
-        fi
+		DIR="${MVSRC}/${DATE}"
+		if [ "$DATE" != "" ] && [ -d "${DIR}" ] && [ ! -d "${MVDST}/${DATE}" ]; then
+			if [ "$DEBUG" -ge 1 ]; then
+				echo "[DEBUG] MV: mv -n ${DIR} ${MVDST}/"
+			else
+				mv -n "${DIR}" "${MVDST}/"
+			fi
+		fi
+	if [ "$DEBUG" -ge 1 ]; then
+		echo "[DEBUG] MV:POSTCHK DIR=$DIR"
+	fi
 	done
 fi
 
