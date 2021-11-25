@@ -17,7 +17,7 @@
 <!-- ``` --></pre></div>
 <div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
 <pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                               Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                           2021-11-25 16:05    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                               Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                           2021-11-25 21:07    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                             2021-11-25 14:20    -   LINKS: other websites with scripts, repos and mirrors
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                           2021-11-13 20:26   29K  by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                     2018-06-05 18:14  3.4K  by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>
@@ -45,7 +45,7 @@
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                       2018-06-05 18:14  1.0K  by <b>slv</b> - searches daydirs 0day/pda/mp3/mv for matching dirs to create symlinks
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-ngbotc.sh">slv-ngbotc.sh</a>                      2018-06-05 18:14  1.0K  by <b>slv</b> - small script to check ngBot changes, use before updating
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-prebw-v1.1-20190712.tar.gz">slv-prebw-v1.1-20190712.tar.gz</a>     2021-11-13 20:26  4.2K  by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b>git</a>] pzs-ng dZBot/ngbot plugin to show bw after pre
-<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-pywho-v20211104.tar.gz">slv-pywho-v20211104.tar.gz</a>         2021-11-25 21:04   15K  
+<img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-pywho-v20211104.tar.gz">slv-pywho-v20211104.tar.gz</a>         2021-11-25 21:04   15K  by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>] pywho: pzs-ng's sitewho ported to python
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-sitewho-plus2-v0.2.tar.gz">slv-sitewho-plus2-v0.2.tar.gz</a>      2021-11-13 20:26   12K  by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-slftpc.sh">slv-slftpc.sh</a>                      2021-11-13 20:26  4.2K  by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
 <hr></pre>

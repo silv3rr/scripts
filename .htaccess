@@ -89,6 +89,6 @@ AddDescription "by <b>slv</b> - sets gldir for files in bin/sources and sets max
 AddDescription "by <b>slv</b> - searches daydirs 0day/pda/mp3/mv for matching dirs to create symlinks" slv-links.sh
 AddDescription "by <b>slv</b> - small script to check ngBot changes, use before updating" slv-ngbotc.sh
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b>git</a>] pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v1.1-20190712.tar.gz
-AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>] pywho: pzs-ng's sitewho ported to python" slv-pywho-v20210927.tar.gz
+AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>] pywho: pzs-ng's sitewho ported to python" slv-pywho-v20211104.tar.gz
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output" slv-sitewho-plus2-v0.2.tar.gz
 AddDescription "by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slv-slftpc.sh
