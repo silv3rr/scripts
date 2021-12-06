@@ -1,11 +1,12 @@
 <html>
-  
 <head>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 <body>
-<div style="width: 600px; margin: 0 auto; margin-top: 20px;"><pre>
+<div class="slvlogo">
+<pre>
 <!-- ``` -->
  __/\______  __/\__  _/\__    _/\__   _/\___/\___     _/\____   mfn^AiiA
 /         /__\    /_/    /___/_    / /    /  __ /____/  __  /___
@@ -14,11 +15,14 @@
 /_______  __/\__  ________  _/  \___  _/\______  _/_____//     /
         \/      \/        \/        \/         \/       /__  _/
 <span style="color:DarkSlateGray;">                                                           \/</span>
-<!-- ``` --></pre></div>
-<div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
-<pre><b>s   c   r   i   p   t   s</b></pre></div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                               Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                           2021-11-25 21:07    -   <font color='Gray'>OLD: archived scripts</font>
-<img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                             2021-11-25 14:20    -   LINKS: other websites with scripts, repos and mirrors
+<!-- ``` -->
+</pre>
+</div>
+<div class="txtscripts">
+<pre>s   c   r   i   p   t   s</pre>
+</div>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                               Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                           2021-12-06 14:14    -   <font color='Gray'>OLD: archived scripts</font>
+<img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                             2021-12-06 12:10    -   LINKS: other websites with scripts, repos and mirrors
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                           2021-11-13 20:26   29K  by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                     2018-06-05 18:14  3.4K  by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Request.tcl">Request.tcl</a>                        2021-11-13 20:26   12K  by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>
@@ -49,15 +53,22 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="slv-sitewho-plus2-v0.2.tar.gz">slv-sitewho-plus2-v0.2.tar.gz</a>      2021-11-13 20:26   12K  by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-slftpc.sh">slv-slftpc.sh</a>                      2021-11-13 20:26  4.2K  by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:flex; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
-<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
-<div style="width: 600px; margin:0 auto;">
+<pre><div style="color: Gray"><div class="footct">
+<span class="footupd" id="lastUpdated"></span>
+<span class="footlnk"><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i>
+</span>
+</div>
+<div class="footstar">
 __/\__
 \ oO /
 /_ ._\    i didn't know what this was, and when i did know what it was,
   \/          i have to say, it sounded like a huge waste of time
-</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</div></div></pre>
+</div>
+<div class="footslv">slv^2014</div>
+</div>
+</pre>
 <!-- Matomo Image Tracker--><noscript>
 <img src="https://stats.sscripts.ga/piwik/piwik.php?idsite=17&rec=1" style="border:0" alt="" />
 </noscript><!-- End Matomo -->
-</body></html>
+</body>
+</html>

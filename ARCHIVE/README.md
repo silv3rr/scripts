@@ -1,11 +1,12 @@
 <html>
-  
 <head>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 <body>
-<div style="width: 600px; margin: 0 auto; margin-top: 20px;"><pre>
+<div class="slvlogo">
+<pre>
 <!-- ``` -->
  __/\______  __/\__  _/\__    _/\__   _/\___/\___     _/\____   mfn^AiiA
 /         /__\    /_/    /___/_    / /    /  __ /____/  __  /___
@@ -14,9 +15,12 @@
 /_______  __/\__  ________  _/  \___  _/\______  _/_____//     /
         \/      \/        \/        \/         \/       /__  _/
 <span style="color:DarkSlateGray;">                                                           \/</span>
-<!-- ``` --></pre></div>
-<div style="width: 300px; margin:0 auto; margin-bottom: 10px; color: Blue">
-<pre><b>s   c   r   i   p   t   s</b></pre></div>
+<!-- ``` -->
+</pre>
+</div>
+<div class="txtscripts">
+<pre>s   c   r   i   p   t   s</pre>
+</div>
 <pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="/assets/icons/back.gif" alt="[PARENTDIR]"> <a href="/">Parent Directory</a>                                                -   
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2018-06-05 18:14   21K  by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2021-11-13 20:26  318   <font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>
@@ -43,15 +47,22 @@
 <img src="/assets/icons/compressed.gif" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2018-06-05 18:14  307   by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup
 <img src="/assets/icons/tar.gif" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2018-06-05 18:14   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <hr></pre>
-<pre><div style="color: Gray"><div style="display:flex; margin:0 auto;"><span id="lastUpdated" style="text-align: left;"></span>
-<span style="margin-left: 55%; text-align: right;"><small><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i></small></span></div>
-<div style="width: 600px; margin:0 auto;">
+<pre><div style="color: Gray"><div class="footct">
+<span class="footupd" id="lastUpdated"></span>
+<span class="footlnk"><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i>
+</span>
+</div>
+<div class="footstar">
 __/\__
 \ oO /
 /_ ._\    i didn't know what this was, and when i did know what it was,
   \/          i have to say, it sounded like a huge waste of time
-</div><div style="width: 1200px; margin:0; text-align: right; color: DarkGray;">slv^2014</div></div></pre>
+</div>
+<div class="footslv">slv^2014</div>
+</div>
+</pre>
 <!-- Matomo Image Tracker--><noscript>
 <img src="https://stats.sscripts.ga/piwik/piwik.php?idsite=17&rec=1" style="border:0" alt="" />
 </noscript><!-- End Matomo -->
-</body></html>
+</body>
+</html>

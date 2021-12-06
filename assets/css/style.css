@@ -6390,4 +6390,62 @@ h1 {
 
 img[alt~="Icon"] {
   visibility:hidden !important
-  }
+}
+
+/* sscripts specific style */
+
+.slvlogo {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  color: Black;
+}
+
+.txtscripts {
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  color: Blue;
+  font-weight: bold;
+}
+
+.footstar {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.footslv {
+  width: 1200px;
+  margin:0;
+  text-align: right;
+  color: DarkGray;
+}
+
+.footct {
+  display:flex;
+}
+
+.footupd {
+ text-align: left;
+}
+
+.footlnk {
+  margin-left: 55%;
+  text-align: right;
+  font-size: 90%;
+}
+
+.glinks {
+  width: 265px;
+  margin: 0 auto;
+  color: Black;
+}
+
+.txtglinks {
+  width: 300px;
+  margin:0 auto;
+  margin-bottom: 30px;
+  color: Blue;
+  font-weight: bold;
+}
+
