@@ -58,7 +58,7 @@ AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to sh
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.53.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.54.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v1.0-20190609.tar.gz
-AddDescription "<font color='Gray'>OLD:by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font>" slv-pywho-v20211104.tar.gz
+AddDescription "<font color='Gray'>OLD:by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font>" ARCHIVE/slv-pywho-v20211104.tar.gz
 AddDescription "<font color='Gray'>OLD: by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output</font>" ARCHIVE/slv-sitewho-plus2-v0.1.tar.gz
 AddDescription "by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even..." ARCHIVE/slv-vnstat.sh
 AddDescription "by <b>slv</b> - !vnstat trigger" ARCHIVE/slv-vnstat.tcl
