@@ -45,14 +45,14 @@ AddDescription "<font color='Gray'>OLD: little patch to fix destination error on
 AddDescription "<font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>" ARCHIVE/footools-dirlogfix.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>" ARCHIVE/footools-mp3genre.patch
 AddDescription "<font color='Gray'>OLD: by slv - ugly hack for foopre to add mp3 genre in PRE</font>" ARCHIVE/footools-x86-x64-20111102-mp3genre.tar.bz2
-AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - [<a href='https://github.com/silv3rr/foo-tools'> fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.20-20180713.tar.gz
+AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.20-20180713.tar.gz
 AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.08 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.08_1.1.0g_x64.tgz
 AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.09_1.1.0j_x64.tgz
 AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.10a_1.1.1d_x64.tgz
 AddDescription "<font color='Gray'>OLD: by glteam -  glftpd 2.11a linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '5dfb420036b714328fe08cb88b36256c5cd874158d1d6cfbaa8fd7b4fa49a16526c72261b82d8724614b95ddc89fce048f3c2c79d556c505318d196ebdd05aef')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.11a_1.1.1i_x64.tgz
 AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')\">show sha512</a></font>" glftpd-LNX-2.11a_1.1.1k_x64.tgz
 AddDescription "modded to generate pw hashes for /etc/passwd" ARCHIVE/passchk.c
-AddDescription "<font color='Gray'>OLD: by slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs</font>" ARCHIVE/slv-arch.sh
+AddDescription "slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs" ARCHIVE/slv-arch.sh
 AddDescription "<font color='Gray'>OLD: by slv - archiver for mp3 daydirs and mv wkdirs (with audiosort)</font>" ARCHIVE/slv-archmp3.sh
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.52.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.53.tar.gz
