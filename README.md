@@ -21,7 +21,7 @@
 <div class="txtscripts">
 <pre>s   c   r   i   p   t   s</pre>
 </div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2022-02-07 20:25    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2022-02-12 13:58    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                          2022-02-02 11:50    -   LINKS: other websites with scripts, repos and mirrors
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                        2021-11-13 20:26   29K  by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                  2018-06-05 18:14  3.4K  by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>
@@ -41,7 +41,7 @@
 <img src="/assets/icons/text.gif" alt="[TXT]"> <a href="skiplist-example-data.txt">skiplist-example-data.txt</a>       2021-11-13 20:26  4.0K  by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile
 <img src="/assets/icons/script.gif" alt="[   ]"> <a href="slv-arch.conf">slv-arch.conf</a>                   2021-11-25 14:03  4.4K  by <b>slv</b> - archiver: config file, goes with <a href='slv-arch.sh'>slv-arch.sh</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                     2021-11-25 14:02   24K  by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>] archiver: moves releases, creates daydirs and tv/season dirs (<a href='slv-arch.conf'>conf</a>)
-<img src="/assets/icons/unknown.gif" alt="[   ]"> <a href="slv-cbapi.mrc">slv-cbapi.mrc</a>                   2021-11-13 20:26   65K  by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds
+<img src="/assets/icons/unknown.gif" alt="[   ]"> <a href="slv-cbapi.mrc">slv-cbapi.mrc</a>                   2022-03-18 12:20   71K  by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-disk.tcl">slv-disk.tcl</a>                    2021-11-20 22:01   11K  by <b>slv</b> - monitor raids/disks
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-geofxp.sh">slv-geofxp.sh</a>                   2021-11-13 20:26  7.7K  by <b>slv</b> - fxpscript to allow/deny country code(s) using geoip2
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                    2018-06-05 18:14  2.1K  by <b>slv</b> - sets gldir for files in bin/sources and sets maxdirlogsize

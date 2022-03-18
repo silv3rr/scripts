@@ -1,14 +1,14 @@
-;
-;                  " ...but what does it doooo? well, not much "
+alias CbVersion { set %cb_version beta5 slv 20220318 }
 ;
 ; .---------------------------------------------------------------------------.
 ; |                   |  > Needs: JSONFormIRC 2.0.2001+                       |
 ; |  :: CBFTP API ::  |  > Usage: /CbHelp /CbSet /CbSite /CbInvite            |
 ; |  ---------------  |           /CbSearch /CbDupe /CbReq /CbAddsite         |
-; |       beta3       |           /CbSpread /CbFxp /CbList /CbInc ..etc       |
+; |        beta       |           /CbSpread /CbFxp /CbList /CbInc ..etc       |
 ; |                   |           ( Or right click for CBFTP API menu )       |
 ; `---------------------------------------------------------------------------'
-;                                                                 slv 20210803
+;                 " ...but what does it doooo? well, not much "               
+;
 ; :: USAGE
 ; -----------------------------------------------------------------------------
 ; This is meant to show how the Cbftp JSON REST API can be used with mIRC.
@@ -29,6 +29,7 @@
 ;
 ; :: CHANGELOG
 ; -----------------------------------------------------------------------------
+; > beta5: fix settings dialog
 ; > beta3: added transfer, filelist, incomplete cmd, site mgmt (and more),
 ;          menu's and dialogs, improved config
 ; > PoC:   added site cmds, getsites (1st public rls)
@@ -38,7 +39,7 @@
 ; > Settings can be changed in multiple ways:
 ;    - initial setup in script, see 'CbInit' below
 ;    - by using alias /CbSet
-;    - using gui menu: right click, select 'CBFTP API', Settings
+;    - using gui menu: right click in window, select 'CBFTP API' then 'Settings'
 ;
 ; > Set Cbftp REST API url (http/json) including plaintext password (*)
 ;   Example: https://:<API_Password>@127.0.0.1:443
@@ -66,12 +67,39 @@ alias CbInit {
   set %cb_maxchars 4000
   ;; Show credits from SITE STAT output in own window *new*
   set %cb_creditwin 0
-  set %cb_creditwname CRDS
+  set %cb_creditwname MyCredits
 }
 ;
 ; -----------------------------------------------------------------------------
 ;  CONFIG END
 ; -----------------------------------------------------------------------------
+
+on 1:LOAD: {
+  CbVersion
+}
+
+alias CbApiAbout {
+  .CbVersion
+  var %n = $chr(13)
+  var %s = 
+  ; return output for dialog
+  if ($1) {
+    var %n = $chr(13)
+    var %a = $null
+    var %a = %a .-------------------------. %n 
+    var %a = %a $chr(124) .. :: CBFTP API :: .. $chr(124) %n
+    var %a = %a $chr(124) %cb_version $chr(124) %n
+    var %a = %a `-------------------------' %n 
+    return %a %n
+  }
+  ; echo to status window
+  else {
+    echo -as .----------------------.
+    echo -as $chr(124) %s %s :: CBFTP API :: %s %s %s $chr(124)
+    echo -as $chr(124) %s %cb_version %s $chr(124)
+    echo -as `----------------------'
+  }
+}
 
 
 ; API SITE COMMAND EXAMPLES:
@@ -136,7 +164,7 @@ alias CbDupe {
     echo -ast CBDUPE: " $+ $1- $+ " ( $+ $CbArray(%cb_sites) $+ )
     CbCmd $1-
   }
-  else { $CbError(DUPE,query) }
+  else { CbError DUPE query }
 }
 
 ;; SITE SEARCH <query>
@@ -147,20 +175,27 @@ alias CbSearch {
     echo -ast CBSEARCH: " $+ $1- $+ " on sites: $CbArray(%cb_sites)
     CbCmd $1-
   }
-  else { $CbError(SEARCH,query) }
+  else { CbError SEARCH query }
 }
 
 ;; SITE REQUEST <release>
 
 alias CbReq {
   if ($1) { set %cb_cmd SITE REQUEST | CbCmd $1- }
-  else { $CbError(REQ,release) }
+  else { CbError REQ release }
 }
 
 ;; SITE STAT
 
 alias CbStat {
   set %cb_cmd SITE STAT | CbCmd
+}
+
+
+;; GENERAL INFO
+
+alias CbInfo {
+  set %cb_cmd INFO | CbCmd
 }
 
 
@@ -173,7 +208,7 @@ alias CbStat {
 ;; CbGetSites [site] [section] or [filter]  (default: all sites)
 
 alias CbGetSites {
-  .CbCheck
+  .CbCheck skip_sites
   JSONClose -w cbftp*
   var %cb_hn = cbftp $+ $rand(1,10000)
   var %cb_urn = /sites
@@ -201,11 +236,11 @@ alias CbGetSites {
     }
   }
   var %cb_method = GET
-  JSONOpen -uwi %cb_hn $CbUri(%cb_url,%cb_urn)
+  JSONOpen -uwi %cb_hn $CbUri(%cb_url, %cb_urn)
   CbHttpHeaders %cb_hn
   JSONHttpFetch %cb_hn
   if (%cb_debug >= 2) {
-    echo -ast DEBUG: CbGetSites HttpDebug.. | echo $CbHttpDebug(%cb_url,%cb_urn,%cb_hn,%cb_method,%cb_data)
+    echo -ast DEBUG: CbGetSites HttpDebug: | echo $CbHttpDebug(%cb_url,%cb_urn,%cb_hn,%cb_method,%cb_data)
   }
   if (!$JSONError) {
     if (%cb_debug >= 2) {
@@ -257,7 +292,6 @@ alias CbGetSites {
 
     else {
       set %cb_getsites $replace($regsubex($json(%cb_hn).String,^\[(.*)\]$,\1),",)
-
       JSONClose -w cbftp*
       if ($isid) {
         return %cb_getsites
@@ -286,7 +320,7 @@ alias CbGetSites {
       .echo -as CBSITES: %sites
     }
     if (%cb_debug >= 2) {
-      echo -ast DEBUG: CbGetSites $  $+ json.debug $json(%cb_hn).debug
+      echo -ast DEBUG: CbGetSites $  $+ json.debug = $json(%cb_hn).debug
       echo -ast DEBUG: CbGetSites cb_getsites= $+ %cb_getsites
     }
   }
@@ -296,7 +330,7 @@ alias CbGetSites {
     }
     else {
       JSONClose %cb_hn
-      echo -ast CBSITES: ERROR > JSONError $JSONError $JSON(%cb_hn).error (hn: %cb_hn uri: %cb_uri $+ )
+      echo -ast CBSITES: ERROR > JSONError $JSONError $JSON(%cb_hn).error (hn: %cb_hn uri: $CbUri(%cb_url) $+ )
     }
   }
 }
@@ -350,7 +384,7 @@ alias CbList {
     set %cb_isid $isid
     set %cb_cmd FILELIST | CbCmd $1- 
   }
-  else { $CbError(LIST,site) }
+  else { CbError LIST site }
 }
 
 ;; INCOMPLETES : <section> <dstsite> <srcsite>  (uses filelist)
@@ -359,56 +393,56 @@ alias CbInc {
   if (($1 && (/ !isin $1)) && $2 && $3) {
     set %cb_cmd INCOMPLETES | CbCmd $2 $1 5 $3
   }
-  else { $CbError(INC,section $+ $chr(44) dstsite or srcsite) }
+  else { CbError INC section $+ $chr(44) dstsite or srcsite }
 }
 
 ;; POST /spreadjobs/JOBNAME/reset
 
 alias CbResetSpread {
   if ($1) { set %cb_cmd RESETSPREAD | CbCmd $1- }
-  else { $CbError(SPREAD,release) }
+  else { CbError SPREAD release }
 }
 
 ;; POST /spreadjobs/JOBNAME/abort
 
 alias CbAbortSpread {
   if ($1) { set %cb_cmd ABORTSPREAD | CbCmd $1- }
-  else { $CbError(SPREAD,release) }
+  else { CbError SPREAD release }
 }
 
 ;; POST /transferjobs/JOBNAME/reset (no body)
 
 alias CbResetXfer {
   if ($1) { set %cb_cmd RESETTRANSFER | CbCmd $1- }
-  else { $CbError(TRANSFER,release) }
+  else { CbError TRANSFER release }
 }
 
 ;; POST /transferjobs/JOBNAME/abort (no body)
 
 alias CbAbortXfer {
   if ($1) { set %cb_cmd ABORTTRANSFER | CbCmd $1- }
-  else { $CbError(TRANSFER,release) }
+  else { CbError TRANSFER release }
 }
 
 ;; DELETE /sites/SITE1 : <site>
 
 alias CbDelSite {
   if ($1) { set %cb_cmd DELSITE | CbCmd $1- }
-  else { $CbError(SITE,site to delete) }
+  else { CbError SITE site to delete }
 }
 
 ;; DELETE /sites/SITE1/sections/SECTIONNAME : <site> <section>
 
 alias CbDelSiteSection {
   if ($1) { set %cb_cmd DELSITESECTION | CbCmd $1- }
-  else { $CbError(SITE,site and section to delete) }
+  else { CbError SITE site and section to delete }
 }
 
 ;; DELETE /sections/SECTIONNAME : <section>
 
 alias CbDelSection {
   if ($1) { set %cb_cmd DELSECTION | CbCmd $1- }
-  else { $CbError(SECTION,section to delete) }
+  else { CbError SECTION section to delete }
 }
 
 
@@ -432,14 +466,14 @@ alias CbFxp {
       $chr(125)
 
     ; NOTE:
-    ;  dst_path: dst_section or dst_path 
-    ;  src_path: optional 
+    ;   dst_path: dst_section or dst_path 
+    ;   src_path: optional 
 
     if (%cb_debug >= 1) { echo -ast DEBUG: CbFxp cb_tmpl_fxp_job = %cb_tmpl_fxp_job }
     set %cb_cmd TRANSFER | CbCmd %cb_tmpl_fxp_job
   }
   else {
-    $CbError(FXP,section $+ $chr(44) srcsite $+ $chr(44) dstsite or release)
+    CbError FXP section $+ $chr(44) srcsite $+ $chr(44) dstsite or release
   }
 }
 
@@ -455,14 +489,14 @@ alias CbDown {
       $chr(125)
 
     ; NOTE:
-    ;  src_section: src_section or src_path
-    ;  dst_path: optional
+    ;   src_section: src_section or src_path
+    ;   dst_path: optional
 
     if (%cb_debug >= 1) { echo -ast DEBUG: CbDown cb_tmpl_down_job = %cb_tmpl_down_job }
     set %cb_cmd TRANSFER | CbCmd %cb_tmpl_down_job
   }
   else {
-    $CbError(DOWN,site $+ $chr(44) release or section)
+    CbError DOWN site $+ $chr(44) release or section
   }
 }
 
@@ -478,14 +512,14 @@ alias CbUp {
       $chr(125)
 
     ; NOTE:
-    ;  dst_path: dst_section or dst_path
-    ;  src_path: optional
+    ;   dst_path: dst_section or dst_path
+    ;   src_path: optional
 
     if (%cb_debug >= 1) { echo -ast DEBUG: CbUp cb_tmpl_up_job = %cb_tmpl_up_job }
     set %cb_cmd TRANSFER | CbCmd %cb_tmpl_up_job
   }
   else {
-    $CbError(UP,site $+ $chr(44) section or release)
+    CbError UP site $+ $chr(44) section or release
   }
 }
 
@@ -565,7 +599,7 @@ alias CbAddSite {
     set %cb_cmd ADDSITE | CbCmd %cb_tmpl_site
   }
   else {
-    $CbError(SITE,site and bncs(s))
+    CbError SITE site and bncs(s)
   }
 }
 
@@ -578,7 +612,7 @@ alias CbAddSiteSection {
     set %cb_cmd ADDSITESECTION | CbCmd $1 %cb_tmpl_section
   }
   else {
-    $CbError(SECTION,site $+ $chr(44) section and path to add)
+    CbError SECTION site $+ $chr(44) section and path to add
   }
 
 }
@@ -606,9 +640,9 @@ alias CbAddSection {
       $chr(125)   
 
     ; NOTE:
-    ;  "hotkey": optional, 0-9
-    ;  "action":(ALLOW/DENY/UNIQUE/SIMILAR)
-    ;  "scope": (IN_RACE/ALL)
+    ;   "hotkey": optional, 0-9
+    ;   "action":(ALLOW/DENY/UNIQUE/SIMILAR)
+    ;   "scope": (IN_RACE/ALL)
 
     noop $regsubex(cb_section, %cb_tmpl_section, ("name":) "" $+ $chr(44), \1 " $+ %name $+ " $+ $chr(44), %cb_tmpl_section)
 
@@ -616,7 +650,7 @@ alias CbAddSection {
     set %cb_cmd ADDSECTION | CbCmd %cb_tmpl_section
   }
   else {
-    $CbError(ADDSECTION,section)
+    CbError ADDSECTION section
   }
 }
 
@@ -643,10 +677,10 @@ alias CbSpread {
       $chr(125)
 
     ; NOTE:
-    ;  sites_dlonly: (optional)
-    ;  sites_all: (optional) whether to add all sites with the section defined
-    ;  reset: (optional) whether to reset the job if it already exists
-    ;  profile: RACE/DISTRIBUTE/PREPARE
+    ;   sites_dlonly: (optional)
+    ;   sites_all: (optional) whether to add all sites with the section defined
+    ;   reset: (optional) whether to reset the job if it already exists
+    ;   profile: RACE/DISTRIBUTE/PREPARE
 
     noop $regsubex(cb_spread, %cb_tmpl_spread, ("section":) "" $+ $chr(44), \1 " $+ $1 $+ " $+ $chr(44), %cb_tmpl_spread)
     noop $regsubex(cb_spread, %cb_tmpl_spread, ("name":) "" $+ $chr(44),    \1 " $+ $2 $+ " $+ $chr(44), %cb_tmpl_spread)
@@ -665,7 +699,7 @@ alias CbSpread {
     set %cb_cmd SPREAD | CbCmd %cb_tmpl_spread
   }
   else {
-    $CbError(SPREAD,section and release)
+    CbError SPREAD section and release
   }
 }
 
@@ -678,7 +712,7 @@ alias CbModSite {
     set %cb_cmd MODSITE | CbCmd $1 %cb_tmpl_site
   }
   else {
-    $CbError(SITE,site and bncs(s) to modify)
+    CbError SITE site and bncs(s) to modify
   }
 }
 
@@ -691,7 +725,7 @@ alias CbModSection {
     set %cb_cmd MODSECTION | CbCmd $1 %cb_tmpl_section
   }
   else {
-    $CbError(SECTION,section)
+    CbError SECTION section
   }
 }
 
@@ -704,7 +738,7 @@ alias CbModSiteSection {
     set %cb_cmd MODSITESECTION | CbCmd $1 $2 %cb_tmpl_section
   }
   else {
-    $CbError(SECTION,site $+ $chr(44) section and path to add)
+    CbError SECTION site $+ $chr(44) section and path to add
   }
 
 }
@@ -712,7 +746,7 @@ alias CbModSiteSection {
 
 ; CbCmd: SEND/RECEIVE JSON
 ; ------------------------
-; Using 'JSON For Mirc' CbCmd sends command to the CB API and handles result
+; Using 'JSON For Mirc', CbCmd sends command to the CB API and handles result
 
 alias -l CbCmd {
   var %cb_args = $1-
@@ -727,20 +761,20 @@ alias -l CbCmd {
     unset %cb_savesites
   }
   if (!%cb_cmd) {
-    $CbError(SPREAD,command) | return
+    CbError SPREAD command | return
   }
 
   ;; Handle SITE and RAW command to /raw endpoint for 1 or more or all site(s)
 
   ; NOTE:
-  ;  sites: run on these sites
-  ;  sites_with_sections: run on sites with these sections defined
-  ;  sites_all: run on all sites
-  ;  path: the path to cwd to before running command
-  ;  path_section: section to cwd to before running command
-  ;  timeout: max wait before failing
-  ;  async: if false, wait for command to finish before responding.
-  ;         if true, respond with a request id and let command run in the background
+  ;   sites: run on these sites
+  ;   sites_with_sections: run on sites with these sections defined
+  ;   sites_all: run on all sites
+  ;   path: the path to cwd to before running command
+  ;   path_section: section to cwd to before running command
+  ;   timeout: max wait before failing
+  ;   async: if false, wait for command to finish before responding.
+  ;          if true, respond with a request id and let command run in the background
 
   if ($regex(%cb_cmd,/^(SITE\s?|RAW)/)) {
     if (%cb_cmd == RAW) {
@@ -798,7 +832,6 @@ alias -l CbCmd {
   elseif (%cb_cmd == ABORTTRANSFER) {
     var %cb_urn = /transferjobs/ $+ $1 $+ /abort
     var %cb_method = POST
-  ;; Initial Setup 
   }
   elseif (%cb_cmd == RESETTRANSFER) {
     var %cb_urn = /transferjobs/ $+ $1 $+ /reset
@@ -853,6 +886,10 @@ alias -l CbCmd {
     var %cb_urn = /filelist?site= $+ $1 $+ &path= $+ $iif($2,$v1,/) $+ $iif($3,&timeout= $+ $v1)
     var %cb_method = GET
   }
+  elseif (%cb_cmd == INFO) {
+    var %cb_urn = /info
+    var %cb_method = GET
+  }
   else {
     echo -ast CBCMD: ERROR > unsupported command
     return
@@ -864,12 +901,12 @@ alias -l CbCmd {
 
   JSONClose -w cbftp*
   var %cb_hn = cbftp  $+ $rand(1,10000)
-  JSONOpen -uwi %cb_hn $CbUri(%cb_url,%cb_urn)
+  JSONOpen -uwi %cb_hn $CbUri(%cb_url, %cb_urn)
   CbHttpHeaders %cb_hn
   JSONHttpMethod %cb_hn %cb_method
   JSONHttpFetch %cb_hn %cb_data
   if (%cb_debug >= 2) {
-    echo $CbHttpDebug(%cb_url,%cb_urn,%cb_hn,%cb_method,%cb_data)
+    echo $CbHttpDebug(%cb_url, %cb_urn, %cb_hn, %cb_method, %cb_data)
     echo $JSON(%cb_hn).debug
   }
   if (%cb_debug >= 4) {
@@ -901,7 +938,7 @@ alias -l CbCmd {
       return
     }
 
-    ;; DELSITE/SECTION: HTTP Status 2xx and a non-empty reponse
+    ;; DELSITE/DELSECTION: HTTP Status 2xx and a non-empty reponse
 
     elseif ($regex(%cb_cmd,/^DEL(SITE|SECTION)/)) {
       if ($regex($json(%cb_hn).HttpStatus,/^2/)) { 
@@ -911,15 +948,15 @@ alias -l CbCmd {
       }
     }
 
-    ;; Show array with all sections names
+    ;; GETSECTIONS: Show array with all sections names
 
     elseif (%cb_cmd == GETSECTIONS) {
       if ($regex($json(%cb_hn).HttpStatus,/^2/)) { 
         if ($json(%cb_hn).length > 0) {
           set %cb_gotres 1
           if ($1) {
-            noop $regsubex(res,$json(%cb_hn).HttpBody,/[{}]/g,,%details)
-            echo -as CBSITES: SECTION >  $+ $1 $+  $+ %details
+            noop $regsubex(res,$json(%cb_hn).HttpBody,/[{}]/g,,%cb_sec_details)
+            echo -as CBSITES: SECTION >  $+ $1 $+  $+ %cb_sec_details
           }
           else {
             var %i = 0 
@@ -940,9 +977,8 @@ alias -l CbCmd {
       }
     }
 
-    ;; Walk JSON calling CbSiteItem for each site item
+    ;; DUPE/SEARCH: Walk JSON calling CbSiteItem for each site item
 
-    ;elseif ($regex(%cb_cmd,/^(SITE|GET)/)) {
     elseif ($regex(%cb_cmd,/^SITE (DUPE|SEARCH|STAT)$/)) {
       echo -as $crlf
       if (%cb_sites) {
@@ -957,7 +993,7 @@ alias -l CbCmd {
       }
     }
 
-    ;; Parse JSON and call CbFileItem or CbIncItem for each dir name
+    ;; FILELIST: Parse JSON and call CbFileItem or CbIncItem for each dir name
 
     elseif (%cb_cmd == FILELIST) {
       set -eu30 %cnt_inc 0
@@ -979,11 +1015,12 @@ alias -l CbCmd {
 
     if ($regex($JSON(%cb_hn).HttpStatus,/^2\d\d$)) {
       set %cb_gotres 1
-      noop $regsub($JSON(%cb_hn).HttpResponse,/\n/, $chr(44) $chr(32) ,%fmtres)
-      echo -as CBAPI: OK > %fmtres
+      var %cb_fmtres
+      noop $regsub($JSON(%cb_hn).HttpResponse,/\n/, $chr(44) $chr(32) ,%cb_fmtres)
+      echo -as CBAPI: OK > %cb_fmtres
     }
     else {    
-      echo -ast CBAPI: ERROR > JSONError $JSONError $JSON(%cb_hn).error (hn: %cb_hn uri: %cb_uri $+ )
+      echo -ast CBAPI: ERROR > JSONError $JSONError $JSON(%cb_hn).error (hn: %cb_hn uri: $CbUri(%cb_url) $+ )
     }
     JSONClose %cb_hn
     return
@@ -994,20 +1031,27 @@ alias -l CbCmd {
   var %cb_response = $json(%cb_hn).HttpResponse
   JSONClose -w cbftp*
   if (%cb_gotres == 0) {
-    noop $regsubex(res,%cb_response,/(Content-Length: \d+|Content-Type: application/json)/g,,%r)
+    var %cb_fmtres
+    noop $regsubex(res,%cb_response,/(Content-Length: \d+|Content-Type: application/json)/g,,%cb_fmtres)
     if ($regex(%cb_cmd,/^SITE (DUPE|SEARCH)$/)) {
-      noop $regsubex(res,%r,/\(Values displayed after dir names are Files/Megs/Age\)/g, ,%r)
-      noop $regsubex(res,%r,/Doing case-insensitive search for '.+':/g, ,%r)
+      noop $regsubex(res,%cb_fmtres,/\(Values displayed after dir names are Files/Megs/Age\)/g, ,%cb_fmtres)
+      noop $regsubex(res,%cb_fmtres,/Doing case-insensitive search for '.+':/g, ,%cb_fmtres)
     }
-    noop $regsubex(res,%r,/Command Successful./g, ,%r)
-    noop $regsubex(res,%r,/("?200[- ]|[\]\[{}]|\\r\\n)/g,,%r)
-    noop $regsubex(res,%r,/:\s $+ $chr(44),: none $+ $+ $chr(44),%r)
-    noop $regsubex(res,%r,/\s\s\s/g, ,%r)
+    noop $regsubex(res,%cb_fmtres,/Command Successful./g, ,%cb_fmtres)
+    noop $regsubex(res,%cb_fmtres,/("?200[- ]|[\]\[{}]|\\r\\n)/g,,%cb_fmtres)
+    noop $regsubex(res,%cb_fmtres,/:\s $+ $chr(44),: none $+ $+ $chr(44),%cb_fmtres)
+    noop $regsubex(res,%cb_fmtres,/\s\s\s/g, ,%cb_fmtres)
     if (%cb_cmd == INCOMPLETES) {
       echo -ast CBINC: no incompletes found
     }
     else {
-      echo -ast CBAPI: $iif(%r, STATUS > ' $+ $v1 $+ ',empty response or no results)
+      if (%cb_cmd == INFO) {
+        .CbVersion
+        CbApiAbout
+      }
+      noop $regsubex(res,%cb_fmtres,/("version_tag": ")([^ ]+)"/, \1\2",%cb_fmtres)
+      echo -ast CBAPI: $iif(%cb_fmtres, STATUS > ' $+ $v1 $+ ', empty response or no results)
+      set -eu30 %cb_info $iif(%cb_fmtres, %cb_fmtres, could not get info)
     }
     echo -as $crlf
   }
@@ -1016,12 +1060,10 @@ alias -l CbCmd {
     unset %cb_savesites
   }
   if (%cb_debug >= 1) {
-    echo -ast DEBUG: ---
-    echo -ast DEBUG: END
-    echo -ast DEBUG: ---
+    echo -ast DEBUG: --- | echo -ast DEBUG: END | echo -ast DEBUG: ---
   }
 }
-
+f
 
 ; JSONItem
 ; --------
@@ -1114,7 +1156,7 @@ alias CbIncItem {
 }
 
 
-;; CbSiteResult: format site results
+;; CbSiteResult: Format site results
 ;; use regexps to clean up result then output lines split on CR
 
 alias -l CbSiteResult {
@@ -1152,16 +1194,17 @@ alias -l CbSiteResult {
         elseif ($regex(%credunit,/Ti?B/)) {
           var %credits = $round($calc($round(%crednum,1)*1024),2) GiB
         }
+        if (%cb_creditwin) {
+          if (!$window(@ $+ %cb_creditwname )) {
+            /window -lnk0g1z @ $+ %cb_creditwname Fixedsys 9
+          }
+          .window -g0 @ $+ %cb_creditwname
+          .window -z @ $+ %cb_creditwname
+          .aline @ $+ %cb_creditwname $chr(91) $+ $date(mmdd) $+ ][ $+ $time $+ ] Credits on  $+ $3 $+ :3 %credits 
+        }
       }
-      if (%cb_creditwin) {
-        if (!$window(@ $+ %cb_creditwname )) { /window -lnk0g1z @ $+ %cb_creditwname Fixedsys 9 }
-        .window -g0 @ $+ %cb_creditwname
-        .window -z @ $+ %cb_creditwname
-        .aline @ $+ %cb_creditwname $chr(91) $+ $date(mmdd) $+ ][ $+ $time $+ ] Credits on  $+ $3 $+ :3 %credits 
-      }
-
     }
-    ;; other results
+    ;; Other results
     else {
       var %cb_result = %cb_re_all
     }
@@ -1188,31 +1231,47 @@ alias -l CbSiteResult {
 ; --------------------
 
 alias -l CbError {
-  ; Args 1=prefix 2=missing arg
-  echo -ast CB $+ $iif($1,$v1,API) $+ : ERROR > missing $iif($2,$v1,arguments(s)) $+ , try /CbHelp
+  ; Args 1=prefix 2=missing_arg (or $2- err_message)
+  if ($3) {
+    echo -ast CB $+ $iif($1,$v1,API) $+ : ERROR > $2-
+  }
+  else {
+    echo -ast CB $+ $iif($1,$v1,API) $+ : ERROR > missing $iif($2,$v1,arguments(s)) $+ , try /CbHelp
+  }  
 }
 
 alias -l CbCheck {
-  ;; check for lib and vars
+  ; check for lib and vars
   if (!$regex($nopath($isalias(JSONOpen).fname),/^json for mirc.mrc$/i)) {
     if (%cb_debug != 0) {
       echo -ast DEBUG: JSONFormIRC not loaded
     }
     else {
-      echo -ast CBCMD: ERROR > JSONFormIRC not loaded, see 'INSTALLATION' inside script | halt
+      echo -ast CBCMD: ERROR > JSONFormIRC not loaded, see 'INSTALLATION' inside script
+      halt
     }
   }
   if (!%cb_url) {
-    $CbError(CMD,'https api url') | return
+    CbError CMD 'https api url'
+    return $false
   }
-  if (!$CbPasswd) {
-    $CbError(CMD,'api password') | return
+  if (!$CbPasswd(%cb_url)) {
+    CbError CMD 'api password'
+    return $false
+  }
+  if (!%cb_getsites) {
+    ; do not run if we're called from CbGetSites alias itself (prevent inf loop)
+    if ($1 != skip_sites) {
+      set %cb_getsites $replace($CbGetSites,$chr(34),)
+    }
+    else {
+      if (%cb_debug >= 1) {
+        echo -ast DEBUG: CbCheck SKIP_SITES cb_getsites: %cb_getsites cb_url: %cb_url CbPasswd: $CbPasswd(%cb_url))
+      }
+    }
   }
   if (!$var(%cb_maxchars)) {
     set %cb_maxchars 4000
-  }
-  if (!%cb_getsites) { 
-    set %cb_getsites $replace($CbGetSites,$chr(34),)
   }
   if (!%cb_creditwname) { 
     set %cb_creditwname CRDS
@@ -1220,10 +1279,13 @@ alias -l CbCheck {
 }
 
 alias -l CbUri {
-  if ($regsubex(cburl,$1 $+ $iif($2,$v1,/),/^(https://)(?::?.+@)(.+:\d+/.*)$/,\1\2,%cb_uri)) {
+  var %a1 = $regsubex(a1,$1,/([^/]+)/*$/,\1)
+  var %a2 = $regsubex(a2, $regsubex(a2,$2,/^/*|/*$/g,) ,///+/,/)
+  var %tmp = %a1 $+ $iif(%a2,/ $+ %a2,/)
+  if ($regsubex(cburi,%tmp,/^(https?://)(?::?.+@)(.+:\d+.*)$/,\1\2,%cb_uri)) {
     return %cb_uri
   }
-  return
+  return $false
 }
 
 alias -l CbPasswd {
@@ -1237,26 +1299,26 @@ alias -l CbPasswd {
     return $v1
   }
   ; Micryption: decrypt encrypted passwd text using '_mcloggingkey'
-  elseif ($regsubex(cbpw,$iif($1,$v1,%cb_url),/^https://:?(«m«.*=»m»)@.*:\d+$/,\1,%cb_passwd)) {
+  elseif ($regsubex(cbpw,$iif($1,$v1,%cb_url),/^https?://:?(«m«.*=»m»)@.*:\d+\/*$/,\1,%cb_passwd)) {
     return $dll(%mc_scriptdll, mc_decrypt2, $mc_loggingkey %cb_passwd)
   }
   ; plaintext
-  elseif ($regsubex(cbpw,$iif($1,$v1,%cb_url),/^https://:?(.+)@.*:\d+$/,\1,%cb_passwd)) { 
-    return %cb_passwd 
+  elseif ($regsubex(cbpw,$iif($1,$v1,%cb_url),/^https?://:?(.+)@.*:\d+\/*$/,\1,%cb_passwd)) {
+    return $iif($gettok(%cb_passwd,2,58), $v1, %cb_passwd)
   }
-  return
+  return $false
 }
 
 alias -l CbHttpHeaders {
   ; Args = 1:%cn_hn
-  JSONHttpHeader $1 Authorization Basic $encode(: $+ $CbPasswd, m)
+  JSONHttpHeader $1 Authorization Basic $encode(: $+ $CbPasswd(%cb_url), m)
   JSONHttpHeader $1 Content-Type application/x-www-form-urlencoded
 }
 
 alias -l CbHttpDebug {
   ; Args: 1=URL 2=URN 3=%cb_hn 4=METHOD 5=%cb_data
-  echo -ast DEBUG: JSONOpen $3 $CbUri($1,$2)
-  echo -ast DEBUG: JSONHttpHeader $3 Authorization $encode(: $+ $CbPasswd, m)
+  echo -ast DEBUG: JSONOpen $3 $CbUri($1, $2)
+  echo -ast DEBUG: JSONHttpHeader $3 Authorization $encode(: $+ $CbPasswd(%cb_url), m)
   echo -ast DEBUG: JSONHttpHeader $3 Content-Type application/x-www-form-urlencoded
   echo -ast DEBUG: JSONHttpMethod $3 $4
   echo -ast DEBUG: JSONHttpFetch $3 $5
@@ -1336,55 +1398,57 @@ alias CbHelp {
   var %h16 = CBHELP: set debug verbosity                        $sp(31) : /CbSet debug [1-4] %n
   var %h17 = CBHELP: %n
   var %h18 = CBHELP: NOTE: /CbSet overrides /CbInit settings %n
-  var %h19 = CBHELP: %n
-  var %h20 = CBHELP: SITE MANAGEMENT CMDS: %n %n
-  var %h21 = CBHELP: show site(s)              $sp(12) : /CbSite [site] [section] or [filter] %n
-  var %h22 = CBHELP: add/modify site           $sp(9)  : /CbAddSite /CbModSite <site> <bnc> or <bnc1,bnc2> %n
-  var %h23 = CBHELP: del site                  $sp(16) : /CbDelSite <site> %n
-  var %h24 = CBHELP: show sections             $sp(11) : /CbSections [section] %n
-  var %h25 = CBHELP: add/del section           $sp(9)  : /CbAddSection /CbDelSection <section> %n
-  var %h26 = CBHELP: mod section               $sp(13)  : /CbModSection <section> <newname> %n
-  var %h27 = CBHELP: add/mod section on site   $sp(1)  : /CbAddSiteSection /CbModSiteSection <site> <section> <path> %n
-  var %h28 = CBHELP: del section from site     $sp(3)  : /CbDelSiteSection <site> <section> %n
-  var %h29 = CBHELP: %n
-  var %h30 = CBHELP: MULTI SITE CMDS: %n %n
-  var %h31 = CBHELP: site <cmd>   $sp(3) : /CbSiteCmd <cmd> <arguments> %n
-  var %h32 = CBHELP: site invite  $sp(2) : /CbInvite <nick> %n
-  var %h33 = CBHELP: site search  $sp(2) : /CbSearch <pattern> %n
-  var %h34 = CBHELP: site dupe    $sp(4) : /CbDupe <pattern> %n
-  var %h35 = CBHELP: site request $sp(1) : /CbReq <release> %n 
-  var %h36 = CBHELP: %n
-  var %h37 = CBHELP: TRANSFER CMDS: %n %n
-  var %h38 = CBHELP: spread job      $sp(6) : /CbSpread <section> <release> [sites] %n
-  var %h39 = CBHELP: fxp job         $sp(9) : /CbFxp <section> <srcsite> <dstsite> <release> %n
-  var %h40 = CBHELP: download job    $sp(4) : /CbDown <site> <section> <release> [srcpath]   (default: /tmp) %n
-  var %h41 = CBHELP: upload job      $sp(6) : /CbUp <site> <section> <release> [dstpath]  (default: /tmp) %n
-  var %h42 = CBHELP: get spreadjobs  $sp(2) : /CbGetSpread [release] %n
-  var %h43 = CBHELP: get transfers   $sp(3) : /CbGetXfer [release] %n
-  var %h44 = CBHELP: abort spread    $sp(4) : /CbAbortSpread <release> %n
-  var %h45 = CBHELP: abort transfer  $sp(2) : /CbAbortXfer <release> %n
-  var %h46 = CBHELP: get filelist    $sp(4) : /CbList <site> [path] [timeout] %n
-  var %h47 = CBHELP: fxp incompletes $sp(1) : /CbInc <section> <dstsite> <srcsite> %n
-  var %h48 = CBHELP: %n 
-  var %h49 = CBHELP: Or, to use Menu: right click and select 'CBFTP API' %n
+  var %h19 = CBHELP: $sp(6) /CbInfo shows general info %n
+  var %h20 = CBHELP: %n
+  var %h21 = CBHELP: SITE MANAGEMENT CMDS: %n %n
+  var %h22 = CBHELP: show site(s)              $sp(12) : /CbSite [site] [section] or [filter] %n
+  var %h23 = CBHELP: add/modify site           $sp(9)  : /CbAddSite /CbModSite <site> <bnc> or <bnc1,bnc2> %n
+  var %h24 = CBHELP: del site                  $sp(16) : /CbDelSite <site> %n
+  var %h25 = CBHELP: show sections             $sp(11) : /CbSections [section] %n
+  var %h26 = CBHELP: add/del section           $sp(9)  : /CbAddSection /CbDelSection <section> %n
+  var %h27 = CBHELP: mod section               $sp(13)  : /CbModSection <section> <newname> %n
+  var %h28 = CBHELP: add/mod section on site   $sp(1)  : /CbAddSiteSection /CbModSiteSection <site> <section> <path> %n
+  var %h29 = CBHELP: del section from site     $sp(3)  : /CbDelSiteSection <site> <section> %n
+  var %h30 = CBHELP: %n
+  var %h31 = CBHELP: MULTI SITE CMDS: %n %n
+  var %h32 = CBHELP: site <cmd>   $sp(3) : /CbSiteCmd <cmd> <arguments> %n
+  var %h33 = CBHELP: site invite  $sp(2) : /CbInvite <nick> %n
+  var %h34 = CBHELP: site search  $sp(2) : /CbSearch <pattern> %n
+  var %h35 = CBHELP: site dupe    $sp(4) : /CbDupe <pattern> %n
+  var %h36 = CBHELP: site request $sp(1) : /CbReq <release> %n 
+  var %h37 = CBHELP: site stat    $sp(4) : /CbStat %n 
+  var %h38 = CBHELP: %n
+  var %h39 = CBHELP: TRANSFER CMDS: %n %n
+  var %h40 = CBHELP: spread job      $sp(6) : /CbSpread <section> <release> [sites] %n
+  var %h41 = CBHELP: fxp job         $sp(9) : /CbFxp <section> <srcsite> <dstsite> <release> %n
+  var %h42 = CBHELP: download job    $sp(4) : /CbDown <site> <section> <release> [srcpath]   (default: /tmp) %n
+  var %h43 = CBHELP: upload job      $sp(6) : /CbUp <site> <section> <release> [dstpath]  (default: /tmp) %n
+  var %h44 = CBHELP: get spreadjobs  $sp(2) : /CbGetSpread [release] %n
+  var %h45 = CBHELP: get transfers   $sp(3) : /CbGetXfer [release] %n
+  var %h46 = CBHELP: abort spread    $sp(4) : /CbAbortSpread <release> %n
+  var %h47 = CBHELP: abort transfer  $sp(2) : /CbAbortXfer <release> %n
+  var %h48 = CBHELP: get filelist    $sp(4) : /CbList <site> [path] [timeout] %n
+  var %h49 = CBHELP: fxp incompletes $sp(1) : /CbInc <section> <dstsite> <srcsite> %n
   var %h50 = CBHELP: %n 
+  var %h51 = CBHELP: Or, to use Menu: right click in window and select 'CBFTP API' %n
+  var %h52 = CBHELP: %n 
 
   var %r
-  ; show diff header for dialog box than status window
+  ; show different header for dialog box than status window
   if ($1) {
     %r = %r %n %n
     %r = %r %h01
-  } 
+  }
   else {
     echo -as %h00
     echo -as %h01
     echo -as %h02
   }
-  var %i = 02
+  var %i = 03
   ; echo to status window
   while (%h [ $+ [ %i ] ]) {
     ; skip CbInit and CbSet info if url and passwd already set
-    if ((%i == 02) && (%cb_url && $CbPasswd)) {
+    if (%i == 03 && %cb_url && $CbPasswd(%cb_url)) {
       var %i = 07
     }
     if ($1) {
@@ -1419,18 +1483,23 @@ alias -l CbConf {
   var %s03 = CBSET: Use: /CbSet [url|sites|login] <argument> %n
   var %s04 = CBSET: %s %s %s %s %s /CbSet [maxchars|creditwin|creditwname|raw|debug] <argument> %n 
   var %s05 = CBSET: %n
-  var %s06 = CBSET: To use the Menu instead: right click, then goto 'CBFTP API' > Settings %n %n
-  var %s07 = CBSET: %n
-  var %s08 = CBSET: url          $sp(10) : cb_url = $CbUri(%cb_url) %n
-  var %s09 = CBSET: $sp(16) cb_passwd = $iif($CbPasswd,is set,is not set) %n
-  var %s10 = CBSET: sites         $sp(8) :  cb_sites = $CbArray(%cb_sites) %n %n
-  var %s11 = CBSET: login         $sp(8) : cb_login = %cb_login %n
-  var %s12 = CBSET: maxchars      $sp(5) : cb_maxchars = %cb_maxchars %n
-  var %s13 = CBSET: creditwin     $sp(4) : cb_creditwin = %cb_creditwin %n %n
-  var %s14 = CBSET: creditwname   $sp(2) : cb_creditwname = %cb_creditwname %n %n
-  var %s15 = CBSET: raw           $sp(10) : cb_raw = %cb_raw %n
-  var %s16 = CBSET: debug         $sp(8) : cb_debug = %cb_debug %n %n
-  var %s17 = CBSET: %n
+  var %s06 = CBSET: Example:
+  var %s07 = CBSET: %s %s %s %s %s /CbSet url https://:MyPassw0rd@127.0.0.1:443
+  var %s08 = CBSET: %n
+  var %s09 = CBSET: To use the Menu instead: right click window, goto 'CBFTP API' then 'Settings' %n %n
+  var %s10 = CBSET: %n
+  var %s11 = CBSET: CURRENT CONFIG: %n %n 
+  var %s12 = CBSET: %n
+  var %s13 = CBSET: url          $sp(10) : cb_url = $CbUri(%cb_url) %n
+  var %s14 = CBSET: $sp(16) cb_passwd = $iif($CbPasswd(%cb_url),is set,is not set) %n
+  var %s15 = CBSET: sites         $sp(8) :  cb_sites = $CbArray(%cb_sites) %n %n
+  var %s16 = CBSET: login         $sp(8) : cb_login = %cb_login %n
+  var %s17 = CBSET: maxchars      $sp(5) : cb_maxchars = %cb_maxchars %n
+  var %s18 = CBSET: creditwin     $sp(4) : cb_creditwin = %cb_creditwin %n %n
+  var %s19 = CBSET: creditwname   $sp(2) : cb_creditwname = %cb_creditwname %n %n
+  var %s20 = CBSET: raw           $sp(10) : cb_raw = %cb_raw %n
+  var %s21 = CBSET: debug         $sp(8) : cb_debug = %cb_debug %n %n
+  var %s22 = CBSET: %n
   var %r
   var %i = 00
   ; echo to status window
@@ -1455,16 +1524,17 @@ alias -l CbConf {
 alias CbSet {
   var %show_help 0
   if ($1 == url) {
-    if ($regex($2,/^https://:?.*@.+:\d+$/)) {
-      set %cb_url $1 | CbPasswd $1 | echo -ast CBAPI: url set to: $2
+    if ($regex($2,/^https?://:?.*@.+:\d+\/*$/)) {
+      set %cb_url $2 | CbPasswd $2 | echo -ast CBAPI: url set to: $2
     }
     else {
-      echo -ast  CBSET: ERROR > Incorrect argument, need /CbSet url https://:<API_Password>@127.0.0.1:443
-      var %show_help 1
+      var %err_msg incorrect argument, need /CbSet url https://:<API_Password>@127.0.0.1:443 (try /CbHelp)
     }
   }
   elseif ($1 == sites) {
-    ; limit sites to use
+    ;
+    ;; limit sites to use    
+    ;
     if ($2) {
       if ($regex($2,/all/i)) { 
         set %cb_sites all | echo -ast  CBSET: sites $iif(%cb_sites,set to: $v1,unset)
@@ -1476,7 +1546,7 @@ alias CbSet {
       }
     }
     else {
-      echo -ast  CBSET: Missing argument(s)
+      var %err_msg missing argument(s)
       var %show_help 1
     }
   }
@@ -1486,8 +1556,7 @@ alias CbSet {
       set %cb_login $2 | echo -ast  CBSET: login $iif(%cb_login,set to: $v1,unset)
     }
     else {
-      echo -ast CBSET: ERROR > Missing argument(s), need /CbSet login myusername:SecretPassword
-      var %show_help 1
+      var %err_msg missing argument(s), need /CbSet login myusername:SecretPassword
     }
   }
   elseif ($1 == maxchars) {
@@ -1496,8 +1565,7 @@ alias CbSet {
       set %cb_maxchars $2 | echo -ast CBSET: maxchars $iif(%cb_maxchars,set to: $v1,unset)
     }
     else {
-      echo -ast CBSET: ERROR > Incorrect argument, need /CbSet maxchars <0-8000>
-      var %show_help 1
+      var %err_msg incorrect argument, need /CbSet maxchars <0-8000>
     }
   }
   elseif ($1 == creditwin ) {
@@ -1506,8 +1574,7 @@ alias CbSet {
       set %cb_creditwin $2 | echo -ast CBSET: creditwin $iif(%cb_creditwin,set,unset(0))
     }
     else {
-      echo -ast CBSET: ERROR > Incorrect argument, need /CbSet creditwin [0|1]
-      var %show_help 1
+      var %err_msg incorrect argument, need /CbSet creditwin [0|1]
     }
   }
   elseif ($1 == creditwname) {
@@ -1516,8 +1583,7 @@ alias CbSet {
       set %cb_creditwname $2 | echo -ast CBSET: creditwname $iif(%cb_creditwname,set to: $v1,unset)
     }
     else {
-      echo -ast CBSET: ERROR > Incorrect argument, need /CbSet creditwname <Name>
-      var %show_help 1
+      var %err_msgincorrect argument, need /CbSet creditwname <Name>
     }
   }
   elseif ($1 == raw) {
@@ -1526,8 +1592,7 @@ alias CbSet {
       set %cb_raw $2 | echo -ast CBSET: raw $iif(%cb_raw,set,unset(0))
     }
     else {
-      echo -ast CBSET: ERROR > Incorrect argument, need /CbSet raw [0|1]
-      var %show_help 1
+      var %err_msg incorrect argument, need /CbSet raw [0|1]
     }
   }
   elseif ($1 == debug) {
@@ -1536,20 +1601,20 @@ alias CbSet {
       set %cb_debug $2 | echo -ast CBSET: debug $iif(%cb_debug,set to: $v1,unset(0))
     }
     else {
-      echo -ast CBSET: ERROR > Incorrect argument, need /CbSet debug [1-4]
-      var %show_help 1
+      var %err_msg incorrect argument, need /CbSet debug [1-4]
     }
   }
   else {
     var %show_help 1
   }
   if (%show_help) {
-    ; disabled: echo -ast  CBSET: To check current settings use:  $+ /CbConf $+ 
     .CbConf
-    echo -ast  CBSET: ERROR > Need option and argument(s), for help try:  $+ /CbHelp $+ 
+    echo -ast  CBSET: Specify option and argument(s) or for help:  $+ /CbHelp $+ 
+  }
+  if (%err_msg) {
+    CbError SET %err_msg
   }
 }
-
 
 
 ; MENUS
@@ -1557,10 +1622,12 @@ alias CbSet {
 
 menu * {
   CBFTP API
+  .About/Info: .CbVersion | /CbDialog CbAboutDg | /CbTxtDg CbAboutDg
   .Help:/CbDialog CbHelpDg | /CbTxtDg CbHelpDg $CbHelp(1)
-  ..$iif(!%cb_url || !$CbPasswd,Init settings,):/CbInit
+  ..$iif(!%cb_url || !$CbPasswd(%cb_url),Initial Setup,):$iif($input(Run CbInit alias? $crlf $+ Or choose No and goto 'Settings', y, Confirm),/Cbinit, )
   .Settings:/CbDialog CbSetDg
   .-
+  ; .GENERAL INFO:/CbInfo
   .MULTI SITE COMMANDS
   ..SITE <ANYCMD>:/CbSite $$?="SITE <COMMAND> ( e.g. 'WHO' )"
   ..SEARCH:/CbSearch $$?="Search <query>:"
@@ -1622,16 +1689,15 @@ menu * {
 ;  CbSitesMenu and CbSectionMenu work similarly but use command directly e.g. 'CbSite <SITE>'
 ;
 
-alias CbInviteMenu {
-  ; Args 1=cnt(menu)
-  if ($1 != begin && $1 != end) return $+($gettok(%cb_getsites,$1,44),:,set %cb_sites $+ $&
-    $chr(32),$gettok(%cb_getsites,$1,44),$chr(32),$chr(124) CbSiteCmd INVITE $me) | return
-}
-
 ;alias CbSitesMenu {
 ;  if ($1 != begin && $1 != end) return $iif($1 <= $numtok(%cb_getsites,44),$style(2),) $&
 ;    $+($gettok(%cb_getsites,$1,44),:,set %cb_sites $chr(32),$gettok(%cb_getsites,$1,44),$chr(32),) | return
 ;}
+
+alias CbInviteMenu {
+  if ($1 != begin && $1 != end) return $+($gettok(%cb_getsites,$1,44),:, set % $+ cb_cmd_sites $&
+    $chr(32),$gettok(%cb_getsites,$1,44),$chr(32),$chr(124) CbSiteCmd INVITE $me) | return
+}
 
 alias CbSitesMenu {
   if ($1 != begin && $1 != end) return $+($gettok(%cb_getsites,$1,44),:, $&
@@ -1650,7 +1716,7 @@ alias CbSectionsMenu {
 
 ; Usage: /CbDialog CbGetSitesDg  ( this calls /dialog -m CbGetSitesDg CbGetSitesDg )
 
-alias CbDialog {
+alias -l CbDialog {
   if (%cb_debug >= 2) {
     echo -ast DEBUG: CbDialog args $ $+ 1-: $1-
   }
@@ -1681,10 +1747,10 @@ alias CbDialog {
 
 dialog -l CbHelpDg {
   title "CBAPI Help"
-  size -1 -1 250 390
+  size -1 -1 250 395
   option dbu
-  edit   "", 1, 10 10 230 345, read, multi, autohs, autovs
-  button "Ok",        2, 200 365 40 15, ok
+  edit   "",          1, 10 10 230 350, read, multi, autohs, autovs
+  button "Ok",        2, 200 370 40 15, ok
 }
 
 dialog -l CbGetSitesDg {
@@ -1697,10 +1763,12 @@ dialog -l CbGetSitesDg {
 
 dialog -l CbAboutDg {
   title "About CBAPI"
-  size -1 -1 70 80
+  size -1 -1 145 290
   option dbu
-  edit  $CbAbout, 1, 10 10 50 40, read, multi, autohs, autovs, rich, disable
-  button "Ok",        2, 18 58 35 15, ok
+  edit   $CbApiAbout(1),  1, 10 10 115 30, read, multi, autohs, autovs, rich, disable, center
+  text   "cbftp info:",   2, 55 45 125 10,
+  edit   $CbGetInfo,      3, 10 55 125 200, read, multi, autovs, rich, limit 10
+  button "Ok",            4, 55 265 35 15, ok
 }
 
 ; main settings dialog table
@@ -1729,33 +1797,37 @@ dialog -l CbSetDg {
   ;tab   "Tab2", 902
   ;tab   "Tab3", 903
 
-  box    "Cbftp REST API",                      10,  25  20 205  32, tab 901
+  text   "",                                     5,  25   7 250  10, tab 901, disable
+  box    "Cbftp REST API",                      10,  25  20 210  32, tab 901
   text   "Url:",                                11,  33  33  12  10, tab 901
-  edit   "",                                    20,  47  32 145  10, tab 901, multi, autohs, autovs
-  ;text   "",                                   30,  65  25 120  10, tab 901
-  text   "Select Sites for multi commands:"     70,  25  65  85  10, tab 901
+  edit   "",                                    20,  47  32 135  10, tab 901, multi, autohs, autovs
+  ; text   "",                                   30,  65  25 120  10, tab 901
+  check  "password set",                        30, 186  33  45  10, tab 901, disable
+  text   "Select Sites for multi site commands:"     70,  25  65 90  10, tab 901
   list                                          80,  25  80  88 200, tab 901, sort, extsel, vsbar
   button "All",                                170,  25 275  25  12, tab 901
   button "Clear",                              180,  55 275  25  12, tab 901
-  button "Update",                             181,  85 275  29  12, tab 901
-  box    "FTP Site login (default)"             89, 130  80 105  50, tab 901
-  text   "Username:"                            90, 135  95  30  10, tab 901
-  edit   "",                                   100, 165  95  50  10, tab 901
-  text   "Password:"                           110, 135 110  30  10, tab 901
-  edit   "",                                   120, 165 110  50  10, tab 901, autohs, autovs
-  box    "Debugging"                           130, 130 140 105  50, tab 901
-  check  "raw output"                          140, 135 155  40  10, tab 901
-  text   "debug level (1-4)"                   150, 144 172  45  20, tab 901
-  edit   "",                                   160, 135 170   7  10, tab 901
-  box    "Output"                              200, 130 200 105  70, tab 901
-  text   "Character limit:",                   210, 135 216  40  10, tab 901
-  edit   "",                                   220, 175 215  20  10, tab 901, multi, autohs, autovs
-  check  "Credits Window (SITE STAT results)", 230, 135 230  95  10, tab 901
-  text   "Name: @",                            231, 135 245  22  10, tab 901
-  edit   "",                                   232, 158 243  55  10, tab 901
+  button "Sync",                               181,  85 275  29  12, tab 901
+  box    "FTP Site login (default)",            89, 130  75 105  50, tab 901
+  text   "Username:",                           90, 135  90  30  10, tab 901
+  edit   "",                                   100, 165  90  50  10, tab 901
+  text   "Password:"                           110, 135 105  30  10, tab 901
+  edit   "",                                   120, 165 105  50  10, tab 901, autohs, autovs
+  box    "Debugging"                           130, 130 145 105  50, tab 901
+  check  "raw output"                          140, 135 160  40  10, tab 901
+  text   "debug level (1-4)"                   150, 144 177  45  20, tab 901
+  edit   "",                                   160, 135 175   7  10, tab 901
+  box    "Output"                              200, 130 205 105  70, tab 901
+  text   "Character limit:",                   210, 135 221  40  10, tab 901
+  edit   "",                                   220, 175 220  20  10, tab 901, multi, autohs, autovs
+  text   "(0-8000)",                           221, 200 221  25  10, tab 901
+  check  "Credits Window",                     230, 135 235  46  10, tab 901
+  text   "(SITE STAT results)",                231, 184 236  55  10, tab 901
+  text   "Window name: @",                     232, 135 255  43  10, tab 901
+  edit   "",                                   233, 178 254  52  10, tab 901
   button "Ok",                                 190, 145 295  40  15, tab 901, default, ok
   button "Cancel",                             192, 195 295  40  15, tab 901, cancel
-  text   "",                                   240, 25  295  90  15, tab 901, center, disable
+  text   "",                                   240, 25  295  90  20, tab 901, center, disable
 }
 
 ; removed: combo  4, 40 30 100 10
@@ -1763,7 +1835,7 @@ dialog -l CbSetDg {
 
 ;; helper: display text in dialog
 
-alias -l CbTxtDg { 
+alias CbTxtDg { 
   var %text = $strip($2-)
   if (%text) {
     if (%cb_debug >= 3) {
@@ -1788,32 +1860,35 @@ alias -l CbTxtDg {
 ;; helper: create list of sites
 
 alias -l CbSiteTok {
-  var %i = 1
-  while (%i <= $numtok(%cb_getsites,44)) {
-    if ($numtok(%cb_getsites,44)) {
-      if (%cb_debug >= 3) {
-        echo -ast DEBUG: CbSiteTok i = %i $gettok(%cb_getsites,%i,44)
+  if (%cb_url && $CbPasswd(%cb_url) && %cb_getsites) {
+    var %i = 1
+    while (%i <= $numtok(%cb_getsites,44)) {
+      if ($numtok(%cb_getsites,44)) {
+        if (%cb_debug >= 3) {
+          echo -ast DEBUG: CbSiteTok i = %i -> $gettok(%cb_getsites,%i,44)
+        }
+        did -a CbSetDg 80 $gettok(%cb_getsites,%i,44)
+        if ($gettok(%cb_getsites,%i,44) isin %cb_sites) {
+          if (%cb_debug >= 3) {
+            echo -ast DEBUG: CbSiteTok hit i = %i
+          }
+          did -ck CbSetDg 80 %i %i
+        }
       }
-      did -a CbSetDg 80 $gettok(%cb_getsites,%i,44)
-      if ($gettok(%cb_getsites,%i,44) isin %cb_sites) {
-        echo -ast DEBUG: CbSiteTok hit i = %i
-        did -ck CbSetDg 80 %i %i
-      }
+      inc %i
     }
-    inc %i
   }
 }
 
-alias -l CbAbout {
+alias -l CbGetInfo {
+  CbInfo
   var %n = $chr(13)
-  var %r = $null
-  var %r = %r  .--------------------. %n 
-  var %r = %r  $chr(124) :: CBFTP API ::  $chr(124) %n 
-  var %r = %r  `--------------------'   %n 
-  var %r = %r  beta3 slv 20210803 %n 
-  return %r %n 
+  var %tmp = $replace(%cb_info,OK, status: OK %n %n)
+  var %tmp = $replace(%tmp,":",": %n ")
+  var %tmp = $replace(%tmp,",)
+  var %tmp = $replace(%tmp,$chr(44),%n)
+  return %tmp
 }
-
 
 ; DIALOG EVENTS
 ; -------------
@@ -1822,8 +1897,10 @@ alias -l CbAbout {
 ; NOTE:
 ;
 ;  Controls:
-;    Id   11: text     ( urkl: )
+;    Id   5: text      <user_msg>
+;    Id   11: text     ( url: )
 ;    Id   20: edit     'cb_url'
+;    Id   30: checkbox 'password set'
 ;    Id   60: edit     ( max ... )
 ;    Id   80: list     'cb_sites'
 ;    Id  100: edit     'cb_login user'
@@ -1832,40 +1909,64 @@ alias -l CbAbout {
 ;    Id  160: edit     'cb_debug'
 ;    Id  170: button   'All'
 ;    Id  180: button   'Clear'
-;    Id  181: button   'Update'
+;    Id  181: button   'Sync'
 ;    Id  190: button   'Ok'
 ;    Id  192: button   'Cancel'
 ;    Id  220: edit     'maxchars'
-;    Id  230; check    'creditwname'
-;    Id  232: edit     'creditwname'
+;    Id  230; check    'creditwin'
+;    Id  233: edit     'creditwname'
 ;    Id  240: text     'Site update...'
 ;
 
 ; main initial control values
 
 on 1:dialog:CbSetDg:init:*: {
-  if (!%cb_getsites) { 
-    set %cb_getsites $replace($CbGetSites,$chr(34),)
+  var %cb_defurl = https://:Ch4nge_Me@10.20.30.40:123
+  did -a CbSetDg 240 (ℹ) Click 'Sync' button to update Sites from Cbftp to slv-cbapi
+  if (((%cb_url != %cb_defurl) && $CbUri(%cb_url)) || ($did(CbSetDg,20).text == %cb_defurl)) {
+    if ($CbPasswd(%cb_url)) {
+      if (!%cb_getsites) {
+        set %cb_getsites $$iif($replace($CbGetSites,$chr(34),),$v1,$null)
+      }
+      did -a CbSetDg 20 $CbUri(%cb_url)
+      did -c CbSetDg 30
+    }
+    else {
+      did -u CbSetDg 30
+    }
   }
-  $iif(%cb_url,did -a CbSetDg 20 $CbUri($v1),did -a CbSetDg 20 https://:Passw0rd@10.20.30.40:2443)
+  else {
+    did -e CbSetDg 5
+    did -a CbSetDg 5 (ℹ) Set API Url *first* e.g. https://:bestpass@hostname:55477 without username
+    did -a CbSetDg 20 %cb_defurl
+    did -f CbSetDg 20
+    did -c CbSetDg 20 1 1 $calc($did(CbSetDg,20,1).len + 1)
+    did -h CbSetDg 30
+    did -a CbSetDg 240 (ℹ) Set 'Url', then click 'Sync' button to get Sites from Cbftp to slv-cbapi
+    did -e CbSetDg 240
+  }
   did -a CbSetDg 100 $CbLogin(u %cb_login)
   did -a CbSetDg 120 $CbLogin(p %cb_login)
   $iif(%cb_raw,did -c CbSetDg 140,did -u CbSetDg 140)
   $iif(%cb_debug > 0,did -a CbSetDg 160 $v1,did -a CbSetDg 160 0)
   ; did -a CbSetDg 220 ( 0-8000 )
   $iif(%cb_maxchars > 0,did -a CbSetDg 220 $v1,did -a CbSetDg 220 0)
-  $iif(%cb_creditwname,did -c CbSetDg 230,did -u CbSetDg 230)
-  $iif($did(CbSetDg,230).state,did -n CbSetDg 232,did -m CbSetDg 232)
-  $iif(%cb_creditwname,did -a CbSetDg 232 %cb_creditwname,did -a CbSetDg 232 Enter WindowName)
-  did -a CbSetDg 240 Click 'Update' button to update Sites from Cbftp to slv-cbapi
-  CbSiteTok
-  if (%cb_sites == all) { 
-    did -c CbSetDg 80
+  $iif(%cb_creditwin,did -c CbSetDg 230,did -u CbSetDg 230)
+  $iif($did(CbSetDg,230).state,did -n CbSetDg 233,did -m CbSetDg 233)
+  $iif(%cb_creditwname,did -a CbSetDg 233 $v1,did -a CbSetDg 233 Enter WindowName)
+  if (%cb_url && $CbPasswd(%cb_url)) {
+    CbSiteTok
+    if (%cb_sites == all) { 
+      did -c CbSetDg 80
+    }
   }
   if (%cb_debug >= 3) {
+    echo -ast DEBUG: CbSetDg:init cb_url = %cb_url 
     echo -ast DEBUG: CbSetDg:init cb_getsites = %cb_getsites
-    echo -ast DEBUG: CbSetDg:init url = %cb_url
-    echo -ast DEBUG: CbSetDg:init maxchars = %cb_maxchars creditwname = %cb_creditwname creditwname = %cb_creditwname  raw = %cb_raw debug = %cb_debug 
+    echo -ast DEBUG: CbSetDg:init $&
+      maxchars= $+ %cb_maxchars creditwin= $+ %cb_creditwin creditwname= $+ %cb_creditwname $& 
+      raw= $+ %cb_raw debug= $+ %cb_debug 
+    echo -ast DEBUG: CbSetDg CbUri= $+ $CbUri(%cb_url) CbPasswd= $+ $CbPasswd(%cb_url) 
   }
 }
 
@@ -1882,43 +1983,71 @@ on *:dialog:CbSetDg:menu:801-899:{
     /CbDialog CbHelpDg | /CbTxtDg CbHelpDg $CbHelp(1)
   }
   if ($did == 805) {
-    /CbDialog CbAboutDg | /CbTxtDg CbAboutDg $CbAbout
+    /CbDialog CbAboutDg | /CbTxtDg CbAboutDg $CbAbout(1)
   }
 }
 
 ; main buttons, checkbox, etc components 
 
-on *:dialog:CbSetDg:sclick:170-192,230:{
+on *:dialog:CbSetDg:sclick:170-192,230-233:{
   if (%cb_debug >= 2) {
-    echo -ast DEBUG: CbSetDg:sclick 170-192,230 $did $did($dname, $did).text is clicked
+    echo -ast DEBUG: CbSetDg:sclick 170-192,230-233 -> $did $did($dname, $did).text is clicked
   }
   ; Id 170: button 'All'
   if ($did == 170) {
-    if ($did(CbSetDg, 170).enabled) {
-      set %cb_sites all
+    if ($did(CbSetDg,170).enabled) {
       did -c CbSetDg 80
     }
   }
   ; Id 180: button 'Clear'
   if ($did == 180) {
-    if ($did(CbSetDg, 180).enabled) {
+    if ($did(CbSetDg,180).enabled) {
       did -u CbSetDg 80
     }
   }
-  ; Id 181: button 'Update'
+  ; Id 181: button 'Sync'
   if ($did == 181) {
-    if ($did(CbSetDg, 181).enabled) {
+    if ($did(CbSetDg,181).enabled) {
       did -r CbSetDg 80
-      set %cb_getsites $replace($CbGetSites,$chr(34),)
-      CbSiteTok
-      ;did -a CbSetDg 70 Select Sites to use: ( ... Updated )
-      did -a CbSetDg 240 ...sites updated!
+      did -a CbSetDg 240 Connecting...
+      if ($CbGetSites) {
+        set %cb_getsites $replace($CbGetSites,$chr(34),)
+        CbSiteTok
+        if (%cb_sites == all) { 
+          did -c CbSetDg 80
+        }
+        did -r CbSetDg 5
+        did -a CbSetDg 240 ...sites updated!
+      }
+      else {
+        did -a CbSetDg 80 ERROR!
+        did -a CbSetDg 240 ⚠ ERROR: could not get sites from cbftp, incorrect api url?!
+        did -e CbSetDg 240
+      }
     }
   }
   ; Id 190: button 'Ok'
   if ($did == 190) {
-    if ($did(CbSetDg, 190).enabled) {
+    if ($did(CbSetDg,190).enabled) {
+      var %cb_defurl = https://:Ch4nge_Me@10.20.30.40:123
       var %r = $null
+      if (!%cb_url && !cb_passwd) {
+        if (($did(CbSetDg,20,0).text != %cb_defurl) && $&
+          (($did(CbSetDg,20,1).len >= 12) && ($CbPasswd($did(CbSetDg,20,0).text)))) {
+          if (%cb_debug >= 2) {
+            echo -ast DEBUG: CbSetDg:sclick url is $did(CbSetDg,20,0).text
+          }
+          set %cb_url $did(CbSetDg,20,0).text
+        }
+        else {
+          did -e CbSetDg 5
+          did -a CbSetDg 5 ⚠ ERROR: incorrect api url, use: https://:bestpass@localhost:55477
+          did -f CbSetDg 20
+          did -c CbSetDg 20 1 1 $calc($did(CbSetDg,20,1).len + 1)
+          did -h CbSetDg 30
+          halt
+        }      
+      }
       if (%cb_debug >= 2) {
         echo -ast DEBUG: CbSetDg:sclick 190 $did($dname, $did).text is clicked
         echo -ast DEBUG: CbSetDg:sclick 190 sel: $did(CbSetDg,80,0).sel lines: $did(CbSetDg,80).lines
@@ -1926,26 +2055,29 @@ on *:dialog:CbSetDg:sclick:170-192,230:{
       if (%cb_debug >= 4) {
         echo -ast DEBUG: CbSetDg:sclick 190 list sel: $did(CbSetDg,80).sel
       }
+      ;; all sites
+      ;
       if ($did(CbSetDg,80,0).sel == $did(CbSetDg,80).lines) {
         if (%cb_debug >= 3) {
           echo -ast DEBUG: CbSetDg:sclick sel equals lines = all
         }
         set %cb_sites all
       } 
-      ;
-      ; ask user to confirm if no sites selected
+      ;; ask user to confirm if no sites selected
       ;
       elseif ($did(CbSetDg,80,0).sel == 0) {
         if (%cb_debug >= 3) {
           echo -ast DEBUG: CbSetDg:sclick 80 sel is 0
         }
-        $iif($input(Are you sure you want no sites selected? $crlf $&
+        $iif($input( $&
+          Are you sure you want no sites selected? $crlf $&
           $crlf $+ Select to Yes to save $&
-          $crlf $+ No keeps current setting $str($chr(160),40) ,y,Confirm Sites setting), set %cb_sites $null,)
+          $crlf $+ No keeps current Sites setting $str($chr(160),40), $&
+          y, Confirm Sites setting ), $&
+          set % $+ cb_sites $null, )
       }
-      else {
-        ; 
-        ; save site settings
+      else {        
+        ;; save site settings
         ;
         var %i = 1, %j = 0
         while (%i <= $did(CbSetDg,80).lines) {
@@ -1967,8 +2099,7 @@ on *:dialog:CbSetDg:sclick:170-192,230:{
         }
         set %cb_sites $regsubex(%r,$chr(44) $+ $,)
       }
-      ;
-      ; save other settings
+      ;; save other settings
       ;
       if (($did(CbSetDg,100,0).text) && ($did(CbSetDg,120,0).text)) {
         if (%cb_debug >= 2) {
@@ -1980,29 +2111,41 @@ on *:dialog:CbSetDg:sclick:170-192,230:{
         if (%cb_debug >= 2) {
           echo -ast DEBUG: CbSetDg:sclick debug is $did(CbSetDg,160,0).text
         }
-        $iif(%cb_debug > 0,set %cb_debug $v1,set %cb_debug 0)
+        if ($did(CbSetDg,160,0) > 0) {
+          set %cb_debug $v1
+          echo -ast DEBUG: CbSetDg:set debug = $v1
+        }
+        else {
+          set %cb_debug 0
+        }
       }
       if ($did(CbSetDg,220,0).text != $null) {
         if (%cb_debug >= 2) {
           echo -ast DEBUG: CbSetDg:sclick maxchars is $did(CbSetDg,220,0).text
         }
-        $iif(%cb_maxchars > 0,set %cb_limit $v1,set %cb_limit 0)
-      }
-      if ($did(CbSetDg,232,0).text) {
-        if (%cb_debug >= 2) {
-          echo -ast DEBUG: CbSetDg:sclick creditwname is $did(CbSetDg,232,0).text
+        if ($did(CbSetDg,220,0).text > 0) {
+          set %cb_maxchars $v1
+          echo -ast DEBUG: CbSetDb:set maxchars = $v1
         }
-        set %cb_creditwname $did(CbSetDg,232,0).text
+        else {
+          set %cb_maxchars 0
+
+        }
+      }
+      if ($did(CbSetDg,233,0).text) {
+        if (%cb_debug >= 2) {
+          echo -ast DEBUG: CbSetDg:sclick creditwname is $did(CbSetDg,233,0).text
+        }
+        set %cb_creditwname $did(CbSetDg,233,0).text
       }
       if (%cb_debug >= 2) {
         echo -ast DEBUG: CbSetDg:sclick raw is $did(CbSetDg,140,0).state
-        echo -ast DEBUG: CbSetDg:sclick creditwname is $did(CbSetDg,230,0).state
+        echo -ast DEBUG: CbSetDg:sclick creditwin is $did(CbSetDg,230,0).state
       }
       set %cb_raw $did(CbSetDg,140,0).state
-      set %cb_creditwname $did(CbSetDg,230,0).state
+      set %cb_creditwin $did(CbSetDg,230,0).state
       unset %cb_savesites
     }
-
   }
   ; Id 192: button 'Cancel'
   if ($did == 192) {
@@ -2011,13 +2154,10 @@ on *:dialog:CbSetDg:sclick:170-192,230:{
     }
     noop
   }
-  if (%cb_debug >= 2) {
-    echo -ast DEBUG: CbSetDg:sclick 232 $did($dname, $did).text is clicked
-  }
-  ; Id 230: checkbox creditwname
+  ; Id 230: checkbox creditwin
   if ($did == 230) {
     if (%cb_debug >= 2) {
-      echo -ast DEBUG: CbSetDg:sclick 230 $did($dname, $did).state is clicked
+      echo -ast DEBUG: CbSetDg:sclick 230 $did($dname, $did).state is clicked, set creditwname
     }
     $iif($did(CbSetDg,230).state,did -n CbSetDg 232,did -m CbSetDg 232)
   }
@@ -2065,16 +2205,46 @@ alias testHelpTestBvar  {
 }
 
 alias testDg {
-  ;/CbDialog CbHelpDg | /CbTxtDg CbHelpDg $CbGetSites
-  /CbDialog CbGetSitesDg
+  ;/CbDialog CbHelpDg | /CbTxtDg CbHelpDg $CbHelp(1)
+  ;/CbDialog CbAboutDg | /CbTxtDg CbAboutDg
+  ;/CbDialog CbGetSitesDg
+  /CbDialog CbSetDg
 }
 
-alias test2 {
+alias testSites {
   if ($isid) {
     return 1: $1 2: $2 3: $3
   }
   else {
     echo debug 1: $1 2: $2 3: $3
-    echo TEST: /sites $+ $iif(section isin $1-, $+ ? $+ $v2,bla)
+    echo TEST: /sites $+ $iif(section isin $1-, $+ ? $+ $v2, <FALSE>)
   }
+}
+
+alias testPw { 
+  echo -ast DEBUG: $CbPasswd($1-)
+  if ($CbPasswd($1-)) {
+    echo -ast DEBUG: returned true
+  }
+}
+
+alias testUri { 
+  echo -ast DEBUG: $CbUri($1, $2)
+}
+
+alias testDid {
+  echo -ast DEBUG: testDid $did(CbSetDg,20).text $did(CbSetDg,20,1).len $CbPasswd($did(CbSetDg,20,0))
+  /did -f CbSetDg 20
+  /did -c CbSetDg 20 1 1 $calc($did(CbSetDg,20,1).len + 1)
+  if (($did(CbSetDg,20,0).text != https://:Ch4nge_Me@10.20.30.40:123) && $&
+    (($did(CbSetDg,20,1).len >= 12)  && ($CbPasswd($did(CbSetDg,20,0))))) {
+    if (%cb_debug >= 2) {
+      echo -ast DEBUG: CbSetDg:sclick url is $did(CbSetDg,20,0).text
+    }
+    set %cb_url $did(CbSetDg,20,0).text
+  }
+}
+
+alias testCheck {
+  CbCheck 
 }
