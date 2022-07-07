@@ -21,7 +21,7 @@
 <div class="txtscripts">
 <pre>s   c   r   i   p   t   s</pre>
 </div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2022-07-07 23:03    -   <font color='Gray'>OLD: archived scripts</font>
+<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2022-07-07 23:05    -   <font color='Gray'>OLD: archived scripts</font>
 <img src="/assets/icons/folder.gif" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                          2022-05-07 14:21    -   LINKS: other websites with scripts, repos and mirrors
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                        2022-04-01 19:40   29K  by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
 <img src="/assets/icons/script.gif" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                  2022-04-01 19:40  3.4K  by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>
