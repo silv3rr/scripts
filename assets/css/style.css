@@ -6448,9 +6448,3 @@ img[alt~="Icon"] {
   color: Blue;
   font-weight: bold;
 }
-
-.AnimatedImagePlayer-animatedImage {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
-}
