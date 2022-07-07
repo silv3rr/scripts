@@ -4,7 +4,7 @@
 IndexOptions FancyIndexing FoldersFirst SuppressHTMLPreamble IgnoreClient
 HeaderName /_includes/header.html
 ReadmeName /_includes/footer.html
-IndexIgnore include .git assets _includes _layouts _tmp CNAME README* *.js *.swp _config.yml favicon.ico robots.txt rescan rescan.txt
+IndexIgnore include .git assets _includes _layouts _tmp CNAME README* *.js *.log *.swp _config.yml favicon.ico robots.txt rescan rescan.txt
 
 AddIconByEncoding (CMP,/assets/icons/compressed.gif) x-compress x-gzip
 
@@ -93,3 +93,7 @@ AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-prebw'>
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>] pywho: pzs-ng's sitewho ported to python" slv-pywho-v20220207.tar.gz
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output" slv-sitewho-plus2-v0.2.tar.gz
 AddDescription "by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slv-slftpc.sh
+AddDescription "by <b>slv</b> - pcustom zs-ng ngBot theme 'abuse' | <a href='abuse.log'>preview</a> | <a href='abuse.zst'>download</a>" abuse.zst
+AddDescription "by <b>fear, slv</b> - custom pzs-ng ngBot theme 'fear' | <a href='fear.log'>preview</a> | <a href='fear.zst'>dowload</a>" fear.zst 
+AddDescription "by <b>g, slv</b> - custom pzs-ng ngBot theme 'og' | <a href='og.log'>preview</a> | <a href='og.zst'>download</a>" og.zst
+AddDescription "by <b>slv</b> - custom pzs-ng ngBot theme 'pussy' | <a href='pussy.log'>preview</a> | <a href='pussy.zst'>dowload</a>" pussy.zst
