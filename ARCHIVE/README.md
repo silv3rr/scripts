@@ -20,7 +20,7 @@
 <div class="txtscripts">
 <pre>s   c   r   i   p   t   s</pre>
 </div>
-<pre><img src="/assets/icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="/assets/icons/back.gif" width="20" height="22" alt="[PARENTDIR]"> <a href="/">Parent Directory</a>                                                -   
+<pre><img src="/assets/icons/blank.gif" width="20" height="22" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="/assets/icons/back.gif" width="20" height="22" alt="[PARENTDIR]"> <a href="/">Parent Directory</a>                                                -   
 <img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2022-04-01 19:40   21K  by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)
 <img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2022-04-01 19:40  318   <font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>
 <img src="/assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2022-04-01 19:40  389   <font color='Gray'>OLD: little patch to fix destination error on pre</font>
