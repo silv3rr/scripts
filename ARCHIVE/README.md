@@ -44,7 +44,7 @@
 <img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-sitewho-plus2-v0.1.tar.gz">slv-sitewho-plus2-v0.1.tar.gz</a>              2022-04-01 19:40   11K  <font color='Gray'>OLD: by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output</font>
 <img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2022-04-01 19:40  4.6K  by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even...
 <img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2022-04-01 19:40  902   by <b>slv</b> - !vnstat trigger
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2022-04-01 19:40  560   by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup
+<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2022-11-15 12:00  307   by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup
 <img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2022-04-01 19:40  307   by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup
 <img src="/assets/icons/tar.gif" width="20" height="22" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2022-04-01 19:40   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <hr></pre>

@@ -77,7 +77,7 @@ AddDescription "by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with 
 AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>] fixed/updated foo-tools, incl foopre+mp3genre" foo-tools-v1.21-20210516.tar.gz
 AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups (<a href='gft-stats.txt'>conf</a>)" gft-stats.sh
 AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt
-AddDescription "by <b>glteam</b> - [<a href='https://glftpd.io'><b>LATEST</b>:web</a>] glftpd 2.12 linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'd5e9887f5cdeedc6f03a41a7350f72b47d9e30c5a84e9f538d2ed0d886547aff90e3f5811a1e3d802eb40408ed291841e31e99029ea068792547d9595408e3e3')\">show sha512</a>" glftpd-LNX-2.12_3.0.1_x64.tgz
+AddDescription "by <b>glteam</b> - [<a href='https://glftpd.io'><b>OFFICIAL</b>:web</a>] link to glftpd <a href='https://glftpd.nl.eu.org'><b>mirror</b></a>" glftpd
 AddDescription "by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>" hb_creditshow.sh
 AddDescription "by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan.txt'>view</a> | <a href='rescan'>download</a>" rescan.md
 AddDescription "by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
