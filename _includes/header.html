@@ -1,10 +1,16 @@
-<html>
+<html lang="en-US">
 <head>
-<title> .. slv scripts .. </title>
+<details><summary></summary>
+
+<title>{{ site.title | default: site.github.repository_name }}</title>
+<meta charset="UTF-8">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="/assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<script type="text/javascript" src="assets/js/piwik.js"></script>
+<script type="text/javascript" src="assets/js/updated.js"></script>
+</details>
 </head>
-<body>
+<body onLoad="lastUpdated('README.md');">  
 <div class="slvlogo">
 <pre>
 <!-- ``` -->

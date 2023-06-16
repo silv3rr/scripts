@@ -1,9 +1,16 @@
-<html>
+<html lang="en-US">
 <head>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="/assets/css/style.css" />
+<details><summary></summary>
+
+<title>{{ site.title | default: site.github.repository_name }}</title>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+<script type="text/javascript" src="../assets/js/piwik.js"></script>
+<script type="text/javascript" src="../assets/js/updated.js"></script>
+</details>
 </head>
-<body>
+<body onLoad="lastUpdated('README.md');">  
 <div class="slvlogo">
 <pre>
 <!-- ``` -->
@@ -20,38 +27,38 @@
 <div class="txtscripts">
 <pre>s   c   r   i   p   t   s</pre>
 </div>
-<pre><img src="/assets/icons/blank.gif" width="20" height="22" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="/assets/icons/back.gif" width="20" height="22" alt="[PARENTDIR]"> <a href="/">Parent Directory</a>                                                -   
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2022-04-01 19:40   21K  by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)
-<img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2022-04-01 19:40  318   <font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>
-<img src="/assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2022-04-01 19:40  389   <font color='Gray'>OLD: little patch to fix destination error on pre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="foo-tools-v1.20-20180713.tar.gz">foo-tools-v1.20-20180713.tar.gz</a>            2022-04-01 19:40  434K  <font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="foo-tools-v1.21-20210516.tar.gz">foo-tools-v1.21-20210516.tar.gz</a>            2022-04-01 19:40  445K  <font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="footools-dirlogfix.tar.gz">footools-dirlogfix.tar.gz</a>                  2022-04-01 19:40  204K  <font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>
-<img src="/assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="footools-mp3genre.patch">footools-mp3genre.patch</a>                    2022-04-01 19:40  8.8K  <font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">footools-x86-x64-20111102-mp3genre.tar.bz2</a> 2022-04-01 19:40  438K  <font color='gray'>old: by slv - ugly hack for foopre to add mp3 genre in pre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">glftpd-LNX-2.08_1.1.0g_x64.tgz</a>             2022-04-01 19:40  7.1M  <font color='Gray'>OLD: by glteam - glftpd 2.08 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')">show sha512</a></font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.09_1.1.0j_x64.tgz">glftpd-LNX-2.09_1.1.0j_x64.tgz</a>             2022-04-01 19:40  7.1M  <font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')">show sha512</a></font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.10a_1.1.1d_x64.tgz">glftpd-LNX-2.10a_1.1.1d_x64.tgz</a>            2022-04-01 19:40  8.2M  <font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')">show sha512</a></font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1i_x64.tgz">glftpd-LNX-2.11a_1.1.1i_x64.tgz</a>            2022-04-01 19:40  8.4M  <font color='Gray'>OLD: by glteam -  glftpd 2.11a linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '5dfb420036b714328fe08cb88b36256c5cd874158d1d6cfbaa8fd7b4fa49a16526c72261b82d8724614b95ddc89fce048f3c2c79d556c505318d196ebdd05aef')">show sha512</a></font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1k_x64.tgz">glftpd-LNX-2.11a_1.1.1k_x64.tgz</a>            2022-04-01 19:40  8.4M  <font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick="window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')">show sha512</a></font>
-<img src="/assets/icons/c.gif" width="20" height="22" alt="[TXT]"> <a href="passchk.c">passchk.c</a>                                  2022-04-01 19:40  1.8K  modded to generate pw hashes for /etc/passwd
-<img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2022-04-01 19:40   18K  slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
-<img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2022-04-01 19:40  4.6K  <font color='Gray'>OLD: by slv - archiver for mp3 daydirs and mv wkdirs (with audiosort)</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2022-04-01 19:40  2.4K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2022-04-01 19:40  2.4K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2022-04-01 19:40  2.5K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2022-04-01 19:40  4.1K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-pywho-v20211104.tar.gz">slv-pywho-v20211104.tar.gz</a>                 2022-04-01 19:40   15K  <font color='Gray'>OLD:by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font>
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-sitewho-plus2-v0.1.tar.gz">slv-sitewho-plus2-v0.1.tar.gz</a>              2022-04-01 19:40   11K  <font color='Gray'>OLD: by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output</font>
-<img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2022-04-01 19:40  4.6K  by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even...
-<img src="/assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2022-04-01 19:40  902   by <b>slv</b> - !vnstat trigger
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2022-11-15 12:00  307   by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup
-<img src="/assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2022-04-01 19:40  307   by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup
-<img src="/assets/icons/tar.gif" width="20" height="22" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2022-04-01 19:40   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
+<pre><img src="../assets/icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="../assets/icons/back.gif" width="20" height="22" alt="[PARENTDIR]"> <a href="..">Parent Directory</a>                                                -   
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2022-04-01 19:40   21K  by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)
+<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2022-04-01 19:40  318   <font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>
+<img src="../assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2022-04-01 19:40  389   <font color='Gray'>OLD: little patch to fix destination error on pre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="foo-tools-v1.20-20180713.tar.gz">foo-tools-v1.20-20180713.tar.gz</a>            2022-04-01 19:40  434K  <font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="foo-tools-v1.21-20210516.tar.gz">foo-tools-v1.21-20210516.tar.gz</a>            2022-04-01 19:40  445K  <font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="footools-dirlogfix.tar.gz">footools-dirlogfix.tar.gz</a>                  2022-04-01 19:40  204K  <font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>
+<img src="../assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="footools-mp3genre.patch">footools-mp3genre.patch</a>                    2022-04-01 19:40  8.8K  <font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">footools-x86-x64-20111102-mp3genre.tar.bz2</a> 2022-04-01 19:40  438K  <font color='gray'>old: by slv - ugly hack for foopre to add mp3 genre in pre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">glftpd-LNX-2.08_1.1.0g_x64.tgz</a>             2022-04-01 19:40  7.1M  <font color='Gray'>OLD: by glteam - glftpd 2.08 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')">show sha512</a></font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.09_1.1.0j_x64.tgz">glftpd-LNX-2.09_1.1.0j_x64.tgz</a>             2022-04-01 19:40  7.1M  <font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')">show sha512</a></font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.10a_1.1.1d_x64.tgz">glftpd-LNX-2.10a_1.1.1d_x64.tgz</a>            2022-04-01 19:40  8.2M  <font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')">show sha512</a></font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1i_x64.tgz">glftpd-LNX-2.11a_1.1.1i_x64.tgz</a>            2022-04-01 19:40  8.4M  <font color='Gray'>OLD: by glteam -  glftpd 2.11a linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '5dfb420036b714328fe08cb88b36256c5cd874158d1d6cfbaa8fd7b4fa49a16526c72261b82d8724614b95ddc89fce048f3c2c79d556c505318d196ebdd05aef')">show sha512</a></font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1k_x64.tgz">glftpd-LNX-2.11a_1.1.1k_x64.tgz</a>            2022-04-01 19:40  8.4M  <font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick="window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')">show sha512</a></font>
+<img src="../assets/icons/c.gif" width="20" height="22" alt="[TXT]"> <a href="passchk.c">passchk.c</a>                                  2022-04-01 19:40  1.8K  modded to generate pw hashes for /etc/passwd
+<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2022-04-01 19:40   18K  slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
+<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2022-04-01 19:40  4.6K  <font color='Gray'>OLD: by slv - archiver for mp3 daydirs and mv wkdirs (with audiosort)</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2022-04-01 19:40  2.4K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2022-04-01 19:40  2.4K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2022-04-01 19:40  2.5K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2022-04-01 19:40  4.1K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-pywho-v20211104.tar.gz">slv-pywho-v20211104.tar.gz</a>                 2022-04-01 19:40   15K  <font color='Gray'>OLD:by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font>
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-sitewho-plus2-v0.1.tar.gz">slv-sitewho-plus2-v0.1.tar.gz</a>              2022-04-01 19:40   11K  <font color='Gray'>OLD: by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output</font>
+<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2022-04-01 19:40  4.6K  by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even...
+<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2022-04-01 19:40  902   by <b>slv</b> - !vnstat trigger
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2022-11-15 12:00  307   by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup
+<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2022-04-01 19:40  307   by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup
+<img src="../assets/icons/tar.gif" width="20" height="22" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2022-04-01 19:40   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
 <hr></pre>
 <pre><div style="color: Gray"><div class="footct">
 <span class="footupd" id="lastUpdated"></span>
-<span class="footlnk"><a href="https://github.com/silv3rr/sscripts.ga">view repository</a> | <a href="https://sscripts.ga">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.sscripts.ga/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i>
+<span class="footlnk"><a href="https://github.com/silv3rr/scripts">view repository</a> | <a href="https://silv3rr.github.io/scripts/">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.scripts.nl.eu.org/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i>
 </span>
 </div>
 <div class="footstar">
@@ -64,7 +71,7 @@ __/\__
 </div>
 </pre>
 <!-- Matomo Image Tracker--><noscript>
-<img src="https://stats.sscripts.ga/piwik/piwik.php?idsite=17&rec=1" style="border:0" alt="" />
+<img src="https://stats.scripts.nl.eu.org/piwik/piwik.php?idsite=17&rec=1" style="border:0" alt="" />
 </noscript><!-- End Matomo -->
 </body>
 </html>

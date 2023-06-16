@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------
 # Jehsom's mp3 dirscript v1.5 - Prevents creation of undesired directories.
 # Copyright (C) 2001 jehsom@jehsom.com
-# 		2018 slv/sscripts.ga
+# 		2018 slv/scripts.nl.eu.org
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

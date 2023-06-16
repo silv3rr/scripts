@@ -6,36 +6,36 @@ HeaderName /_includes/header.html
 ReadmeName /_includes/footer.html
 IndexIgnore include .git assets _includes _layouts _tmp CNAME README* *.js *.log *.swp _config.yml favicon.ico robots.txt rescan rescan.txt
 
-AddIconByEncoding (CMP,/assets/icons/compressed.gif) x-compress x-gzip
+AddIconByEncoding (CMP,assets/icons/compressed.gif) x-compress x-gzip
 
-AddIconByType (TXT,/assets/icons/text.gif) text/plain
-AddIconByType (IMG,/assets/icons/image2.gif) image/*
-AddIconByType (SND,/assets/icons/sound2.gif) audio/*
-AddIconByType (VID,/assets/icons/movie.gif) video/*
+AddIconByType (TXT,assets/icons/text.gif) text/plain
+AddIconByType (IMG,assets/icons/image2.gif) image/*
+AddIconByType (SND,assets/icons/sound2.gif) audio/*
+AddIconByType (VID,assets/icons/movie.gif) video/*
 
-AddIcon /assets/icons/binary.gif .bin .exe .xz
-AddIcon /assets/icons/binhex.gif .hqx
-AddIcon /assets/icons/tar.gif .tar
-AddIcon /assets/icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
-AddIcon /assets/icons/compressed.gif .Z .z .tgz .gz .zip .bz2 .rar .xz
-AddIcon /assets/icons/a.gif .ps .ai .eps
-AddIcon /assets/icons/layout.gif .html .shtml .htm .pdf
-AddIcon /assets/icons/text.gif .txt .asc .patch .md
-AddIcon /assets/icons/c.gif .c
-AddIcon /assets/icons/p.gif .pl .py
-AddIcon /assets/icons/f.gif .for
-AddIcon /assets/icons/dvi.gif .dvi
-AddIcon /assets/icons/uuencoded.gif .uu
-AddIcon /assets/icons/script.gif .bash .conf .sh .shar .csh .ksh .tcl
-AddIcon /assets/icons/tex.gif .tex
-AddIcon /assets/icons/bomb.gif core
+AddIcon assets/icons/binary.gif .bin .exe .xz
+AddIcon assets/icons/binhex.gif .hqx
+AddIcon assets/icons/tar.gif .tar
+AddIcon assets/icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
+AddIcon assets/icons/compressed.gif .Z .z .tgz .gz .zip .bz2 .rar .xz
+AddIcon assets/icons/a.gif .ps .ai .eps
+AddIcon assets/icons/layout.gif .html .shtml .htm .pdf
+AddIcon assets/icons/text.gif .txt .asc .patch .md
+AddIcon assets/icons/c.gif .c
+AddIcon assets/icons/p.gif .pl .py
+AddIcon assets/icons/f.gif .for
+AddIcon assets/icons/dvi.gif .dvi
+AddIcon assets/icons/uuencoded.gif .uu
+AddIcon assets/icons/script.gif .bash .conf .sh .shar .csh .ksh .tcl
+AddIcon assets/icons/tex.gif .tex
+AddIcon assets/icons/bomb.gif core
 
-AddIcon /assets/icons/back.gif ..
-AddIcon /assets/icons/hand.right.gif README
-AddIcon /assets/icons/folder.gif ^^DIRECTORY^^
-AddIcon /assets/icons/blank.gif ^^BLANKICON^^
+AddIcon assets/icons/back.gif ..
+AddIcon assets/icons/hand.right.gif README
+AddIcon assets/icons/folder.gif ^^DIRECTORY^^
+AddIcon assets/icons/blank.gif ^^BLANKICON^^
 
-DefaultIcon /assets/icons/unknown.gif
+DefaultIcon assets/icons/unknown.gif
 
 AddDescription "LINKS: other websites with scripts, repos and mirrors" LINKS
 AddDescription "<font color='Gray'>OLD: archived scripts</font>" ARCHIVE
