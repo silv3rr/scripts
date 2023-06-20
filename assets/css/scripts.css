@@ -1,0 +1,63 @@
+.slv_logo {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  color: Black;
+}
+
+.txt_scripts {
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  color: Blue;
+  font-weight: bold;
+}
+
+.slv_logo pre, .txt_scripts pre {
+  font-size: 15px;
+}
+
+.foot_star {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.foot_slv {
+  width: 1200px;
+  margin:0;
+  text-align: right;
+  color: DarkGray;
+}
+
+.foot_ct {
+  display:flex;
+}
+
+.foot_upd {
+ text-align: left;
+ margin-left: 40px;
+}
+
+.foot_lnk {
+  margin-left: 60%;
+  text-align: right;
+  font-size: 90%;
+}
+
+.glinks {
+  width: 265px;
+  /* margin: 0 auto; */
+  color: Black;
+}
+
+.txt_glinks {
+  width: 300px;
+  margin:0 auto;
+  margin-bottom: 30px;
+  color: Blue;
+  font-weight: bold;
+}
+
+details {
+  color: #d3d3d3;
+}

@@ -1,0 +1,16 @@
+_data
+_site
+_posts
+_sass
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+.vscode
+vendor
+scripts
+Gemfile
+Gemfile.lock
+404.html
+about.markdown
+index.markdown
+index.md

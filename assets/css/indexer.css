@@ -84,8 +84,9 @@ td {
 th {
     padding-top: 15px;
     padding-bottom: 15px;
-    font-size: 16px;
+    font-size: 14px;
     white-space: nowrap;
+    color:#3f3f3f
 }
 th a {
     color: black;
