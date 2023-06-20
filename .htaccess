@@ -37,50 +37,55 @@ AddIcon assets/icons/blank.gif ^^BLANKICON^^
 
 DefaultIcon assets/icons/unknown.gif
 
-AddDescription "LINKS: other websites with scripts, repos and mirrors" LINKS
+
+AddDescription "by <b>slv</b> - pcustom zs-ng ngBot theme 'abuse' | <a href='abuse.log'>preview</a> | <a href='abuse.zst'>download</a>" abuse.zst
 AddDescription "<font color='Gray'>OLD: archived scripts</font>" ARCHIVE
-AddDescription "by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)" ARCHIVE/DH1080-source.zip
+AddDescription "<font color='Gray'>OLD: by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)</font>" ARCHIVE/DH1080-source.zip
 AddDescription "<font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>" ARCHIVE/ebftpd-deps.sh
 AddDescription "<font color='Gray'>OLD: little patch to fix destination error on pre</font>" ARCHIVE/foo-pre-destfix.patch
+AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.20-20180713.tar.gz
+AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.21-20210516.tar.gz
 AddDescription "<font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>" ARCHIVE/footools-dirlogfix.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>" ARCHIVE/footools-mp3genre.patch
 AddDescription "<font color='gray'>old: by slv - ugly hack for foopre to add mp3 genre in pre</font>" ARCHIVE/footools-x86-x64-20111102-mp3genre.tar.bz2
-AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.21-20210516.tar.gz
-AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.20-20180713.tar.gz
 AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.08 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.08_1.1.0g_x64.tgz
 AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.09_1.1.0j_x64.tgz
 AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.10a_1.1.1d_x64.tgz
 AddDescription "<font color='Gray'>OLD: by glteam -  glftpd 2.11a linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '5dfb420036b714328fe08cb88b36256c5cd874158d1d6cfbaa8fd7b4fa49a16526c72261b82d8724614b95ddc89fce048f3c2c79d556c505318d196ebdd05aef')\">show sha512</a></font>" ARCHIVE/glftpd-LNX-2.11a_1.1.1i_x64.tgz
-AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')\">show sha512</a></font>" glftpd-LNX-2.11a_1.1.1k_x64.tgz
-AddDescription "modded to generate pw hashes for /etc/passwd" ARCHIVE/passchk.c
-AddDescription "slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs" ARCHIVE/slv-arch.sh
+AddDescription "<font color='Gray'>modded to generate pw hashes for /etc/passwdi</font>" ARCHIVE/passchk.c
+AddDescription "<font color='Gray'>OLD: by slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs</font>" ARCHIVE/slv-arch.sh
 AddDescription "<font color='Gray'>OLD: by slv - archiver for mp3 daydirs and mv wkdirs (with audiosort)</font>" ARCHIVE/slv-archmp3.sh
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.52.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.53.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v0.54.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>" ARCHIVE/slv-prebw-v1.0-20190609.tar.gz
-AddDescription "<font color='Gray'>OLD:by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font>" ARCHIVE/slv-pywho-v20211104.tar.gz
+AddDescription "<font color='Gray'>OLD: by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font>" ARCHIVE/slv-pywho-v20211104.tar.gz
 AddDescription "<font color='Gray'>OLD: by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output</font>" ARCHIVE/slv-sitewho-plus2-v0.1.tar.gz
-AddDescription "by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even..." ARCHIVE/slv-vnstat.sh
-AddDescription "by <b>slv</b> - !vnstat trigger" ARCHIVE/slv-vnstat.tcl
-AddDescription "by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup" ARCHIVE/speed.sh.zip
-AddDescription "by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup" ARCHIVE/speedfix.rar
-AddDescription "by <b>Nom</b> - use with http://humdi.net/vnstat" ARCHIVE/vnstat_frontend.tar
-AddDescription "by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>" Blow.tcl
-AddDescription "by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>" CreditShow.tcl
-AddDescription "by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>" Request.tcl
-AddDescription "by <b>comp, slv</b> - !site plugin updated to work with ngBot" Sitecmds.tcl
-AddDescription "by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot" Whois.tcl
+AddDescription "<font color='Gray'>OLD: by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even...</font>" ARCHIVE/slv-vnstat.sh
+AddDescription "<font color='Gray'>OLD: by <b>slv</b> - !vnstat trigger</font>" ARCHIVE/slv-vnstat.tcl
+AddDescription "<font color='Gray'>OLD: by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup</font>" ARCHIVE/speed.sh.zip
+AddDescription "<font color='Gray'>OLD: by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup</font>" ARCHIVE/speedfix.rar
+AddDescription "<font color='Gray'>OLD: by <b>Nom</b> - use with http://humdi.net/vnstat</font>" ARCHIVE/vnstat_frontend.tar
 AddDescription "by <b>slv</b> - little wrapper cscript for audiosorting after pre" audiosortpre.sh
+AddDescription "by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>" Blow.tcl
 AddDescription "by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>" cpt-request.sh
+AddDescription "by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>" CreditShow.tcl
 AddDescription "by <b>Jehsom, slv</b> - updated version of mp3 dirscript" dirscript.sh
+AddDescription "by <b>fear, slv</b> - custom pzs-ng ngBot theme 'fear' | <a href='fear.log'>preview</a> | <a href='fear.zst'>dowload</a>" fear.zst 
 AddDescription "by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>" fishwrap.py
 AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>] fixed/updated foo-tools, incl foopre+mp3genre" foo-tools-v1.22-20220312.tar.gz
 AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups (<a href='gft-stats.txt'>conf</a>)" gft-stats.sh
 AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt
 AddDescription "by <b>glteam</b> - [<a href='https://glftpd.io'><b>OFFICIAL</b>:web</a>] link to glftpd <a href='https://glftpd.nl.eu.org'><b>mirror</b></a>" glftpd
+AddDescription "<font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')\">show sha512</a></font>" glftpd-LNX-2.11a_1.1.1k_x64.tgz
+AddDescription "by <b>glteam</b> - links to glftpd mirror" glftpd.html
 AddDescription "by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>" hb_creditshow.sh
+AddDescription "LINKS: other websites with scripts, repos and mirrors" LINKS
+AddDescription "by <b>g, slv</b> - custom pzs-ng ngBot theme 'og' | <a href='og.log'>preview</a> | <a href='og.zst'>download</a>" og.zst
+AddDescription "by <b>slv</b> - custom pzs-ng ngBot theme 'pussy' | <a href='pussy.log'>preview</a> | <a href='pussy.zst'>dowload</a>" pussy.zst
+AddDescription "by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>" Request.tcl
 AddDescription "by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan.txt'>view</a> | <a href='rescan'>download</a>" rescan.md
+AddDescription "by <b>comp, slv</b> - !site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
 AddDescription "by <b>slv</b> - archiver: config file, goes with <a href='slv-arch.sh'>slv-arch.sh</a>" slv-arch.conf
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>] archiver: moves releases, creates daydirs and tv/season dirs (<a href='slv-arch.conf'>conf</a>)" slv-arch.sh
@@ -90,12 +95,8 @@ AddDescription "by <b>slv</b> - fxpscript to allow/deny country code(s) using ge
 AddDescription "by <b>slv</b> - sets gldir for files in bin/sources and sets maxdirlogsize" slv-glset.sh
 AddDescription "by <b>slv</b> - searches daydirs 0day/pda/mp3/mv for matching dirs to create symlinks" slv-links.sh
 AddDescription "by <b>slv</b> - small script to check ngBot changes, use before updating" slv-ngbotc.sh
-AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b>git</a>] pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v1.1-20190712.tar.gz
+AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST</b>:git</a>] pzs-ng dZBot/ngbot plugin to show bw after pre" slv-prebw-v1.1-20190712.tar.gz
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>] pywho: pzs-ng's sitewho ported to python" slv-pywho-v20220207.tar.gz
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output" slv-sitewho-plus2-v0.2.tar.gz
 AddDescription "by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slv-slftpc.sh
-AddDescription "by <b>slv</b> - pcustom zs-ng ngBot theme 'abuse' | <a href='abuse.log'>preview</a> | <a href='abuse.zst'>download</a>" abuse.zst
-AddDescription "by <b>fear, slv</b> - custom pzs-ng ngBot theme 'fear' | <a href='fear.log'>preview</a> | <a href='fear.zst'>dowload</a>" fear.zst 
-AddDescription "by <b>g, slv</b> - custom pzs-ng ngBot theme 'og' | <a href='og.log'>preview</a> | <a href='og.zst'>download</a>" og.zst
-AddDescription "by <b>slv</b> - custom pzs-ng ngBot theme 'pussy' | <a href='pussy.log'>preview</a> | <a href='pussy.zst'>dowload</a>" pussy.zst
-
+AddDescription "by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot" Whois.tcl
