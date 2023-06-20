@@ -4,8 +4,10 @@
 
 <title>{{ site.title | default: site.github.repository_name }}</title>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/indexer.css" />
 <script type="text/javascript" src="assets/js/piwik.js"></script>
 <script type="text/javascript" src="assets/js/updated.js"></script>
 </details>
@@ -27,42 +29,608 @@
 <div class="txtscripts">
 <pre>s   c   r   i   p   t   s</pre>
 </div>
-<pre><img src="assets/icons/blank.gif" alt="Icon "> Name                            Last modified      Size  Description<hr><img src="assets/icons/folder.gif" width="20" height="22" alt="[DIR]"> <a href="ARCHIVE/">ARCHIVE/</a>                        2023-06-17 22:33    -   <font color='Gray'>OLD: archived scripts</font>
-<img src="assets/icons/folder.gif" width="20" height="22" alt="[DIR]"> <a href="LINKS/">LINKS/</a>                          2023-06-17 21:54    -   LINKS: other websites with scripts, repos and mirrors
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="Blow.tcl">Blow.tcl</a>                        2022-04-01 19:40   29K  by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a>
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="CreditShow.tcl">CreditShow.tcl</a>                  2022-04-01 19:40  3.4K  by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a>
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="Request.tcl">Request.tcl</a>                     2022-04-01 19:40   12K  by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="Sitecmds.tcl">Sitecmds.tcl</a>                    2022-04-01 19:40  6.2K  by <b>comp, slv</b> - !site plugin updated to work with ngBot
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="Whois.tcl">Whois.tcl</a>                       2022-04-01 19:40  5.8K  by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot
-<img src="assets/icons/unknown.gif" width="20" height="22" alt="[   ]"> <a href="abuse.zst">abuse.zst</a>                       2022-07-03 00:59   29K  by <b>slv</b> - pcustom zs-ng ngBot theme 'abuse' | <a href='abuse.log'>preview</a> | <a href='abuse.zst'>download</a>
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="audiosortpre.sh">audiosortpre.sh</a>                 2022-04-01 19:40  788   by <b>slv</b> - little wrapper cscript for audiosorting after pre
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="cpt-request.sh">cpt-request.sh</a>                  2022-04-01 19:40   12K  by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="dirscript.sh">dirscript.sh</a>                    2023-06-17 21:24   12K  by <b>Jehsom, slv</b> - updated version of mp3 dirscript
-<img src="assets/icons/unknown.gif" width="20" height="22" alt="[   ]"> <a href="fear.zst">fear.zst</a>                        2022-07-03 00:46   22K  by <b>fear, slv</b> - custom pzs-ng ngBot theme 'fear' | <a href='fear.log'>preview</a> | <a href='fear.zst'>dowload</a>
-<img src="assets/icons/p.gif" width="20" height="22" alt="[TXT]"> <a href="fishwrap.py">fishwrap.py</a>                     2022-04-01 19:40  1.9K  by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>
-<img src="assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="foo-tools-v1.22-20220312.tar.gz">foo-tools-v1.22-20220312.tar.gz</a> 2023-02-18 14:55  490K  by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>] fixed/updated foo-tools, incl foopre+mp3genre
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="gft-stats.sh">gft-stats.sh</a>                    2022-04-01 19:40  1.6K  by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups (<a href='gft-stats.txt'>conf</a>)
-<img src="assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="gft-stats.txt">gft-stats.txt</a>                   2022-04-01 19:40  902   by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf
-<img src="assets/icons/layout.gif" width="20" height="22" alt="[TXT]"> <a href="glftpd.html">glftpd.html</a>                     2023-02-11 15:08  141   by <b>glteam</b> - [<a href='https://glftpd.io'><b>OFFICIAL</b>:web</a>] link to glftpd <a href='https://glftpd.nl.eu.org'><b>mirror</b></a>
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="hb_creditshow.sh">hb_creditshow.sh</a>                2022-04-01 19:40  244   by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>
-<img src="assets/icons/unknown.gif" width="20" height="22" alt="[   ]"> <a href="og.zst">og.zst</a>                          2022-07-03 00:41   29K  by <b>g, slv</b> - custom pzs-ng ngBot theme 'og' | <a href='og.log'>preview</a> | <a href='og.zst'>download</a>
-<img src="assets/icons/unknown.gif" width="20" height="22" alt="[   ]"> <a href="pussy.zst">pussy.zst</a>                       2022-07-03 00:47   26K  by <b>slv</b> - custom pzs-ng ngBot theme 'pussy' | <a href='pussy.log'>preview</a> | <a href='pussy.zst'>dowload</a>
-<img src="assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="rescan.md">rescan.md</a>                       2022-04-01 19:40  828   by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan.txt'>view</a> | <a href='rescan'>download</a>
-<img src="assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="skiplist-example-data.txt">skiplist-example-data.txt</a>       2022-04-01 19:40  4.0K  by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile
-<img src="assets/icons/script.gif" width="20" height="22" alt="[   ]"> <a href="slv-arch.conf">slv-arch.conf</a>                   2022-04-01 19:40  4.4K  by <b>slv</b> - archiver: config file, goes with <a href='slv-arch.sh'>slv-arch.sh</a>
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                     2022-04-01 19:40   24K  by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>] archiver: moves releases, creates daydirs and tv/season dirs (<a href='slv-arch.conf'>conf</a>)
-<img src="assets/icons/unknown.gif" width="20" height="22" alt="[   ]"> <a href="slv-cbapi.mrc">slv-cbapi.mrc</a>                   2022-04-01 19:40   71K  by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-disk.tcl">slv-disk.tcl</a>                    2022-04-01 19:40   11K  by <b>slv</b> - monitor raids/disks
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-geofxp.sh">slv-geofxp.sh</a>                   2022-04-01 19:40  7.7K  by <b>slv</b> - fxpscript to allow/deny country code(s) using geoip2
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-glset.sh">slv-glset.sh</a>                    2022-04-01 19:40  2.1K  by <b>slv</b> - sets gldir for files in bin/sources and sets maxdirlogsize
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-links.sh">slv-links.sh</a>                    2022-04-01 19:40  1.0K  by <b>slv</b> - searches daydirs 0day/pda/mp3/mv for matching dirs to create symlinks
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-ngbotc.sh">slv-ngbotc.sh</a>                   2022-04-01 19:40  1.0K  by <b>slv</b> - small script to check ngBot changes, use before updating
-<img src="assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v1.1-20190712.tar.gz">slv-prebw-v1.1-20190712.tar.gz</a>  2022-04-01 19:40  4.2K  by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST:</b>git</a>] pzs-ng dZBot/ngbot plugin to show bw after pre
-<img src="assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-pywho-v20220207.tar.gz">slv-pywho-v20220207.tar.gz</a>      2022-04-01 19:40   78K  by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>] pywho: pzs-ng's sitewho ported to python
-<img src="assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-sitewho-plus2-v0.2.tar.gz">slv-sitewho-plus2-v0.2.tar.gz</a>   2022-04-01 19:40   12K  by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output
-<img src="assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-slftpc.sh">slv-slftpc.sh</a>                   2022-04-01 19:40  4.2K  by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron
-<hr></pre>
-<pre><div style="color: Gray"><div class="footct">
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="0" width="0" style="position: absolute;">
+            <defs>
+                <!-- Go-up -->
+                <g id="go-up">
+                    <path d="M10,9V5L3,12L10,19V14.9C15,14.9 18.5,16.5 21,20C20,15 17,10 10,9Z" fill="#696969"/>
+                </g>
+                <!-- Folder -->
+                <g id="folder" fill-rule="nonzero" fill="none">
+                    <path d="M285.22 37.55h-142.6L110.9 0H31.7C14.25 0 0 16.9 0 37.55v75.1h316.92V75.1c0-20.65-14.26-37.55-31.7-37.55z" fill="#FFA000"/>
+                    <path d="M285.22 36H31.7C14.25 36 0 50.28 0 67.74v158.7c0 17.47 14.26 31.75 31.7 31.75H285.2c17.44 0 31.7-14.3 31.7-31.75V67.75c0-17.47-14.26-31.75-31.7-31.75z" fill="#FFCA28"/>
+                </g>
+                <g id="folder-shortcut" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="folder-shortcut-group" fill-rule="nonzero">
+                        <g id="folder-shortcut-shape">
+                            <path d="M285.224876,37.5486902 L142.612438,37.5486902 L110.920785,0 L31.6916529,0 C14.2612438,0 0,16.8969106 0,37.5486902 L0,112.646071 L316.916529,112.646071 L316.916529,75.0973805 C316.916529,54.4456008 302.655285,37.5486902 285.224876,37.5486902 Z" id="Shape" fill="#FFA000"></path>
+                            <path d="M285.224876,36 L31.6916529,36 C14.2612438,36 0,50.2838568 0,67.7419039 L0,226.451424 C0,243.909471 14.2612438,258.193328 31.6916529,258.193328 L285.224876,258.193328 C302.655285,258.193328 316.916529,243.909471 316.916529,226.451424 L316.916529,67.7419039 C316.916529,50.2838568 302.655285,36 285.224876,36 Z" id="Shape" fill="#FFCA28"></path>
+                        </g>
+                        <path d="M126.154134,250.559184 C126.850974,251.883673 127.300549,253.006122 127.772602,254.106122 C128.469442,255.206122 128.919016,256.104082 129.638335,257.002041 C130.559962,258.326531 131.728855,259 133.100057,259 C134.493737,259 135.415364,258.55102 136.112204,257.67551 C136.809044,257.002041 137.258619,255.902041 137.258619,254.577551 C137.258619,253.904082 137.258619,252.804082 137.033832,251.457143 C136.786566,249.908163 136.561779,249.032653 136.561779,248.583673 C136.089726,242.814286 135.864939,237.920408 135.864939,233.273469 C135.864939,225.057143 136.786566,217.514286 138.180246,210.846939 C139.798713,204.202041 141.889234,198.634694 144.429328,193.763265 C147.216689,188.869388 150.678411,184.873469 154.836973,181.326531 C158.995535,177.779592 163.626149,174.883673 168.481552,172.661224 C173.336954,170.438776 179.113983,168.665306 185.587852,167.340816 C192.061722,166.218367 198.760378,165.342857 205.481514,164.669388 C212.18017,164.220408 219.598146,163.995918 228.162535,163.995918 L246.055591,163.995918 L246.055591,195.514286 C246.055591,197.736735 246.752431,199.510204 248.370899,201.059184 C250.214153,202.608163 252.079886,203.506122 254.372715,203.506122 C256.463236,203.506122 258.531277,202.608163 260.172223,201.059184 L326.102289,137.797959 C327.720757,136.24898 328.642384,134.47551 328.642384,132.253061 C328.642384,130.030612 327.720757,128.257143 326.102289,126.708163 L260.172223,63.4469388 C258.553756,61.8979592 256.463236,61 254.395194,61 C252.079886,61 250.236632,61.8979592 248.393377,63.4469388 C246.77491,64.9959184 246.07807,66.7693878 246.07807,68.9918367 L246.07807,100.510204 L228.162535,100.510204 C166.863084,100.510204 129.166282,117.167347 115.274437,150.459184 C110.666301,161.54898 108.350993,175.310204 108.350993,191.742857 C108.350993,205.279592 113.903236,223.912245 124.760454,247.438776 C125.00772,248.112245 125.457294,249.010204 126.154134,250.559184 Z" id="Shape" fill="#FFFFFF" transform="translate(218.496689, 160.000000) scale(-1, 1) translate(-218.496689, -160.000000) "></path>
+                    </g>
+                </g>
+                <!-- File -->
+                <g id="file" stroke="#000" stroke-width="25" fill="#FFF" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 24.12v274.76c0 6.16 5.87 11.12 13.17 11.12H239c7.3 0 13.17-4.96 13.17-11.12V136.15S132.6 13 128.37 13H26.17C18.87 13 13 17.96 13 24.12z"/>
+                    <path d="M129.37 13L129 113.9c0 10.58 7.26 19.1 16.27 19.1H249L129.37 13z"/>
+                </g>
+                <g id="file-shortcut" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="file-shortcut-group" transform="translate(13.000000, 13.000000)">
+                        <g id="file-shortcut-shape" stroke="#000000" stroke-width="25" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M0,11.1214886 L0,285.878477 C0,292.039924 5.87498876,296.999983 13.1728373,296.999983 L225.997983,296.999983 C233.295974,296.999983 239.17082,292.039942 239.17082,285.878477 L239.17082,123.145388 C239.17082,123.145388 119.58541,2.84217094e-14 115.369423,2.84217094e-14 L13.1728576,2.84217094e-14 C5.87500907,-1.71479982e-05 0,4.96022995 0,11.1214886 Z" id="rect1171"></path>
+                            <path d="M116.37005,0 L116,100.904964 C116,111.483663 123.258008,120 132.273377,120 L236,120 L116.37005,0 L116.37005,0 Z" id="rect1794"></path>
+                        </g>
+                        <path d="M47.803141,294.093878 C48.4999811,295.177551 48.9495553,296.095918 49.4216083,296.995918 C50.1184484,297.895918 50.5680227,298.630612 51.2873415,299.365306 C52.2089688,300.44898 53.3778619,301 54.7490634,301 C56.1427436,301 57.0643709,300.632653 57.761211,299.916327 C58.4580511,299.365306 58.9076254,298.465306 58.9076254,297.381633 C58.9076254,296.830612 58.9076254,295.930612 58.6828382,294.828571 C58.4355724,293.561224 58.2107852,292.844898 58.2107852,292.477551 C57.7387323,287.757143 57.5139451,283.753061 57.5139451,279.95102 C57.5139451,273.228571 58.4355724,267.057143 59.8292526,261.602041 C61.44772,256.165306 63.5382403,251.610204 66.0783349,247.62449 C68.8656954,243.620408 72.3274172,240.35102 76.4859792,237.44898 C80.6445412,234.546939 85.2751561,232.177551 90.1305582,230.359184 C94.9859603,228.540816 100.76299,227.089796 107.236859,226.006122 C113.710728,225.087755 120.409385,224.371429 127.13052,223.820408 C133.829177,223.453061 141.247152,223.269388 149.811542,223.269388 L167.704598,223.269388 L167.704598,249.057143 C167.704598,250.87551 168.401438,252.326531 170.019905,253.593878 C171.86316,254.861224 173.728893,255.595918 176.021722,255.595918 C178.112242,255.595918 180.180284,254.861224 181.82123,253.593878 L247.751296,201.834694 C249.369763,200.567347 250.291391,199.116327 250.291391,197.297959 C250.291391,195.479592 249.369763,194.028571 247.751296,192.761224 L181.82123,141.002041 C180.202763,139.734694 178.112242,139 176.044201,139 C173.728893,139 171.885639,139.734694 170.042384,141.002041 C168.423917,142.269388 167.727077,143.720408 167.727077,145.538776 L167.727077,171.326531 L149.811542,171.326531 C88.5120908,171.326531 50.8152886,184.955102 36.9234437,212.193878 C32.3153075,221.267347 30,232.526531 30,245.971429 C30,257.046939 35.5522422,272.291837 46.4094607,291.540816 C46.6567266,292.091837 47.1063009,292.826531 47.803141,294.093878 Z" id="Shape-Copy" fill="#000000" fill-rule="nonzero" transform="translate(140.145695, 220.000000) scale(-1, 1) translate(-140.145695, -220.000000) "></path>
+                    </g>
+                </g>
+            </defs>
+        </svg>
+        <header></header>
+        <main>
+        <div class="listing">
+            <table aria-describedby="summary">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Size</th>
+                        <th class="hideable">
+                            Modified
+                        </th>
+                        <th class="hideable"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickable">
+                        <td></td>
+                        <td>
+                            <a href=".."><svg width="1.5em" height="1em" version="1.1" viewBox="0 0 24 24"><use xlink:href="#go-up"></use></svg>
+                            <span class="goup">..</span></a>
+                        </td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td class="hideable">&mdash;</td>
+                        <td class="hideable"></td>
+                    </tr>
+    
+                    <tr class="clickable" >
+                        <td></td>
+                        <td>
+                            <a href="LINKS"><svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#folder-shortcut"></use></svg>
+                            <span class="goup">LINKS</span></a>
+                        </td>
+                        <td>LINKS: other websites with scripts, repos and mirrors</td>
+                        <td>&mdash;</td>
+                        <td class="hideable">&mdash;</td>
+                        <td class="hideable"></td>
+                    </tr>
+    
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="ARCHIVE/">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#folder"></use></svg>
+                        <span class="name">ARCHIVE</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: archived scripts</font></td>
+                <td data-order="-1">&mdash;</td>
+                <td class="hideable"><time datetime="2023-06-20T22:43:10">2023-06-20 22:43:10</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="Blow.tcl">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">Blow.tcl</span>
+                    </a>
+                </td>
+                <td>by <b>comp, slv</b> - !blow plugin updated with CBC keyx, goes with <a href='fishwrap.py'>fishwrap.py</a></td>
+                <td data-order="29341">28 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="CreditShow.tcl">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">CreditShow.tcl</span>
+                    </a>
+                </td>
+                <td>by <b>Holybull, slv</b> - !credits plugin for ngBot, uses <a href='hb_creditshow.sh'>hb_credshow.sh</a></td>
+                <td data-order="3502">3 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="Request.tcl">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">Request.tcl</span>
+                    </a>
+                </td>
+                <td>by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a></td>
+                <td data-order="12379">12 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:26">2022-04-01 19:40:26</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="Sitecmds.tcl">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">Sitecmds.tcl</span>
+                    </a>
+                </td>
+                <td>by <b>comp, slv</b> - !site plugin updated to work with ngBot</td>
+                <td data-order="6300">6 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="Whois.tcl">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">Whois.tcl</span>
+                    </a>
+                </td>
+                <td>by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot</td>
+                <td data-order="5950">5 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="abuse.log">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">abuse.log</span>
+                    </a>
+                </td>
+                <td>&mdash;</td>
+                <td data-order="336">336 bytes</td>
+                <td class="hideable"><time datetime="2022-07-02T01:00:11">2022-07-02 01:00:11</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="abuse.zst">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">abuse.zst</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - pcustom zs-ng ngBot theme 'abuse' | <a href='abuse.log'>preview</a> | <a href='abuse.zst'>download</a></td>
+                <td data-order="29331">28 KB</td>
+                <td class="hideable"><time datetime="2022-07-03T00:59:24">2022-07-03 00:59:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="audiosortpre.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">audiosortpre.sh</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - little wrapper cscript for audiosorting after pre</td>
+                <td data-order="788">788 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:22">2022-04-01 19:40:22</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="cpt-request.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">cpt-request.sh</span>
+                    </a>
+                </td>
+                <td>by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a></td>
+                <td data-order="12315">12 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="dirscript.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">dirscript.sh</span>
+                    </a>
+                </td>
+                <td>by <b>Jehsom, slv</b> - updated version of mp3 dirscript</td>
+                <td data-order="12243">11 KB</td>
+                <td class="hideable"><time datetime="2023-06-17T21:24:41">2023-06-17 21:24:41</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="fear.log">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">fear.log</span>
+                    </a>
+                </td>
+                <td>&mdash;</td>
+                <td data-order="361">361 bytes</td>
+                <td class="hideable"><time datetime="2022-07-02T00:59:42">2022-07-02 00:59:42</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="fear.zst">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">fear.zst</span>
+                    </a>
+                </td>
+                <td>by <b>fear, slv</b> - custom pzs-ng ngBot theme 'fear' | <a href='fear.log'>preview</a> | <a href='fear.zst'>dowload</a></td>
+                <td data-order="22370">21 KB</td>
+                <td class="hideable"><time datetime="2022-07-03T00:46:25">2022-07-03 00:46:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="fishwrap.py">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">fishwrap.py</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a></td>
+                <td data-order="1994">1 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:22">2022-04-01 19:40:22</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="foo-tools-v1.22-20220312.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">foo-tools-v1.22-20220312.tar.gz</span>
+                    </a>
+                </td>
+                <td>by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST:</b>git</a>] fixed/updated foo-tools, incl foopre+mp3genre</td>
+                <td data-order="502030">490 KB</td>
+                <td class="hideable"><time datetime="2023-02-18T14:55:40">2023-02-18 14:55:40</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="gft-stats.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">gft-stats.sh</span>
+                    </a>
+                </td>
+                <td>by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups (<a href='gft-stats.txt'>conf</a>)</td>
+                <td data-order="1625">1 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:22">2022-04-01 19:40:22</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="gft-stats.txt">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">gft-stats.txt</span>
+                    </a>
+                </td>
+                <td>by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf</td>
+                <td data-order="902">902 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="glftpd.html">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">glftpd.html</span>
+                    </a>
+                </td>
+                <td>by <b>glteam</b> - links to glftpd mirror</td>
+                <td data-order="141">141 bytes</td>
+                <td class="hideable"><time datetime="2023-02-11T15:08:57">2023-02-11 15:08:57</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="hb_creditshow.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">hb_creditshow.sh</span>
+                    </a>
+                </td>
+                <td>by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a></td>
+                <td data-order="244">244 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="og.log">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">og.log</span>
+                    </a>
+                </td>
+                <td>&mdash;</td>
+                <td data-order="361">361 bytes</td>
+                <td class="hideable"><time datetime="2022-07-03T00:20:20">2022-07-03 00:20:20</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="og.zst">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">og.zst</span>
+                    </a>
+                </td>
+                <td>by <b>g, slv</b> - custom pzs-ng ngBot theme 'og' | <a href='og.log'>preview</a> | <a href='og.zst'>download</a></td>
+                <td data-order="29517">28 KB</td>
+                <td class="hideable"><time datetime="2022-07-03T00:41:11">2022-07-03 00:41:11</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="pussy.log">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">pussy.log</span>
+                    </a>
+                </td>
+                <td>&mdash;</td>
+                <td data-order="479">479 bytes</td>
+                <td class="hideable"><time datetime="2022-07-02T23:16:59">2022-07-02 23:16:59</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="pussy.zst">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">pussy.zst</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - custom pzs-ng ngBot theme 'pussy' | <a href='pussy.log'>preview</a> | <a href='pussy.zst'>dowload</a></td>
+                <td data-order="26247">25 KB</td>
+                <td class="hideable"><time datetime="2022-07-03T00:47:14">2022-07-03 00:47:14</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="rescan.md">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">rescan.md</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan.txt'>view</a> | <a href='rescan'>download</a></td>
+                <td data-order="828">828 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="skiplist-example-data.txt">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">skiplist-example-data.txt</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile</td>
+                <td data-order="4079">3 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-arch.conf">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-arch.conf</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - archiver: config file, goes with <a href='slv-arch.sh'>slv-arch.sh</a></td>
+                <td data-order="4483">4 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:22">2022-04-01 19:40:22</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-arch.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-arch.sh</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>] archiver: moves releases, creates daydirs and tv/season dirs (<a href='slv-arch.conf'>conf</a>)</td>
+                <td data-order="24671">24 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:22">2022-04-01 19:40:22</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-cbapi.mrc">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-cbapi.mrc</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - use cbftp api from mirc: search, dupe, request, invite and site cmds</td>
+                <td data-order="72787">71 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-disk.tcl">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-disk.tcl</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - monitor raids/disks</td>
+                <td data-order="11341">11 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-geofxp.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-geofxp.sh</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - fxpscript to allow/deny country code(s) using geoip2</td>
+                <td data-order="7866">7 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-glset.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-glset.sh</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - sets gldir for files in bin/sources and sets maxdirlogsize</td>
+                <td data-order="2178">2 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-links.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-links.sh</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - searches daydirs 0day/pda/mp3/mv for matching dirs to create symlinks</td>
+                <td data-order="1015">1015 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:26">2022-04-01 19:40:26</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-ngbotc.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-ngbotc.sh</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - small script to check ngBot changes, use before updating</td>
+                <td data-order="990">990 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:22">2022-04-01 19:40:22</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-prebw-v1.1-20190712.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-prebw-v1.1-20190712.tar.gz</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-prebw'><b>LATEST</b>:git</a>] pzs-ng dZBot/ngbot plugin to show bw after pre</td>
+                <td data-order="4279">4 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-pywho-v20220207.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-pywho-v20220207.tar.gz</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>LATEST</b>:git</a>] pywho: pzs-ng's sitewho ported to python</td>
+                <td data-order="79360">77 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-sitewho-plus2-v0.2.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-sitewho-plus2-v0.2.tar.gz</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output</td>
+                <td data-order="11829">11 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-slftpc.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-slftpc.sh</span>
+                    </a>
+                </td>
+                <td>by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron</td>
+                <td data-order="4301">4 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+                </tbody>
+            </table>
+        </div>
+        <footer/>
+        </main>
+    <pre><div style="color: Gray"><div class="footct">
 <span class="footupd" id="lastUpdated"></span>
 <span class="footlnk"><a href="https://github.com/silv3rr/scripts">view repository</a> | <a href="https://silv3rr.github.io/scripts/">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.scripts.nl.eu.org/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i>
 </span>

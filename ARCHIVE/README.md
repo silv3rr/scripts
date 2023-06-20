@@ -4,13 +4,15 @@
 
 <title>{{ site.title | default: site.github.repository_name }}</title>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="../assets/css/style.css" />
+<link rel="stylesheet" href="../assets/css/indexer.css" />
 <script type="text/javascript" src="../assets/js/piwik.js"></script>
 <script type="text/javascript" src="../assets/js/updated.js"></script>
 </details>
 </head>
-<body onLoad="lastUpdated('README.md');">  
+<body onLoad="lastUpdated('../README.md');">  
 <div class="slvlogo">
 <pre>
 <!-- ``` -->
@@ -27,36 +29,468 @@
 <div class="txtscripts">
 <pre>s   c   r   i   p   t   s</pre>
 </div>
-<pre><img src="../assets/icons/blank.gif" alt="Icon "> Name                                       Last modified      Size  Description<hr><img src="../assets/icons/back.gif" width="20" height="22" alt="[PARENTDIR]"> <a href="..">Parent Directory</a>                                                -   
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="DH1080-source.zip">DH1080-source.zip</a>                          2022-04-01 19:40   21K  by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)
-<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="ebftpd-deps.sh">ebftpd-deps.sh</a>                             2022-04-01 19:40  318   <font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font>
-<img src="../assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="foo-pre-destfix.patch">foo-pre-destfix.patch</a>                      2022-04-01 19:40  389   <font color='Gray'>OLD: little patch to fix destination error on pre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="foo-tools-v1.20-20180713.tar.gz">foo-tools-v1.20-20180713.tar.gz</a>            2022-04-01 19:40  434K  <font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="foo-tools-v1.21-20210516.tar.gz">foo-tools-v1.21-20210516.tar.gz</a>            2022-04-01 19:40  445K  <font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="footools-dirlogfix.tar.gz">footools-dirlogfix.tar.gz</a>                  2022-04-01 19:40  204K  <font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>
-<img src="../assets/icons/text.gif" width="20" height="22" alt="[TXT]"> <a href="footools-mp3genre.patch">footools-mp3genre.patch</a>                    2022-04-01 19:40  8.8K  <font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">footools-x86-x64-20111102-mp3genre.tar.bz2</a> 2022-04-01 19:40  438K  <font color='gray'>old: by slv - ugly hack for foopre to add mp3 genre in pre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">glftpd-LNX-2.08_1.1.0g_x64.tgz</a>             2022-04-01 19:40  7.1M  <font color='Gray'>OLD: by glteam - glftpd 2.08 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')">show sha512</a></font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.09_1.1.0j_x64.tgz">glftpd-LNX-2.09_1.1.0j_x64.tgz</a>             2022-04-01 19:40  7.1M  <font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')">show sha512</a></font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.10a_1.1.1d_x64.tgz">glftpd-LNX-2.10a_1.1.1d_x64.tgz</a>            2022-04-01 19:40  8.2M  <font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')">show sha512</a></font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1i_x64.tgz">glftpd-LNX-2.11a_1.1.1i_x64.tgz</a>            2022-04-01 19:40  8.4M  <font color='Gray'>OLD: by glteam -  glftpd 2.11a linux x64 (mirror) | <a href='#' onClick="window.prompt('SHA512:', '5dfb420036b714328fe08cb88b36256c5cd874158d1d6cfbaa8fd7b4fa49a16526c72261b82d8724614b95ddc89fce048f3c2c79d556c505318d196ebdd05aef')">show sha512</a></font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="glftpd-LNX-2.11a_1.1.1k_x64.tgz">glftpd-LNX-2.11a_1.1.1k_x64.tgz</a>            2022-04-01 19:40  8.4M  <font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick="window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')">show sha512</a></font>
-<img src="../assets/icons/c.gif" width="20" height="22" alt="[TXT]"> <a href="passchk.c">passchk.c</a>                                  2022-04-01 19:40  1.8K  modded to generate pw hashes for /etc/passwd
-<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-arch.sh">slv-arch.sh</a>                                2022-04-01 19:40   18K  slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs
-<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-archmp3.sh">slv-archmp3.sh</a>                             2022-04-01 19:40  4.6K  <font color='Gray'>OLD: by slv - archiver for mp3 daydirs and mv wkdirs (with audiosort)</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.52.tar.gz">slv-prebw-v0.52.tar.gz</a>                     2022-04-01 19:40  2.4K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.53.tar.gz">slv-prebw-v0.53.tar.gz</a>                     2022-04-01 19:40  2.4K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v0.54.tar.gz">slv-prebw-v0.54.tar.gz</a>                     2022-04-01 19:40  2.5K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-prebw-v1.0-20190609.tar.gz">slv-prebw-v1.0-20190609.tar.gz</a>             2022-04-01 19:40  4.1K  <font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-pywho-v20211104.tar.gz">slv-pywho-v20211104.tar.gz</a>                 2022-04-01 19:40   15K  <font color='Gray'>OLD:by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font>
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="slv-sitewho-plus2-v0.1.tar.gz">slv-sitewho-plus2-v0.1.tar.gz</a>              2022-04-01 19:40   11K  <font color='Gray'>OLD: by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output</font>
-<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.sh">slv-vnstat.sh</a>                              2022-04-01 19:40  4.6K  by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even...
-<img src="../assets/icons/script.gif" width="20" height="22" alt="[TXT]"> <a href="slv-vnstat.tcl">slv-vnstat.tcl</a>                             2022-04-01 19:40  902   by <b>slv</b> - !vnstat trigger
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speed.sh.zip">speed.sh.zip</a>                               2022-11-15 12:00  307   by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup
-<img src="../assets/icons/compressed.gif" width="20" height="22" alt="[   ]"> <a href="speedfix.rar">speedfix.rar</a>                               2022-04-01 19:40  307   by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup
-<img src="../assets/icons/tar.gif" width="20" height="22" alt="[   ]"> <a href="vnstat_frontend.tar">vnstat_frontend.tar</a>                        2022-04-01 19:40   80K  by <b>Nom</b> - use with http://humdi.net/vnstat
-<hr></pre>
-<pre><div style="color: Gray"><div class="footct">
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="0" width="0" style="position: absolute;">
+            <defs>
+                <!-- Go-up -->
+                <g id="go-up">
+                    <path d="M10,9V5L3,12L10,19V14.9C15,14.9 18.5,16.5 21,20C20,15 17,10 10,9Z" fill="#696969"/>
+                </g>
+                <!-- Folder -->
+                <g id="folder" fill-rule="nonzero" fill="none">
+                    <path d="M285.22 37.55h-142.6L110.9 0H31.7C14.25 0 0 16.9 0 37.55v75.1h316.92V75.1c0-20.65-14.26-37.55-31.7-37.55z" fill="#FFA000"/>
+                    <path d="M285.22 36H31.7C14.25 36 0 50.28 0 67.74v158.7c0 17.47 14.26 31.75 31.7 31.75H285.2c17.44 0 31.7-14.3 31.7-31.75V67.75c0-17.47-14.26-31.75-31.7-31.75z" fill="#FFCA28"/>
+                </g>
+                <g id="folder-shortcut" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="folder-shortcut-group" fill-rule="nonzero">
+                        <g id="folder-shortcut-shape">
+                            <path d="M285.224876,37.5486902 L142.612438,37.5486902 L110.920785,0 L31.6916529,0 C14.2612438,0 0,16.8969106 0,37.5486902 L0,112.646071 L316.916529,112.646071 L316.916529,75.0973805 C316.916529,54.4456008 302.655285,37.5486902 285.224876,37.5486902 Z" id="Shape" fill="#FFA000"></path>
+                            <path d="M285.224876,36 L31.6916529,36 C14.2612438,36 0,50.2838568 0,67.7419039 L0,226.451424 C0,243.909471 14.2612438,258.193328 31.6916529,258.193328 L285.224876,258.193328 C302.655285,258.193328 316.916529,243.909471 316.916529,226.451424 L316.916529,67.7419039 C316.916529,50.2838568 302.655285,36 285.224876,36 Z" id="Shape" fill="#FFCA28"></path>
+                        </g>
+                        <path d="M126.154134,250.559184 C126.850974,251.883673 127.300549,253.006122 127.772602,254.106122 C128.469442,255.206122 128.919016,256.104082 129.638335,257.002041 C130.559962,258.326531 131.728855,259 133.100057,259 C134.493737,259 135.415364,258.55102 136.112204,257.67551 C136.809044,257.002041 137.258619,255.902041 137.258619,254.577551 C137.258619,253.904082 137.258619,252.804082 137.033832,251.457143 C136.786566,249.908163 136.561779,249.032653 136.561779,248.583673 C136.089726,242.814286 135.864939,237.920408 135.864939,233.273469 C135.864939,225.057143 136.786566,217.514286 138.180246,210.846939 C139.798713,204.202041 141.889234,198.634694 144.429328,193.763265 C147.216689,188.869388 150.678411,184.873469 154.836973,181.326531 C158.995535,177.779592 163.626149,174.883673 168.481552,172.661224 C173.336954,170.438776 179.113983,168.665306 185.587852,167.340816 C192.061722,166.218367 198.760378,165.342857 205.481514,164.669388 C212.18017,164.220408 219.598146,163.995918 228.162535,163.995918 L246.055591,163.995918 L246.055591,195.514286 C246.055591,197.736735 246.752431,199.510204 248.370899,201.059184 C250.214153,202.608163 252.079886,203.506122 254.372715,203.506122 C256.463236,203.506122 258.531277,202.608163 260.172223,201.059184 L326.102289,137.797959 C327.720757,136.24898 328.642384,134.47551 328.642384,132.253061 C328.642384,130.030612 327.720757,128.257143 326.102289,126.708163 L260.172223,63.4469388 C258.553756,61.8979592 256.463236,61 254.395194,61 C252.079886,61 250.236632,61.8979592 248.393377,63.4469388 C246.77491,64.9959184 246.07807,66.7693878 246.07807,68.9918367 L246.07807,100.510204 L228.162535,100.510204 C166.863084,100.510204 129.166282,117.167347 115.274437,150.459184 C110.666301,161.54898 108.350993,175.310204 108.350993,191.742857 C108.350993,205.279592 113.903236,223.912245 124.760454,247.438776 C125.00772,248.112245 125.457294,249.010204 126.154134,250.559184 Z" id="Shape" fill="#FFFFFF" transform="translate(218.496689, 160.000000) scale(-1, 1) translate(-218.496689, -160.000000) "></path>
+                    </g>
+                </g>
+                <!-- File -->
+                <g id="file" stroke="#000" stroke-width="25" fill="#FFF" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 24.12v274.76c0 6.16 5.87 11.12 13.17 11.12H239c7.3 0 13.17-4.96 13.17-11.12V136.15S132.6 13 128.37 13H26.17C18.87 13 13 17.96 13 24.12z"/>
+                    <path d="M129.37 13L129 113.9c0 10.58 7.26 19.1 16.27 19.1H249L129.37 13z"/>
+                </g>
+                <g id="file-shortcut" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="file-shortcut-group" transform="translate(13.000000, 13.000000)">
+                        <g id="file-shortcut-shape" stroke="#000000" stroke-width="25" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M0,11.1214886 L0,285.878477 C0,292.039924 5.87498876,296.999983 13.1728373,296.999983 L225.997983,296.999983 C233.295974,296.999983 239.17082,292.039942 239.17082,285.878477 L239.17082,123.145388 C239.17082,123.145388 119.58541,2.84217094e-14 115.369423,2.84217094e-14 L13.1728576,2.84217094e-14 C5.87500907,-1.71479982e-05 0,4.96022995 0,11.1214886 Z" id="rect1171"></path>
+                            <path d="M116.37005,0 L116,100.904964 C116,111.483663 123.258008,120 132.273377,120 L236,120 L116.37005,0 L116.37005,0 Z" id="rect1794"></path>
+                        </g>
+                        <path d="M47.803141,294.093878 C48.4999811,295.177551 48.9495553,296.095918 49.4216083,296.995918 C50.1184484,297.895918 50.5680227,298.630612 51.2873415,299.365306 C52.2089688,300.44898 53.3778619,301 54.7490634,301 C56.1427436,301 57.0643709,300.632653 57.761211,299.916327 C58.4580511,299.365306 58.9076254,298.465306 58.9076254,297.381633 C58.9076254,296.830612 58.9076254,295.930612 58.6828382,294.828571 C58.4355724,293.561224 58.2107852,292.844898 58.2107852,292.477551 C57.7387323,287.757143 57.5139451,283.753061 57.5139451,279.95102 C57.5139451,273.228571 58.4355724,267.057143 59.8292526,261.602041 C61.44772,256.165306 63.5382403,251.610204 66.0783349,247.62449 C68.8656954,243.620408 72.3274172,240.35102 76.4859792,237.44898 C80.6445412,234.546939 85.2751561,232.177551 90.1305582,230.359184 C94.9859603,228.540816 100.76299,227.089796 107.236859,226.006122 C113.710728,225.087755 120.409385,224.371429 127.13052,223.820408 C133.829177,223.453061 141.247152,223.269388 149.811542,223.269388 L167.704598,223.269388 L167.704598,249.057143 C167.704598,250.87551 168.401438,252.326531 170.019905,253.593878 C171.86316,254.861224 173.728893,255.595918 176.021722,255.595918 C178.112242,255.595918 180.180284,254.861224 181.82123,253.593878 L247.751296,201.834694 C249.369763,200.567347 250.291391,199.116327 250.291391,197.297959 C250.291391,195.479592 249.369763,194.028571 247.751296,192.761224 L181.82123,141.002041 C180.202763,139.734694 178.112242,139 176.044201,139 C173.728893,139 171.885639,139.734694 170.042384,141.002041 C168.423917,142.269388 167.727077,143.720408 167.727077,145.538776 L167.727077,171.326531 L149.811542,171.326531 C88.5120908,171.326531 50.8152886,184.955102 36.9234437,212.193878 C32.3153075,221.267347 30,232.526531 30,245.971429 C30,257.046939 35.5522422,272.291837 46.4094607,291.540816 C46.6567266,292.091837 47.1063009,292.826531 47.803141,294.093878 Z" id="Shape-Copy" fill="#000000" fill-rule="nonzero" transform="translate(140.145695, 220.000000) scale(-1, 1) translate(-140.145695, -220.000000) "></path>
+                    </g>
+                </g>
+            </defs>
+        </svg>
+        <header></header>
+        <main>
+        <div class="listing">
+            <table aria-describedby="summary">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Size</th>
+                        <th class="hideable">
+                            Modified
+                        </th>
+                        <th class="hideable"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickable">
+                        <td></td>
+                        <td>
+                            <a href=".."><svg width="1.5em" height="1em" version="1.1" viewBox="0 0 24 24"><use xlink:href="#go-up"></use></svg>
+                            <span class="goup">..</span></a>
+                        </td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td class="hideable">&mdash;</td>
+                        <td class="hideable"></td>
+                    </tr>
+    
+                    <tr class="clickable" >
+                        <td></td>
+                        <td>
+                            <a href="LINKS"><svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#folder-shortcut"></use></svg>
+                            <span class="goup">LINKS</span></a>
+                        </td>
+                        <td>LINKS: other websites with scripts, repos and mirrors</td>
+                        <td>&mdash;</td>
+                        <td class="hideable">&mdash;</td>
+                        <td class="hideable"></td>
+                    </tr>
+    
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="DH1080-source.zip">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">DH1080-source.zip</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>ECLiPSE</b> - DH1080_tcl from fish.secure.la (mirror)</font></td>
+                <td data-order="21158">20 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="ebftpd-deps.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">ebftpd-deps.sh</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebftpd</font></td>
+                <td data-order="318">318 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="foo-pre-destfix.patch">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">foo-pre-destfix.patch</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: little patch to fix destination error on pre</font></td>
+                <td data-order="389">389 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="foo-tools-v1.20-20180713.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">foo-tools-v1.20-20180713.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font></td>
+                <td data-order="444673">434 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="foo-tools-v1.21-20210516.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">foo-tools-v1.21-20210516.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font></td>
+                <td data-order="455760">445 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:21">2022-04-01 19:40:21</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="footools-dirlogfix.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">footools-dirlogfix.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font></td>
+                <td data-order="208890">203 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:23">2022-04-01 19:40:23</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="footools-mp3genre.patch">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">footools-mp3genre.patch</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font></td>
+                <td data-order="9007">8 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="footools-x86-x64-20111102-mp3genre.tar.bz2">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">footools-x86-x64-20111102-mp3genre.tar.bz2</span>
+                    </a>
+                </td>
+                <td><font color='gray'>old: by slv - ugly hack for foopre to add mp3 genre in pre</font></td>
+                <td data-order="448697">438 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="glftpd-LNX-2.08_1.1.0g_x64.tgz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">glftpd-LNX-2.08_1.1.0g_x64.tgz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by glteam - glftpd 2.08 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '4a43e1842992d1e3322cfa804168670ff1f592290e106c653218a599e35a81e9ea7dcc975d1ef2ebeae7587e4e1f60c8e92d77c807d26de693cc821029d55e6f')\">show sha512</a></font></td>
+                <td data-order="7467343">7 MB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:23">2022-04-01 19:40:23</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="glftpd-LNX-2.09_1.1.0j_x64.tgz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">glftpd-LNX-2.09_1.1.0j_x64.tgz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '84833593ecf032ae968e530b33a7a884d9da861f86440db36d04086322b27c2a71d63e3f618485fb366cc370d428e1bedc223ee52cf36c3a220358778861e717')\">show sha512</a></font></td>
+                <td data-order="7490257">7 MB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="glftpd-LNX-2.10a_1.1.1d_x64.tgz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">glftpd-LNX-2.10a_1.1.1d_x64.tgz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by glteam - glftpd 2.09 linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', 'f2600821f76aa4e820a0a8b18a9684f9888da67f487825807a880cc68b322f81b8bb1b2f6b081aff21e350b977ac6818b006a1a76e895f5705844605e54c98ee')\">show sha512</a></font></td>
+                <td data-order="8559991">8 MB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="glftpd-LNX-2.11a_1.1.1i_x64.tgz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">glftpd-LNX-2.11a_1.1.1i_x64.tgz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64 (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '5dfb420036b714328fe08cb88b36256c5cd874158d1d6cfbaa8fd7b4fa49a16526c72261b82d8724614b95ddc89fce048f3c2c79d556c505318d196ebdd05aef')\">show sha512</a></font></td>
+                <td data-order="8852490">8 MB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:23">2022-04-01 19:40:23</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="glftpd-LNX-2.11a_1.1.1k_x64.tgz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">glftpd-LNX-2.11a_1.1.1k_x64.tgz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by glteam - glftpd 2.11a linux x64, stable (mirror) | <a href='#' onClick=\"window.prompt('SHA512:', '05508b05c59db56438bd605b5f0e4a2aca41f0f05f58f9e9328a405c150149aae4d21a8941925d0158d5843b3e2a85ded56e1d506680dd024002bab1cf6c7728')\">show sha512</a></font></td>
+                <td data-order="8854933">8 MB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="passchk.c">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">passchk.c</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>modded to generate pw hashes for /etc/passwdi</font></td>
+                <td data-order="1797">1 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-arch.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-arch.sh</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by slv - archiver for iso, moves to appropriate dirs and creates tvshow/season dirs</font></td>
+                <td data-order="18229">17 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-archmp3.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-archmp3.sh</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by slv - archiver for mp3 daydirs and mv wkdirs (with audiosort)</font></td>
+                <td data-order="4744">4 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-prebw-v0.52.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-prebw-v0.52.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font></td>
+                <td data-order="2460">2 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-prebw-v0.53.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-prebw-v0.53.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font></td>
+                <td data-order="2442">2 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-prebw-v0.54.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-prebw-v0.54.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font></td>
+                <td data-order="2606">2 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-prebw-v1.0-20190609.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-prebw-v1.0-20190609.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by slv - pzs-ng dZBot/ngbot plugin to show bw after pre</font></td>
+                <td data-order="4244">4 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:23">2022-04-01 19:40:23</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-pywho-v20211104.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-pywho-v20211104.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>slv</b> - pywho: pzs-ng's sitewho ported to python</font></td>
+                <td data-order="15836">15 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-sitewho-plus2-v0.1.tar.gz">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-sitewho-plus2-v0.1.tar.gz</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>slv</b> - sitewho+2: modded version with user ip/geoip2 country in raw output</font></td>
+                <td data-order="11227">10 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-vnstat.sh">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-vnstat.sh</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>slv</b> - vnstat wrapper for multiple interfaces? i dont even...</font></td>
+                <td data-order="4703">4 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="slv-vnstat.tcl">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">slv-vnstat.tcl</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>slv</b> - !vnstat trigger</font></td>
+                <td data-order="902">902 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:25">2022-04-01 19:40:25</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="speed.sh.zip">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">speed.sh.zip</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>Unknown</b> - speed.sh tweaks tcp settings for gbit, with backup</font></td>
+                <td data-order="307">307 bytes</td>
+                <td class="hideable"><time datetime="2022-11-15T12:00:41">2022-11-15 12:00:41</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="speedfix.rar">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">speedfix.rar</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>Unknown</b> - speedfix.nfo uses lower buffer sizes than speed.sh, doesnt backup</font></td>
+                <td data-order="307">307 bytes</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+            <tr class="file">
+                <td></td>
+                <td>
+                    <a href="vnstat_frontend.tar">
+                        <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+                        <span class="name">vnstat_frontend.tar</span>
+                    </a>
+                </td>
+                <td><font color='Gray'>OLD: by <b>Nom</b> - use with http://humdi.net/vnstat</font></td>
+                <td data-order="81920">80 KB</td>
+                <td class="hideable"><time datetime="2022-04-01T19:40:24">2022-04-01 19:40:24</time></td>
+                <td class="hideable"></td>
+            </tr>
+        
+                </tbody>
+            </table>
+        </div>
+        <footer/>
+        </main>
+    <pre><div style="color: Gray"><div class="footct">
 <span class="footupd" id="lastUpdated"></span>
 <span class="footlnk"><a href="https://github.com/silv3rr/scripts">view repository</a> | <a href="https://silv3rr.github.io/scripts/">view website</a><br><i>We use <a href="https://matomo.org/privacy-policy">Matomo</a> web analytics (<a href="https://stats.scripts.nl.eu.org/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=d3d3d3&fontColor=000&fontSize=10pt&fontFamily=SFMono-Regular,Consolas,Liberation%20Mono,Menlo,Courier,monospace">opt-out</a>)</i>
 </span>
