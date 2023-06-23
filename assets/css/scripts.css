@@ -13,7 +13,7 @@
   font-weight: bold;
 }
 
-.slv_logo pre, .txt_scripts pre {
+.slv_logo pre, .txt_scripts pre, .glinks pre {
   font-size: 15px;
 }
 
@@ -52,7 +52,7 @@
 
 .txt_glinks {
   width: 300px;
-  margin:0 auto;
+  /* margin:0 auto; */
   margin-bottom: 30px;
   color: Blue;
   font-weight: bold;
