@@ -71,7 +71,7 @@ AddDescription "LINKS: other websites with scripts, repos and mirrors" LINKS
 AddDescription "by <b>comp, slv</b> - !requests ngBot plugin that uses nickdb, goes with <a href='cpt-request.sh'>cpt-request.sh</a>" Request.tcl
 AddDescription "by <b>comp, slv</b> - !site plugin updated to work with ngBot" Sitecmds.tcl
 AddDescription "by <b>comp, E-Liquid, slv</b> - !whois plugin updated to work with ngBot" Whois.tcl
-AddDescription "by <b>slv</b> - pcustom zs-ng ngBot theme 'abuse' | <a href='abuse.log'>preview</a> | <a href='abuse.zst'>download</a>" abuse.zst
+AddDescription "by <b>slv</b> - custom pzs-ng ngBot theme 'abuse' | <a href='abuse.log'>preview</a> | <a href='abuse.zst'>download</a>" abuse.zst
 AddDescription "by <b>slv</b> - little wrapper cscript for audiosorting after pre" audiosortpre.sh
 AddDescription "by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</a>" cpt-request.sh
 AddDescription "by <b>Jehsom, slv</b> - updated version of mp3 dirscript" dirscript.sh
