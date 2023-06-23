@@ -12,4 +12,6 @@
 website:
 
 - [https://scripts.nl.eu.org](https://scripts.nl.eu.org)
+- [https://links.nl.eu.org](https://links.nl.eu.org)
 - [https://github.com/silv3rr/scripts](https://github.com/silv3rr/scripts])
+
