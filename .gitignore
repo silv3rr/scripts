@@ -14,3 +14,4 @@ Gemfile.lock
 about.markdown
 index.markdown
 index.md
+*.tmp
