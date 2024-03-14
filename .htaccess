@@ -101,3 +101,4 @@ AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>L
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pyspy'><b>LATEST</b>:git</a>] pyspy: like gl_spy, with web gui"  slv-pyspy-v20230708.tar.gz
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output" slv-sitewho-plus2-v0.2.tar.gz
 AddDescription "by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slv-slftpc.sh
+AddDescription "by <b>slv</b> - gltool - directly manage users and groups, outside of glftpd" gltool.sh
