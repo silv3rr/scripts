@@ -5,11 +5,12 @@ set -eo pipefail
 # ------------------------------------------------------------------------------
 SCRIPTNAME="gltool: glftpd user mgmt tool"
 DESCRIPTION="directly manage users and groups, outside of glftpd"
+REQUIREMENTS=" awk, cut, grep, sed, hashgen(slv), passchk(pzs-ng)"
 # -------------------------------------------------------------------slv.2o24---
 
 GLDIR="/glftpd"
 AUTH=0
-CHECK_BINS=0
+CHECK_SYS_BINS=0
 CHECK_MASK=1
 ALLOW_IPV6=1
 ALLOW_IPMASK=1
@@ -54,10 +55,17 @@ COMMANDS:
 OPTIONS:
 
 $OPTIONS
+
+REQUIRES: $REQUIREMENTS
 "
 
+
+################################################
+# GET OPTIONS
+################################################
+
 OPTIND=1
-while getopts ha:c:d:f:g:i:l:m:n:r:s:t:p:u: opt; do
+while getopts ha:c:d:f:g:i:k:l:u:p:r:s:t:z: opt; do
   case $opt in
     a) GADMIN=$OPTARG ;;                      # (ADDUSERGROUP|USERGADMIN)
     c) COMMAND=$OPTARG ;;                    
@@ -66,12 +74,14 @@ while getopts ha:c:d:f:g:i:l:m:n:r:s:t:p:u: opt; do
     g) GROUP=$OPTARG ;;                       # (ADDGROUP|DELGROUP|CHGRP)
     h) echo "$HELP" && exit 0 ;;                
     i) MASK=$OPTARG ;;                        # (ADDIP|DELIP)
+    k) CREDITS=$OPTARG ;;                     # (CHCREDITS)
     l) LOGINS=$OPTARG ;;                      # (CHLOGINS)
     u) USERNAME=$OPTARG ;;                    # (ADDUSER|DELUSER|AUTH|*IP|*USERGROUP|CH*)
     p) PASSWORD=$OPTARG ;;                    # (ADDUSER|CHPASS|AUTH)
     r) RATIO=$OPTARG ;;                       # (CHRATIO)
     s) PGROUP=$OPTARG ;;                      # (ADDPGROUP|DELPGROUP)
     t) TAGLINE=$OPTARG ;;                     # (CHTAG)
+    z) ADMIN=$OPTARG ;;
     *) exit 1 ;;             
   esac
 done
@@ -82,14 +92,22 @@ if [ -n "$*" ]; then
  exit 1
 fi
 
-if [ "${CHECK_BINS:-0}" -eq 1 ]; then
+if [ "$(readlink /proc/$$/exe 2>&1)" = "/bin/busybox" ]; then
+  echo "ERROR: busybox not supported"
+  exit 1
+fi
+
+# support grep without -P option
+GREP_PERL=1
+if [ "${CHECK_SYS_BINS:-0}" -eq 1 ]; then
   for i in grep sed cut; do
     command -v $i >/dev/null 2>&1 || { echo "ERROR: missing $i"; exit 1; }
   done
+  grep -P >/dev/null 2>&1 || GREP_PERL=0
 fi
 
 if [ -z "$COMMAND" ]; then
-  echo "ERROR: missing option"
+  echo "ERROR: missing option, try '-h'"
   exit 1
 fi
 
@@ -104,7 +122,12 @@ fi
 
 USERFILE="$GLDIR/ftp-data/users/$USERNAME"
 LOGFILE="$GLDIR/ftp-data/logs/gltool.log"
-ID="$( id -un )"
+ID="$(id -un)"
+SITEOP="${ADMIN:-"$ID"}"
+
+if [ -n "$USER" ] && [ -n "$FLAGS" ] && [ -n  "$GROUP" ]; then
+  SITEOP="$USER"
+fi
 
 func_check_ip() {
   grep IP "$USERFILE" | grep -F -w -m 1 "$MASK" | cut -d ' ' -f2 
@@ -160,12 +183,21 @@ func_get_glconf() {
   done
 }
 
+func_get_bin() {
+  for i in "$GLDIR/bin/$1" "/usr/local/bin/$1"; do
+    if [ -s "$i" ] && [ "$(./"$i" >/dev/null 2>&1)" ]; then
+      echo "$i"
+      break
+    fi
+  done
+}
+
 # ----------------------------------------------
 # LISTIP
 # ----------------------------------------------
 func_listip() {
   if [ -n "$USERNAME" ]; then
-    masks="$( grep IP "$USERFILE" | sed 's/IP //g' | sed ':a;N;$!ba;s/\n/ /g')"
+    masks="$(grep IP "$USERFILE" | sed 's/IP //g' | sed ':a;N;$!ba;s/\n/ /g')"
     echo "User \"$USERNAME\" has these masks added: $masks"
   fi
 }
@@ -174,8 +206,8 @@ func_listip() {
 # LOG
 # ----------------------------------------------
 func_logmsg() {
-  echo "$COMMAND: $( date '+%a %b %d %T %Y' ) $1" >> "$LOGFILE"
-  echo "DONE: $1"
+  echo "$COMMAND: $( date '+%a %b %d %T %Y' ) \"$SITEOP\" $1" >> "$LOGFILE"
+  echo "DONE: \"$SITEOP\" $1"
 }
 
 func_logtail() {
@@ -183,7 +215,7 @@ func_logtail() {
     tail -n 10 "$LOGFILE"
     exit 0
   else
-    echo "ERROR: log file not found"
+    echo "INFO: log file not found"
     exit 1
   fi
 }
@@ -193,7 +225,7 @@ func_logshow() {
     cat "$LOGFILE"
     exit 0
   else
-    echo "ERROR: log file not found"
+    echo "INFO: log file not found"
     exit 1
   fi
 }
@@ -211,8 +243,13 @@ func_listusers() {
     elif [ ! -s "$GLDIR/ftp-data/users/$i" ]; then
       echo "[error] missing userfile $i"
     else
-      group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      flags="$(grep -m1 -Pow "^FLAGS \K.*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      if [ "${GREP_PERL:-1}" -eq 0 ]; then
+        group="$(grep -m1 -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+        flags="$(grep -m1 -ow "^FLAGS .*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      else
+        group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+        flags="$(grep -m1 -Pow "^FLAGS \K.*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      fi
       if [ -n "$flags" ] && echo "$flags" | grep -q 1; then
         notes+=" (siteop)"
       fi
@@ -254,7 +291,11 @@ func_rawuserfile() {
 
 func_rawuserfilefield() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ] && [ -n "$1" ]; then
-    grep -Pow "^$1 \K[^ ]*" "$USERFILE"
+    if [ "${GREP_PERL:-1}" -eq 0 ]; then
+      grep -Pow "^$1 \K[^ ]*" "$USERFILE"
+    else
+      grep -ow "^$1 [^ ]*" "$USERFILE" | cut -d" " -f2-
+    fi
   fi
 }
 
@@ -277,17 +318,39 @@ func_rawgroups() {
 
 func_rawpgroups() {
   func_get_glconf
-  grep -Pow "^\s*privgroup \K.*" "$GLCONF" | while IFS= read -r i; do
-    i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
-    read -r groupname description <<<$i
-    echo "$groupname $description"
-  done
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    grep -ow "^\s*privgroup .*" "$GLCONF" | cut -d" " -f2- | while IFS= read -r i; do
+      i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
+      read -r groupname description <<<"$i"
+      echo "$groupname $description"
+    done
+  else
+    grep -Pow "^\s*privgroup \K.*" "$GLCONF" | while IFS= read -r i; do
+      i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
+      read -r groupname description <<<"$i"
+      echo "$groupname $description"
+    done
+  fi
+}
+
+func_rawusergroup() {
+  if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ]; then
+    if [ "${GREP_PERL:-1}" -eq 0 ]; then
+      grep -ow "^GROUP \K[^ ]*" "$USERFILE" | cut -d" " -f2- | grep -v "^NoGroup$'"
+    else
+      grep -Pow "^GROUP \K[^ ]*" "$USERFILE" | grep -v "^NoGroup$'"
+    fi
+  fi
 }
 
 func_rawusersgroups() {
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
-      group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      if [ "${GREP_PERL:-1}" -eq 0 ]; then
+        group="$(grep -m1  -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      else
+        group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      fi
       if [ "$group" == "NoGroup" ]; then
         group=""
       fi
@@ -299,7 +362,11 @@ func_rawusersgroups() {
 func_rawuserspgroups() {
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
-      pgroup="$(grep -m1 -Pow "^PRIVATE \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      if [ "${GREP_PERL:-1}" -eq 0 ]; then
+        pgroup="$(grep -m1 -ow "^PRIVATE [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      else
+        pgroup="$(grep -m1 -Pow "^PRIVATE \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      fi
       echo "$i $pgroup"
     fi
   done
@@ -307,7 +374,11 @@ func_rawuserspgroups() {
 
 func_rawip() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ]; then
-    grep -Pow "^IP \K.*" "$USERFILE"
+    if [ "${GREP_PERL:-1}" -eq 0 ]; then
+      grep -ow "^IP .*" "$USERFILE" | cut -d" " -f2-
+    else
+      grep -Pow "^IP \K.*" "$USERFILE"
+    fi    
   fi
 }
 
@@ -315,8 +386,8 @@ func_rawip() {
 # IPMASK CHECKS
 # ----------------------------------------------
 func_mask_tests() {
-  is_hostmask="$(  echo "$MASK" | grep -Eq "^.*@[0-9a-zA-Z\.\*\-]+$" && echo 1 || echo 0)"
-  has_octet="$( echo "$MASK" | grep -Eq "^.*@.*\.[0-9\*]$" && echo 1 || echo 0)"
+  is_hostmask="$(echo "$MASK" | grep -Eq "^.*@[0-9a-zA-Z\.\*\-]+$" && echo 1 || echo 0)"
+  has_octet="$(echo "$MASK" | grep -Eq "^.*@.*\.[0-9\*]$" && echo 1 || echo 0)"
   if ! echo "$MASK" | grep -q "@"; then
     echo "ERROR: mask \"$MASK\" is invalid";
     exit 1
@@ -341,7 +412,7 @@ func_mask_tests() {
     echo "ERROR: number ranges are not allowed"
     exit 1
   fi  
-  if [ "${ALLOW_CIDR:-1}" = 0 ] && echo "$MASK" | grep -q "/"; then
+  if [ "${ALLOW_CIDR:-1}" = 0 ] && echo "$MASK" | grep -Eq "/"; then
     echo "ERROR: cidr not allowed"
     exit 1
   fi   
@@ -355,7 +426,8 @@ func_mask_tests() {
 # AUTH
 # ----------------------------------------------
 if [ "${AUTH:-0}" -eq 1 ]; then
-  if [ -x "$GLDIR/bin/passchk" ]; then
+  PASSCHK_BIN="$(func_get_bin passchk)"
+  if [ -n "$PASSCHK_BIN" ] && [ -x "$PASSCHK_BIN" ]; then
     echo "ERROR: missing passchk"
     exit 1
   fi
@@ -363,7 +435,7 @@ if [ "${AUTH:-0}" -eq 1 ]; then
     echo "ERROR: missing username/password"
     exit 1
   fi
-  check_pass="$( "$GLDIR/bin/passchk" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
+  check_pass="$( "$PASSCHK_BIN" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
   if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH)$'; then
     if [ "$check_pass" = "NOMATCH" ]; then
       echo "ERROR: incorrect password for user $USERNAME"
@@ -412,9 +484,10 @@ func_addip() {
       exit
     fi
   fi
-  echo "IP $MASK" >> "$USERFILE.tmp"  || { echo "ERROR: adding mask"; exit 1; }
+  { cat "$USERFILE"; echo "IP $MASK" >> "$USERFILE.tmp"; } >> "$USERFILE.tmp" || \
+    { echo "ERROR: adding mask"; exit 1; }
   func_update_userfile
-  func_logmsg "\"$ID\" added \"$MASK\" to \"$USERNAME\"" 
+  func_logmsg "added \"$MASK\" to \"$USERNAME\"" 
 }
 
 # ----------------------------------------------
@@ -431,9 +504,10 @@ func_delip() {
     echo "ERROR: can't delete \"$MASK\" from user \"$USERNAME\", mask does not exist"
     exit
   fi
+  cp "$USERFILE" "$USERFILE.tmp" || { echo "ERROR: updating userfile"; exit 1; }
   grep -F -v "IP $MASK" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: deleting mask"; exit 1; }
   func_update_userfile
-  func_logmsg "\"$ID\" deleted \"$MASK\" from user \"$USERNAME\""
+  func_logmsg "deleted \"$MASK\" from user \"$USERNAME\""
 }
 
 # ----------------------------------------------
@@ -442,12 +516,14 @@ func_delip() {
 func_chpass() {
   func_check_user "$USERNAME"
   func_clean_tmp
+  PASSCHK_BIN="$(func_get_bin passchk)"  
+  HASHGEN_BIN="$(func_get_bin hashgen)"
   if [ -z "$PASSWORD" ]; then
     echo "ERROR: missing new password"
     exit 1
   fi
-  if [ -x "$GLDIR/bin/passchk" ]; then
-    check_pass="$( "$GLDIR/bin/passchk" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
+  if [ -n "$PASSCHK_BIN" ] && [ -x "$PASSCHK_BIN" ]; then
+    check_pass="$( "$PASSCHK_BIN" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
     if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH)$'; then
       if [ "$check_pass" = "MATCH" ]; then
         echo "ERROR: new password same as current"
@@ -455,19 +531,15 @@ func_chpass() {
       fi
     fi
   fi
-  if [ ! -x "$GLDIR/bin/hashgen" ]; then
+  if [ -n "$HASHGEN_BIN" ] && [ ! -x "$HASHGEN_BIN" ]; then
     echo "ERROR: missing hashgen"
     exit 1
   fi
-  { echo "USER Added by $ID"; \
-    echo "ADDED 0 $ID";  \
-    grep -v '^#' "$GLDIR/ftp-data/users/default.user"; } \
-    >"$USERFILE" || { echo "ERROR: creating userfile"; exit 1; }
   if ! grep -Eq "^${USERNAME}:" "$GLDIR/etc/passwd"; then
     echo "ERROR: user not found in /etc/passwd"
     exit 1
   fi  
-  HASH="$($GLDIR/bin/hashgen "$USERNAME" "$PASSWORD" | cut -d: -f2)"
+  HASH="$($HASHGEN_BIN "$USERNAME" "$PASSWORD" | cut -d: -f2)"
   if ! echo "$HASH" | grep -Eq '^\$[0-9a-f]{8}\$[0-9a-f]{40}$'; then
     echo "ERROR: generating hash"
     exit 1
@@ -476,7 +548,7 @@ func_chpass() {
   if [ -s "$GLDIR/etc/passwd.tmp" ]; then
     mv "$GLDIR/etc/passwd.tmp" "$GLDIR/etc/passwd" || { echo "ERROR: updating passwd file"; exit 1; }
   fi
-  func_logmsg "\"$ID\" changed password for \"$USERNAME\""
+  func_logmsg "changed password for \"$USERNAME\""
 }
 
 # ----------------------------------------------
@@ -495,14 +567,14 @@ func_chgrp() {
   fi
   msg=""
   if grep -Eq "^GROUP $GROUP" "$USERFILE"; then
-    sed "/^GROUP $GROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: deleting group"; exit 1; }
+    sed "/^GROUP $GROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: removing from group"; exit 1; }
     msg="removed user \"$USERNAME\" from group \"$GROUP\""
   else
-    { cat "$USERFILE"; echo "GROUP $GROUP 0"; } >> "$USERFILE.tmp" || { echo "ERROR: adding group"; exit 1; }
+    { cat "$USERFILE"; echo "GROUP $GROUP 0"; } >> "$USERFILE.tmp" || { echo "ERROR: adding to group"; exit 1; }
     msg="added user \"$USERNAME\" to group \"$GROUP\""
   fi
   func_update_userfile
-  func_logmsg "\"$ID\" $msg"
+  func_logmsg "$msg"
 }
 
 func_chpgrp() {
@@ -510,14 +582,14 @@ func_chpgrp() {
   func_clean_tmp
   msg=""
   if grep -Eq "^PRIVATE $PGROUP" "$USERFILE"; then
-    sed "/^PRIVATE $PGROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: deleting private group"; exit 1; }
+    sed "/^PRIVATE $PGROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: removing from private group"; exit 1; }
     msg="removed user \"$USERNAME\" from private group \"$PGROUP\""
   else
     { cat "$USERFILE"; echo "PRIVATE $PGROUP"; } >> "$USERFILE.tmp" || { echo "ERROR: adding private group"; exit 1; }
     msg="added user \"$USERNAME\" to private group \"$PGROUP\""
   fi
   func_update_userfile
-  func_logmsg "\"$ID\" $msg"
+  func_logmsg "$msg"
 }
 
 # ----------------------------------------------
@@ -532,13 +604,13 @@ func_addusergroup() {
   fi
   if ! grep -Eq "^GROUP $GROUP" "$USERFILE"; then
     if grep -Eq "^GROUP NoGroup" "$USERFILE"; then
-       sed "s/^GROUP NoGroup/GROUP $GROUP ${GADMIN:-0}/" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding group"; exit 1; }
+       sed "s/^GROUP NoGroup/GROUP $GROUP ${GADMIN:-0}/" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding to group"; exit 1; }
     else
       if grep -Eq "^GROUP .*"  "$USERFILE"; then
         #{ cat "$USERFILE"; echo "GROUP $GROUP 0"; } >> "$USERFILE.tmp" || { echo "ERROR: adding group"; exit 1; }
-        sed '1h;1!H;$!d;x;/\(^.*GROUP [^\n]*\)/s//\1\nGROUP '"$GROUP ${GADMIN:-0}"'/' "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding group"; exit 1; }
+        sed '1h;1!H;$!d;x;/\(^.*GROUP [^\n]*\)/s//\1\nGROUP '"$GROUP ${GADMIN:-0}"'/' "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding to group"; exit 1; }
       else
-        { cat "$USERFILE"; echo "GROUP $GROUP ${GADMIN:-0}"; } >> "$USERFILE.tmp" || { echo "ERROR: adding group"; exit 1; }
+        { cat "$USERFILE"; echo "GROUP $GROUP ${GADMIN:-0}"; } >> "$USERFILE.tmp" || { echo "ERROR: adding to group"; exit 1; }
       fi
     fi
   else
@@ -548,9 +620,9 @@ func_addusergroup() {
   func_update_userfile
   GADMIN_MSG=""
   if [ "${GADMIN:-0}" -eq 1 ]; then
-    GADMIN_MSG="(as gadmin)"
+    GADMIN_MSG=" (as gadmin)"
   fi
-  func_logmsg "\"$ID\" added user \"$USERNAME\" to group \"$GROUP\"${GADMIN_MSG}"
+  func_logmsg "added user \"$USERNAME\" to group \"$GROUP\"${GADMIN_MSG}"
 }
 
 # ----------------------------------------------
@@ -564,13 +636,13 @@ func_delusergroup() {
     exit 1
   fi
   if grep -Eq "^GROUP $GROUP" "$USERFILE"; then
-    sed "/^GROUP $GROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: deleting group"; exit 1; }
+    sed "/^GROUP $GROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: removing from group"; exit 1; }
   else
     echo "ERROR: user not added to group"
     exit 1
   fi
   func_update_userfile
-  func_logmsg "\"$ID\" removed user \"$USERNAME\" from group \"$GROUP\""
+  func_logmsg "removed user \"$USERNAME\" from group \"$GROUP\""
 }
 
 # ----------------------------------------------
@@ -591,9 +663,9 @@ func_adduserpgroup() {
   if grep -Eq "privgroup *[^ ]$PGROUP *" "$GLCONF"; then
     if ! grep -Eq "^PRIVATE $PGROUP" "$USERFILE"; then
       if grep -Eq "^PRIVATE .*"  "$USERFILE"; then
-        sed '1h;1!H;$!d;x;/\(^.*PRIVATE [^\n]*\)/s//\1\nPRIVATE '"$PGROUP"'/' "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding private group"; exit 1; }
+        sed '1h;1!H;$!d;x;/\(^.*PRIVATE [^\n]*\)/s//\1\nPRIVATE '"$PGROUP"'/' "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding to private group"; exit 1; }
       else
-        { cat "$USERFILE"; echo "PRIVATE $PGROUP"; } >> "$USERFILE.tmp" || { echo "ERROR: adding private group"; exit 1; }
+        { cat "$USERFILE"; echo "PRIVATE $PGROUP"; } >> "$USERFILE.tmp" || { echo "ERROR: adding to private group"; exit 1; }
       fi
     else
       exit 0
@@ -603,7 +675,7 @@ func_adduserpgroup() {
     exit 1
   fi
   func_update_userfile
-  func_logmsg "\"$ID\" added user \"$USERNAME\" to private group \"$PGROUP\""
+  func_logmsg "added user \"$USERNAME\" to private group \"$PGROUP\""
 }
 
 # ----------------------------------------------
@@ -617,19 +689,20 @@ func_deluserpgroup() {
     exit 1
   fi
   if grep -Eq "^PRIVATE $PGROUP" "$USERFILE"; then
-    sed "/^PRIVATE $PGROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: deleting private group"; exit 1; }
+    sed "/^PRIVATE $PGROUP/d" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: removing from private group"; exit 1; }
   else
     echo "ERROR: user not added to private group"
     exit 1
   fi
   func_update_userfile
-  func_logmsg "\"$ID\" removed user \"$USERNAME\" from private group \"$PGROUP\""
+  func_logmsg "removed user \"$USERNAME\" from private group \"$PGROUP\""
 }
 
 # ----------------------------------------------
 # ADDUSER
 # ----------------------------------------------
 func_adduser() {
+  HASHGEN_BIN="$(func_get_bin hashgen)"
   if [ -z "$USERNAME" ]; then
     echo "ERROR: missing username"
     exit 1
@@ -646,10 +719,14 @@ func_adduser() {
     echo "ERROR: user already exists in /etc/passwd"
     exit 1
   fi    
-  if [ ! -x "$GLDIR/bin/hashgen" ]; then
+  if [ -n "$HASHGEN_BIN" ] && [ ! -x "$HASHGEN_BIN" ]; then
     echo "ERROR: missing hashgen"
     exit 1
   fi
+  { echo "USER Added by $SITEOP"; \
+    echo "ADDED 0 $SITEOP";  \
+    grep -v '^#' "$GLDIR/ftp-data/users/default.user"; } \
+    >"$USERFILE" || { echo "ERROR: creating userfile"; exit 1; }
   if [ ! -s "$USERFILE" ]; then
     echo "ERROR: userfile"
     exit 1
@@ -670,8 +747,19 @@ func_adduser() {
     echo "ERROR: generating hash"
     exit 1
   fi
-  echo "${USERNAME}:${HASH}:${uid}:100:$(date +%d-%m-%y):/site:/bin/false" >> "$GLDIR/etc/passwd"
-  func_logmsg "\"$ID\" added user \"$USERNAME\"" 
+  cp "$GLDIR/etc/passwd" "$GLDIR/etc/passwd.tmp" || { echo "ERROR: updating passwd"; exit 1; }
+  echo "${USERNAME}:${HASH}:${uid}:100:$(date +%d-%m-%y):/site:/bin/false" >> "$GLDIR/etc/passwd.tmp"
+  if [ -s "$GLDIR/etc/passwd.tmp" ]; then
+    mv "$GLDIR/etc/passwd.tmp" "$GLDIR/etc/passwd" || { echo "ERROR: updating passwd"; exit 1; }
+  else
+    echo "ERROR: passwd"
+    exit 1
+  fi
+  if [ -s "$GLDIR/etc/passwd.tmp" ]; then
+    echo "ERROR: passwd"
+    exit 1
+  fi
+  func_logmsg "added user \"$USERNAME\"" 
 }
 
 # ----------------------------------------------
@@ -681,14 +769,14 @@ func_deluser() {
   func_check_user "$USERNAME"
   func_clean_tmp
   rm "$USERFILE" || { echo "ERROR: deleting userfile"; exit 1; } 
-  sed "/^$USERNAME/d" "$GLDIR/etc/passwd" >> "$GLDIR/etc/passwd.tmp" || { echo "ERROR: changing /etc/passwd"; exit 1; } 
+  sed "/^${USERNAME}:/d" "$GLDIR/etc/passwd" >> "$GLDIR/etc/passwd.tmp" || { echo "ERROR: changing /etc/passwd"; exit 1; } 
   if [ -s "$GLDIR/etc/passwd.tmp" ]; then
     mv "$GLDIR/etc/passwd.tmp" "$GLDIR/etc/passwd" || { echo "ERROR: updating passwd file"; exit 1; }
   else
     echo "ERROR: updating passwd file"
     exit 1;
   fi
-  func_logmsg "\"$ID\" deleted user \"$USERNAME\"" 
+  func_logmsg "deleted user \"$USERNAME\"" 
 }
 
 # ----------------------------------------------
@@ -708,7 +796,7 @@ func_addgroup() {
     echo "ERROR: group already exists in /etc/group"
     exit 1
   fi
-  { echo "GROUP Added by $ID"; \
+  { echo "GROUP Added by $SITEOP"; \
     grep -v '^#' "$GLDIR/ftp-data/groups/default.group" | \
     sed "s/^GROUPNFO/GROUPNFO ${GROUPDESC:GROUP}/"; } \
     >"$GROUPFILE" || { echo "ERROR: creating groupfile"; exit 1; }
@@ -727,8 +815,15 @@ func_addgroup() {
     echo "ERROR: gid"
     exit 1
   fi
-  echo "${GROUP}:${GROUPDESC}:${gid}:" >> "$GLDIR/etc/group"
-  func_logmsg "\"$ID\" added group \"$GROUP\"" 
+  { cat "$GLDIR/etc/group"; echo "${GROUP}:${GROUPDESC}:${gid}:"; } >> "$GLDIR/etc/group.tmp" || \
+    { echo "ERROR: updating group file"; exit 1; }
+  if [ -s "$GLDIR/etc/group.tmp" ]; then
+    mv "$GLDIR/etc/group.tmp" "$GLDIR/etc/group" || { echo "ERROR: updating group file"; exit 1; }
+  else
+    echo "ERROR: group file"
+    exit 1
+  fi
+  func_logmsg "added group \"$GROUP\"" 
 }
 
 # ----------------------------------------------
@@ -753,7 +848,7 @@ func_delgroup() {
     echo "ERROR: group file"
     exit 1
   fi
-  func_logmsg "\"$ID\" deleted group \"$GROUP\"" 
+  func_logmsg "deleted group \"$GROUP\"" 
 }
 
 # ----------------------------------------------
@@ -768,7 +863,7 @@ func_chtag() {
   fi
   sed "s/^TAGLINE .*/TAGLINE $TAGLINE/" "$USERFILE" > "$USERFILE.tmp"
   func_update_userfile
-  func_logmsg "\"$ID\" changed tagline for \"$USERNAME\" to \"$TAGLINE\""
+  func_logmsg "changed tagline for \"$USERNAME\" to \"$TAGLINE\""
 }
 
 # ----------------------------------------------
@@ -781,7 +876,11 @@ func_chflag() {
     echo "ERROR: missing flag(s)"
     exit 1
   fi
-  CURRENT_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    CURRENT_FLAGS="$( grep -ow "^FLAGS \K.*" "$USERFILE" | cut -d" " -f2-)"
+  else
+    CURRENT_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
+  fi
   NEW_FLAGS="$CURRENT_FLAGS"
   # shellcheck disable=SC2001
   for i in $(echo "$FLAGS" | sed 's/./& /g'); do
@@ -793,7 +892,7 @@ func_chflag() {
   done
   sed "s/^FLAGS .*/FLAGS $NEW_FLAGS/" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: changing flags"; exit 1; }
   func_update_userfile
-  func_logmsg "\"$ID\" changed flags for \"$USERNAME\" from \"$CURRENT_FLAGS\" to \"$NEW_FLAGS\""
+  func_logmsg "changed flags for \"$USERNAME\" from \"$CURRENT_FLAGS\" to \"$NEW_FLAGS\""
 }
 
 # ----------------------------------------------
@@ -810,8 +909,13 @@ func_addflag() {
     echo "ERROR: invalid flag(s)"
     exit 1
   fi
-  CURRENT_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE")"
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    CURRENT_FLAGS="$(grep -ow "^FLAGS .*" "$USERFILE" | cut -d" " -f2-)"
+  else
+    CURRENT_FLAGS="$(grep -Pow "^FLAGS \K.*" "$USERFILE")"  
+  fi
   if [ -n "$CURRENT_FLAGS" ]; then
+    # shellcheck disable=SC2001
     for i in $(echo "$FLAGS" | sed 's/./& /g'); do
       if ! echo "$CURRENT_FLAGS" | grep -q "$i"; then
         NEW_FLAGS+="$i"
@@ -825,7 +929,7 @@ func_addflag() {
   if [ "${CNT:-0}" -ge 1 ]; then
     sed "s/^\(FLAGS .*\)/\1${NEW_FLAGS}/" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding flag"; exit 1; }
     func_update_userfile
-    func_logmsg "\"$ID\" added flags \"$FLAGS\" to \"$USERNAME\""
+    func_logmsg "added flags \"$FLAGS\" to \"$USERNAME\""
   fi
 }
 
@@ -843,7 +947,11 @@ func_delflag() {
     echo "ERROR: invalid flag(s)"
     exit 1
   fi
-  NEW_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then  
+    NEW_FLAGS="$(grep -ow "^FLAGS .*" "$USERFILE" | cut -d" " -f2-)"
+  else
+    NEW_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
+  fi
   # shellcheck disable=SC2001
   for i in $(echo "$FLAGS" | sed 's/./& /g'); do
     if echo "$NEW_FLAGS" | grep -q "$i"; then
@@ -852,7 +960,7 @@ func_delflag() {
   done
   sed "s/^FLAGS .*/FLAGS $NEW_FLAGS/" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: changing flags"; exit 1; }
   func_update_userfile
-  func_logmsg "\"$ID\" deleted flags \"$FLAGS\" from \"$USERNAME\""
+  func_logmsg "deleted flags \"$FLAGS\" from \"$USERNAME\""
 }
 
 # ----------------------------------------------
@@ -865,12 +973,12 @@ func_chlogins() {
     echo "ERROR: missing logins"
     exit 1
   fi
-  if ! echo "$RATIO" | grep -E '^([0-9-] ?)+$'; then
+  if ! echo "$RATIO" | grep -Eq '^([0-9-] ?)+$'; then
     echo "ERROR: invalid logins"
   fi
   sed "s/^LOGINS .*/LOGINS $LOGINS/" "$USERFILE" > "$USERFILE.tmp"
   func_update_userfile
-  func_logmsg "\"$ID\" changed logins for \"$USERNAME\" to \"$LOGINS\""
+  func_logmsg "changed logins for \"$USERNAME\" to \"$LOGINS\""
 }
 
 # ----------------------------------------------
@@ -883,12 +991,12 @@ func_chratio() {
     echo "ERROR: missing ratio"
     exit 1
   fi
-  if ! echo "$RATIO" | grep -E '^([0-9-] ?)+$'; then
+  if ! echo "$RATIO" | grep -Eq '^([0-9-] ?)+$'; then
     echo "ERROR: invalid ratio"
   fi
   sed "s/^RATIO .*/RATIO $RATIO/" "$USERFILE" > "$USERFILE.tmp"
   func_update_userfile
-  func_logmsg "\"$ID\" changed ratio for \"$USERNAME\" to \"$RATIO\""
+  func_logmsg "changed ratio for \"$USERNAME\" to \"$RATIO\""
 }
 
 # ----------------------------------------------
@@ -901,12 +1009,12 @@ func_chcreds() {
     echo "ERROR: missing credits"
     exit 1
   fi
-  if ! echo "$CREDITS" | grep -E '^([0-9-] ?)+$'; then
+  if ! echo "$CREDITS" | grep -Eq '^([0-9-] ?)+$'; then
     echo "ERROR: invalid credits"
   fi
   sed "s/^CREDITS .*/CREDITS $CREDITS/" "$USERFILE" > "$USERFILE.tmp"
   func_update_userfile
-  func_logmsg "\"$ID\" changed credits for \"$USERNAME\" to \"$CREDITS\""
+  func_logmsg "changed credits for \"$USERNAME\" to \"$CREDITS\""
 }
 
 # ----------------------------------------------
@@ -935,7 +1043,7 @@ func_usergadmin() {
   if [ "${GADMIN:-0}" -eq "1" ]; then
     action="add"
   fi
-  func_logmsg "\"$ID\" changed user \"$USERNAME\", $action as \"$GROUP\" gadmin"
+  func_logmsg "changed user \"$USERNAME\", $action \"$GROUP\" gadmin"
 }
 
 # ----------------------------------------------
@@ -956,17 +1064,156 @@ func_chgadmin() {
     sed 's/^GROUP '"$GROUP"'.*/GROUP '"$GROUP 0"'/' "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: gadmin"; exit 1; }
   fi
   func_update_userfile
-  func_logmsg "\"$ID\" changed user \"$USERNAME\", $action as \"$GROUP\" gadmin"
+  func_logmsg "changed user \"$USERNAME\", $action as \"$GROUP\" gadmin"
 }
+
+# ----------------------------------------------
+# STATS
+# ----------------------------------------------
+
+func_bc() {
+  if echo "$1" | grep -Eq "^[0-9]"; then
+    UNIT="$2"
+    if [ "$UNIT" = "" ]; then
+      if [ "$1" -lt "1024" ]; then
+        UNIT="b"
+      elif [ "$1" -ge "1024" ] && [ "$1" -lt "1024000" ]; then
+        UNIT="KB"      
+      elif [ "$1" -ge "1024000" ] && [ "$1" -lt "1024000000" ]; then
+        UNIT="MB"
+      elif [ "$1" -ge "1024000000" ] && [ "$1" -lt "1024000000000" ]; then
+        UNIT="GB"
+      elif [ "$1" -ge "1024000000000" ]; then
+        UNIT="TB"
+      fi
+    fi
+    case "$UNIT" in
+      b)  RESULT="$1${UNIT}" ;;
+      KB) RESULT="$( echo "$1 1024" | awk '{ printf "%0.0f%s", $1/$2, "KB" }' )" ;;
+      MB) RESULT="$( echo "$1 1024"  | awk '{ printf "%0.1f%s", $1/$2/$2, "MB" }' )" ;;
+      GB) RESULT="$( echo "$1 1024"  | awk '{ printf "%0.1f%s", $1/$2/$2/$2, "GB" }' )" ;;
+      TB) RESULT="$( echo "$1 1024"  | awk '{ printf "%0.2f%s", $1/$2/$2/$2/$2, "TB" }' )" ;;
+    esac
+  fi
+  echo "$RESULT"
+}
+
+__func_bc() {
+  if [ "$2" = "MB" ]; then
+    echo | awk -v v="$1" '{ printf "%0.0fMB", v/1024/1024 }'
+  elif [ "$2" = "GB" ]; then
+    echo | awk -v v="$1" '{ printf "%0.1fGB", v/1024/1024/1024 }'
+  fi
+}
+
+func_userstats() {
+  COUNT=0
+  INDEX=0
+  SECTION=()
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    while read -d' '-r f; do
+      case $((COUNT%3)) in
+        0) FIELDS=""; FIELDS+="$f " ;;
+        1) FIELDS+="$f " ;;
+        2) FIELDS+="$f "; SECTION[INDEX]="${FIELDS/% /}" ;;
+        *) break;
+      esac
+      COUNT=$((COUNT+1))
+      if [ $((COUNT%3)) -eq 0 ]; then
+        INDEX=$((INDEX+1))
+      fi
+    done < <(grep -ow "^$1 ([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)
+  else
+    while read -d' '-r f; do
+      case $((COUNT%3)) in
+        0) FIELDS=""; FIELDS+="$f " ;;
+        1) FIELDS+="$f " ;;
+        2) FIELDS+="$f "; SECTION[INDEX]="${FIELDS/% /}" ;;
+        *) break;
+      esac
+      COUNT=$((COUNT+1))
+      if [ $((COUNT%3)) -eq 0 ]; then
+        INDEX=$((INDEX+1))
+      fi
+    done < <(grep -Pow "^$1 \K([0-9]+ ?)+" "$USERFILE")
+  fi
+}
+
+func_rawuserstats() {
+  for p in DAYUP WKUP MONTHUP ALLUP DAYDN WKDN MONTHDN ALLDN NUKE; do
+    func_userstats "$p"
+    for ((i=0; i < ${#SECTION[@]} ; i++)); do
+      echo "$p $i ${SECTION[i]}"
+    done
+  done
+}
+
+func_listuserstats() {
+  func_check_user "$USERNAME"
+  printf "PERIOD UP/DN:\tSTAT_SECTION:\t\tBytes / Files:\n" # / Time"
+  printf -- "------------------------------------------------------------\n"
+  for p in DAYUP WKUP MONTHUP ALLUP DAYDN WKDN MONTHDN ALLDN; do
+    func_userstats "$p"
+    for ((i=0 ; i < ${#SECTION[@]} ; i++)); do
+      stat_section="$i         "
+      if [ ${i:-255} -eq 0 ]; then
+        stat_section="$i(DEFAULT)"
+      fi
+      if [ $i -eq 0 ] || [ "${SECTION[i]}" != "0 0 0" ]; then
+        IFS=" " read -r files bytes _time <<<"${SECTION[i]}"
+        printf "%s\t\t%s\t\t%s/%sf\n" "$p" "$stat_section"  "$(func_bc "$bytes")" "$files"
+      fi
+    done
+    echo
+  done #| sort -k 2n -k 1r
+  printf "\t\t\t\t\tBytes / Times (Date):\n\n" # / Time"
+  func_userstats "NUKE"
+  for ((i=0; i < ${#SECTION[@]} ; i++)); do
+    if [ "${SECTION[i]}" = "0 0 0" ]; then
+      continue
+    fi
+    stat_section="$i"
+    if [ ${i:-255} -eq 0 ]; then
+      stat_section="$i(DEFAULT)"
+    fi
+    IFS=" " read -r last times bytes <<<"${SECTION[i]}"
+    printf "%s\t\t%-10s\t\t%s %s (%s)\n" "NUKE" "$stat_section" "$(func_bc "$bytes")" "$times" "$(date -d@"$last" +'%F %H:%M')"
+  done
+  echo
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then  
+    IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -ow "^TIME \K([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)"
+  else
+    IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -Pow "^TIME \K([0-9]+ ?)+" "$USERFILE")"
+  fi
+  if [ -n "$lastlogin" ]; then
+    printf "LAST LOGIN: %s\n" "$(date -d@"$lastlogin" +'%F %H:%M')"
+  fi
+  echo
+}
+
+func_resetuserstats() {
+  func_check_user "$USERNAME"
+  func_clean_tmp
+  cp "$USERFILE" "$USERFILE.tmp" || { echo "ERROR: updating userfile"; exit 1; }
+  for p in DAYUP WKUP MONTHUP ALLUP DAYDN WKDN MONTHDN ALLDN NUKE; do
+    sed -i "s/^$p .*/$p 0 0 0/" "$USERFILE.tmp"
+  done || { echo "ERROR: resetting stats"; exit 1; }
+  func_update_userfile
+  func_logmsg "reset stats for \"$USERNAME\""
+}
+
+
+################################################
+# COMMANDS
+################################################
 
 case $COMMAND in
   ADDUSER)
     func_adduser
-    test -n "$GROUP" && { USERNAME="$USERNAME"; func_addusergroup; }
-    test -n "$MASK" && { USERNAME="$USERNAME"; func_addusergroup; }
-    func_addip && exit
+    test -n "$GROUP" && func_addusergroup
+    test -n "$MASK" && func_addip
     exit 0
-    ;;
+  ;;
   LISTUSERS) func_listusers && exit 0 ;;
   LISTGROUPS) func_listgroups && exit 0 ;;
   RAWUSERFILE) func_rawuserfile && exit 0 ;;
@@ -975,9 +1222,7 @@ case $COMMAND in
   RAWPGROUPS) func_rawpgroups && exit 0 ;;
   RAWUSERSGROUPS) func_rawusersgroups && exit 0 ;;
   RAWUSERSPGROUPS) func_rawuserspgroups && exit 0 ;;
-  RAWUSERGROUP)
-    func_rawuserfilefield "GROUP" | grep -v "^NoGroup$" && exit 0
-    ;;
+  RAWUSERGROUP) func_rawusergroup && exit 0 ;;
   RAWTAG) func_rawuserfilefield "TAGLINE" && exit 0 ;;
   RAWFLAG) func_rawuserfilefield "FLAGS" && exit 0 ;;
   RAWCREDS) func_rawuserfilefield "CREDITS" && exit 0 ;;
@@ -1003,6 +1248,9 @@ case $COMMAND in
   CHRATIO) func_chratio && exit 0 ;;
   ADDFLAG) func_addflag && exit 0 ;;
   DELFLAG) func_delflag && exit 0 ;;
+  RAWUSERSTATS) func_rawuserstats && exit 0 ;;
+  LISTUSERSTATS) func_listuserstats && exit 0 ;;
+  RESETUSERSTATS) func_resetuserstats && exit 0 ;;
   LOGTAIL) func_logtail ;;
   LOGSHOW) func_logshow ;;
   *) echo "ERROR: no such cmd"; exit 1 ;;
