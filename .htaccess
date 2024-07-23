@@ -44,6 +44,7 @@ AddDescription "<font color='Gray'>OLD: by <b>slv</b> - apt install pkgs for ebf
 AddDescription "<font color='Gray'>OLD: little patch to fix destination error on pre</font>" ARCHIVE/foo-pre-destfix.patch
 AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.20-20180713.tar.gz
 AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.21-20210516.tar.gz
+AddDescription "<font color='Gray'>OLD: by <b>tanesha, slv, contributors</b> - fixed/updated foo-tools, incl foopre+mp3genre</font>" ARCHIVE/foo-tools-v1.22-20220312.tar.gz
 AddDescription "<font color='Gray'>OLD: by PCFiL - fixes dirlog getting corrupted on 64bit</font>" ARCHIVE/footools-dirlogfix.tar.gz
 AddDescription "<font color='Gray'>OLD: by slv - ugly patch for foopre to add mp3 genre in PRE</font>" ARCHIVE/footools-mp3genre.patch
 AddDescription "<font color='gray'>OLD: by slv - ugly hack for foopre to add mp3 genre in pre</font>" ARCHIVE/footools-x86-x64-20111102-mp3genre.tar.bz2
@@ -77,7 +78,7 @@ AddDescription "by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</
 AddDescription "by <b>Jehsom, slv</b> - updated version of mp3 dirscript" dirscript.sh
 AddDescription "by <b>fear, slv</b> - custom pzs-ng ngBot theme 'fear' | <a href='fear.log'>preview</a> | <a href='fear.zst'>dowload</a>" fear.zst 
 AddDescription "by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>" fishwrap.py
-AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST</b>:git</a>] fixed/updated foo-tools, incl foopre+mp3genre" foo-tools-v1.22-20220312.tar.gz
+AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST</b>:git</a>] fixed/updated foo-tools, incl foopre+mp3genre" foo-tools-v20240723.tar.gz
 AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups (<a href='gft-stats.txt'>conf</a>)" gft-stats.sh
 AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt
 AddDescription "by <b>glteam</b> - [<a href='https://glftpd.io'><b>OFFICIAL</b>:web</a>] link to glftpd <a href='https://glftpd.nl.eu.org'><b>mirror</b></a>" glftpd
@@ -101,4 +102,4 @@ AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pywho'><b>L
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/pyspy'><b>LATEST</b>:git</a>] pyspy: like gl_spy, with web gui"  slv-pyspy-v20230708.tar.gz
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/sitewho-plus2'><b>LATEST</b>:git</a>] sitewho+2: modded version with user ip/geoip2 country in raw output" slv-sitewho-plus2-v0.2.tar.gz
 AddDescription "by <b>slv</b> - slftp-cleaner - keeps slFtp dir nice and clean, most useful in cron" slv-slftpc.sh
-AddDescription "by <b>slv</b> - gltool - directly manage users and groups, outside of glftpd" gltool.sh
+AddDescription "by <b>slv</b> - gltool - directly manage users and groups, outside of glftpd (used by <a href='https://github.com/silv3rr/glftpd-webui'>glftpd-webui</a>)" gltool.sh
