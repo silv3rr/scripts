@@ -2,6 +2,7 @@ _data
 _site
 _posts
 _sass
+_tmp
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
