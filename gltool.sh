@@ -8,9 +8,9 @@ DESCRIPTION="directly manage users and groups, outside of glftpd"
 REQUIREMENTS=" awk, cut, grep, sed, hashgen(slv), passchk(pzs-ng)"
 # -------------------------------------------------------------------slv.2o24---
 
-GLDIR="/jail/glftpd"
+GLDIR="/glftpd"
 AUTH=0
-CHECK_BINS=0
+CHECK_SYS_BINS=0
 CHECK_MASK=1
 ALLOW_IPV6=1
 ALLOW_IPMASK=1
@@ -97,10 +97,13 @@ if [ "$(readlink /proc/$$/exe 2>&1)" = "/bin/busybox" ]; then
   exit 1
 fi
 
-if [ "${CHECK_BINS:-0}" -eq 1 ]; then
+# support grep without -P option
+GREP_PERL=1
+if [ "${CHECK_SYS_BINS:-0}" -eq 1 ]; then
   for i in grep sed cut; do
     command -v $i >/dev/null 2>&1 || { echo "ERROR: missing $i"; exit 1; }
   done
+  grep -P >/dev/null 2>&1 || GREP_PERL=0
 fi
 
 if [ -z "$COMMAND" ]; then
@@ -180,6 +183,15 @@ func_get_glconf() {
   done
 }
 
+func_get_bin() {
+  for i in "$GLDIR/bin/$1" "/usr/local/bin/$1"; do
+    if [ -s "$i" ] && [ "$(./"$i" >/dev/null 2>&1)" ]; then
+      echo "$i"
+      break
+    fi
+  done
+}
+
 # ----------------------------------------------
 # LISTIP
 # ----------------------------------------------
@@ -203,7 +215,7 @@ func_logtail() {
     tail -n 10 "$LOGFILE"
     exit 0
   else
-    echo "ERROR: log file not found"
+    echo "INFO: log file not found"
     exit 1
   fi
 }
@@ -213,7 +225,7 @@ func_logshow() {
     cat "$LOGFILE"
     exit 0
   else
-    echo "ERROR: log file not found"
+    echo "INFO: log file not found"
     exit 1
   fi
 }
@@ -231,10 +243,13 @@ func_listusers() {
     elif [ ! -s "$GLDIR/ftp-data/users/$i" ]; then
       echo "[error] missing userfile $i"
     else
-      group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      flags="$(grep -m1 -Pow "^FLAGS \K.*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      #group="$(grep -m1 -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
-      #flags="$(grep -m1 -ow "^FLAGS .*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      if [ "${GREP_PERL:-1}" -eq 0 ]; then
+        group="$(grep -m1 -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+        flags="$(grep -m1 -ow "^FLAGS .*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      else
+        group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+        flags="$(grep -m1 -Pow "^FLAGS \K.*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      fi
       if [ -n "$flags" ] && echo "$flags" | grep -q 1; then
         notes+=" (siteop)"
       fi
@@ -276,8 +291,11 @@ func_rawuserfile() {
 
 func_rawuserfilefield() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ] && [ -n "$1" ]; then
-    grep -Pow "^$1 \K[^ ]*" "$USERFILE"
-    #grep -ow "^$1 [^ ]*" "$USERFILE" | cut -d" " -f2-
+    if [ "${GREP_PERL:-1}" -eq 0 ]; then
+      grep -Pow "^$1 \K[^ ]*" "$USERFILE"
+    else
+      grep -ow "^$1 [^ ]*" "$USERFILE" | cut -d" " -f2-
+    fi
   fi
 }
 
@@ -300,26 +318,39 @@ func_rawgroups() {
 
 func_rawpgroups() {
   func_get_glconf
-  grep -Pow "^\s*privgroup \K.*" "$GLCONF" | while IFS= read -r i; do
-  #grep -ow "^\s*privgroup .*" "$GLCONF" | cut -d" " -f2- | while IFS= read -r i; do
-    i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
-    read -r groupname description <<<"$i"
-    echo "$groupname $description"
-  done
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    grep -ow "^\s*privgroup .*" "$GLCONF" | cut -d" " -f2- | while IFS= read -r i; do
+      i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
+      read -r groupname description <<<"$i"
+      echo "$groupname $description"
+    done
+  else
+    grep -Pow "^\s*privgroup \K.*" "$GLCONF" | while IFS= read -r i; do
+      i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
+      read -r groupname description <<<"$i"
+      echo "$groupname $description"
+    done
+  fi
 }
 
 func_rawusergroup() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ]; then
+    if [ "${GREP_PERL:-1}" -eq 0 ]; then
+      grep -ow "^GROUP \K[^ ]*" "$USERFILE" | cut -d" " -f2- | grep -v "^NoGroup$'"
+    else
       grep -Pow "^GROUP \K[^ ]*" "$USERFILE" | grep -v "^NoGroup$'"
-      #grep -ow "^GROUP \K[^ ]*" "$USERFILE" | cut -d" " -f2- | grep -v "^NoGroup$'"
     fi
+  fi
 }
 
 func_rawusersgroups() {
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
-      group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      #group="$(grep -m1  -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      if [ "${GREP_PERL:-1}" -eq 0 ]; then
+        group="$(grep -m1  -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      else
+        group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      fi
       if [ "$group" == "NoGroup" ]; then
         group=""
       fi
@@ -331,8 +362,11 @@ func_rawusersgroups() {
 func_rawuserspgroups() {
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
-      #pgroup="$(grep -m1 -Pow "^PRIVATE \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      pgroup="$(grep -m1 -ow "^PRIVATE [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      if [ "${GREP_PERL:-1}" -eq 0 ]; then
+        pgroup="$(grep -m1 -ow "^PRIVATE [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
+      else
+        pgroup="$(grep -m1 -Pow "^PRIVATE \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
+      fi
       echo "$i $pgroup"
     fi
   done
@@ -340,8 +374,11 @@ func_rawuserspgroups() {
 
 func_rawip() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ]; then
-    grep -Pow "^IP \K.*" "$USERFILE"
-    #grep -ow "^IP .*" "$USERFILE" | cut -d" " -f2-
+    if [ "${GREP_PERL:-1}" -eq 0 ]; then
+      grep -ow "^IP .*" "$USERFILE" | cut -d" " -f2-
+    else
+      grep -Pow "^IP \K.*" "$USERFILE"
+    fi
   fi
 }
 
@@ -358,7 +395,7 @@ func_mask_tests() {
   if [ "${ALLOW_ALL_IP:-0}" = 0 ] && echo "$MASK" | grep -Eq '^\*@\*'; then
     echo "ERROR: mask 'all' not allowed"
     exit 1
-  fi 
+  fi
   if [ "${ALLOW_NO_IDENT:-0}" = 0 ] && echo "$MASK" | grep -Eq '^\*@'; then
     echo "ERROR: ident is required"
     exit 1
@@ -389,7 +426,8 @@ func_mask_tests() {
 # AUTH
 # ----------------------------------------------
 if [ "${AUTH:-0}" -eq 1 ]; then
-  if [ -x "$GLDIR/bin/passchk" ]; then
+  PASSCHK_BIN="$(func_get_bin passchk)"
+  if [ -n "$PASSCHK_BIN" ] && [ -x "$PASSCHK_BIN" ]; then
     echo "ERROR: missing passchk"
     exit 1
   fi
@@ -397,7 +435,7 @@ if [ "${AUTH:-0}" -eq 1 ]; then
     echo "ERROR: missing username/password"
     exit 1
   fi
-  check_pass="$( "$GLDIR/bin/passchk" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
+  check_pass="$( "$PASSCHK_BIN" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
   if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH)$'; then
     if [ "$check_pass" = "NOMATCH" ]; then
       echo "ERROR: incorrect password for user $USERNAME"
@@ -478,12 +516,14 @@ func_delip() {
 func_chpass() {
   func_check_user "$USERNAME"
   func_clean_tmp
+  PASSCHK_BIN="$(func_get_bin passchk)"
+  HASHGEN_BIN="$(func_get_bin hashgen)"
   if [ -z "$PASSWORD" ]; then
     echo "ERROR: missing new password"
     exit 1
   fi
-  if [ -x "$GLDIR/bin/passchk" ]; then
-    check_pass="$( "$GLDIR/bin/passchk" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
+  if [ -n "$PASSCHK_BIN" ] && [ -x "$PASSCHK_BIN" ]; then
+    check_pass="$( "$PASSCHK_BIN" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
     if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH)$'; then
       if [ "$check_pass" = "MATCH" ]; then
         echo "ERROR: new password same as current"
@@ -491,7 +531,7 @@ func_chpass() {
       fi
     fi
   fi
-  if [ ! -x "$GLDIR/bin/hashgen" ]; then
+  if [ -n "$HASHGEN_BIN" ] && [ ! -x "$HASHGEN_BIN" ]; then
     echo "ERROR: missing hashgen"
     exit 1
   fi
@@ -499,12 +539,12 @@ func_chpass() {
     echo "ERROR: user not found in /etc/passwd"
     exit 1
   fi
-  HASH="$($GLDIR/bin/hashgen "$USERNAME" "$PASSWORD" | cut -d: -f2)"
+  HASH="$($HASHGEN_BIN "$USERNAME" "$PASSWORD" | cut -d: -f2)"
   if ! echo "$HASH" | grep -Eq '^\$[0-9a-f]{8}\$[0-9a-f]{40}$'; then
     echo "ERROR: generating hash"
     exit 1
   fi
-  sed -Ei "s|^$USERNAME:[^:]+:(.*)$|$USERNAME:$MASK:$HASH:\1|" "$GLDIR/etc/passwd" >> "$GLDIR/etc/passwd.tmp" || { echo "ERROR: changing /etc/passwd"; exit 1; } 
+  sed -Ei "s|^$USERNAME:[^:]+:(.*)$|$USERNAME:$MASK:$HASH:\1|" "$GLDIR/etc/passwd" >> "$GLDIR/etc/passwd.tmp" || { echo "ERROR: changing /etc/passwd"; exit 1; }
   if [ -s "$GLDIR/etc/passwd.tmp" ]; then
     mv "$GLDIR/etc/passwd.tmp" "$GLDIR/etc/passwd" || { echo "ERROR: updating passwd file"; exit 1; }
   fi
@@ -662,6 +702,7 @@ func_deluserpgroup() {
 # ADDUSER
 # ----------------------------------------------
 func_adduser() {
+  HASHGEN_BIN="$(func_get_bin hashgen)"
   if [ -z "$USERNAME" ]; then
     echo "ERROR: missing username"
     exit 1
@@ -678,7 +719,7 @@ func_adduser() {
     echo "ERROR: user already exists in /etc/passwd"
     exit 1
   fi
-  if [ ! -x "$GLDIR/bin/hashgen" ]; then
+  if [ -n "$HASHGEN_BIN" ] && [ ! -x "$HASHGEN_BIN" ]; then
     echo "ERROR: missing hashgen"
     exit 1
   fi
@@ -728,7 +769,7 @@ func_deluser() {
   func_check_user "$USERNAME"
   func_clean_tmp
   rm "$USERFILE" || { echo "ERROR: deleting userfile"; exit 1; }
-  sed "/^$USERNAME/d" "$GLDIR/etc/passwd" >> "$GLDIR/etc/passwd.tmp" || { echo "ERROR: changing /etc/passwd"; exit 1; }
+  sed "/^${USERNAME}:/d" "$GLDIR/etc/passwd" >> "$GLDIR/etc/passwd.tmp" || { echo "ERROR: changing /etc/passwd"; exit 1; }
   if [ -s "$GLDIR/etc/passwd.tmp" ]; then
     mv "$GLDIR/etc/passwd.tmp" "$GLDIR/etc/passwd" || { echo "ERROR: updating passwd file"; exit 1; }
   else
@@ -799,8 +840,8 @@ func_delgroup() {
     echo "ERROR: groupfile"
     exit 1
   fi
-  rm "$GROUPFILE" || { echo "ERROR: deleting groupfile"; exit 1; } 
-  sed "/^$GROUP/d" "$GLDIR/etc/group" >> "$GLDIR/etc/group.tmp" || { echo "ERROR: changing /etc/group"; exit 1; } 
+  rm "$GROUPFILE" || { echo "ERROR: deleting groupfile"; exit 1; }
+  sed "/^$GROUP/d" "$GLDIR/etc/group" >> "$GLDIR/etc/group.tmp" || { echo "ERROR: changing /etc/group"; exit 1; }
   if [ -s "$GLDIR/etc/group.tmp" ]; then
     mv "$GLDIR/etc/group.tmp" "$GLDIR/etc/group" || { echo "ERROR: updating group file"; exit 1; }
   else
@@ -835,8 +876,11 @@ func_chflag() {
     echo "ERROR: missing flag(s)"
     exit 1
   fi
-  CURRENT_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
-  #CURRENT_FLAGS="$( grep -ow "^FLAGS \K.*" "$USERFILE" | cut -d" " -f2-)"
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    CURRENT_FLAGS="$( grep -ow "^FLAGS \K.*" "$USERFILE" | cut -d" " -f2-)"
+  else
+    CURRENT_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
+  fi
   NEW_FLAGS="$CURRENT_FLAGS"
   # shellcheck disable=SC2001
   for i in $(echo "$FLAGS" | sed 's/./& /g'); do
@@ -865,8 +909,11 @@ func_addflag() {
     echo "ERROR: invalid flag(s)"
     exit 1
   fi
-  #CURRENT_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE")"
-  CURRENT_FLAGS="$(grep -ow "^FLAGS .*" "$USERFILE" | cut -d" " -f2-)"
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    CURRENT_FLAGS="$(grep -ow "^FLAGS .*" "$USERFILE" | cut -d" " -f2-)"
+  else
+    CURRENT_FLAGS="$(grep -Pow "^FLAGS \K.*" "$USERFILE")"
+  fi
   if [ -n "$CURRENT_FLAGS" ]; then
     # shellcheck disable=SC2001
     for i in $(echo "$FLAGS" | sed 's/./& /g'); do
@@ -900,8 +947,11 @@ func_delflag() {
     echo "ERROR: invalid flag(s)"
     exit 1
   fi
-  NEW_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
-  #NEW_FLAGS="$(grep -ow "^FLAGS .*" "$USERFILE" | cut -d" " -f2-)"
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    NEW_FLAGS="$(grep -ow "^FLAGS .*" "$USERFILE" | cut -d" " -f2-)"
+  else
+    NEW_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
+  fi
   # shellcheck disable=SC2001
   for i in $(echo "$FLAGS" | sed 's/./& /g'); do
     if echo "$NEW_FLAGS" | grep -q "$i"; then
@@ -1060,19 +1110,33 @@ func_userstats() {
   COUNT=0
   INDEX=0
   SECTION=()
-  while read -d' '-r f; do
-    case $((COUNT%3)) in
-      0) FIELDS=""; FIELDS+="$f " ;;
-      1) FIELDS+="$f " ;;
-      2) FIELDS+="$f "; SECTION[INDEX]="${FIELDS/% /}" ;;
-      *) break;
-    esac
-    COUNT=$((COUNT+1))
-    if [ $((COUNT%3)) -eq 0 ]; then
-      INDEX=$((INDEX+1))
-    fi
-  done < <(grep -Pow "^$1 \K([0-9]+ ?)+" "$USERFILE")
-  #done < <(grep -ow "^$1 ([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    while read -d' '-r f; do
+      case $((COUNT%3)) in
+        0) FIELDS=""; FIELDS+="$f " ;;
+        1) FIELDS+="$f " ;;
+        2) FIELDS+="$f "; SECTION[INDEX]="${FIELDS/% /}" ;;
+        *) break;
+      esac
+      COUNT=$((COUNT+1))
+      if [ $((COUNT%3)) -eq 0 ]; then
+        INDEX=$((INDEX+1))
+      fi
+    done < <(grep -ow "^$1 ([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)
+  else
+    while read -d' '-r f; do
+      case $((COUNT%3)) in
+        0) FIELDS=""; FIELDS+="$f " ;;
+        1) FIELDS+="$f " ;;
+        2) FIELDS+="$f "; SECTION[INDEX]="${FIELDS/% /}" ;;
+        *) break;
+      esac
+      COUNT=$((COUNT+1))
+      if [ $((COUNT%3)) -eq 0 ]; then
+        INDEX=$((INDEX+1))
+      fi
+    done < <(grep -Pow "^$1 \K([0-9]+ ?)+" "$USERFILE")
+  fi
 }
 
 func_rawuserstats() {
@@ -1116,8 +1180,11 @@ func_listuserstats() {
     printf "%s\t\t%-10s\t\t%s %s (%s)\n" "NUKE" "$stat_section" "$(func_bc "$bytes")" "$times" "$(date -d@"$last" +'%F %H:%M')"
   done
   echo
-  IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -Pow "^TIME \K([0-9]+ ?)+" "$USERFILE")"
-  #IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -ow "^TIME \K([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)"
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -ow "^TIME \K([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)"
+  else
+    IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -Pow "^TIME \K([0-9]+ ?)+" "$USERFILE")"
+  fi
   if [ -n "$lastlogin" ]; then
     printf "LAST LOGIN: %s\n" "$(date -d@"$lastlogin" +'%F %H:%M')"
   fi

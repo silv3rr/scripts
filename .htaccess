@@ -78,7 +78,7 @@ AddDescription "by <b>comp</b> - goes with <a href='Requests.tcl'>Requests.tcl</
 AddDescription "by <b>Jehsom, slv</b> - updated version of mp3 dirscript" dirscript.sh
 AddDescription "by <b>fear, slv</b> - custom pzs-ng ngBot theme 'fear' | <a href='fear.log'>preview</a> | <a href='fear.zst'>dowload</a>" fear.zst 
 AddDescription "by <b>slv</b> - weechat-fish wrapper for DH1080 keyx, goes with <a href='Blow.tcl'>Blow.tcl</a>" fishwrap.py
-AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST</b>:git</a>] fixed/updated foo-tools, incl foopre+mp3genre" foo-tools-v20240723.tar.gz
+AddDescription "by <b>tanesha, slv</b>, <a href='https://github.com/silv3rr/foo-tools/graphs/contributors'>1</a>, <a href='https://github.com/glftpd/foo-tools/graphs/contributors'>2</a> - [<a href='https://github.com/silv3rr/foo-tools'><b>LATEST</b>:git</a>] fixed/updated foo-tools, incl foopre" foo-tools-v20240723.tar.gz
 AddDescription "by <b>gft</b> - custom wk/mn/alup stats, can exclude users/groups (<a href='gft-stats.txt'>conf</a>)" gft-stats.sh
 AddDescription "by <b>gft</b> - goes with <a href='gft-stats.sh'>gft-stats.sh</a>, add these to glftpd.conf" gft-stats.txt
 AddDescription "by <b>glteam</b> - [<a href='https://glftpd.io'><b>OFFICIAL</b>:web</a>] link to glftpd <a href='https://glftpd.nl.eu.org'><b>mirror</b></a>" glftpd
