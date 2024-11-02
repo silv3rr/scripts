@@ -85,7 +85,7 @@ AddDescription "by <b>glteam</b> - links to glftpd mirror" glftpd.html
 AddDescription "by <b>slv</b> - gltool - directly manage users and groups, outside of glftpd (used by <a href='https://github.com/silv3rr/glftpd-webui'>glftpd-webui</a>)" gltool.sh
 AddDescription "by <b>Holybull</b> - goes with <a href='CreditShow.tcl'>CreditShow.tcl</a>" hb_creditshow.sh
 AddDescription "by <b>slv</b> - oneliners for pzs-ng rescan | <a href='rescan.txt'>view</a> | <a href='rescan'>download</a>" rescan.md
-AddDescription "by <b>slv</b> - custom pzs-ng ngBot themes" <a href='https://pzs-ng.eu/themes.html>preview</a> | sitebot/themes/sitebot.tar.gz
+AddDescription "by <b>slv</b> - custom pzs-ng ngBot themes | <a href='https://pzs-ng.eu/themes.html>preview</a>" sitebot/themes/sitebot.tar.gz
 AddDescription "by <b>slv</b> - skiplist-example-data - how to add skiplist to cbftp datafile" skiplist-example-data.txt
 AddDescription "by <b>slv</b> - archiver: config file, goes with <a href='slv-arch.sh'>slv-arch.sh</a>" slv-arch.conf
 AddDescription "by <b>slv</b> - [<a href='https://github.com/silv3rr/slv-arch'><b>LATEST</b>:git</a>] archiver: moves releases, creates daydirs and tv/season dirs (<a href='slv-arch.conf'>conf</a>)" slv-arch.sh
