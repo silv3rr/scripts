@@ -82,12 +82,12 @@ announce.DLTEST                 = "%l13{%u{speed}} %b{%u_name}/%g_name tested %b
 
 
 ## Custom announcements (see dZSbot.defaults.conf for info on how to enable)
-announce.COVERS                = "%l6{%u{covers}} %16{%section} %relname | %b{%u_name}/%g_name"
-announce.NEWCD                 = "%l6{%u{cd}} %16{%section} %relname | %b{%u_name}/%g_name"
-announce.NEWDISC               = "%l6{%u{disc}} %16{%section} %relname | %b{%u_name}/%g_name"
-announce.SAMPLE                = "%l6{%u{sample}} %16{%section} %relname | %b{%u_name}/%g_name"
-announce.SUBTITLES             = "%l6{%u{subs}} %16{%section} %relname | %b{%u_name}/%g_name"
-announce.SUBSDONE              = "%l6{%u{subs}} %16{%section} %relname | %b{%u_name}/%g_name"
+announce.COVERS                = "%l6{%u{covers}} %l6{%section} %relname | %b{%u_name}/%g_name"
+announce.NEWCD                 = "%l6{%u{cd}} %l6{%section} %relname | %b{%u_name}/%g_name"
+announce.NEWDISC               = "%l6{%u{disc}} %l6{%section} %relname | %b{%u_name}/%g_name"
+announce.SAMPLE                = "%l6{%u{sample}} %l6{%section} %relname | %b{%u_name}/%g_name"
+announce.SUBTITLES             = "%l6{%u{subs}} %l6{%section} %relname | %b{%u_name}/%g_name"
+announce.SUBSDONE              = "%l6{%u{subs}} %l6{%section} %relname | %b{%u_name}/%g_name"
 announce.REQUESTS              = "%l6{%u{start}} %l6{%section} %c4{%path/}%reldir | %b{%u_name}/%g_name"
 announce.NEWDIRMP3             = "%l6{%u{start}} %l6{mp3} %reldir | %b{%u_name}/%g_name | %c4{%u_tagline}"
 announce.NEWDIRMV              = "%l6{%u{start}} %l6{mv} %reldir | %b{%u_name}/%g_name | %c4{%u_tagline}"
@@ -209,12 +209,12 @@ announce.COMPLETE_STAT_RACE_ZIP         = "%l13{%u{finish}} %c4{%reldir} | race 
 announce.INCOMPLETE             = "%l6{%u{faul!}} %l6{%section} %releasename | disqualified thanks to %b{%u_name}/%g_name"
 
 ## Sample announces
-announce.SAMPLEDIR              = "%l6{%u{sample}} %16{%section} %path has the following specs: Video: %b{%video_type_long} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_fps}fps - Audio: %b{%video_audio_name} (%b{%video_audio_hz}Hz/%b{%video_audio_channels} channels)"
-announce.SAMPLE_AVI             = "%l6{%u{sample}} %16{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
-announce.SAMPLE_MPEG2           = "%l6{%u{sample}} %16{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
-announce.SAMPLE_QT              = "%l6{%u{sample}} %16{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
-announce.SAMPLE_GENERAL         = "%l6{%u{sample}} %16{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
-announce.SAMPLE_MPEG1           = "%l6{%u{sample}} %16{%section} %path has the following specs: Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate) - %b{%audio_genre} from %audio_year"
+announce.SAMPLEDIR              = "%l6{%u{sample}} %l6{%section} %path has the following specs: Video: %b{%video_type_long} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_fps}fps - Audio: %b{%video_audio_name} (%b{%video_audio_hz}Hz/%b{%video_audio_channels} channels)"
+announce.SAMPLE_AVI             = "%l6{%u{sample}} %l6{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
+announce.SAMPLE_MPEG2           = "%l6{%u{sample}} %l6{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
+announce.SAMPLE_QT              = "%l6{%u{sample}} %l6{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
+announce.SAMPLE_GENERAL         = "%l6{%u{sample}} %l6{%section} %path has the following specs: Video: %b{%video_codec} %b{%video_width}x%b{%video_height} pixels (aspectratio: %b{%video_aspect}) @%b{%video_framerate} - Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate)"
+announce.SAMPLE_MPEG1           = "%l6{%u{sample}} %l6{%section} %path has the following specs: Audio: %b{%audio_codec} (%b{%audio_samplerate}/%b{%audio_channels} @ %audio_bitrate) - %b{%audio_genre} from %audio_year"
 
 ## Third party scripts
 announce.PRE                    = "%c5{%l6{%u{pre}}} %l6{%section} %reldir | %b{%pregroup} smokes the competition with %b{%files}f/%b{%mbytes}mb"
@@ -276,7 +276,7 @@ announce.UNNUKES_BODY           = "%b{-} %date %b{%reldir} was unnuked %b{%multi
 announce.UNNUKES_NONE           = "%b{-} no unnukes found"
 
 #announce.PREBW                  = "%l6{%u{prebw}} %l6{%section} %c4{%reldir} | %prebw"
-announce.PREBW			        = "%l6{%u{prebw}} %l6{%section} %c4{%reldir} | %t1s: %b{%u1}@%b{%b1}mb/s %t2s: %b{%u2}@%b{%b2}mb/s %t3s: %b{%u3}@%b{%b3}mb/s %t4s: %b{%u4}@%b{%b4}mb/s %t5s: %b{%u5}@%b{%b5}mb/s | %c4{avg: %b{%bwavg}mb/s} | %c4{%b{%traffic}mb by %b{%numusers}u/%b{%numgroups}g}"
+announce.PREBW			= "%l6{%u{prebw}} %l6{%section} %c4{%reldir} | %t1s: %b{%u1}@%b{%b1}mb/s %t2s: %b{%u2}@%b{%b2}mb/s %t3s: %b{%u3}@%b{%b3}mb/s %t4s: %b{%u4}@%b{%b4}mb/s %t5s: %b{%u5}@%b{%b5}mb/s | %c4{avg: %b{%bwavg}mb/s} | %c4{%b{%traffic}mb by %b{%numusers}u/%b{%numgroups}g}"
 
 announce.WHOIS                  = "%l13{%u{whois}} %msg"
 announce.SITECMDS               = "%l13{%u{site}} %msg"
@@ -286,8 +286,8 @@ announce.REQWIPE                = "%l13{%u{r-wipe}} %b{%u_name}/%g_name just req
 announce.REQDEL                 = "%l13{%u{reqdel}} %b{%u_name}/%g_name just deleted his request (%b{%releasename})"
 announce.REQMSG                 = "%l13{%u{reqmsg}} %msg"
 
-#announce.GETTOPIC		        = "%l13{%u{topic}} %topic"
-#announce.SETTOPIC		        = "%l13{%u{topic}} %channel %topic"
+#announce.GETTOPIC		 = "%l13{%u{topic}} %topic"
+#announce.SETTOPIC	         = "%l13{%u{topic}} %channel %topic"
  
 announce.BADUSERNAME            = "%l13{%u{login}} %b{%u_name} could not login, invalid username."
 announce.BADEMAILPASS           = "%l13{%u{login}} [%b{login }] %b{%u_name} could not login, invalid email as password."
