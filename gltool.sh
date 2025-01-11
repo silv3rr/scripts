@@ -70,7 +70,7 @@ while getopts ha:c:d:f:g:i:k:l:u:p:r:s:t:z: opt; do
     a) GADMIN=$OPTARG ;;                      # (ADDUSERGROUP|USERGADMIN)
     c) COMMAND=$OPTARG ;;
     d) GROUPDESC=$OPTARG ;;                   # (ADDGROUP)
-    f) FLAGS=$OPTARG ;;                       # (CHFLAG)
+    f) FLAGS=$OPTARG ;;                       # (ADDFLAG|DELFLAG|CHFLAG)
     g) GROUP=$OPTARG ;;                       # (ADDGROUP|DELGROUP|CHGRP)
     h) echo "$HELP" && exit 0 ;;
     i) MASK=$OPTARG ;;                        # (ADDIP|DELIP)
@@ -112,7 +112,12 @@ if [ -z "$COMMAND" ]; then
 fi
 
 if [ -z "$GLDIR" ] || [ ! -d "$GLDIR" ]; then
-  GLDIR="/glftpd"
+  for i in /glftpd /jail/glftpd; do
+    if [ -d $i ]; then
+      GLDIR="$i"
+      break
+    fi
+  done
 fi
 
 # glftpd env
@@ -185,7 +190,7 @@ func_get_glconf() {
 
 func_get_bin() {
   for i in "$GLDIR/bin/$1" "/usr/local/bin/$1"; do
-    if [ -s "$i" ] && [ "$(./"$i" >/dev/null 2>&1)" ]; then
+    if [ -s "$i" ] && [ "$("./$i" >/dev/null 2>&1)" ]; then
       echo "$i"
       break
     fi
@@ -234,6 +239,9 @@ func_logshow() {
 # LISTUSERS
 # ----------------------------------------------
 func_listusers() {
+  if [ ! -s "$GLDIR/etc/passwd" ]; then
+    exit 1
+  fi
   ln="0"
   while IFS= read -r i; do
     group=""
@@ -264,6 +272,9 @@ func_listusers() {
 # LISTGROUPS
 # ----------------------------------------------
 func_listgroups() {
+  if [ ! -s "$GLDIR/etc/group" ]; then
+    exit 1
+  fi
   ln="0"
   while read -r i; do
     IFS=":" read -r group description gid unused <<<"$i"
@@ -300,6 +311,9 @@ func_rawuserfilefield() {
 }
 
 func_rawusers() {
+  if [ ! -s "$GLDIR/etc/passwd" ]; then
+    exit 1
+  fi
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
       echo "$i"
@@ -308,6 +322,9 @@ func_rawusers() {
 }
 
 func_rawgroups() {
+  if [ ! -s "$GLDIR/etc/group" ]; then
+    exit 1
+  fi
   while IFS= read -r i; do
     IFS=":" read -r groupname description gid unused <<<"$i"
     if [ "$groupname" != "NoGroup" ] && [ -s "$GLDIR/ftp-data/groups/$groupname" ]; then
@@ -344,6 +361,9 @@ func_rawusergroup() {
 }
 
 func_rawusersgroups() {
+  if [ ! -s "$GLDIR/etc/passwd" ]; then
+    exit 1
+  fi
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
       if [ "${GREP_PERL:-1}" -eq 0 ]; then
@@ -360,6 +380,9 @@ func_rawusersgroups() {
 }
 
 func_rawuserspgroups() {
+  if [ ! -s "$GLDIR/etc/passwd" ]; then
+    exit 1
+  fi
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
       if [ "${GREP_PERL:-1}" -eq 0 ]; then
@@ -435,9 +458,10 @@ if [ "${AUTH:-0}" -eq 1 ]; then
     echo "ERROR: missing username/password"
     exit 1
   fi
+  # glftpd passchk returns 0|1, pzs-ng NOMATCH|MATCH
   check_pass="$( "$PASSCHK_BIN" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
-  if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH)$'; then
-    if [ "$check_pass" = "NOMATCH" ]; then
+  if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH|0|1)$'; then
+    if [ "$check_pass" = "NOMATCH" ] || [ "$check_pass" = "0" ]; then
       echo "ERROR: incorrect password for user $USERNAME"
       exit 1
     fi
@@ -524,9 +548,9 @@ func_chpass() {
   fi
   if [ -n "$PASSCHK_BIN" ] && [ -x "$PASSCHK_BIN" ]; then
     check_pass="$( "$PASSCHK_BIN" "$USERNAME" "$PASSWORD" "$GLDIR/etc/passwd" )"
-    if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH)$'; then
-      if [ "$check_pass" = "MATCH" ]; then
-        echo "ERROR: new password same as current"
+    if echo "$check_pass" | grep -Eq '^(MATCH|NOMATCH|0|1)$'; then
+      if [ "$check_pass" = "MATCH" ] || [ "$check_pass" = "1" ]; then
+          echo "ERROR: new password same as current"
         exit 1
       fi
     fi
@@ -927,7 +951,7 @@ func_addflag() {
     CNT=1
   fi
   if [ "${CNT:-0}" -ge 1 ]; then
-    sed "s/^\(FLAGS .*\)/\1${NEW_FLAGS}/" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding flag"; exit 1; }
+    sed "s/^\(FLAGS[^ ]*\)/\1 ${NEW_FLAGS}/" "$USERFILE" > "$USERFILE.tmp" || { echo "ERROR: adding flag"; exit 1; }
     func_update_userfile
     func_logmsg "added flags \"$FLAGS\" to \"$USERNAME\""
   fi
