@@ -3,7 +3,7 @@ var _paq = _paq || [];
 _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
 (function() {
-  var u="//stats.scripts.nl.eu.org/piwik/";
+  var u="//stats.scripts.nl.eu.org/";
   _paq.push(['setTrackerUrl', u+'piwik.php']);
   _paq.push(['setSiteId', '17']);
   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
