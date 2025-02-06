@@ -21,9 +21,14 @@ ALLOW_NO_IDENT=1
 ALLOW_ALL_IP=1
 MIN_IP_OCT="0"
 MAX_IP="99"
+MAX_USERTOP="10"
+MAX_GROUPTOP="10"
 
 SCRIPTDIR="$(dirname "$(readlink -f -- "$0")")"
 SCRIPT="$(basename "$0")"
+
+ALL_STATS="DAYUP WKUP MONTHUP ALLUP DAYDN WKDN MONTHDN ALLDN NUKE"
+# "GDAYUP GWKUP GMONTHUP GALLUP GDAYDN GWKDN GMONTHDN GALLDN"
 
 # shellcheck disable=SC2016
 COMMANDS="$(
@@ -36,7 +41,7 @@ COMMANDS="$(
 # shellcheck disable=SC2016
 OPTIONS="$(
   sed -n '/^ *case \$opt in/,/^ *\*) exit 1 && exit 0 ;;/{//d;p;}' "${SCRIPTDIR}/${SCRIPT}" | \
-  sed -n 's/ *\([0-9a-z]\)) \(.*\)=.*#\(.*\)$/  -\1 \2\t\3/p'
+  sed -n 's/ *\([0-9a-z]\)) \(.*\)=.*#\(.*\)$/  [-\1] <\2\>   \t\3/p'
 )"
 
 HELP="
@@ -56,7 +61,12 @@ OPTIONS:
 
 $OPTIONS
 
-REQUIRES: $REQUIREMENTS
+  * STATSECTION: <0-9>
+  * STAT: <${ALL_STATS// /|}>
+
+EXAMPLE: ${SCRIPT##*/} -c ADDUSER -u MyUser -p secr3t
+
+REQUIRES:${REQUIREMENTS}
 "
 
 
@@ -65,7 +75,7 @@ REQUIRES: $REQUIREMENTS
 ################################################
 
 OPTIND=1
-while getopts ha:c:d:f:g:i:k:l:u:p:r:s:t:z: opt; do
+while getopts ha:c:d:f:g:i:k:l:u:n:p:r:s:t:u::x:z: opt; do
   case $opt in
     a) GADMIN=$OPTARG ;;                      # (ADDUSERGROUP|USERGADMIN)
     c) COMMAND=$OPTARG ;;
@@ -76,11 +86,13 @@ while getopts ha:c:d:f:g:i:k:l:u:p:r:s:t:z: opt; do
     i) MASK=$OPTARG ;;                        # (ADDIP|DELIP)
     k) CREDITS=$OPTARG ;;                     # (CHCREDITS)
     l) LOGINS=$OPTARG ;;                      # (CHLOGINS)
-    u) USERNAME=$OPTARG ;;                    # (ADDUSER|DELUSER|AUTH|*IP|*USERGROUP|CH*)
+    n) STATSECTION=$OPTARG ;;                 # (USERTOP|GROUPTOP) *
     p) PASSWORD=$OPTARG ;;                    # (ADDUSER|CHPASS|AUTH)
     r) RATIO=$OPTARG ;;                       # (CHRATIO)
     s) PGROUP=$OPTARG ;;                      # (ADDPGROUP|DELPGROUP)
     t) TAGLINE=$OPTARG ;;                     # (CHTAG)
+    u) USERNAME=$OPTARG ;;                    # (AUTH|ADDUSER|DELUSER|ADDIP|ADDUSERGROUP|CHGRP|CH...)
+    x) STAT=$OPTARG ;;                        # (USERTOP|GROUPTOP) *
     z) ADMIN=$OPTARG ;;
     *) exit 1 ;;
   esac
@@ -97,7 +109,7 @@ if [ "$(readlink /proc/$$/exe 2>&1)" = "/bin/busybox" ]; then
   exit 1
 fi
 
-# support grep without -P option
+# set to 1 for 'grep -P, see func_grep()
 GREP_PERL=1
 if [ "${CHECK_SYS_BINS:-0}" -eq 1 ]; then
   for i in grep sed cut; do
@@ -135,7 +147,7 @@ if [ -n "$USER" ] && [ -n "$FLAGS" ] && [ -n  "$GROUP" ]; then
 fi
 
 func_check_ip() {
-  grep IP "$USERFILE" | grep -F -w -m 1 "$MASK" | cut -d ' ' -f2 
+  grep IP "$USERFILE" | grep -F -w -m 1 "$MASK" | cut -d ' ' -f2
 }
 
 func_check_user() {
@@ -144,13 +156,40 @@ func_check_user() {
     echo "ERROR: missing username"
     exit 1
   fi
-  if [ -d "$GLDIR/ftp-data/users/$USERNAME" ]; then
-    echo "ERROR: userfile"
-    exit 1
-  fi
   if [ ! -s "$USERFILE" ]; then
     echo "ERROR: userfile does not exist"
     exit 1
+  fi
+  if [ -d "$USERFILE" ]; then
+    echo "ERROR: incorrect userfile"
+    exit 1
+  fi
+}
+
+# grep wrapper
+# default: grep '^FOO [^ ]*' in $USERFILE
+# supports grep without and with -P option:
+#   -P, --perl-regexp         PATTERNS are Perl regular expressions
+func_grep() {
+  REGEX="[^ ]*"
+  for a in "$@"; do
+    if printf -- "%s" "$a" | grep -Eq -- "^-[a-z]"; then
+      if printf -- "%s" "$a" | grep -Eq -- '^-num'; then
+        REGEX="([0-9]+ ?)+"
+      else
+        ARGS+=" $a "
+      fi
+      shift
+    fi
+  done
+  PATTERN="$1"
+  FILE="${2:-$USERFILE}"
+  GREP_ARGS="$ARGS --only-matching --word-regexp"
+  # shellcheck disable=SC2086
+  if [ "${GREP_PERL:-1}" -eq 0 ]; then
+    grep $GREP_ARGS "^${PATTERN} ${REGEX}" "$FILE" | cut -d" " -f2-
+  else
+    grep $GREP_ARGS --perl-regexp "^${PATTERN} \K${REGEX}" "$FILE" || true
   fi
 }
 
@@ -251,13 +290,8 @@ func_listusers() {
     elif [ ! -s "$GLDIR/ftp-data/users/$i" ]; then
       echo "[error] missing userfile $i"
     else
-      if [ "${GREP_PERL:-1}" -eq 0 ]; then
-        group="$(grep -m1 -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
-        flags="$(grep -m1 -ow "^FLAGS .*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
-      else
-        group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-        flags="$(grep -m1 -Pow "^FLAGS \K.*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      fi
+      group="$(func_grep -m1 GROUP "$GLDIR/ftp-data/users/$i")"
+      flags="$(func_grep -m1 FLAGS "$GLDIR/ftp-data/users/$i")"
       if [ -n "$flags" ] && echo "$flags" | grep -q 1; then
         notes+=" (siteop)"
       fi
@@ -302,11 +336,7 @@ func_rawuserfile() {
 
 func_rawuserfilefield() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ] && [ -n "$1" ]; then
-    if [ "${GREP_PERL:-1}" -eq 0 ]; then
-      grep -Pow "^$1 \K[^ ]*" "$USERFILE"
-    else
-      grep -ow "^$1 [^ ]*" "$USERFILE" | cut -d" " -f2-
-    fi
+    func_grep "$1"
   fi
 }
 
@@ -336,27 +366,20 @@ func_rawgroups() {
 func_rawpgroups() {
   func_get_glconf
   if [ "${GREP_PERL:-1}" -eq 0 ]; then
-    grep -ow "^\s*privgroup .*" "$GLCONF" | cut -d" " -f2- | while IFS= read -r i; do
-      i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
-      read -r groupname description <<<"$i"
-      echo "$groupname $description"
-    done
+    privgroup="$(grep -ow "^\s*privgroup .*" "$GLCONF" | cut -d" " -f2-)"
   else
-    grep -Pow "^\s*privgroup \K.*" "$GLCONF" | while IFS= read -r i; do
-      i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
-      read -r groupname description <<<"$i"
-      echo "$groupname $description"
-    done
+    privgroup="$(grep -Pow "^\s*privgroup \K.*" "$GLCONF")"
   fi
+  echo "$privgroup" | while IFS= read -r i; do
+    i=$(echo "$i"|sed -e 's/\s\s*/ /g' -e 's|\[:space:\]| |g')
+    read -r groupname description <<<"$i"
+    echo "$groupname $description"
+  done
 }
 
 func_rawusergroup() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ]; then
-    if [ "${GREP_PERL:-1}" -eq 0 ]; then
-      grep -ow "^GROUP \K[^ ]*" "$USERFILE" | cut -d" " -f2- | grep -v "^NoGroup$'"
-    else
-      grep -Pow "^GROUP \K[^ ]*" "$USERFILE" | grep -v "^NoGroup$'"
-    fi
+    func_grep "GROUP" | grep -v "^NoGroup$'"
   fi
 }
 
@@ -364,17 +387,13 @@ func_rawusersgroups() {
   if [ ! -s "$GLDIR/etc/passwd" ]; then
     exit 1
   fi
-  cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
-    if [ -s "$GLDIR/ftp-data/users/$i" ]; then
-      if [ "${GREP_PERL:-1}" -eq 0 ]; then
-        group="$(grep -m1  -ow "^GROUP [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
-      else
-        group="$(grep -m1 -Pow "^GROUP \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      fi
+  cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r user; do
+    if [ -s "$GLDIR/ftp-data/users/$user" ]; then
+      group="$(func_grep -m1 GROUP "$GLDIR/ftp-data/users/$user")"
       if [ "$group" == "NoGroup" ]; then
         group=""
       fi
-      echo "$i $group"
+      echo "$user $group"
     fi
   done
 }
@@ -385,23 +404,101 @@ func_rawuserspgroups() {
   fi
   cut -d: -f1 < "$GLDIR/etc/passwd" | while IFS= read -r i; do
     if [ -s "$GLDIR/ftp-data/users/$i" ]; then
-      if [ "${GREP_PERL:-1}" -eq 0 ]; then
-        pgroup="$(grep -m1 -ow "^PRIVATE [^ ]*" "$GLDIR/ftp-data/users/$i" | cut -d" " -f2-)"
-      else
-        pgroup="$(grep -m1 -Pow "^PRIVATE \K[^ ]*" "$GLDIR/ftp-data/users/$i" || true | cut -d" " -f2)"
-      fi
-      echo "$i $pgroup"
+      echo "$i $(func_grep PRIVATE "$GLDIR/ftp-data/users/$i")"
     fi
   done
 }
 
 func_rawip() {
   if [ -n "$USERNAME" ] && [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ]; then
-    if [ "${GREP_PERL:-1}" -eq 0 ]; then
-      grep -ow "^IP .*" "$USERFILE" | cut -d" " -f2-
+    func_grep "IP"
+  fi
+}
+
+func_rawuserstats() {
+  if [ -n "$USERNAME" ]; then
+    for stat in $ALL_STATS; do
+      func_userstats "$stat"
+      if [ ! -d "$USERFILE" ] && [ -s "$USERFILE" ]; then
+        for ((i=0; i < ${#SECTIONS[@]}; i++)); do
+          echo "$stat $i ${SECTIONS[i]}"
+        done
+      fi
+    done
+  fi
+}
+
+func_rawusertop() {
+  if ! echo "$ALL_STATS" | grep -q "$STAT" || [ -z "$STAT" ]; then
+    exit 1
+  fi
+  bytes=0
+  total=0
+  for user in $(func_rawusers); do
+    if [ "${STATSECTION:-0}" -eq 0 ]; then
+      bytes="$(grep "$STAT" "$GLDIR/ftp-data/users/${user}" | cut -d' ' -f3)"
     else
-      grep -Pow "^IP \K.*" "$USERFILE"
+      USERFILE="$GLDIR/ftp-data/users/${user}"
+      func_userstats "$STAT"
+      bytes="$(echo "${SECTIONS[${STATSECTION:-0}]}" | cut -d' ' -f2)"
     fi
+    total=$((total+${bytes:-0}))
+    result="$result\n$user $bytes"
+  done
+  #  | sort -k 2 -n -r | head -10
+  pos=1
+  user=""
+  sbytes=0
+  if [ "$total" -gt  0 ]; then
+    while read -r line; do
+      read -r user sbytes <<<"$line"
+      printf "%s %s %s\n" "$user" "${sbytes:-0}" "$((${sbytes:-0}*100/total))"
+    done < <(echo -e "$result" | sort -n -r -k2)
+  fi
+}
+
+func_rawgrouptop() {
+  if ! echo "$ALL_STATS" | grep -q "$STAT" || [ -z "$STAT" ]; then
+    exit 1
+  fi
+  total=0
+  for groupfile in "$GLDIR"/ftp-data/groups/*; do
+    group="${groupfile##*/}"
+    if [ -z "$group" ] || [ "$group" = "default.group" ] || [ "$group" = "NoGroup" ]; then
+      continue
+    fi
+    group_bytes=0
+    for USERFILE in "$GLDIR"/ftp-data/users/*; do
+      user="${USERFILE##*/}"
+      if [ -z "$user" ] || [ "$user" = "default.user" ] || [ "${user##*.}" = ".new" ]; then
+        continue
+      fi
+      user_bytes=0
+      if grep -E -m1 "^GROUP " "$USERFILE" | grep -q "^GROUP $group ";  then
+        if [ "${STATSECTION:-0}" -eq 0 ]; then
+          user_bytes="$(grep "$STAT" "$USERFILE" | cut -d' ' -f3)"
+        else
+          func_userstats "$STAT"
+          user_bytes="$(echo "${SECTIONS[${STATSECTION:-0}]}" | cut -d' ' -f2)"
+        fi
+        group_bytes=$((group_bytes+${user_bytes:-0}))
+      fi
+    done
+    total=$((total+${group_bytes:-0}))
+    result="$result\n$group $group_bytes"
+  done
+  pos=1
+  group=""
+  rbytes=0
+  if [ "$total" -gt  0 ]; then
+    while read -r line; do
+      if [ ${pos:-0} -gt "${MAX_GROUPTOP:-10}" ]; then
+        break
+      fi
+      read -r group rbytes <<<"$line"
+      printf "%s %s %s\n" "$group" "${rbytes:-0}" "$((${rbytes:-0}*100/total))"
+      pos="$((pos+1))"
+    done < <(echo -e "$result" | sort -k2 -n -r)
   fi
 }
 
@@ -757,7 +854,7 @@ func_adduser() {
   fi
   # shellcheck disable=SC2034
   IFS=":" read -r username passwd uid gid date homedir unused <<< "$(tail -1 "$GLDIR/etc/passwd")"
-  if ! echo "$uid" | grep -Eq '^[0-9]+$'; then 
+  if ! echo "$uid" | grep -Eq '^[0-9]+$'; then
       echo "ERROR: uid"
       exit 1
   fi
@@ -767,7 +864,7 @@ func_adduser() {
     exit 1
   fi
   HASH="$($GLDIR/bin/hashgen "$USERNAME" "$PASSWORD" | cut -d: -f2)"
-  if ! echo "$HASH" | grep -Eq '^\$[0-9a-f]{8}\$[0-9a-f]{40}$'; then 
+  if ! echo "$HASH" | grep -Eq '^\$[0-9a-f]{8}\$[0-9a-f]{40}$'; then
     echo "ERROR: generating hash"
     exit 1
   fi
@@ -830,7 +927,7 @@ func_addgroup() {
   fi
   # shellcheck disable=SC2034
   IFS=":" read -r groupname description gid unused <<< "$(tail -1 "$GLDIR/etc/group")"
-  if ! echo "$gid" | grep -Eq '^[0-9]+$'; then 
+  if ! echo "$gid" | grep -Eq '^[0-9]+$'; then
       echo "ERROR: gid"
       exit 1
   fi
@@ -900,11 +997,7 @@ func_chflag() {
     echo "ERROR: missing flag(s)"
     exit 1
   fi
-  if [ "${GREP_PERL:-1}" -eq 0 ]; then
-    CURRENT_FLAGS="$( grep -ow "^FLAGS \K.*" "$USERFILE" | cut -d" " -f2-)"
-  else
-    CURRENT_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
-  fi
+  CURRENT_FLAGS="$(func_grep "FLAGS")"
   NEW_FLAGS="$CURRENT_FLAGS"
   # shellcheck disable=SC2001
   for i in $(echo "$FLAGS" | sed 's/./& /g'); do
@@ -976,6 +1069,7 @@ func_delflag() {
   else
     NEW_FLAGS="$( grep -Pow "^FLAGS \K.*" "$USERFILE" )"
   fi
+  #NEW_FLAGS="$(func_grep "FLAGS")"
   # shellcheck disable=SC2001
   for i in $(echo "$FLAGS" | sed 's/./& /g'); do
     if echo "$NEW_FLAGS" | grep -q "$i"; then
@@ -1114,9 +1208,9 @@ func_bc() {
     case "$UNIT" in
       b)  RESULT="$1${UNIT}" ;;
       KB) RESULT="$( echo "$1 1024" | awk '{ printf "%0.0f%s", $1/$2, "KB" }' )" ;;
-      MB) RESULT="$( echo "$1 1024"  | awk '{ printf "%0.1f%s", $1/$2/$2, "MB" }' )" ;;
-      GB) RESULT="$( echo "$1 1024"  | awk '{ printf "%0.1f%s", $1/$2/$2/$2, "GB" }' )" ;;
-      TB) RESULT="$( echo "$1 1024"  | awk '{ printf "%0.2f%s", $1/$2/$2/$2/$2, "TB" }' )" ;;
+      MB) RESULT="$( echo "$1 1024" | awk '{ printf "%0.1f%s", $1/$2/$2, "MB" }' )" ;;
+      GB) RESULT="$( echo "$1 1024" | awk '{ printf "%0.1f%s", $1/$2/$2/$2, "GB" }' )" ;;
+      TB) RESULT="$( echo "$1 1024" | awk '{ printf "%0.2f%s", $1/$2/$2/$2/$2, "TB" }' )" ;;
     esac
   fi
   echo "$RESULT"
@@ -1131,101 +1225,161 @@ __func_bc() {
 }
 
 func_userstats() {
-  COUNT=0
-  INDEX=0
-  SECTION=()
-  if [ "${GREP_PERL:-1}" -eq 0 ]; then
-    while read -d' '-r f; do
-      case $((COUNT%3)) in
-        0) FIELDS=""; FIELDS+="$f " ;;
-        1) FIELDS+="$f " ;;
-        2) FIELDS+="$f "; SECTION[INDEX]="${FIELDS/% /}" ;;
-        *) break;
-      esac
-      COUNT=$((COUNT+1))
-      if [ $((COUNT%3)) -eq 0 ]; then
-        INDEX=$((INDEX+1))
-      fi
-    done < <(grep -ow "^$1 ([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)
-  else
-    while read -d' '-r f; do
-      case $((COUNT%3)) in
-        0) FIELDS=""; FIELDS+="$f " ;;
-        1) FIELDS+="$f " ;;
-        2) FIELDS+="$f "; SECTION[INDEX]="${FIELDS/% /}" ;;
-        *) break;
-      esac
-      COUNT=$((COUNT+1))
-      if [ $((COUNT%3)) -eq 0 ]; then
-        INDEX=$((INDEX+1))
-      fi
-    done < <(grep -Pow "^$1 \K([0-9]+ ?)+" "$USERFILE")
-  fi
-}
-
-func_rawuserstats() {
-  for p in DAYUP WKUP MONTHUP ALLUP DAYDN WKDN MONTHDN ALLDN NUKE; do
-    func_userstats "$p"
-    for ((i=0; i < ${#SECTION[@]} ; i++)); do
-      echo "$p $i ${SECTION[i]}"
-    done
-  done
+  count=0
+  index=0
+  SECTIONS=()
+  while read -d' '-r f; do
+    case $((count%3)) in
+      0) fields=""; fields+="$f " ;;
+      1) fields+="$f " ;;
+      2) fields+="$f "; SECTIONS[index]="${fields/% /}" ;;
+      *) break;
+    esac
+    count=$((count+1))
+    if [ $((count%3)) -eq 0 ]; then
+      index=$((index+1))
+    fi
+  done < <(func_grep -num "$1")
 }
 
 func_listuserstats() {
+  ALL_STATS="MONTHUP"
   func_check_user "$USERNAME"
-  printf "PERIOD UP/DN:\tSTAT_SECTION:\t\tBytes / Files:\n" # / Time"
-  printf -- "------------------------------------------------------------\n"
-  for p in DAYUP WKUP MONTHUP ALLUP DAYDN WKDN MONTHDN ALLDN; do
-    func_userstats "$p"
-    for ((i=0 ; i < ${#SECTION[@]} ; i++)); do
-      stat_section="$i         "
-      if [ ${i:-255} -eq 0 ]; then
-        stat_section="$i(DEFAULT)"
-      fi
-      if [ $i -eq 0 ] || [ "${SECTION[i]}" != "0 0 0" ]; then
-        IFS=" " read -r files bytes _time <<<"${SECTION[i]}"
-        printf "%s\t\t%s\t\t%s/%sf\n" "$p" "$stat_section"  "$(func_bc "$bytes")" "$files"
+  # // Files / Bytes / Time
+  printf "STATS UP/DN:\tSTAT_SECTION:\t\tBytes / Files:\n%s\n" "$(printf -- "-"%.0s {1..80})"
+  for stat in ${ALL_STATS//NUKE/}; do
+    func_userstats "$stat"
+    for ((i=0 ; i < ${#SECTIONS[@]}; i++)); do
+      if [ $i -eq 0 ] || [ "${SECTIONS[i]}" != "0 0 0" ]; then
+        stat_section="$i"
+        if [ ${i:--1} -eq 0 ]; then
+          stat_section+="(DEFAULT)"
+        fi
+        IFS=" " read -r files bytes _time <<<"${SECTIONS[i]}"
+        printf "%s\t\t%-09s\t\t%s/%sf\n" "$stat" "$stat_section" "$(func_bc "$bytes")" "$files"
       fi
     done
     echo
-  done #| sort -k 2n -k 1r
-  printf "\t\t\t\t\tBytes / Times (Date):\n\n" # / Time"
+  done
+  # sort -k 2n -k 1r
+}
+
+func_listusernukes() {
+  # // Last time nuked / Times nuked / Bytes nuked
+  printf "\t\t\t\t\tBytes / Times (Date):\n%s\n" "$(printf -- "-"%.0s {1..80})"
   func_userstats "NUKE"
-  for ((i=0; i < ${#SECTION[@]} ; i++)); do
-    if [ "${SECTION[i]}" = "0 0 0" ]; then
+  for ((i=0; i < ${#SECTIONS[@]}; i++)); do
+    if [ "${SECTIONS[i]}" = "0 0 0" ]; then
       continue
     fi
     stat_section="$i"
-    if [ ${i:-255} -eq 0 ]; then
-      stat_section="$i(DEFAULT)"
+    if [ ${i:--1} -eq 0 ]; then
+      stat_section+="(DEFAULT)"
     fi
-    IFS=" " read -r last times bytes <<<"${SECTION[i]}"
+    IFS=" " read -r last times bytes <<<"${SECTIONS[i]}"
     printf "%s\t\t%-10s\t\t%s %s (%s)\n" "NUKE" "$stat_section" "$(func_bc "$bytes")" "$times" "$(date -d@"$last" +'%F %H:%M')"
   done
   echo
-  if [ "${GREP_PERL:-1}" -eq 0 ]; then
-    IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -ow "^TIME \K([0-9]+ ?)+" "$USERFILE" | cut -d" " -f2-)"
-  else
-    IFS=" " read -r _numlogins lastlogin _maxtime _todaytime <<<"$(grep -Pow "^TIME \K([0-9]+ ?)+" "$USERFILE")"
-  fi
+}
+
+# // Number of times logged in / Last time we saw the user / Max online time a day / Time online today
+func_listuserlogins() {
+  func_check_user "$USERNAME"
+  IFS=" " read -r  numlogins lastlogin maxtime todaytime <<<"$(func_grep -num TIME)"
+  printf "LOGINS: %s\nMAXTIME: %s\nTODAYTIME: %s\n" "$numlogins" "$maxtime" "$todaytime"
   if [ -n "$lastlogin" ]; then
     printf "LAST LOGIN: %s\n" "$(date -d@"$lastlogin" +'%F %H:%M')"
   fi
-  echo
 }
 
 func_resetuserstats() {
   func_check_user "$USERNAME"
   func_clean_tmp
   cp "$USERFILE" "$USERFILE.tmp" || { echo "ERROR: updating userfile"; exit 1; }
-  for p in DAYUP WKUP MONTHUP ALLUP DAYDN WKDN MONTHDN ALLDN NUKE; do
-    sed -i "s/^$p .*/$p 0 0 0/" "$USERFILE.tmp"
+  for stat in $ALL_STATS; do
+    sed -i "s/^$stat .*/$stat 0 0 0/" "$USERFILE.tmp"
   done || { echo "ERROR: resetting stats"; exit 1; }
   func_update_userfile
   func_logmsg "reset stats for \"$USERNAME\""
 }
 
+func_usertop() {
+  bytes=0
+  total=0
+  if ! echo "$ALL_STATS" | grep -q "$STAT" || [ -z "$STAT" ]; then
+    STAT="MONTHUP"
+  fi
+  for user in $(func_rawusers); do
+    if [ "${STATSECTION:-0}" -eq 0 ]; then
+      bytes="$(grep "$STAT" "$GLDIR/ftp-data/users/${user}" | cut -d' ' -f3)"
+    else
+      USERFILE="$GLDIR/ftp-data/users/${user}"
+      func_userstats "$STAT"
+      bytes="$(echo "${SECTIONS[${STATSECTION:-0}]}" | cut -d' ' -f2)"
+    fi
+    total=$((total+${bytes:-0}))
+    result="$result\n$user $bytes"
+  done
+  #  | sort -k 2 -n -r | head -10 | nl -w 2 -n rz -s' '
+  pos=1
+  user=""
+  rbytes=0
+  printf "%s USER TOP:\n%s\n" "$STAT" "$(printf -- "-"%.0s {1..35})"
+  if [ "$total" -gt 0 ]; then
+    while read -r line; do
+      if [ ${pos:-0} -gt "${MAX_USERTOP:-10}" ]; then
+        break
+      fi
+      read -r user rbytes <<<"$line"
+      printf "%02d %s %s (%s%%)\n" "$pos" "$user" "$(func_bc "${rbytes:-0}")" "$((${rbytes:-0}*100/total))"
+      pos="$((pos+1))"
+    done < <(echo -e "$result" | sort  -k2 -n -r)
+    echo
+    #printf "TOTAL: %s GiB\n\n" "$((total/1024/1024/1024))"
+  fi
+}
+
+func_grouptop () {
+  if ! echo "$ALL_STATS" | grep -q "$STAT" || [ -z "$STAT" ]; then
+    STAT="MONTHUP"
+  fi
+  total=0
+  for groupfile in "$GLDIR"/ftp-data/groups/*; do
+    group="${groupfile##*/}"
+    if [ -z "$group" ] || [ "$group" = "default.group" ] || [ "$group" = "NoGroup" ]; then
+      continue
+    fi
+    group_bytes=0
+    for userfile in "$GLDIR"/ftp-data/users/*; do
+      user="${userfile##*/}"
+      if [ -z "$user" ] || [ "$user" = "default.user" ] || [ "${user##*.}" = ".new" ]; then
+        continue
+      fi
+      user_bytes=0
+      if grep -E -m1 "^GROUP " "$userfile" | grep -q "^GROUP $group ";  then
+        user_bytes="$(grep "$STAT" "$userfile" | cut -d' ' -f3)"
+        group_bytes=$((group_bytes+${user_bytes:-0}))
+      fi
+    done
+    total=$((total+${group_bytes:-0}))
+    result="$result\n$group $group_bytes"
+  done
+  pos=1
+  group=""
+  rbytes=0
+  printf "%s GROUP TOP:\n%s\n" "$STAT" "$(printf -- "-"%.0s {1..35})"
+  if [ "$total" -gt  0 ]; then
+    while read -r line; do
+      if [ ${pos:-0} -gt "${MAX_GROUPTOP:-10}" ]; then
+        break
+      fi
+      read -r group rbytes <<<"$line"
+      printf "%02d %s %s (%s%%)\n" "$pos" "$group" "$(func_bc "${rbytes:-0}")" "$((${rbytes:-0}*100/total))"
+      pos="$((pos+1))"
+    done < <(echo -e "$result" | sort -k2 -n -r)
+    echo
+  fi
+}
 
 ################################################
 # COMMANDS
@@ -1240,6 +1394,9 @@ case $COMMAND in
   ;;
   LISTUSERS) func_listusers && exit 0 ;;
   LISTGROUPS) func_listgroups && exit 0 ;;
+  LISTUSERSTATS) func_listuserstats && exit 0 ;;
+  LISTUSERNUKES) func_listusernukes && exit 0 ;;
+  LISTUSERLOGINS) func_listuserlogins && exit 0 ;;
   RAWUSERFILE) func_rawuserfile && exit 0 ;;
   RAWUSERS) func_rawusers && exit 0 ;;
   RAWGROUPS) func_rawgroups && exit 0 ;;
@@ -1247,9 +1404,13 @@ case $COMMAND in
   RAWUSERSGROUPS) func_rawusersgroups && exit 0 ;;
   RAWUSERSPGROUPS) func_rawuserspgroups && exit 0 ;;
   RAWUSERGROUP) func_rawusergroup && exit 0 ;;
-  RAWTAG) func_rawuserfilefield "TAGLINE" && exit 0 ;;
+  RAWIP) func_rawip && exit 0 ;;
   RAWFLAG) func_rawuserfilefield "FLAGS" && exit 0 ;;
   RAWCREDS) func_rawuserfilefield "CREDITS" && exit 0 ;;
+  RAWTAG) func_rawuserfilefield "TAGLINE" && exit 0 ;;
+  RAWUSERSTATS) func_rawuserstats && exit 0 ;;
+  RAWUSERTOP) func_rawusertop && exit 0 ;;
+  RAWGROUPTOP) func_rawgrouptop && exit 0 ;;
   DELUSER) func_deluser && exit 0 ;;
   ADDGROUP) func_addgroup && exit 0 ;;
   DELGROUP) func_delgroup && exit 0 ;;
@@ -1261,7 +1422,6 @@ case $COMMAND in
   USERGADMIN) func_usergadmin && exit 0 ;;
   CHGADMIN) func_chgadmin && exit 0 ;;
   LISTIP) func_listip && exit 0 ;;
-  RAWIP) func_rawip && exit 0 ;;
   ADDIP) func_addip && exit 0 ;;
   DELIP) func_delip && exit 0 ;;
   CHPASS) func_chpass && exit 0 ;;
@@ -1272,10 +1432,10 @@ case $COMMAND in
   CHRATIO) func_chratio && exit 0 ;;
   ADDFLAG) func_addflag && exit 0 ;;
   DELFLAG) func_delflag && exit 0 ;;
-  RAWUSERSTATS) func_rawuserstats && exit 0 ;;
-  LISTUSERSTATS) func_listuserstats && exit 0 ;;
   RESETUSERSTATS) func_resetuserstats && exit 0 ;;
   LOGTAIL) func_logtail ;;
   LOGSHOW) func_logshow ;;
+  USERTOP) func_usertop && exit 0 ;;
+  GROUPTOP) func_grouptop && exit 0 ;;
   *) echo "ERROR: no such cmd"; exit 1 ;;
 esac
